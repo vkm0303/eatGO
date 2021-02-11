@@ -1,0 +1,20 @@
+<view class='selectBox'> 
+  <view class='select' catchtap='selectTap'> 
+    <text class='select_text'>{{selectData[index]}}</text> 
+    <image class='select_img {{selectShow&&"select_img_rotate"}}' 
+           src='../../images/option.jpg' 
+           background-size="contain">
+    </image> 
+  </view> 
+
+  <view class='optionBox'
+  		style='height:{{selectShow?(selectData.length>5?300:selectData.length*60):0}}rpx;'>     
+  	<text class='option' 
+          wx:for='{{selectData}}' 
+          wx:key='this' 
+          data-index='{{index}}' 
+          catchtap='optionTap'>{{item}}
+    </text> 
+    <!--上面text里面的样式不知道有啥用 style='{{index==selectData.length-1&&"border:0;"}}'-->
+  </view> 
+</view>

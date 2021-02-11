@@ -1,0 +1,42 @@
+<image
+ class="bgc"
+ src="../../images/login_bgc.png"
+ mode="aspectFill"
+></image>
+<!-- 切换身份登录按钮 -->
+<view class="stu-login-btn" bindtap="handleChangeId">{{login_id?'员工登录':'学生登录'}}</view>
+<!-- logo -->
+<image class="logo" src="../../images/logo.png"></image>
+<!-- 登录信息输入 -->
+<view class="login-warp">
+	<view class="account-warp common">
+		<span class="icon iconfont icon-user-circle"></span>
+		<input
+		 type="text"
+		 placeholder="请输入{{login_id?'学号':'工号'}}"
+		 placeholder-class="placeholder-class"
+		 bindinput="accInput"
+		></input>
+	</view>
+	<view class="password-warp common">
+		<span class="icon iconfont icon-md-lock"></span>
+		<input
+		 password="{{isVisible}}"
+		 placeholder="请输入{{login_id?'教务系统密码':'密码'}}"
+		 placeholder-class="placeholder-class"
+		 bindinput="psdInput"
+		></input>
+		<span class="iconfont icon-gongkai {{isVisible?'':'visible'}}" bindtap="handlePasswordVisit"></span>
+	</view>
+	<button
+	 class="login-btn"
+	 open-type="getUserInfo"
+	 bindgetuserinfo="handleLogin"
+	>登录
+	</button>
+	<view class="agreement-warp">
+		<text class="agreement-tip">登录前请先阅读并同意</text>
+		<span>《好吃GO隐私协议》</span>
+	</view>
+</view>
+

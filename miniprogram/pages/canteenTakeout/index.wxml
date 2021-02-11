@@ -1,0 +1,136 @@
+<view class="tabs-warp">
+	<view
+	 class="left-box text-center"
+	 data-index="{{0}}"
+	 bindtap="moveLeft"
+	>我要吃
+	</view>
+	<view
+	 class="right-box text-center"
+	 data-index="{{1}}"
+	 bindtap="moveRight"
+	>我要带
+	</view>
+	<view class="animation-box" animation="{{moveAnimation}}"></view>
+</view>
+
+<navigator
+ class="order-entry"
+ url="/pages/myOrderList/index"
+ hover-class="none"
+>
+	<span class="iconfont icon-order"></span>
+	<text class="order-text">订单</text>
+</navigator>
+
+<view class="content-submit-order" wx:if="{{tabIndex===0}}">
+	<view class="target-address">
+		<span class="iconfont icon-dingwei"></span>
+		<span class="address-name">北区食堂</span>
+	</view>
+	<!-- 领取方式容器 开始 -->
+	<view class="get-ways-warp">
+		<view
+		 class="get-way-box box-common {{getWayIndex === 0 ? 'active':'' }}"
+		 data-index="{{0}}"
+		 bindtap="handleWaySelect"
+		>
+			<image
+			 class="box-img"
+			 src="{{ getWayIndex === 0 ? '../../images/_getBySelf.png':'../../images/getBySelf.png' }}"
+			 mode="widthFix"
+			>
+			</image>
+			<text class="way-name">自提</text>
+			<text class="way-tip">自行前往餐厅指定位置领取</text>
+		</view>
+		<view
+		 class="get-way-box box-common {{getWayIndex === 1 ? 'active':'' }}"
+		 data-index="{{1}}"
+		 bindtap="handleWaySelect"
+		>
+			<image
+			 class="box-img"
+			 src="{{ getWayIndex === 1 ? '../../images/_getByDelivery.png':'../../images/getByDelivery.png' }}"
+			 mode="widthFix"
+			>
+			</image>
+			<text class="way-name">送餐上门</text>
+			<text class="way-tip">接单员配送餐食值指定位置</text>
+		</view>
+	</view>
+	<!-- 领取方式容器 结束 -->
+	<view class="goto-submit-btn">
+		<text decode>填写信息&nbsp;&nbsp;</text>
+		<span class="iconfont icon-iconyoujiantou"></span>
+	</view>
+</view>
+
+<view wx:else class="content-help">
+	<view class="address-warp">
+		<view class="address-btn-warp take-site" bindtap="handTakeAddressClick">
+			<view class="address-content" animation="{{isTakeAddressClick ? aniHeightAdd : aniHeightReduce}}">
+				<view class="address-btn">
+					<text class="iconfont icon-dian se-dot"></text>
+					<text decode="true">&nbsp;&nbsp;{{takeAddress}}&nbsp;&nbsp;</text>
+					<text class="iconfont icon-right"></text>
+				</view>
+				<view class="more-address" wx:if="{{isTakeAddressClick}}">
+					<view
+					 class="address-select {{takeAddress==item ? 'selected' : ''}}"
+					 bindtap="handleTakeAddressSelect"
+					 wx:for="{{takeAddressOptions}}"
+					 data-address="{{item}}"
+					>{{item}}
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="iconfont icon-iconyoujiantou"></view>
+		<view class="address-btn-warp receive-site" bindtap="handReceiveAddressClick">
+			<view class="address-content" animation="{{isReceiveAddressClick ? aniHeightAdd : aniHeightReduce}}">
+				<view class="address-btn">
+					<text class="iconfont icon-dian re-dot"></text>
+					<text decode="true">&nbsp;&nbsp;{{receiveAddress}}&nbsp;&nbsp;</text>
+					<text class="iconfont icon-right"></text>
+				</view>
+				<view class="more-address" wx:if="{{isReceiveAddressClick}}">
+					<view
+					 class="address-select {{receiveAddress==item ? 'selected' : ''}}"
+					 wx:for="{{receiveAddressOptions}}"
+					 bindtap="handleReceiveAddressSelect"
+					 data-address='{{item}}'
+					>{{item}}
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="order-list" scroll-y="{{true}}">
+		<view
+		 class="order"
+		 wx:for="{{orderList}}"
+		 wx:key="index"
+		>
+			<view class="take commond1">
+				<span class="take-icon commond2">取</span>
+				<span class="take-address commond3">{{item.detail[0].canteen}}</span>
+			</view>
+			<view class="receive commond1">
+				<span class="rec-icon commond2">收</span>
+				<span class="rec-address commond3">{{item.receiveAddress.address}}</span>
+				<span class="building-num commond4">{{item.receiveAddress.building}}</span>
+				<span class="room-num commond4">{{item.receiveAddress.dormNo}}</span>
+			</view>
+			<view class="time commond1">送达时间：12:00—12:30</view>
+			<view class="detail">
+				<span class="total-num">份数：{{item.totalNum}}</span>
+				<span class="total-price">金额：{{item.totalPrice}}元</span>
+			</view>
+			<view class="rec-btn-warp">
+				<view class="rec-btn">确认接单</view>
+			</view>
+		</view>
+	</view>
+</view>
+

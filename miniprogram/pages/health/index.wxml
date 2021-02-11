@@ -1,0 +1,139 @@
+<view class="top-warp">
+	<view class="date-warp">
+		<span class="day">MON</span>
+		<span class="date">2020.11.11</span>
+	</view>
+	<!-- <view class="cookbook-btn">
+		<view class="more-cookbook"></view>
+	</view> -->
+</view>
+<view
+ class="repo-btn-warp"
+ animation="{{isRepoBtnClick ? aniHeightAdd : aniHeightReduce}}"
+ bindtap="handleRepoBtnClick"
+>
+	<view class="repo-btn">
+		<text decode>{{activeOption}}</text>
+		<span class="iconfont icon-iconxiajiantou-copy"></span>
+	</view>
+	<view class="more-repo">
+		<span
+		 class="{{activeOption=='日报告'?'active':''}}"
+		 bindtap="handleOptionClick"
+		 data-option="日报告"
+		>日报告
+		</span>
+		<span
+		 class="{{activeOption=='周报告'?'active':''}}"
+		 bindtap="handleOptionClick"
+		 data-option="周报告"
+		>周报告
+		</span>
+		<span
+		 class="{{activeOption=='月报告'?'active':''}}"
+		 bindtap="handleOptionClick"
+		 data-option="月报告"
+		>月报告
+		</span>
+	</view>
+</view>
+<view class="repo-warp">
+	<view class="total-calorie">
+		<view class="left">总热量</view>
+		<view class="right">864千卡</view>
+	</view>
+	<view class="repo-detail">
+		<view class="breakfast">
+			<view class="top">
+				<text class="title">早餐</text>
+				<text class="advice">建议319-389千卡</text>
+				<text class="calorie" decode="{{true}}">200 千卡</text>
+				<span class="iconfont icon-iconyoujiantou"></span>
+			</view>
+			<view
+			 class="list"
+			 wx:for="{{breakfastList}}"
+			 wx:key="index"
+			>
+				<view class="detail">
+					<view class="left">
+						<image
+						 class="img"
+						 src="cloud://test-v14h8.7465-test-v14h8-1303227913/图片 2.png{{item.imgFileID}}"
+						 mode="widthFix"
+						></image>
+					</view>
+					<view class="right">
+						<view>
+							<span class="name">{{item.name}}面包</span>
+							<span class="food-num">{{item.num}}70克</span>
+						</view>
+						<text class="food-calorie" decode="{{true}}">{{item.calorie}}200 千卡</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="lunch">
+			<view class="top">
+				<text class="title">午餐</text>
+				<text class="advice">建议425-519千卡</text>
+				<text class="calorie" decode="{{true}}">180 千卡</text>
+				<span class="iconfont icon-iconyoujiantou"></span>
+			</view>
+			<view
+			 class="list"
+			 wx:for="{{lunchList}}"
+			 wx:key="index"
+			>
+				<view class="detail">
+					<view class="left">
+						<image
+						 class="img"
+						 src="cloud://test-v14h8.7465-test-v14h8-1303227913/图片 5.png{{item.imgFileID}}"
+						 mode="widthFix"
+						></image>
+					</view>
+					<view class="right">
+						<view>
+							<span class="name">{{item.name}}叉烧饭</span>
+							<span class="food-num">{{item.num}}150克</span>
+						</view>
+						<text class="food-calorie" decode="{{true}}">{{item.calorie}}180 千卡</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="dinner">
+			<view class="top">
+				<text class="title">晚餐</text>
+				<text class="advice">建议319-389千卡</text>
+				<text class="calorie" decode="{{true}}">484 千卡</text>
+				<span class="iconfont icon-iconyoujiantou"></span>
+			</view>
+			<view
+			 class="list"
+			 wx:for="{{dinnerList}}"
+			 wx:key="index"
+			>
+				<view class="detail">
+					<view class="left">
+						<image
+						 class="img"
+						 src="cloud://test-v14h8.7465-test-v14h8-1303227913/图片 4.png{{item.imgFileID}}"
+						 mode="widthFix"
+						></image>
+					</view>
+					<view class="right">
+						<view>
+							<span class="name">{{item.name}}巧克力蛋糕</span>
+							<span class="food-num">{{item.num}}125克</span>
+						</view>
+						<text class="food-calorie" decode="{{true}}">{{item.calorie}}359 千卡</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="creat-repo-btn">生成健康报告</view>
+</view>
+

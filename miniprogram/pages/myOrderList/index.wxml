@@ -1,0 +1,30 @@
+<view class="page">
+	<view class="order-list-warp">
+		<view
+		 class="order-warp"
+		 wx:for="{{orderList}}"
+		 wx:for-item="order"
+		>
+			<view class="box-common">
+				<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
+				<text class="way">{{order.getWay}}</text>
+			</view>
+			<view class="box-common">
+				<text decode>取餐时间:&nbsp;&nbsp;&nbsp;</text>
+				<text class="text-common">{{order.getTime}}</text>
+			</view>
+			<view class="box-common">
+				<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
+				<view class="details-warp">
+					<text class="text-common" decode wx:for="{{order.details}}">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
+				</view>
+			</view>
+			<view class="box-common">
+				<text decode>下单时间:&nbsp;&nbsp;&nbsp;</text>
+				<text class="text-common">2021.02.16</text>
+			</view>
+			<view class="cancel-order-btn {{order.status?'status':''}}" bindtap="cancelOrder">取消订单</view>
+		</view>
+	</view>
+</view>
+

@@ -1,0 +1,11 @@
+<view class="bg-warp">
+	<image class="bg" src="https://7465-test-v14h8-1303227913.tcb.qcloud.la/app_images/my_bg.png?sign=e9e4d32d414e084ae2b256a29ae301a0&t=1603778355"></image>
+</view>
+<view class="user-info" wx:if="{{isLogin}}">
+	<image class="head-pic" src="{{headPicUrl}}"></image>
+	<span class="name">{{name}}同学</span>
+	<span class="account">{{no}}</span>
+	<view class="exit-btn" bindtap="exitLoginState">退出登录</view>
+</view>
+<view class="unlogin" wx:else>未登录</view>
+

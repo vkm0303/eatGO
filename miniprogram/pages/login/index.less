@@ -1,0 +1,125 @@
+@import "../../style/iconfonts.wxss";
+//切换身份登录
+.stu-login-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12 * 2rpx;
+  margin-left: 278 * 2rpx;
+  width: 79 * 2rpx;
+  height: 34 * 2rpx;
+  background-color: #fff;
+  opacity: 0.88;
+  border-radius: 49 * 2px;
+  color:#5d9ff7;
+  font-size: 28rpx;
+  font-weight: 500;
+  font-family: Arial;
+}
+.bgc{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin-top: -24rpx;
+  z-index: -1;
+}
+//logo
+.logo {
+  width: 137 * 2rpx;
+  height: 137 * 2rpx;
+  margin-top: 46rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+//登录信息输入
+.login-warp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 196rpx;
+  //账号输入栏
+  .account-warp {
+    display: flex;
+    border: 2rpx solid #e6e6e6;
+  }
+  //密码输入栏
+  .password-warp {
+    position: relative;
+    top: 30rpx;
+    display: flex;
+    border-bottom: 2rpx solid #e6e6e6;
+    .icon-gongkai {
+      position: absolute;
+      left: 540rpx;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      z-index: 99;
+      font-size: 56rpx;
+      color: #747373;
+    }
+    .visible {
+      color: #ff824e;
+    }
+  }
+  //公共样式
+  input {
+    width: 100%;
+    height: 100%;
+    padding-left: 80rpx;
+    box-sizing: border-box;
+    border-radius: 0 98rpx 98rpx 0;
+    font-size: 24rpx;
+  }
+  .common {
+    width: 630rpx;
+    height: 120rpx;
+    border-radius: 98rpx;
+    background-color: #fff;
+    opacity: 0.88;
+    .icon {
+      margin-left: 46rpx;
+      margin-top: 32rpx;
+      font-size: 56rpx;
+      color: #7f7d7d;
+    }
+  }
+  .placeholder-class {
+    margin-left: -90rpx;
+    text-align: center;
+    color: #aba8a8;
+    font-size: 24rpx;
+    font-family: PingFangSC-regular;
+  }
+  //登录按钮
+  .login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 630rpx;
+    height: 120rpx;
+    margin-top: 80rpx;
+    background-color: #ff824e;
+    border-radius: 98rpx;
+    box-shadow: 0px 1px 6px 0px #ff824e;
+    font-family: Microsoft Yahei;
+    color: #ffffff;
+    font-size: 40rpx;
+  }
+  //协议
+  .agreement-warp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28 * 2rpx;
+    margin-top: 5rpx;
+    color: #ffffff;
+    font-size: 24rpx;
+    font-family: PingFangSC-regular;
+    span {
+      color: #f8c094;
+    }
+  }
+}

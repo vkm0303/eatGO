@@ -1,0 +1,11 @@
+<view class="bottomrow">
+		<view class="iconblock">
+			<image class="icon1" src="../../images/message.png"></image>
+			<view style="font-size: 24rpx;">留言</view>
+		</view>
+		<view class="iconblock">
+			<image class="icon1" src="../../images/share.png"></image>
+			<view style="font-size: 24rpx;">分享</view>
+		</view>
+		<view class="iwant">我想要</view>
+</view>

@@ -1,0 +1,15 @@
+<textarea class="desc" placeholder="品牌型号、新旧程度、入手渠道、转手原因" bindinput="getInput" />
+<view class="iamgeRootAll">
+  <block wx:for="{{imgList}}" wx:key="index">
+    <view class="imgItem">
+      <image class="img" src='{{item}}' mode='aspectFill'></image>
+      <image class="closeImg" bindtap="DeleteImg" src="../../images/delete.png" data-index="{{index}}"></image>
+    </view>
+  </block>
+  <!-- 选择图片按钮 -->
+  <view wx:if="{{imgList.length<9}}" class="imgItem" bindtap="ChooseImage">
+    <image class="photo" src="../../images/addphoto.png"></image>
+  </view>
+</view>
+
+<button class="click" bindtap="publish">发 布</button>

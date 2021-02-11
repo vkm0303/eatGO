@@ -1,0 +1,54 @@
+<view class="firstblock">
+	<image class="touxiang1" src='../../images/tx1.png'></image>
+	<view class="person">
+		<view class="name">
+			<text class="showname1">Yuilak</text>
+		</view>
+		<view class="tel">
+			<text class="major">18级工业设计</text>
+		</view>
+	</view>
+</view>
+<view class="goodsInfor">
+	<view class="oldDegree">九成新</view>
+	<view class="price">￥8999.00</view>
+	<view class="goodsName">Apple 2019款 Macbook Pro 13.3 苹果笔记本电脑，九成新，功能全部正常</view>
+</view>
+<view class="goodsImages">
+	<image mode="widthFix" class="image1" src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/ruAMsa53pVQWN7FLK88i5m.SjjvSnwMvHofFITOP1lTHKFh6OWkz9yvW6PqH9pOHOL38ZJ42v0jPWfNj*tJp5iLp0bifGjbQqnGU5QZFhuA!/b&bo=WwEHAQAAAAADB34!&rf=viewer_4"></image>
+	<image mode="widthFix" class="image2" src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcRCGsKiuNeK2gPly224lSkc6QJipYLvCl52IWRIr79J.UEN5nxvmNsrdssdnB9lGHlxeC6JpHNwPcHz8qwNGJuA!/b&bo=WwHRAQAAAAADN5g!&rf=viewer_4"></image>
+	<image mode="widthFix" class="image3" src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcRCGsKiuNeK2gPly224lSkelpGnFZqCTJZoiJzsXJSmJjy3wug5gyH8*Ufh55yzNEPKQ0oAbmp*RU9chJCzJHmU!/b&bo=WwHRAQAAAAADN5g!&rf=viewer_4"></image>
+</view>
+
+<view class="massageblock">
+	<view class="massagetitle">全部留言 (2)</view>
+	<view class="secondblock">
+		<image class="touxiang2" src='http://b195.photo.store.qq.com/psb?/V10yZfu63jdkwj/ya2hHbWVaQGYJb9LBIE2uZL4DqgkAELiCvix3D7kkqg!/b/dMMAAAAAAAAA&bo=EgtABhILQAYRFyA!&rf=viewer_4'></image>
+		<view class="person">
+			<view class="name">
+				<text class="showname2">Healer</text>
+			</view>
+			<view class="tel">
+				<text class="major">你这个是什么时候买的啊?</text>
+			</view>
+			<view class="tel">
+				<text class="massagetime">38分钟前</text>
+			</view>
+		</view>
+	</view>
+  <view class="secondblock">
+		<image class="touxiang2" src='../../images/tx1.png'></image>
+		<view class="person">
+			<view class="name">
+				<text class="showname2">Yuilak</text>
+			</view>
+			<view class="tel">
+				<text class="major">回复@Healer：一个月前</text>
+			</view>
+			<view class="tel">
+				<text class="massagetime">29分钟前</text>
+			</view>
+		</view>
+	</view>
+</view>
+<include src="/pages/bottom_block/bottom_block.wxml"/>

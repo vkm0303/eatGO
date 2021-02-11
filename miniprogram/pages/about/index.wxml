@@ -1,0 +1,26 @@
+<view class="top-warp">
+	<image class="logo" src="../../images/logo.png"></image>
+	<span class="name">好吃GO</span>
+	<span class="description">好吃GO是为您提供sztu饭堂服务的小程序</span>
+</view>
+<view class="btn-warp">
+	<view class="top-btn">
+		<view class="goback-btn" bindtap="goback">进入小程序</view>
+		<button class="share-btn" open-type="share">推荐给朋友</button>
+	</view>
+	<view class="good-btn">
+		<span class="iconfont icon-zan"></span>
+		为小程序点赞
+	</view>
+</view>
+<view class="bottom-warp">
+	<view class="member-warp common">
+		<span class="hd">制作人员</span>
+		<span class="content">吉祥小组所有成员</span>
+	</view>
+	<view class="thank-warp common">
+		<span class="hd">特别鸣谢</span>
+		<span class="content">刘志国老师</span>
+	</view>
+</view>
+

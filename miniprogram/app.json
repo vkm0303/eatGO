@@ -1,0 +1,76 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/index",
+    "pages/more/index",
+    "pages/my/index",
+    "pages/canteenTakeout/index",
+    "pages/myOrderList/index",
+    "pages/address/index",
+    "pages/address/add_address/add_address",
+    "pages/pay/index",
+    "pages/health/index",
+    "pages/healthRepo/index",
+    "pages/TEST/TEST",
+    "pages/add_dishes/index",
+    "pages/secondhand/secondhand",
+    "pages/goodsDetail/goodsDetail",
+    "pages/bottom_block/bottom_block",
+    "pages/bottom_add/bottom_add",
+    "pages/goods_add/goods_add",
+    "pages/nearTakeout/goods",
+    "pages/nearTakeout/pay/pay",
+    "pages/restaurant/restaurant",
+    "pages/accountManage/index",
+    "pages/about/index",
+    "pages/myCollection/index",
+    "pages/orderDetails/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#101010",
+    "selectedColor": "#101010",
+    "backgroundColor": "#ffffff",
+    "position": "bottom",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "菜品",
+        "iconPath": "icons/_menu.png",
+        "selectedIconPath": "icons/menu.png"
+      },
+      {
+        "pagePath": "pages/canteenTakeout/index",
+        "text": "食堂外带",
+        "iconPath": "icons/_canteen.png",
+        "selectedIconPath": "icons/canteen.png"
+      },
+      {
+        "pagePath": "pages/more/index",
+        "text": "发现",
+        "iconPath": "icons/_more.png",
+        "selectedIconPath": "icons/more.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我",
+        "iconPath": "icons/_my.png",
+        "selectedIconPath": "icons/my.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "useExtendedLib": {
+    "weui": true
+  },
+  "sitemapLocation": "sitemap.json"
+}

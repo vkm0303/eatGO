@@ -1,0 +1,16 @@
+<view class="name">姓名：{{name}}</view>
+<view class="no">学号：{{no}}</view>
+<view class="no">院系：{{college}}</view>
+<view class="no">专业：{{major}}</view>
+<view class="no">班级：{{class}}</view>
+<view>status:{{status}}</view>
+<form bindsubmit="login">
+	<input type="text" name="account"></input>
+	<input
+	 type="text"
+	 password="{{true}}"
+	 name="password"
+	></input>
+	<button form-type="submit">登录</button>
+</form>
+

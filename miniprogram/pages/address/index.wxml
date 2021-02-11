@@ -1,0 +1,38 @@
+<view class="top-warp">
+	<span class="hd">我的地址</span>
+	<navigator
+	 class="add-address"
+	 url="/pages/address/add_address/add_address"
+	 hover-class="none"
+	>+
+	</navigator>
+</view>
+<view class="address-list" wx:if="{{isHaveAddress}}">
+	<view
+	 class="address-detail-warp"
+	 wx:for="{{addressList}}"
+	 wx:key="index"
+	>
+		<view
+		 class="address-detail"
+		 bindtap="handleSelectAddress"
+		 data-address="{{item}}"
+		>
+			<span class="name">{{item.name}}</span>
+			<span class="tel-num">{{item.telNum}}</span>
+			<span class="wx-account">微信号：{{item.wxAccount}}</span>
+			<span class="address">{{item.address}}{{item.building}} {{item.dormNo}}</span>
+		</view>
+		<navigator
+		 class="edit"
+		 url="/pages/address/add_address/add_address?index={{index}}"
+		 hover-class="none"
+		>编辑
+		</navigator>
+	</view>
+</view>
+<view class="no-address" wx:else>
+	<span class="null iconfont icon-kong"></span>
+	<span>还没有添加地址O~</span>
+</view>
+

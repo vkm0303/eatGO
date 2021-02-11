@@ -1,0 +1,48 @@
+<view class="bgc-warp">
+	<image class="bg" src="https://7465-test-v14h8-1303227913.tcb.qcloud.la/app_images/my_bg.png?sign=e9e4d32d414e084ae2b256a29ae301a0&t=1603778355"></image>
+</view>
+<view class="user-info" wx:if="{{isLogin}}">
+	<image class="user-head-pic" src="{{headPicUrl}}"></image>
+	<span class="user-name">{{name}}同学</span>
+	<span class="user-account">{{no}}</span>
+</view>
+<navigator
+ class="login-btn"
+ url="/pages/login/index"
+ wx:else
+>登录
+</navigator>
+<view class="main-warp">
+	<navigator class="message common-router">
+		<image class="icon" src="../../icons/message.png"></image>
+		<span class="common-text">信息</span>
+		<span class="iconfont icon-iconyoujiantou"></span>
+	</navigator>
+	<navigator class="collection common-router" url="/pages/myCollection/index">
+		<image class="icon" src="../../icons/collect.png"></image>
+		<span class="common-text">喜爱菜品</span>
+		<span class="iconfont icon-iconyoujiantou"></span>
+	</navigator>
+	<navigator class="pay-record common-router">
+		<image class="icon" src="../../icons/consume.png"></image>
+		<span class="common-text">消费记录</span>
+		<span class="iconfont icon-iconyoujiantou"></span>
+	</navigator>
+	<navigator class="accout common-router" url="/pages/accountManage/index">
+		<image class="icon" src="../../icons/account.png"></image>
+		<span class="common-text">账号管理</span>
+		<span class="iconfont icon-iconyoujiantou"></span>
+	</navigator>
+	<navigator class="feedback common-router">
+		<image class="icon" src="../../icons/feedback.png"></image>
+		<span class="common-text">反馈</span>
+		<span class="iconfont icon-iconyoujiantou"></span>
+		<button class="btn" open-type="feedback"></button>
+	</navigator>
+	<navigator class="about common-router" url="/pages/about/index">
+		<image class="icon" src="../../icons/about.png"></image>
+		<span class="common-text">关于我们</span>
+		<span class="iconfont icon-iconyoujiantou"></span>
+	</navigator>
+</view>
+

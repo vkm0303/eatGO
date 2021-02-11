@@ -1,0 +1,87 @@
+page{
+  background-color: rgba(241, 241, 241, 100);
+}
+.rank{
+  width: 200rpx;
+  background-color:  rgba(241, 241, 241, 100);
+  color: rgba(16, 16, 16, 100);
+  font-size: 14px; 
+  font-family: Microsoft Yahei;
+  margin-left: 26rpx;
+  margin-bottom: 26rpx;
+}
+.near{
+  color: rgba(129, 126, 126, 100);
+font-size: 12px;
+text-align: left;
+font-family: PingFangSC-regular;
+margin-left: 24rpx;
+margin-bottom: 14rpx; 
+margin-top: 16rpx;
+}
+.content-wrapper{
+  height: 206rpx;
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  line-height: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 100);
+  background-color: white;
+  margin-bottom: 26rpx;
+}
+.foodimage{
+  width: 98px;
+  height: 81px; 
+  border-radius: 15px;
+  margin-top: 22rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+.content{
+  margin-top: 22rpx;
+}
+.name{
+  color: rgba(16, 16, 16, 100);
+font-size: 16px;
+text-align: left;
+font-weight: bold;
+font-family: PingFangSC-regular;
+}
+.title{
+  width: 380rpx;
+  margin-bottom: 6rpx;
+  margin-top: 12rpx;
+}
+.description{
+  margin-bottom: 6rpx;
+}
+.minute{
+  color: rgba(16, 16, 16, 100);
+  font-size: 22rpx;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  float: right;
+}
+.grade{
+  color: #FFCC00;
+  margin-left: 6rpx;
+  font-size: 24rpx;
+}
+.sales{
+  color: rgba(16, 16, 16, 100);
+  font-size: 22rpx;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  margin-left: 6rpx;
+}
+.information{
+  color: rgba(16, 16, 16, 100);
+  font-size: 11px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+}
+

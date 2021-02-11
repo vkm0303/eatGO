@@ -1,0 +1,21 @@
+.weui-tabs {
+  width: 100%;
+}
+.weui-tabs .weui-tabs-bar__wrp {
+  overflow: hidden;
+  width: 100%;
+  background: #fff;
+  border: 0;
+}
+.weui-tabs .weui-tabs-bar__wrp .weui-tabs-bar__content {
+  width: 100%;
+  white-space: nowrap;
+}
+.weui-tabs .weui-tabs-bar__wrp .weui-tabs-bar__content .weui-tabs-bar__item {
+  display: inline-block;
+}
+.weui-tabs .weui-tabs-bar__wrp .weui-tabs-bar__content .weui-tabs-bar__item .weui-tabs-bar__title {
+  display: inline-block;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}

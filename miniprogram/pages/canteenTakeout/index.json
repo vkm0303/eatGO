@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "Tabs": "../../components/Tabs/Tabs"
+    },
+    "navigationBarTitleText": "食堂外带"
+}

@@ -1,0 +1,122 @@
+@import "/pages/bottom_block/bottom_block.wxss";
+.firstblock{
+  height: 130rpx;
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: 2px solid rgba(187, 187, 187, 100);
+ }
+ .touxiang1{
+  width: 88rpx;
+  height: 88rpx;
+ }
+ .touxiang2{
+  width: 80rpx;
+height: 80rpx;
+border-radius: 50%;
+ }
+ .text{
+  margin-left: 30rpx;
+ }
+ .person{
+   width: 75%;
+   height: 130rpx;
+   margin-left: 30rpx;
+   
+ }
+ .name{
+   display: flex;
+   justify-content: flex-start;
+   font-size: 28rpx;
+   flex-direction: row;
+ }
+ .tel{
+   display: flex;
+   justify-content: flex-start;
+   margin-top: 10rpx;
+   flex-direction: row;
+ }
+ .showname1{
+   font-size: 34rpx;
+   color: #3f51B5;
+   font-weight: bold;
+ }
+ .showname2{
+  font-size: 28rpx;
+  color: #3f51B5;
+  font-weight: bold;
+}
+ .major{
+   font-size: 28rpx;
+   color:black;
+ } 
+
+ .oldDegree{
+  width: 46px;
+height: 18px;
+line-height: 17px;
+background-color: rgba(255, 71, 71, 100);
+color: rgba(255, 255, 255, 100);
+font-size: 12px;
+text-align: center;
+font-family: Arial;
+border: 1px solid rgba(255, 255, 255, 100);
+}
+.goodsInfor{
+  margin-top: 16rpx;
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+.price{
+  color: rgba(229, 28, 35, 100);
+  font-size: 32rpx;
+  text-align: left;
+  font-family: SourceHanSansSC-regular;
+}
+.goodsName{
+ font-size: 30rpx;
+}
+.image1{
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+border-radius: 18px;
+margin-top: 20rpx;
+}
+.image2{
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+border-radius: 18px;
+margin-top: 10rpx;
+}
+.image3{
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+border-radius: 18px;
+margin-top: 10rpx;
+}
+.massageblock{
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+  height: 440rpx;
+}
+.secondblock{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 15rpx;
+  margin-top: 15rpx;
+  border-bottom: 1px solid rgba(187, 187, 187, 100);
+}
+
+.massagetime{
+  font-size: 20rpx;
+  color: rgba(190, 185, 185, 100);
+}

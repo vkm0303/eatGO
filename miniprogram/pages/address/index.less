@@ -1,0 +1,82 @@
+@import '../../style/iconfonts.wxss';
+page {
+    height: 100%;
+}
+.top-warp {
+    display: flex;
+    width: 100%;
+    height: 80rpx;
+    padding: 10rpx 20rpx 0;
+    .hd {
+        display: flex;
+        align-items: center;
+        font-size: 32rpx;
+        font-weight: 700;
+    }
+    .add-address {
+        display: flex;
+        align-items: center;
+        margin-left: 540rpx;
+        font-size: 70rpx;
+    }
+}
+.address-list {
+    display: flex;
+    flex-direction: column;
+    .address-detail-warp {
+        display: flex;
+        align-items: center;
+        width: 680rpx;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        margin-top: 10rpx;
+        margin-bottom: 10rpx;
+        padding: 20rpx 10rpx 20rpx 30rpx;
+        box-shadow: 0 0 10rpx 3rpx #e0dfdf;
+        border-radius: 30rpx;
+        .address-detail {
+            flex: 8;
+            .name {
+                margin-bottom: 5rpx;
+                font-size: 30rpx;
+            }
+            .tel-num {
+                margin-left: 10rpx;
+                font-size: 24rpx;
+            }
+            .wx-account {
+                margin-left: 20rpx;
+                font-size: 24rpx;
+            }
+            .address {
+                display: block;
+                margin-top: 10rpx;
+                font-size: 30rpx;
+            }
+        }
+        .edit {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            height: 50rpx;
+            padding-left: 30rpx;
+            border-left: 2rpx solid #666565;
+            font-size: 28rpx;
+            color: #858383;
+        }
+    }
+}
+.no-address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 300rpx;
+    color: #dad8d8;
+    .null {
+        margin-left: 40rpx;
+        margin-bottom: 20rpx;
+        font-size: 210rpx;;
+    }
+}

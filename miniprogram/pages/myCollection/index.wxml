@@ -1,0 +1,30 @@
+<view class="hd">
+	<text decode="true"> MY FAVOURITE</text>
+</view>
+<view class="bd">
+	<block>
+		<view
+		 class="list"
+		 wx:for="{{collections}}"
+		 wx:for-item="food"
+		 wx:key="index"
+		>
+			<view class="food-warp">
+				<image class="food-img" src="{{food.image_fileID}}"></image>
+
+				<span class="food-name">{{food.food_name}}</span>
+				<span class="food-price">{{food.price}}</span>
+
+				<span
+				 class="collect-btn iconfont icon-shoucang"
+				 bindtap="handleCancelCollect"
+				 data-index="{{index}}"
+				></span>
+			</view>
+		</view>
+	</block>
+	<!-- <block wx:else>
+		<image class="null" src=""></image>
+	</block> -->
+</view>
+

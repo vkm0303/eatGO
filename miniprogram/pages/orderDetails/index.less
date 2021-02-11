@@ -1,0 +1,156 @@
+@import '../../style/iconfonts.wxss';.order-detail {
+    .address-warp {
+        position: relative;
+        top: 104rpx;
+        left: 24rpx;
+        display: flex;
+        align-items: center;
+        font-size: 28rpx;
+        font-family: PingFangSC-regular;
+        .icon-dingwei {
+            font-size: 42rpx;
+            color: #ff7100;
+        }
+        .address {
+            padding-left: 10rpx;;
+        }
+    }
+    //订单详情
+    .order-detail {
+        position: relative;
+        top: 68 * 2rpx;
+        width: 359 * 2rpx;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        line-height: 40rpx;
+        .food-warp {
+            display: flex;
+            box-sizing: border-box;
+            padding: 20rpx;
+            margin-bottom: 16rpx;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 20rpx;
+            border: 4rpx solid #ffffff;
+            .food-img {
+                width: 222rpx;
+                height: 180rpx;
+                border-radius: 16rpx;
+            }
+            .food-description {
+                padding-left: 18rpx;
+                .food-name {
+                    height: 40rpx;
+                    color: #101010;
+                    font-size: 28rpx;
+                    text-align: left;
+                    font-family: PingFangSC-regular;
+                }
+                .bottom-warp {
+                    display: flex;
+                    .food-price {
+                        height: 34rpx;
+                        margin-left: 112rpx;
+                        margin-top: 86rpx;
+                        padding-top: 5rpx;
+                        text {
+                            font-size: 18rpx;
+                            color: #ff5252;
+                        }
+                        .food-price-text {
+                           font-size: 32rpx;
+                           text-align: left;
+                           color: #ff4f4f; 
+                        }
+                    }
+                    .food-num-edit {
+                        display: flex;
+                        width: 140rpx;
+                        height: 48rpx;
+                        margin-left: 56rpx;
+                        margin-top: 86rpx;
+                        font-size: 28rpx;
+                        .food-num-reduce {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 32rpx;
+                            height: 32rpx;
+                            border-radius: 50%;
+                            border: 2rpx solid #ffa783;
+                            color: #ffa783;
+                        }
+                        .food-num {
+                            margin: 0 14rpx;
+                            text-align: center;
+                        }
+                        .food-num-add {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 32rpx;
+                            height: 32rpx;
+                            border-radius: 50%;
+                            border: 2rpx solid #ffa783;
+                            background-color: #ff824e;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .food-add-btn {
+        position: fixed;
+        bottom: 95 * 2rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 105 * 2rpx;
+        height: 64rpx;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        border-radius: 22rpx;
+        background-color: #ff824e;
+        box-shadow: 1px 1px 3px 0px #ff824e;
+        color: #fff;
+        line-height: 40rpx;
+        font-size: 28rpx;
+        font-family: Arial;
+    }
+    
+    .pay-warp {
+        position: fixed;
+        left: 264 * 2rpx;
+        bottom: 20rpx;
+        display: flex;
+        flex-direction: column;
+        font-size: 28rpx;
+        .num-warp {
+            margin-bottom: 20rpx;
+            .num {
+                color: #fe9164;
+            }
+        }
+        .total-price-warp {
+            margin-bottom: 20rpx;
+            .total-price {
+                color: #fe9164;
+            }
+        }
+        .pay-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 92 * 2rpx;
+            height: 60rpx;
+            margin-left: -10rpx;
+            border-radius: 22rpx;
+            background-color: #ff824e;
+            color:#ffffff;
+            box-shadow: 1px 1px 3px 0px #ff824e;
+            font-family: Microsoft Yahei;
+        }
+    }
+}

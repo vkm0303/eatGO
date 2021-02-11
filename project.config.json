@@ -1,0 +1,178 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": true,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": true,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "bundle": false,
+    "useApiHostProcess": true
+  },
+  "appid": "wx2d37530643ea06bc",
+  "projectname": "TastyGo",
+  "libVersion": "2.13.0",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/index/index",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "登录",
+          "pathName": "pages/login/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发现",
+          "pathName": "pages/more/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "TEST",
+          "pathName": "pages/TEST/TEST",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "食堂帮带",
+          "pathName": "pages/canteenTakeout/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "食堂情况",
+          "pathName": "pages/canteenCondition/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 7,
+          "name": "结算",
+          "pathName": "pages/pay/index",
+          "query": "totalPrice=8.0",
+          "scene": null
+        },
+        {
+          "id": 8,
+          "name": "食谱",
+          "pathName": "pages/health/index",
+          "query": "totalPrice=8.0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "健康报告",
+          "pathName": "pages/healthRepo/index",
+          "query": "totalPrice=8.0",
+          "scene": null
+        },
+        {
+          "name": "闲置",
+          "pathName": "pages/secondhand/secondhand",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "地址",
+          "pathName": "pages/address/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加地址",
+          "pathName": "pages/address/add_address/add_address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "登录",
+          "pathName": "pages/login/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "账号管理",
+          "pathName": "pages/accountManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "关于",
+          "pathName": "pages/about/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的收藏",
+          "pathName": "pages/myCollection/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的订单",
+          "pathName": "pages/myOrderList/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

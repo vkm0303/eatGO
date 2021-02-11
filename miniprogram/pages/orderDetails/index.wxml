@@ -1,0 +1,75 @@
+<view class="order-details">
+	<!-- 收货地址 开始-->
+	<navigator
+	 class="address-warp"
+	 hover-class="none"
+	 url="/pages/address/index?url=/pages/bangdai/index"
+	>
+		<span class="iconfont icon-dingwei"></span>
+		<span
+		 class="address"
+		 bindtap="handleLocation"
+		 wx:if="{{isAddressExist}}"
+		>{{currentAddress.address}}
+		</span>
+		<span
+		 class="address"
+		 bindtap="handleLocation"
+		 wx:else
+		>未添加地址~
+		</span>
+	</navigator>
+	<!-- 收货地址 结束 -->
+	<scroll-view class="order-detail">
+		<view
+		 class="food-warp"
+		 wx:for="{{orderDetail}}"
+		 wx:key="index"
+		>
+			<image class="food-img" src="{{item.image_fileID}}"></image>
+			<view class="food-description">
+				<view class="food-name">{{item.food_name}}</view>
+				<view class="bottom-warp">
+					<view class="food-num-edit">
+						<span
+						 class="food-num-reduce"
+						 bindtap="handleReduceNum"
+						 data-index="{{index}}"
+						 data-price="{{item.price}}"
+						>－
+						</span>
+						<text class="food-num">{{item.num}}</text>
+						<span
+						 class="food-num-add"
+						 bindtap="handleAddNum"
+						 data-index="{{index}}"
+						 data-price="{{item.price}}"
+						>＋
+						</span>
+					</view>
+					<view class="food-price">
+						<text>￥</text>
+						<text class="food-price-text">{{item.totalPrice}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- <view class="dividing-line" wx:if="{{item}}"></view> -->
+	</scroll-view>
+	<view class="food-add-btn" bindtap="handAddFood">添加菜品</view>
+	<view class="pay-warp">
+		<span class="num-warp">
+			份数:
+			<text class="num" decode="{{true}}">&nbsp;{{totalNum}}&nbsp;</text>
+			份
+		</span>
+		<span class="total-price-warp">
+			总计:
+			<text class="total-price" decode="{{true}}">&nbsp;{{totalPrice}}&nbsp;</text>
+			元
+		</span>
+		<view class="pay-btn" bindtap="handlePay">提交订单
+		</view>
+	</view>
+</view>
+

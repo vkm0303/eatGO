@@ -1,0 +1,201 @@
+@import '../../style/iconfonts.wxss';
+page {
+    background-color: #fff0de;
+}
+.top-warp {
+    margin-top: 60rpx;
+    margin-left: 64rpx;
+    .date-warp {
+        display: flex;
+        flex-direction: column;
+        .day {
+            font-size: 72rpx;
+            line-height: 72rpx;
+            font-weight: bolder;
+            color: #ff4b2f;
+        }
+  
+        .date {
+            margin-left: 10rpx;
+            font-family: PingFangSC-regular;
+            font-size: 28rpx;
+            color: #ff8f5f;
+        }
+    }
+}
+
+.repo-btn-warp {
+    overflow: hidden;
+    position: absolute;
+    top: 146rpx;
+    left: 267 * 2rpx;
+    width: 76 * 2rpx;
+    height: 52rpx;
+    padding-top: 7rpx;
+    z-index: 999;
+    background-color: #ffffff;
+    border-radius: 30rpx;
+    border: 2rpx solid #ff824e;
+    box-sizing: border-box;
+    font-family: Microsoft Yahei;
+    font-size: 28rpx;
+    color: #ff824e;
+    .repo-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .icon-iconxiajiantou-copy {
+            padding-top: 7rpx;
+            padding-left: 4rpx;
+            font-size: 24rpx;
+            font-weight: 600;
+            color: #dcd2d2;
+        }
+    }
+    .more-repo {
+        display: flex;
+        flex-direction: column;
+        margin-top: 8rpx;
+        margin-bottom: 10rpx;
+        box-sizing: border-box;
+        span {
+            margin-bottom: 5rpx;
+            padding-left: 20rpx;
+        }
+        .active {
+            background-color: #1e90ff;
+            color: #ffffff;
+        }
+    }
+}
+.repo-warp {
+    width: 309 * 2rpx;
+    height: 965rpx;
+    margin-top: 50rpx;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 90rpx;
+    box-shadow: 0rpx 0rpx 12rpx 10rpx #ecf1ef;
+    .total-calorie {
+        display: flex;
+        width: 100%;
+        height: 160rpx;
+        //box-sizing: border-box;
+        background: url('https://7465-test-v14h8-1303227913.tcb.qcloud.la/health/healthTopBgc.png?sign=001244e4f816325f66d5f906b4732c5b&t=1603380052') no-repeat;
+        background-size:618rpx 160rpx;
+        .left {
+            margin-top: 66rpx;
+            margin-left: 44rpx;
+            font-family: PingFangSC-regular;
+            font-size: 36rpx;
+            font-weight: 600;
+            color: #827c78;
+        }
+  
+        .right {
+            margin-top: 52rpx;
+            margin-left: 14rpx;
+            font-family: PingFangSC-regular;
+            font-size: 56rpx;
+            color: #f46d35;
+            text-shadow: 1rpx 1rpx 10rpx #f46d35;
+        }
+    }
+  
+    .repo-detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 32rpx;
+        font-family: PingFangSC-regular;
+        :nth-child(1),
+        :nth-child(2),
+        :nth-child(3){
+            .top {
+                margin-top: 12rpx;
+                .title {
+                    margin-left: 2rpx;
+                    font-size: 32rpx;
+                }
+                .advice {
+                    margin-left: 14rpx;
+                    font-size: 24rpx;
+                    color: #b9b4b1;
+                }
+  
+                .calorie {
+                    margin-left: 66rpx;
+                    font-size: 28rpx;
+                    color: #ff8755;
+                }
+  
+                .icon-iconyoujiantou {
+                    margin-left: 6rpx;
+                    color: #ff8755;
+                }
+            }
+            .list {
+                margin-top: 12rpx;
+                font-family: PingFangSC-regular;
+                .detail {
+                    display: flex;
+                    .left {
+                        .img {
+                            width: 116rpx;
+                            height: 116rpx;
+                            border-radius: 50%;
+                        }
+                    }
+                    .right {
+                        display: flex;
+                        view {
+                            display: flex;
+                            flex-direction: column;
+                            width: 195rpx;
+                            margin-left: 26rpx;
+                            margin-top: 20rpx;
+                            .name {
+                                font-size: 28rpx;
+                            }
+                            .food-num {
+                                margin-top: 4rpx;
+                                font-size: 24rpx;
+                                color: #afacab;
+                            }
+                        }
+                        .food-calorie {
+                            margin-top: 38rpx;
+                            font-size: 24rpx;
+                            color: #ff8755;
+                        }
+                    }
+                }
+            }
+        }
+        .breakfast {
+           border-bottom: 2rpx solid #beb9b5;
+        }
+        .lunch {
+            border-bottom: 2rpx solid #beb9b5;
+        }
+    }
+    .creat-repo-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 440rpx;
+        height: 82rpx;
+        margin-top: 42rpx;
+        margin-bottom: 68rpx;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        background-color: #ff824e;
+        border-radius: 42rpx;
+        box-shadow: 0px 0px 3px 0px #ff824e;
+        font-family: Arial;
+        font-size: 28rpx;
+        color: #ffffff;
+    }
+}

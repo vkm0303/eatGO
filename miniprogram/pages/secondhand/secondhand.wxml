@@ -1,0 +1,104 @@
+<view class="search_input">
+	<navigator class="nav1" url="/pages/search/index" open-type="navigate">搜索</navigator>
+	<!-- <navigator class="nav2" url="/pages/search/index" open-type="navigate">足迹</navigator> -->
+</view>
+<swiper autoplay circular interval="2000" indicator-dots indicator-color="#fff" indicator-active-color="#d81e06">
+	<swiper-item>
+		<image mode="widthFix"
+			src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/ruAMsa53pVQWN7FLK88i5if.T7wJYBVe9JdQy2PbwevHNkfazp6ikBlmZLRcaMxTiemxWoswj4uM5LKLpiCdoO1oI8F0521m4KQR2e3a928!/b&bo=vAJeAQAAAAADB8M!&rf=viewer_4" />
+	</swiper-item>
+	<swiper-item>
+		<image mode="widthFix"
+			src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcYrAdMYY*dGDzx3wdBYK9EfzNW745FmM6h*ZxcTHyXA.MdIm5AVDythMzuFDh..ZpvO3vXtehOaTz9o0cXFNZwc!/b&bo=vAJeAQAAAAADN*M!&rf=viewer_4" />
+	</swiper-item>
+	<swiper-item>
+		<image mode="widthFix"
+			src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcYrAdMYY*dGDzx3wdBYK9EfYvR1evBChaslqrum6N40dEs9nKqoEok.y4*AP*809tTbS4Xrq*Q2jt.GcwAzrhM8!/b&bo=vAJeAQAAAAADN*M!&rf=viewer_4" />
+	</swiper-item>
+</swiper>
+
+<view class="index_cate">
+	<navigator url="{{item.navigator_url}}" open-type="{{item.open_type}}" wx:for="{{catesList}}" wx:key="name">
+		<view class="menu">
+			<image class="icon" mode="heightFix" src="{{item.image_src}}"></image>
+			<text class="word">{{item.name}}</text>
+		</view>
+	</navigator>
+</view>
+
+<view class="floor">
+	<view>
+		<!-- <navigator class="goods" url="../goodsDetail/goodsDetail.wxml" open-type="switchTab"> -->
+		<view class="goods" bindtap="toGoods">
+			<image class="goodsImage"
+				src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/ruAMsa53pVQWN7FLK88i5hduqDpesfJh9OMERA1iROSnqsdALzUHrDH7K.AFQNo5Q8B6hdwyurV2uY0p2cQIv3rrnuxsmhmOH3R02WELbC0!/b&bo=oQCIAAAAAAADBws!&rf=viewer_4">
+			</image>
+			<view class="goodsInfor">
+				<view class="oldDegree">九成新</view>
+				<view class="name">Macbook Pro 2019款</view>
+				<view class="price">￥8999.00</view>
+			</view>
+			<view class="user">
+				<view>
+					<image class="Profile" src="../../images/tx1.png"></image>
+				</view>
+				<view class="username">Yuilak</view>
+			</view>
+		</view>
+	</view>
+	<view>
+		<navigator class="goods">
+			<image class="goodsImage"
+				src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mceewqcQ6blww8fjCFrQCLwC5VoU3EFFw.E9Ehrh*bs4HqSBZkHsLWt4MzzP*EAw43fWvyqU2xXDYLEgl4Jg7aU8!/b&bo=owCIAAAAAAADFxk!&rf=viewer_4">
+			</image>
+			<view class="goodsInfor">
+				<view class="oldDegree">全新</view>
+				<view class="name">匡威 纯白 经典款 40.5码</view>
+				<view class="price">￥399.00</view>
+			</view>
+			<view class="user">
+				<view>
+					<image class="Profile" src="../../images/tx2.png"></image>
+				</view>
+				<view class="username">HTK</view>
+			</view>
+		</navigator>
+	</view>
+	<view>
+		<navigator class="goods">
+			<image class="goodsImage"
+				src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mceewqcQ6blww8fjCFrQCLwC8CIV9J0OkMjzYrMUy*JuMx3Lklh6wbucplChjlAENGMZw0Yw8UhB9TM26QmOIMxQ!/b&bo=owCIAAAAAAADFxk!&rf=viewer_4">
+			</image>
+			<view class="goodsInfor">
+				<view class="oldDegree">八成新</view>
+				<view class="name">LAVA ME 基础吉他 碳纤维</view>
+				<view class="price">￥1200.00</view>
+			</view>
+			<view class="user">
+				<view>
+					<image class="Profile" src="../../images/tx1.png"></image>
+				</view>
+				<view class="username">Yuilak</view>
+			</view>
+		</navigator>
+	</view>
+	<view>
+		<navigator class="goods">
+			<image class="goodsImage"
+				src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcToU6qp3YvkrIPq2Ogc55qi0MjPybZ12EimUiFTwHaEzm.mNEB5BYYlSXb2AJLlhiWPTfbkROjRFSV4wm2BKhtc!/b&bo=ogCIAAAAAAADFxg!&rf=viewer_4">
+			</image>
+			<view class="goodsInfor">
+				<view class="oldDegree">全新</view>
+				<view class="name">墨蓝色钛合金杯子 白色印花</view>
+				<view class="price">￥20.00</view>
+			</view>
+			<view class="user">
+				<view>
+					<image class="Profile" src="../../images/tx1.png"></image>
+				</view>
+				<view class="username">Yuilak</view>
+			</view>
+		</navigator>
+	</view>
+</view>
+<include src="/pages/bottom_add/bottom_add.wxml" />

@@ -1,0 +1,5 @@
+<view class="bottomrow">
+    <view class="centerimg" bindtap="qufabu">
+       <image class="bottomimg" src="/images/add1.png"></image>
+    </view>
+</view>

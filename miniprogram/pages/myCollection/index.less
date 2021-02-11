@@ -1,0 +1,55 @@
+@import '../../style/iconfonts.wxss';
+page {
+    padding-bottom: 50rpx;
+    background-color: #fff0de;
+}
+
+.hd {
+    display: flex;
+    justify-content: center;
+    margin-top: 18rpx;
+    color: #ff824e;
+    font-size: 70rpx;
+    font-weight: 700;
+    font-family: MingLiU;
+}
+.bd{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10rpx;
+    .food-warp {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20rpx;
+        margin-top: 20rpx;
+        padding-bottom: 18rpx;
+        background-color: #fff;
+        box-shadow: 0 4rpx 12rpx 0 rgba(0, 0, 0, 0.18);
+        .food-img {
+            width: 172 * 2rpx;
+            height: 134 * 2rpx;
+        }
+        .food-name {
+            margin-top: 20rpx;
+            margin-left: 18rpx;
+            font-size: 32rpx;
+        }
+        .food-price {
+            margin-top: 10rpx;
+            margin-left: 18rpx;
+            font-size: 20rpx;
+            color: #f88b33;
+        }
+        .icon-shoucang {
+            position: absolute;
+            top: 300rpx;
+            left: 270rpx;
+            font-size: 50rpx;
+            color: #f88b33;
+        }
+    }
+    .null {
+        width: 750rpx;
+    }
+}

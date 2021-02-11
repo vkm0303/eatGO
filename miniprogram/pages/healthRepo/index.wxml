@@ -1,0 +1,9 @@
+<view class="top-warp">
+	<view class="grade">
+		<view class="circle-bottom"></view>
+		<view class="circle2-left"></view>
+		<view class="circle3-right"></view>
+		<view class="circle4-inner"></view>
+	</view>
+</view>
+

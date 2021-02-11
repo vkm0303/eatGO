@@ -1,0 +1,75 @@
+<form bindsubmit="handleSubmit">
+	<view class="warp">
+		<span class="commond">姓名</span>
+		<input
+		 class="input-class"
+		 placeholder="收货人"
+		 name="name"
+		 value="{{address.name}}"
+		 maxlength="10"
+		></input>
+	</view>
+	<view class="warp">
+		<span class="commond">手机号</span>
+		<input
+		 class="input-class"
+		 placeholder="手机号"
+		 type="number"
+		 name="telNum"
+		 value="{{address.telNum}}"
+		 maxlength="11"
+		></input>
+	</view>
+	<view class="warp">
+		<span class="commond">微信号</span>
+		<input
+		 class="input-class"
+		 placeholder="微信号"
+		 name="wxAccount"
+		 value="{{address.wxAccount}}"
+		 maxlength="30"
+		></input>
+	</view>
+	<view class="warp">
+		<span class="commond">地址</span>
+		<input
+		 class="input-class"
+		 placeholder="如:北区男生宿舍"
+		 name="address"
+		 value="{{address.address}}"
+		 maxlength="35"
+		></input>
+	</view>
+	<view class="warp">
+		<span class="commond">栋</span>
+		<input
+		 class="input-class"
+		 placeholder="如：17B"
+		 name="building"
+		 value="{{address.building}}"
+		 maxlength="5"
+		></input>
+	</view>
+	<view class="warp">
+		<span class="commond">宿舍号</span>
+		<input
+		 class="input-class"
+		 placeholder="宿舍号"
+		 name="dormNo"
+		 value="{{address.dormNo}}"
+		 maxlength="5"
+		></input>
+	</view>
+	<view class="set-warp">
+		<text>设为默认地址</text>
+		<switch
+		 class="switch-class"
+		 color="{{color}}"
+		 type="switch"
+		 checked="{{isDefault}}"
+		 bindchange="handleSwitchClick"
+		></switch>
+	</view>
+	<button class="submit-btn" form-type="submit">保存</button>
+</form>
+

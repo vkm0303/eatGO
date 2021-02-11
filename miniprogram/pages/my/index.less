@@ -1,0 +1,96 @@
+@import '../../style/iconfonts.wxss';
+.bgc-warp {
+  position: relative;
+  top: -55rpx;
+  width: 100%;
+  height: 175 * 2rpx;
+  z-index: -1;
+  .bg {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 2px 6px 0px #ff9641;
+  }
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //position: relative;
+  //top: -170rpx;
+  //bottom: 170rpx;
+  width: 100%;
+  margin-top: -180rpx;
+  z-index: 9999;
+  align-items: center;
+  font-size: 28rpx;
+  color: #7a7a7a;
+  font-family: PingFangSC-regular;
+  .user-head-pic {
+    width: 120 * 2rpx;
+    height: 120 * 2rpx;
+    border-radius: 50%;
+  }
+  .user-name {
+    margin-top: 20rpx;
+  }
+  .user-account {
+    margin-top: 5rpx;
+  }
+}
+.login-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 70rpx;
+  opacity: 0.9;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  //background: linear-gradient(to right, #f4741f 0%,#f38237 100%);
+  background:-webkit-radial-gradient(circle,#f4741f, #f38135, #ee8037);
+  //background-color: #f38237;
+  border-radius: 15rpx;
+  color: #ffffff;
+}
+page {
+  background-color: #ffffff;
+}
+.main-warp {
+  position: relative;
+  top: 30rpx;
+  .common-router {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 343 * 2rpx;
+    height: 102rpx;
+    padding-left: 64rpx;
+    font-family: PingFangSC-regular;
+    font-weight: 500;
+    color: #7a7a7a;
+    .icon {
+      width: 40rpx;
+      height: 40rpx;
+    }
+    .common-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 54rpx;
+      font-size: 32rpx;
+    }
+    .icon-iconyoujiantou {
+      position: absolute;
+      left: 677rpx;
+      font-size: 35rpx;
+      font-weight: 600;
+      color: #ff9f52;
+    }
+    .btn{
+      position: absolute;
+      width: 343 * 2rpx;
+      height: 102rpx;
+      opacity: -1;
+    }
+  }
+}

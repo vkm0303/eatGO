@@ -1,0 +1,47 @@
+.order-list-warp {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+.order-list-warp .order-warp {
+  width: 700rpx;
+  margin-top: 44rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 36rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  box-shadow: 0px 0px 6px 0px #cfcfcf;
+  font-size: 26rpx;
+}
+.order-list-warp .order-warp .box-common {
+  display: flex;
+  margin-bottom: 14rpx;
+}
+.order-list-warp .order-warp .box-common .details-warp {
+  width: 325rpx;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.order-list-warp .order-warp .box-common .way {
+  margin-top: -3rpx;
+  color: #ff8451;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.order-list-warp .order-warp .cancel-order-btn {
+  position: absolute;
+  right: 42rpx;
+  bottom: 36rpx;
+  width: 152rpx;
+  height: 56rpx;
+  background-color: #ff824e;
+  border-radius: 12rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 56rpx;
+}
+.order-list-warp .order-warp .status {
+  background-color: #cfcfcf;
+}
