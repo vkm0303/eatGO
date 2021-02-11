@@ -103,7 +103,7 @@ page {
 }
 .order-entry {
   position: fixed;
-  top: 48rpx;
+  top: 40rpx;
   right: 40rpx;
   display: flex;
   flex-direction: column;
@@ -115,7 +115,7 @@ page {
   color: #ff824e;
 }
 .order-entry .order-text {
-  margin-top: 4rpx;
+  margin-top: -12rpx;
   text-align: center;
   font-size: 19rpx;
   color: #101010;

@@ -1,75 +1,95 @@
-<view class="info-warp">
-	<navigator class="consignee-info-warp" url="/pages/address/index">
-		<view class="address">{{addressInfo.address}}{{addressInfo.building}} {{addressInfo.dormNo}}</view>
-		<span class="iconfont icon-iconyoujiantou"></span>
-		<view class="consignee-info">
-			<text class="name" decode="{{true}}">{{addressInfo.name}}&nbsp;</text>
-			<text class="tel-num">{{addressInfo.telNum}}</text>
-		</view>
-	</navigator>
-	<view class="delivery-time">
-		送达时间：
-		<span class="time">12:00—12:30</span>
-		<span class="iconfont icon-iconyoujiantou"></span>
-	</view>
-</view>
-<view class="order-detail-warp">
-	<view class="food-list">
+<view class="page">
+	<view class="time-selector-warp">
 		<view
-		 class="food"
-		 wx:for="{{canteenOrder}}"
-		 wx:key="index"
+		 class="selector-box {{timeBoxIndex===0?'active':''}}"
+		 bindtap="handleTimeBoxClick"
+		 data-index="{{0}}"
+		>尽快送达
+		</view>
+		<picker
+		 mode="time"
+		 value="{{time}}"
+		 start="{{startTime}}"
+		 end="{{endTime}}"
+		 bindtap="setTimeRange"
+		 bindchange="handleTimeSelect"
+		 bindcancel="handleCancelSelect"
+		 disabled="{{ishideTimePicker}}"
 		>
-			<image class="food-img" src="{{item.image_fileID}}"></image>
-			<view class="right">
-				<view class="food-name">{{item.food_name}}</view>
-				<view class="price-num">
-					<view class="food-price-warp">
-						¥
-						<text class="price">{{item.price}}</text>
-					</view>
-					<view class="food-num-warp">
-						x
-						<text class="num">{{item.num}}</text>
+			<view
+			 class="selector-box {{timeBoxIndex===1?'active':''}}"
+			 bindtap="handleTimeBoxClick"
+			 data-index="{{1}}"
+			>
+				自定义时间
+			</view>
+		</picker>
+		<view class="time-picker">
+			<view class="time">{{presetHours}}</view>
+			<view class="separator">:</view>
+			<view class="time">{{presetMinutes}}</view>
+		</view>
+	</view>
+	<view class="order-detail-warp">
+		<view class="food-list">
+			<view
+			 class="food"
+			 wx:for="{{canteenOrder}}"
+			 wx:key="index"
+			>
+				<image class="food-img" src="{{item.image_fileID}}"></image>
+				<view class="right">
+					<view class="food-name">{{item.food_name}}</view>
+					<view class="price-num">
+						<view class="food-price-warp">
+							¥
+							<text class="price">{{item.price}}</text>
+						</view>
+						<view class="food-num-warp">
+							x
+							<text class="num">{{item.num}}</text>
+						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-	</view>
-	<view class="fee-warp">
-		<view>
-			<text class="fee-name">打包费</text>
-			¥
-			<text class="fee">1.0</text>
+		<view class="fee-warp">
+			<view>
+				<text class="fee-name">打包费</text>
+				¥
+				<text class="fee">1.0</text>
+			</view>
+			<view>
+				<text class="fee-name">配送费</text>
+				¥
+				<text class="fee">3.0</text>
+			</view>
 		</view>
-		<view>
-			<text class="fee-name">配送费</text>
-			¥
-			<text class="fee">3.0</text>
-		</view>
 	</view>
-</view>
-<view class="other">
-	<view class="tableware-num">
-		<picker
-		 header-text="选择餐具数量"
-		 bindchange="handlePickerChange"
-		 value="{{index}}"
-		 range="{{array}}"
-		>
+	<view class="other">
+		<view class="tableware-num">
+			<picker
+			 class="tableware-picker"
+			 header-text="选择餐具数量"
+			 bindchange="handlePickerChange"
+			 value="{{index}}"
+			 range="{{array}}"
+			>
 
-			<span class="comment">餐具数量</span>
-			<span class="tip" wx:if="{{arrIndex === -1}}">支持环保，从我做起</span>
-			<span class="tip" wx:else>{{array[arrIndex]}}</span>
+				<span class="common">餐具数量</span>
+				<span class="tip" wx:if="{{arrIndex === -1}}">支持环保，从我做起</span>
+				<span class="tip selection" wx:else>{{array[arrIndex]}}</span>
+				<span class="iconfont icon-iconyoujiantou"></span>
+			</picker>
+		</view>
+		<view class="notes">
+			<span class="common">备注</span>
+			<span class="tip">选填</span>
 			<span class="iconfont icon-iconyoujiantou"></span>
-		</picker>
+		</view>
 	</view>
-	<view class="notes">
-		<span class="comment">备注</span>
-		<span class="tip">选填</span>
-		<span class="iconfont icon-iconyoujiantou"></span>
-	</view>
-</view>
 
-<view class="confirm-order-btn">确认订单</view>
+	<view class="confirm-order-btn">确认订单</view>
+
+</view>
 

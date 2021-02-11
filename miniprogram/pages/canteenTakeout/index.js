@@ -70,7 +70,7 @@ Page({
         
         if(that.data.tabIndex === 1) {
             let translateLeft = wx.createAnimation({
-                duration: 300,
+                duration: 200,
                 timingFunction: 'linear',
                 delay: 0,
             });
@@ -86,7 +86,7 @@ Page({
         const { index } = e.currentTarget.dataset;
         if(that.data.tabIndex === 0) {
             let translateRight = wx.createAnimation({
-                duration: 300,
+                duration: 200,
                 timingFunction: 'linear',
                 delay: 0,
             });

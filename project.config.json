@@ -171,6 +171,12 @@
           "pathName": "pages/myOrderList/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "备注",
+          "pathName": "pages/remarks/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -64,62 +64,45 @@ page {
   padding-bottom: 150rpx;
   background-color: #f4f4f4;
 }
-.info-warp {
-  position: relative;
-  top: 30rpx;
-  width: 700rpx;
-  height: 262rpx;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  padding-left: 46rpx;
-  padding-top: 30rpx;
-  border-radius: 30rpx;
+.time-selector-warp {
+  display: flex;
+  align-items: center;
+  padding-top: 24rpx;
+  padding-left: 40rpx;
+}
+.time-selector-warp .selector-box {
+  width: 220rpx;
+  height: 126rpx;
+  margin-right: 20rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
   box-sizing: border-box;
-  background-color: #ffffff;
-  border: 4rpx solid #ffffff;
-  line-height: 40rpx;
-}
-.info-warp .consignee-info-warp {
-  width: 614rpx;
-  border-bottom: 3rpx dotted #bbbbbb;
-}
-.info-warp .consignee-info-warp .address {
-  width: 100%;
-  height: 50rpx;
-  margin-bottom: 10rpx;
-  color: #101010;
-  font-size: 36rpx;
-  font-weight: 600;
-  font-family: PingFangSC-bold;
-}
-.info-warp .consignee-info-warp .icon-iconyoujiantou {
-  position: absolute;
-  left: 615rpx;
-  top: 54rpx;
-  width: 48rpx;
-  height: 48rpx;
-}
-.info-warp .consignee-info-warp .consignee-info {
-  padding-bottom: 20rpx;
-  font-family: PingFangSC-regular;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  line-height: 126rpx;
   font-size: 28rpx;
   color: #101010;
 }
-.info-warp .consignee-info-warp .consignee-info .tel-num {
-  margin-left: 28rpx;
+.time-selector-warp .time-picker {
+  display: flex;
+  font-weight: 500;
 }
-.info-warp .delivery-time {
-  margin-top: 30rpx;
-  color: #101010;
-  font-size: 28rpx;
-  font-family: PingFangSC-regular;
+.time-selector-warp .time-picker .separator {
+  width: 28rpx;
+  text-align: center;
+  line-height: 68rpx;
 }
-.info-warp .delivery-time .icon-iconyoujiantou {
-  position: absolute;
-  left: 615rpx;
-  top: 180rpx;
-  width: 48rpx;
-  height: 48rpx;
+.time-selector-warp .time-picker .time {
+  width: 68rpx;
+  height: 68rpx;
+  border: 2rpx solid #bbbbbb;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 68rpx;
+}
+.time-selector-warp .active {
+  border: 4rpx solid #ff824e;
+  color: #ff824e;
 }
 .order-detail-warp {
   width: 700rpx;
@@ -213,7 +196,7 @@ page {
 .other span {
   display: inline-block;
 }
-.other .comment {
+.other .common {
   width: 130rpx;
   font-size: 28rpx;
 }
@@ -225,6 +208,13 @@ page {
   font-size: 24rpx;
   text-align: right;
   font-family: PingFangSC-regular;
+}
+.other .tableware-picker {
+  width: 100%;
+  height: 100%;
+}
+.other .tableware-picker .selection {
+  color: #000;
 }
 .confirm-order-btn {
   position: fixed;
