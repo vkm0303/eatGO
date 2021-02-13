@@ -1,0 +1,32 @@
+<view class="detail-warp">
+	<view class="content-byself common" wx:if="{{getWay==='byself'}}">
+		<span class="take-food-num">
+			<text decode>取餐码:&nbsp;&nbsp;&nbsp;</text>
+			<text class="num">88</text>
+		</span>
+		<text class="take-food-time" decode>取餐时间:&nbsp;&nbsp;&nbsp;11:40</text>
+	</view>
+
+	<view class="content-bydelivery common" wx:else>
+		<view class="time-warp">
+			<span class="iconfont icon-clock"></span>
+			<span class="time">尽快送达</span>
+		</view>
+		<span class="deliveryman">
+			<text decode>送餐员:&nbsp;&nbsp;&nbsp;</text>
+			<text>xxxx</text>
+		</span>
+		<span class="tele-num">
+			<text decode>联系电话:&nbsp;&nbsp;&nbsp;</text>
+			<text>12345678901</text>
+		</span>
+	</view>
+
+	<text class="address" decode>地址:&nbsp;&nbsp;&nbsp;北区食堂二楼正门左侧置物架</text>
+	<text class="foods-content" decode>餐品内容:&nbsp;&nbsp;&nbsp;烧鸭饭*1</text>
+	<view class="line"></view>
+	<span class="remarks">备注： xxxxxxx</span>
+</view>
+
+<view class="confirm-btn">确认收货</view>
+

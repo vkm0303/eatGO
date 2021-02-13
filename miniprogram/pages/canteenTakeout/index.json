@@ -1,6 +1,7 @@
 {
     "usingComponents": {
-        "Tabs": "../../components/Tabs/Tabs"
+        "drop-selector": "../../components/drop-selector/index"
     },
-    "navigationBarTitleText": "食堂外带"
+    "navigationBarTitleText": "食堂外带",
+    "disableScroll": true
 }

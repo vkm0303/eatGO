@@ -1,50 +1,40 @@
-const pageOptions = {
-  // 页面数据
+/*
+ * @Description: 
+ * @Author: 陈俊任
+ * @Date: 2021-02-11 23:42:27
+ * @LastEditors: 陈俊任
+ * @LastEditTime: 2021-02-12 02:19:28
+ * @FilePath: \tastygo\miniprogram\pages\remarks\index.js
+ */
+Page ({
   data: {
-    isFirstOnShow: true, // 是否为首次执行onShow
+    remarks:''
   },
-  // 页面载入时
-  onLoad(e) {
-    this.init(e)
+  onLoad: function() {
+    const that = this;
+    let pages = getCurrentPages();
+    let prePage = pages[pages.length-2];
+    that.setData({
+      remarks: prePage.data.remarks
+    })
   },
-  // 页面初始化
-  init(e) {},
-  // 页面准备好时
-  onReady() {},
-  // 页面显示时
-  onShow() {
-    const { isFirstOnShow } = this.data
+  handleInput(e) {
+    const that = this;
+    const remarks = e.detail.value || '';
+    that.setData({
+      remarks
+    });
+  },
+  handleConfirm() {
+    const that = this;
+    let pages = getCurrentPages();
+    let prePage = pages[pages.length-2];
+    prePage.setData({
+      remarks: that.data.remarks
+    });
 
-    if (isFirstOnShow) {
-      // 首次执行时
-      this.setData({
-        isFirstOnShow: false,
-      })
-      return
-    }
+    wx.navigateBack({
+      delta: 1
+    });
   },
-  // 页面隐藏时
-  onHide() {},
-  // 页面卸载时
-  onUnload() {},
-  // 下拉页面时
-  onPullDownRefresh() {},
-  // 到达页面底部时
-  onReachBottom() {},
-  // 页面滚动时
-  onPageScroll() {},
-  // 分享时，注：onShareAppMessage不能为async异步函数，会导致不能及时取得返回值，使得分享设置无效
-  onShareAppMessage() {
-    /* const title = ''
-    const path = ''
-    const imageUrl = ``
-
-    return {
-      title,
-      path,
-      imageUrl,
-    } */
-  },
-}
-
-Page(pageOptions)
+})

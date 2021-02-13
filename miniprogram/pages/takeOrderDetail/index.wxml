@@ -1,0 +1,68 @@
+<view class="detail-warp">
+	<view class="foods-content">
+		<span class="title">菜品</span>
+		<view class="food-warp">
+			<view
+			 class="food"
+			 wx:for="{{foods}}"
+			 wx:key="{{index}}"
+			>
+				<image
+				 class="food-img"
+				 src="{{item.imgUrl}}"
+				 mode="aspectFit"
+				></image>
+				<view class="food-name">{{item.name}}</view>
+				<span class="food-num">x{{item.num}}</span>
+				<span class="food-price">
+					<text class="symbol">￥</text>
+					<text class="price">{{item.price}}.0</text>
+				</span>
+			</view>
+			<view class="delivery-fee">
+				<text>配送费</text>
+				<text class="symbol fee-position">￥</text>
+				<text class="price">2.0</text>
+			</view>
+			<view class="packing-fee">
+				<text>包装费</text>
+				<text class="symbol fee-position">￥</text>
+				<text class="price">1.0</text>
+			</view>
+			<view class="line"></view>
+			<view class="total-fee">
+				<text decode>实付:&nbsp;</text>
+				<text class="symbol red">￥</text>
+				<text class="red">25</text>
+			</view>
+		</view>
+	</view>
+
+	<view class="delivery-detail">
+		<span class="title">配送信息</span>
+		<view class="detail">
+			<view class="time-warp">
+				<span class="iconfont icon-clock"></span>
+				请在
+				<text class="time">30</text>
+				分钟内送达
+			</view>
+			<view class="consignee-info">
+				<span class="consignee">
+					<text decode>收餐:&nbsp;&nbsp;&nbsp;</text>
+					<text>xxxx</text>
+				</span>
+				<span class="tele-num">
+					<text decode>电话:&nbsp;&nbsp;&nbsp;</text>
+					<text>12345678901</text>
+				</span>
+				<text class="address" decode>地址:&nbsp;&nbsp;&nbsp;男生宿舍17B&nbsp;0347</text>
+			</view>
+			<view class="line"></view>
+			<span class="remarks">备注： xxxxxxx</span>
+		</view>
+	</view>
+	<view class="confirm-btn">确认送达</view>
+	<view class="slot"></view>
+</view>
+

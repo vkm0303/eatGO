@@ -55,10 +55,10 @@
     "miniprogram": {
       "list": [
         {
-          "id": -1,
-          "name": "db guide",
+          "name": "首页",
           "pathName": "pages/index/index",
-          "query": ""
+          "query": "",
+          "scene": null
         },
         {
           "id": -1,
@@ -176,6 +176,23 @@
           "name": "备注",
           "pathName": "pages/remarks/index",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "成功提示",
+          "pathName": "pages/successMessage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的订单详情",
+          "pathName": "pages/myOrderDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "接单详情",
+          "pathName": "pages/takeOrderDetail/index",
           "scene": null
         }
       ]

@@ -1,3 +1,4 @@
+@import './style/iconfonts.wxss';
 
 .green {
     color: #09BB07;

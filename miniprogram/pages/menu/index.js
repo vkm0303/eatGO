@@ -28,8 +28,6 @@ Page({
     onLoad: async function(options) {
         const that = this;
 
-        //获取食堂列表
-        const canteenList = await api.getCanteenList('/getCanteenList');
 
         //根据当前时间设置默认选中餐点
         const curDate = new Date();
@@ -42,14 +40,16 @@ Page({
         } else {
             curEatTime = 'Dinner';
         }
+        that.handleCanteenSelect();
 
+        //获取食堂列表
+        const canteenList = await api.getCanteenList('/getCanteenList');
         that.setData({
             canteenList,
             curCanteen: canteenList[0],
             curEatTime,
         });
 
-        that.handleCanteenSelect();
 
         wx.setStorageSync("canteenOrder", []);
     },
@@ -271,5 +271,12 @@ Page({
             //         curMenuList: menuData[that.data.type_idx].list
             //     })
             // })
+    },
+    openScroll() {
+
+        this.setData({
+            StartScroll: true
+        })
+        console.log(this.data.StartScroll)
     }
 })

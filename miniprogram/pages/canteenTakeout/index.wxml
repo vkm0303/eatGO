@@ -23,9 +23,9 @@
 	<text class="order-text">订单</text>
 </navigator>
 
-<view class="content-submit-order" wx:if="{{tabIndex===0}}">
+<view class="content-submit-order" hidden="{{tabIndex===1}}">
 	<view class="target-address">
-		<span class="iconfont icon-dingwei"></span>
+		<span class="iconfont icon-dingwei2"></span>
 		<span class="address-name">北区食堂</span>
 	</view>
 	<!-- 领取方式容器 开始 -->
@@ -60,53 +60,54 @@
 		</view>
 	</view>
 	<!-- 领取方式容器 结束 -->
-	<view class="goto-submit-btn">
+	<navigator
+	 class="goto-submit-btn"
+	 hover-class="none"
+	 url="/pages/pay/index"
+	>
 		<text decode>填写信息&nbsp;&nbsp;</text>
 		<span class="iconfont icon-iconyoujiantou"></span>
-	</view>
+	</navigator>
 </view>
 
-<view wx:else class="content-help">
+<view class="content-receive-order" hidden="{{tabIndex===0}}">
+
 	<view class="address-warp">
-		<view class="address-btn-warp take-site" bindtap="handTakeAddressClick">
-			<view class="address-content" animation="{{isTakeAddressClick ? aniHeightAdd : aniHeightReduce}}">
-				<view class="address-btn">
-					<text class="iconfont icon-dian se-dot"></text>
-					<text decode="true">&nbsp;&nbsp;{{takeAddress}}&nbsp;&nbsp;</text>
-					<text class="iconfont icon-right"></text>
-				</view>
-				<view class="more-address" wx:if="{{isTakeAddressClick}}">
-					<view
-					 class="address-select {{takeAddress==item ? 'selected' : ''}}"
-					 bindtap="handleTakeAddressSelect"
-					 wx:for="{{takeAddressOptions}}"
-					 data-address="{{item}}"
-					>{{item}}
-					</view>
-				</view>
-			</view>
-		</view>
-		<view class="iconfont icon-iconyoujiantou"></view>
-		<view class="address-btn-warp receive-site" bindtap="handReceiveAddressClick">
-			<view class="address-content" animation="{{isReceiveAddressClick ? aniHeightAdd : aniHeightReduce}}">
-				<view class="address-btn">
-					<text class="iconfont icon-dian re-dot"></text>
-					<text decode="true">&nbsp;&nbsp;{{receiveAddress}}&nbsp;&nbsp;</text>
-					<text class="iconfont icon-right"></text>
-				</view>
-				<view class="more-address" wx:if="{{isReceiveAddressClick}}">
-					<view
-					 class="address-select {{receiveAddress==item ? 'selected' : ''}}"
-					 wx:for="{{receiveAddressOptions}}"
-					 bindtap="handleReceiveAddressSelect"
-					 data-address='{{item}}'
-					>{{item}}
-					</view>
-				</view>
-			</view>
-		</view>
+		<span class="iconfont icon-dian" style="color: #f7d479;"></span>
+		<drop-selector
+		 position-class="starting-position"
+		 outer-class="starting-selector-outer"
+		 curitem-class="selector-curitem"
+		 options="{{startingOptions}}"
+		 itemHeight="{{30}}"
+		 key="{{0}}"
+		 data-flag="{{0}}"
+		 bind:ItemSelect="SelectorItemSelect"
+		></drop-selector>
+
+		<view class="iconfont icon-iconyoujiantou" style="margin-top: 154rpx; line-height: 60rpx; color: #cfd2d8;"></view>
+
+		<span class="iconfont icon-dian" style="color: #78b8f7"></span>
+		<drop-selector
+		 position-class="focus-position"
+		 outer-class="focus-selector-outer"
+		 curitem-class="selector-curitem"
+		 options="{{focusOptions}}"
+		 itemHeight="{{30}}"
+		 key="{{0}}"
+		 data-flag="{{1}}"
+		 bind:ItemSelect="SelectorItemSelect"
+		></drop-selector>
+
+		<view class="filter-btn">筛选</view>
 	</view>
-	<view class="order-list" scroll-y="{{true}}">
+
+	<scroll-view
+	 class="order-list"
+	 style="height: 85vh;"
+	 scroll-y
+	 enable-flex
+	>
 		<view
 		 class="order"
 		 wx:for="{{orderList}}"
@@ -131,6 +132,6 @@
 				<view class="rec-btn">确认接单</view>
 			</view>
 		</view>
-	</view>
+	</scroll-view>
 </view>
 

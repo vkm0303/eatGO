@@ -1,2 +1,16 @@
-
+<!-- <view class="navbar">
+	<view class="goback iconfont icon-iconzuojiantou-copy"></view>
+	<view class="title">返回</view>
+	<view class="confirm-btn">完成</view>
+</view> -->
+<view class="remarks-warp">
+	<textarea
+	 class="remarks"
+	 placeholder="备注..."
+	 value="{{remarks}}"
+	 bindinput="handleInput"
+	 bindconfirm="handleConfirm"
+	></textarea>
+	<view class="confirm-btn" bindtap="handleConfirm">确认</view>
+</view>
 

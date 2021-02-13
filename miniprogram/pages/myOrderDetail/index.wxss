@@ -1,0 +1,80 @@
+page {
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+page .detail-warp {
+  display: flex;
+  flex-direction: column;
+  width: 700rpx;
+  margin-top: 48rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 32rpx 62rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  box-shadow: 0px 0px 6px 0px #dcecf5;
+  font-size: 26rpx;
+}
+page .detail-warp .common {
+  display: flex;
+  flex-direction: column;
+}
+page .detail-warp .content-byself .take-food-num {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+page .detail-warp .content-byself .take-food-num .num {
+  font-size: 48rpx;
+  color: #ff824e;
+}
+page .detail-warp .content-byself .take-food-time {
+  margin: 4rpx 0 18rpx;
+}
+page .detail-warp .content-bydelivery .time-warp {
+  display: flex;
+  align-items: center;
+}
+page .detail-warp .content-bydelivery .time-warp .icon-clock {
+  font-size: 48rpx;
+  color: #abdbf5;
+}
+page .detail-warp .content-bydelivery .time-warp .time {
+  margin-left: 34rpx;
+  font-size: 32rpx;
+  color: #ff824e;
+}
+page .detail-warp .content-bydelivery .deliveryman {
+  margin: 20rpx 0 18rpx;
+}
+page .detail-warp .content-bydelivery .tele-num {
+  margin: 0 0 18rpx;
+}
+page .detail-warp .foods-content {
+  margin: 18rpx 0 24rpx;
+}
+page .detail-warp .line {
+  width: 110%;
+  height: 2rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background-color: #e7e7e7;
+}
+page .detail-warp .remarks {
+  margin-top: 18rpx;
+  font-size: 28rpx;
+}
+.confirm-btn {
+  width: 228rpx;
+  height: 68rpx;
+  margin-top: 74rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20rpx;
+  background-color: #ff824e;
+  text-align: center;
+  line-height: 68rpx;
+  font-size: 32rpx;
+  color: #fff;
+}

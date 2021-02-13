@@ -12,12 +12,13 @@
     "pages/goods_add/goods_add",
     "pages/health/index",
     "pages/healthRepo/index",
-    "pages/index/index",
     "pages/login/index",
     "pages/more/index",
+    "pages/menu/index",
     "pages/my/index",
     "pages/myCollection/index",
     "pages/myOrderList/index",
+    "pages/myOrderDetail/index",
     "pages/nearTakeout/goods",
     "pages/nearTakeout/pay/pay",
     "pages/orderDetails/index",
@@ -25,6 +26,8 @@
     "pages/remarks/index",
     "pages/restaurant/restaurant",
     "pages/secondhand/secondhand",
+    "pages/successMessage/index",
+    "pages/takeOrderDetail/index",
     "pages/TEST/TEST"
   ],
   "window": {
@@ -40,7 +43,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/menu/index",
         "text": "菜品",
         "iconPath": "icons/_menu.png",
         "selectedIconPath": "icons/menu.png"
@@ -70,8 +73,6 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "useExtendedLib": {
-    "weui": true
-  },
+  "entryPagePath": "pages/menu/index",
   "sitemapLocation": "sitemap.json"
 }

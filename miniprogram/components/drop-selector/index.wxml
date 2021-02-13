@@ -1,0 +1,23 @@
+<view class="slot position-class">
+	<view
+	 class="selector-box outer-class"
+	 animation="{{isSelectorFold ? aniHeightReduce : aniHeightAdd}}"
+	 bindtap="handleSelectorClick"
+	>
+		<view class="cur-option-box ">
+			<span class="cur-option curitem-class">{{options[curIndex]}}</span>
+			<span class="iconfont icon-right" animation="{{isSelectorFold ? aniArrowDown:aniArrowUp}}"></span>
+		</view>
+		<view class="options-warp">
+			<view
+			 class="selector-item item-class {{curIndex===index?'active':''}}"
+			 wx:for="{{options}}"
+			 wx:key="index"
+			 bindtap="handleOptionSelect"
+			 data-index="{{index}}"
+			>{{item}}
+			</view>
+		</view>
+	</view>
+</view>
+

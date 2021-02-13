@@ -76,7 +76,15 @@
 	<!-- 菜单区 开始 -->
 	<view class="menu-warp">
 		<!-- 左侧类名区域 开始 -->
-		<scroll-view class="type-list" scroll-y>
+		<scroll-view
+		 class="type-list"
+		 scroll-y
+		 lower-threshold="10"
+		 enhanced
+		 show-scrollbar="{{false}}"
+		 paging-enabled
+		 bindscrolltolower="openScroll"
+		>
 			<view
 			 class="type-content {{typeIdx==index ? 'type-select' : ''}}"
 			 wx:for="{{typeList}}"

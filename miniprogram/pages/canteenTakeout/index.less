@@ -1,6 +1,5 @@
 @import '../../style/iconfonts.wxss';
 page {
-    padding-bottom: 340rpx;
     background-color: #f8f8f8;
 }
 
@@ -45,7 +44,7 @@ page {
 
 .order-entry {
     position: fixed;
-    top: 40rpx;
+    top: 50rpx;
     right: 40rpx;
     display: flex;
     flex-direction: column;
@@ -56,7 +55,6 @@ page {
         color: #ff824e;
     }
     .order-text {
-        margin-top: -12rpx;
         text-align: center;
         font-size: 19rpx;
         color: #101010;
@@ -69,17 +67,22 @@ page {
     .target-address {
         display: flex;
         justify-content: center;
+        height: 80rpx;
         margin-left: 50%;
         transform: translateX(-50%);
-        .icon-dingwei {
+        .icon-dingwei2 {
+            padding-top: 4rpx;
+            line-height: 80rpx;
+            text-align: center;
             color: #f97800;
-            font-size: 40rpx;
+            font-size: 30rpx;
         }
         .address-name {
             margin-top: 3rpx;
             margin-left: 13rpx;
             color: #000000;
             font-size: 28rpx;
+            line-height: 80rpx;
             text-align: center;
             font-family: SourceHanSansSC-regular;
         }
@@ -130,77 +133,74 @@ page {
         text-align: center;
         line-height: 68rpx;
         color: #fff;
+        .icon-iconyoujiantou {
+            padding-left: 10rpx;
+        }
     }
 }
 
-.content-help {
+.content-receive-order {
     .address-warp {
-        position: relative;
-        top: 126rpx;
-        left: 28rpx;
         display: flex;
-        font-size: 28rpx;
-        color: #c0c4cc;
-        .address-btn-warp {
-            height: 54rpx;
-            color: #888888;
-            .address-content {
-                overflow: hidden;
-                .address-btn {
-                    display: flex;
-                    background-color: #ffffff;
-                    .icon-dian {
-                        display: flex;
-                        align-items: center;
-                        margin-top: 2rpx;
-                        font-size: 10rpx;
-                    }
-                    .se-dot {
-                        color: #f7d478;
-                    }
-                    .re-dot {
-                        color: #78b8f7;
-                    }
-                }
-                .more-address {
-                    padding: 10rpx;
-                    border-radius: 0 0 15rpx 15rpx;
-                    background-color: #ecebeb;
-                    color: #101010;
-                    .address-select {
-                        box-sizing: border-box;
-                    }
-                    .selected {
-                        background-color: #1e90ff;
-                    }
-                }
-                :nth-child(4) {
-                    border-radius: 0 0 15rpx 15rpx;
-                }
-            }
+        align-items: center;
+        padding-bottom: 10rpx;
+        .starting-position {
+            width: 180rpx;
+            height: 60rpx;
+            margin-top: 146rpx;
+            margin-right: 20rpx;
         }
-        .take-site {
-            width: 216rpx;
+        .focus-position {
+            width: 200rpx;
+            height: 60rpx;
+            margin-top: 146rpx;
         }
-        .receive-site {
-            width: 300;
-            margin-left: 20rpx;
+        .starting-selector-outer {
+            width: 180rpx;
+            height: 60rpx;
+            background-color: #f8f8f8;
+            box-shadow: none;
         }
-        .icon-iconyoujiantou {
+        .focus-selector-outer {
+            width: 230rpx;
+            height: 60rpx;
+            background-color: #f8f8f8;
+            box-shadow: none;
+        }
+        .selector-curitem {
+            margin-right: 20rpx;
+            font-size: 28rpx;
+        }
+        .icon-dian {
+            margin-left: 28rpx; 
+            margin-top: 146rpx;
+            padding-top: 12rpx;
+            font-size: 10rpx;
+        }
+        .filter-btn {
+            width: 96rpx;
+            height: 46rpx;
+            margin-top: 154rpx;
+            margin-left: 120rpx;
+            border-radius: 64rpx;
+            background-color: #ff824e;
+            text-align: center;
+            line-height: 46rpx;
+            font-size: 28rpx;
+            color: #fff;
         }
     }
     
     .order-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        overflow: auto;
         width: 100%;
-        margin-top: 130rpx;
-        margin-bottom: 80rpx;
         .order{
             width: 349 * 2rpx;
-            height: 390rpx;
+            height: 382rpx;
+            padding-top: 28rpx;
             margin-top: 22rpx;
+            margin-left: 50%;
+            transform: translateX(-50%);
             border-radius: 22rpx;
             box-shadow: 0px 0px 6px 0px #d8e8f1;
             line-height: 40rpx;
@@ -217,11 +217,7 @@ page {
             }
             .take {
                 display: flex;
-                margin-top: 28rpx;
                 .take-icon {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
                     background-color:#b8e5f2;
                 }
             }
@@ -230,9 +226,6 @@ page {
                 margin-top: 22rpx;
                 font-family: PingFangSC-regular;
                 .rec-icon {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
                     background-color: #b8c4f2;
                 }
                 .building-num {
@@ -251,6 +244,8 @@ page {
                     width: 48rpx;
                     height: 48rpx;
                     border-radius: 50%;
+                    line-height: 48rpx;
+                    text-align: center;
                     font-size: 28rpx;
                     color: #0e0d0d;
                 }
@@ -282,7 +277,7 @@ page {
         
                 }
                 .total-price{
-                    margin-top: -12rpx;
+                    margin-top: -5rpx;
                 }
             }
             .rec-btn-warp {
@@ -294,10 +289,10 @@ page {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 141 * 2rpx;
-                    height: 28 * 2rpx;
+                    width: 200rpx;
+                    height: 60rpx;
                     box-sizing: border-box;
-                    border-radius: 32px;
+                    border-radius: 12rpx;
                     background-color: rgba(255, 130, 77,92);
                     box-shadow: 2rpx 2rpx 6rpx 0 rgba(255, 130, 77,92);
                     font-size: 28rpx;
@@ -306,6 +301,9 @@ page {
                     line-height: 40rpx;
                 }
             }
+        }
+        .order:last-child {
+            margin-bottom: 100rpx;
         }
     }
 }

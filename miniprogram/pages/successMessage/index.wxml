@@ -1,0 +1,15 @@
+<view class="success">
+	<view class="icon-success">
+		<icon
+		 type="success"
+		 size="120"
+		 color="#ff824e"
+		>
+		</icon>
+	</view>
+</view>
+
+<view class="message">已发布</view>
+
+<view class="tips">订单被接单前可随时在食堂外带首页右上方的“订单”中取消订单</view>
+

@@ -1,6 +1,7 @@
 <view class="page">
 	<view class="order-list-warp">
-		<view
+		<navigator
+		 url="/pages/myOrderDetail/index"
 		 class="order-warp"
 		 wx:for="{{orderList}}"
 		 wx:for-item="order"
@@ -24,7 +25,7 @@
 				<text class="text-common">2021.02.16</text>
 			</view>
 			<view class="cancel-order-btn {{order.status?'status':''}}" bindtap="cancelOrder">取消订单</view>
-		</view>
+		</navigator>
 	</view>
 </view>
 

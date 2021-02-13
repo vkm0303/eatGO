@@ -1,5 +1,11 @@
 <view class="bgc-warp">
 	<image class="bg" src="https://7465-test-v14h8-1303227913.tcb.qcloud.la/app_images/my_bg.png?sign=e9e4d32d414e084ae2b256a29ae301a0&t=1603778355"></image>
+	<view class="water">
+		<view class="water-c">
+			<view class="water-1"> </view>
+			<view class="water-2"> </view>
+		</view>
+	</view>
 </view>
 <view class="user-info" wx:if="{{isLogin}}">
 	<image class="user-head-pic" src="{{headPicUrl}}"></image>
