@@ -60,14 +60,10 @@
 		</view>
 	</view>
 	<!-- 领取方式容器 结束 -->
-	<navigator
-	 class="goto-submit-btn"
-	 hover-class="none"
-	 url="/pages/pay/index"
-	>
+	<view class="goto-submit-btn" bindtap="gotoSubmit">
 		<text decode>填写信息&nbsp;&nbsp;</text>
 		<span class="iconfont icon-iconyoujiantou"></span>
-	</navigator>
+	</view>
 </view>
 
 <view class="content-receive-order" hidden="{{tabIndex===0}}">
@@ -129,7 +125,7 @@
 				<span class="total-price">金额：{{item.totalPrice}}元</span>
 			</view>
 			<view class="rec-btn-warp">
-				<view class="rec-btn">确认接单</view>
+				<view class="rec-btn" bindtap="receiveOrder">确认接单</view>
 			</view>
 		</view>
 	</scroll-view>

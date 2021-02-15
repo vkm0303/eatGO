@@ -7,13 +7,18 @@ var menuData = [];//存放当前食堂的所有菜单数据
 
 Page({
     data: {
-        swiperImagesList: [],//轮播图链接
+        swiperImagesList: [
+            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/pic1.png',
+            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/pic2.png',
+            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/pic3.png'
+        ],//轮播图链接
         curEatTime: '',//当前选中的餐点
         curMenuList: [],//当前展示的菜单列表
         canteenList: [{
             "canteenId": "ff808081775730a001775732ab050001",
             "canteenName": "北区食堂",
         }],//所有的食堂对象列表
+        canteenOptions: ["北区食堂"],
         curCanteen: {
             "canteenId": "ff808081775730a001775732ab050001",
             "canteenName": "北区食堂",
@@ -24,6 +29,7 @@ Page({
         totalPrice: 0,
         isAdd: false,
         StartScroll: false,
+        timeOptions: ['今天', '明天', '后天'],
     },
     onLoad: async function(options) {
         const that = this;
@@ -44,8 +50,14 @@ Page({
 
         //获取食堂列表
         const canteenList = await api.getCanteenList('/getCanteenList');
+        let canteenOptions = [];
+        for(let v of canteenList) {
+            canteenOptions.push(v.canteenName);
+        }
+
         that.setData({
             canteenList,
+            canteenOptions,
             curCanteen: canteenList[0],
             curEatTime,
         });
@@ -75,7 +87,7 @@ Page({
         }
     },
     //选择餐点事件
-    async handleITimeClick(e) {
+    async handleIEatTimeClick(e) {
         const that = this;
         const curEatTime = e.currentTarget.dataset.time;
         

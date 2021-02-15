@@ -113,47 +113,38 @@ Page({
         })
     },
 
-    // //点击选择地址按钮事件
-    // handTakeAddressClick() {
-    //     this.addressClick('210rpx', '54rpx')
-    //     this.setData({ isTakeAddressClick: !this.data.isTakeAddressClick })
-    // },
-    // handReceiveAddressClick() {
-    //     this.addressClick('200rpx', '54rpx')
-    //     this.setData({ isReceiveAddressClick: !this.data.isReceiveAddressClick })
-    // },
+    gotoSubmit() {
+        const that = this;
+        const { getWayIndex } = that.data;
+        if(getWayIndex !== 0 && getWayIndex !== 1) {
+            wx.showToast({
+                title: '您还未选择取餐方式',
+                icon: 'none'
+            });
+        } else {
+            let getWay = (getWayIndex === 0 ? 'byself' : 'byDelivery');
+            wx.navigateTo({url: `/pages/pay/index?getWay=${getWay}`});
+        }
+    },
 
-    // //选择地址事件
-    // handleTakeAddressSelect(e) {
-    //     const takeAddress = e.currentTarget.dataset.address
-    //     this.setData({ takeAddress })
-    // },
-    // handleReceiveAddressSelect(e) {
-    //     const receiveAddress = e.currentTarget.dataset.address
-    //     this.setData({ receiveAddress })
-    // },
-    // addressClick(addHeight, reduceHeight) {
-    //     let aniHeightAdd = wx.createAnimation({
-    //         duration: 150,
-    //         timingFunction: 'linear',
-    //         delay: 0,
-    //         transformOrigin: '50% 50% 0'
-    //     })
-    //     aniHeightAdd.height(addHeight).step()
-    //     let aniHeightReduce = wx.createAnimation({
-    //         duration: 150,
-    //         timingFunction: 'linear',
-    //         delay: 0,
-    //         transformOrigin: '50% 50% 0'
-    //     });
-    //     aniHeightReduce.height(reduceHeight).step()
-    //     let { isAddressClick } = this.data
-    //     this.setData({
-    //         isAddressClick: !isAddressClick,
-    //         aniHeightAdd: aniHeightAdd.export(),
-    //         aniHeightReduce: aniHeightReduce.export()
-    //     })
-    // },
+    receiveOrder() {
+        wx.showModal({
+            title: '确认提示',
+            content: '是否确定接单？',
+            showCancel: true,
+            cancelText: '取消',
+            cancelColor: '#000000',
+            confirmText: '确定',
+            confirmColor: '#3CC51F',
+            success: (result) => {
+                if(result.confirm){
+                    wx.navigateTo({url: '/pages/takeOrderDetail/index'});
+                }
+            }
+        });
+    }
+
+
     // handleReduceNum(e) {
     //     let { index, price } = e.currentTarget.dataset
     //     let { orderDetail } = this.data

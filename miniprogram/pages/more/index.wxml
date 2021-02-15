@@ -1,8 +1,8 @@
-<navigator class="waidai common-router" url="/pages/canteenTakeout/index">
+<!-- <navigator class="waidai common-router" url="/pages/canteenTakeout/index">
 	<image class="icon" src="../../icons/help.png"></image>
 	<span class="common-text">食堂外带</span>
 	<span class="iconfont icon-iconyoujiantou"></span>
-</navigator>
+</navigator> -->
 <navigator class="shipu common-router" url="/pages/health/index">
 	<image class="icon" src="../../icons/health.png"></image>
 	<span class="common-text">健康食谱</span>

@@ -64,7 +64,7 @@ page {
         border-radius: 74rpx 74rpx 0 0;
         box-shadow: 0px 0px 7px 0px #d8e8f1;
         //餐点按钮
-        .time-warp {
+        .eat-time-warp {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -73,7 +73,7 @@ page {
             :nth-child(2) {
                 margin-right: 22rpx;
             }
-            .time {
+            .eat-time {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -93,52 +93,16 @@ page {
             position: absolute;
             top: 142rpx;
             left: 202rpx;
-            z-index: 99;
-            .canteen-btn {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                overflow: hidden;
-                width: 98 * 2rpx;
-                height: 39rpx;
-                margin-bottom: 10rpx;
-                padding: 10rpx 0;
-                opacity: 1;
-                border-radius: 15rpx;
-                border: 2rpx solid #ffffff00;
-                background-color: #e2eaef;
-                font-size: 14 * 2rpx;
-                color: #b1b1b1;
-                font-family: Microsoft Yahei;
-                .cur-canteen-warp {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    // margin-bottom: 10rpx;
-                    padding-bottom: 10rpx;
-                    border-bottom: 1rpx dotted #cbcdcd;
-                    font-size: 35rpx;
-                    color: #989898;
-                    text-align: center;
-                    text {
-                        font-size: 14 * 2rpx;
-                        color: #b1b1b1;
-                    }
-
-                }
-                .canteen-selections {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width:210rpx;
-                    padding: 5rpx 0;
-                    font-size: 30rpx;
-                }
-                .canteen-select {
-                    background-color: #1e90ff;
-                    color: #ffffff;
-                }
-            }
+        }
+        .time-btn-warp {
+            position: absolute;
+            top: 142rpx;
+            left: 446rpx;
+        }
+        .selector-outer {
+            width: 196rpx;
+            background-color: #e2eaef;
+            box-shadow: none;
         }
         //菜单容器
         .menu-warp {

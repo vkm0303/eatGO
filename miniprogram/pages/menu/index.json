@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "drop-selector": "../../components/drop-selector/index"
+  },
   "navigationBarTitleText": "好吃Go"
 }

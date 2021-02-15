@@ -5,7 +5,6 @@
 .success .icon-success {
   margin-top: 105rpx;
   border-radius: 50%;
-  box-shadow: 0rpx 2rpx 8rpx 3rpx #fabb77;
 }
 .message {
   margin-top: 60rpx;

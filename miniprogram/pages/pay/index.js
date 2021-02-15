@@ -3,10 +3,10 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-14 16:32:19
+ * @LastEditTime: 2021-02-14 23:29:36
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
- 
+ var {toTimeStamp, timeCountDown}  = require("../../utils/util");
 Page({
     data: {
         ishideTimePicker: false,
@@ -67,18 +67,27 @@ Page({
                 time: '12:40',
                 status: 1
             }
-        ]
+        ],
+        countDownTxt: {
+            hou: '00',
+            min: '00',
+            sec: '00'
+        }
     },
     onLoad: function(options) {
         const that = this;
+        const { getWay } = options;
         that.setDefaultTime();
         that.setTimeRange();
         const canteenOrder = wx.getStorageSync('canteenOrder')
         that.setData({
+            getWay,
             canteenOrder,
             totalNum: options.totalNum,
             totalPrice: options.totalPrice
-        })
+        });
+        let endTime = toTimeStamp('21:20:00');
+        timeCountDown(that, endTime)
     },
     onShow: function() {
         const that = this;

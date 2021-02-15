@@ -5,6 +5,7 @@
 		 class="order-warp"
 		 wx:for="{{orderList}}"
 		 wx:for-item="order"
+		 wx:key="index"
 		>
 			<view class="box-common">
 				<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
@@ -24,7 +25,7 @@
 				<text decode>下单时间:&nbsp;&nbsp;&nbsp;</text>
 				<text class="text-common">2021.02.16</text>
 			</view>
-			<view class="cancel-order-btn {{order.status?'status':''}}" bindtap="cancelOrder">取消订单</view>
+			<view class="cancel-order-btn {{order.status?'status':''}}" catchtap="cancelOrder">取消订单</view>
 		</navigator>
 	</view>
 </view>

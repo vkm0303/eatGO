@@ -4,7 +4,7 @@ page {
 }
 .time-selector-warp-1 {
   width: 100vw;
-  padding: 28rpx 24rpx 0;
+  padding: 28rpx 24rpx 6rpx;
   box-sizing: border-box;
   white-space: nowrap;
 }
@@ -13,6 +13,7 @@ page {
   width: 228rpx;
   height: 126rpx;
   margin-right: 32rpx;
+  box-sizing: border-box;
   border-radius: 20rpx;
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.08);
   background-color: #fff;
@@ -41,6 +42,9 @@ page {
 }
 .time-selector-warp-1 .time-selector-box .deadline {
   text-align: center;
+}
+.time-selector-warp-1 .active {
+  border: 2rpx solid #ff824e;
 }
 .address-warp-1 {
   width: 700rpx;

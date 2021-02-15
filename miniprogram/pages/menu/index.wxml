@@ -21,57 +21,57 @@
 	 interval="2000"
 	>
 		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
-			<image src="{{item.fileID}}"></image>
+			<image src="{{item}}"></image>
 		</swiper-item>
 	</swiper>
 	<!-- 轮播图 结束 -->
 </view>
 
 <view class="bottom-warp">
-	<!-- 时间选择栏 开始 -->
-	<view class="time-warp">
+	<!-- 餐点选择栏 开始 -->
+	<view class="eat-time-warp">
 		<view
-		 class="time {{curEatTime=='Breakfast' ? 'active' : ''}}"
-		 bindtap="handleITimeClick"
+		 class="eat-time {{curEatTime=='Breakfast' ? 'active' : ''}}"
+		 bindtap="handleIEatTimeClick"
 		 data-time="Breakfast"
 		>早餐
 		</view>
 		<view
-		 class="time {{curEatTime=='Lunch' ? 'active' : ''}}"
-		 bindtap="handleITimeClick"
+		 class="eat-time {{curEatTime=='Lunch' ? 'active' : ''}}"
+		 bindtap="handleIEatTimeClick"
 		 data-time="Lunch"
 		>午餐
 		</view>
 		<view
-		 class="time {{curEatTime=='Dinner' ? 'active' : ''}}"
-		 bindtap="handleITimeClick"
+		 class="eat-time {{curEatTime=='Dinner' ? 'active' : ''}}"
+		 bindtap="handleIEatTimeClick"
 		 data-time="Dinner"
 		>晚餐
 		</view>
 	</view>
-	<!-- 时间选择栏 结束 -->
+	<!-- 餐点选择栏 结束 -->
 
 	<!-- 食堂选择按钮 开始 -->
-	<view class="canteen-btn-warp" bindtap="createAnimation">
-		<view class="canteen-btn" animation="{{isCanteenClick ? aniHeightAdd : aniHeightReduce}}">
-			<view class="cur-canteen-warp">
-				<text decode="true">&nbsp;{{curCanteen.canteenName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
-				<text class="iconfont icon-right"></text>
-			</view>
-			<view class="more-canteen">
-				<view
-				 class="canteen-selections {{curCanteen.canteenId===item.canteenId ? 'canteen-select' : ''}}"
-				 wx:for="{{canteenList}}"
-				 wx:key="item"
-				 bindtap="handleCanteenSelect"
-				 data-canteen="{{item}}"
-				>
-					{{item.canteenName}}
-				</view>
-			</view>
-		</view>
+	<view class="canteen-btn-warp">
+		<drop-selector
+		 outer-class="selector-outer"
+		 options="{{canteenOptions}}"
+		 itemHeight="{{30}}"
+		 bind:ItemSelect="handleCanteenSelect"
+		></drop-selector>
 	</view>
 	<!-- 食堂选择按钮 结束 -->
+
+	<!-- 时间下拉选择框 开始 -->
+	<view class="time-btn-warp">
+		<drop-selector
+		 outer-class="selector-outer"
+		 options="{{timeOptions}}"
+		 itemHeight="{{30}}"
+		 bind:ItemSelect="handleTimeSelect"
+		></drop-selector>
+	</view>
+	<!-- 时间下拉选择框 结束 -->
 
 	<!-- 菜单区 开始 -->
 	<view class="menu-warp">

@@ -8,7 +8,11 @@
 			 show-scrollbar="{{false}}"
 			>
 				<block wx:for="{{timeOptions}}" wx:key="index">
-					<view class="time-selector-box">
+					<view
+					 class="time-selector-box {{timeBoxIndex===index?'active':''}}"
+					 bindtap="handleTimeBoxClick"
+					 data-index="{{index}}"
+					>
 						<view class="time-warp">
 							<span class="time">{{item.time}}</span>
 							<view class="title">送达时间</view>
@@ -16,7 +20,7 @@
 						<view class="status {{item.status===1?'green':(item.status===0?'yellow':'red')}}">
 							订单{{item.status===1?'可预定':(item.status===0?'火爆':'已满')}}
 						</view>
-						<view class="deadline">距截单时间：04:09:13</view>
+						<view class="deadline">距截单时间：{{countDownTxt.hou+':'+countDownTxt.min+':'+countDownTxt.sec}}</view>
 					</view>
 				</block>
 			</scroll-view>

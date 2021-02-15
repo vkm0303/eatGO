@@ -131,17 +131,17 @@ page .bottom-warp {
   border-radius: 74rpx 74rpx 0 0;
   box-shadow: 0px 0px 7px 0px #d8e8f1;
 }
-page .bottom-warp .time-warp {
+page .bottom-warp .eat-time-warp {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 42rpx;
 }
-page .bottom-warp .time-warp :nth-child(1),
-page .bottom-warp .time-warp :nth-child(2) {
+page .bottom-warp .eat-time-warp :nth-child(1),
+page .bottom-warp .eat-time-warp :nth-child(2) {
   margin-right: 22rpx;
 }
-page .bottom-warp .time-warp .time {
+page .bottom-warp .eat-time-warp .eat-time {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,57 +152,23 @@ page .bottom-warp .time-warp .time {
   border: 1rpx solid #ffba9e;
   font-family: Microsoft Yahei;
 }
-page .bottom-warp .time-warp .active {
+page .bottom-warp .eat-time-warp .active {
   background-color: #ff824e;
 }
 page .bottom-warp .canteen-btn-warp {
   position: absolute;
   top: 142rpx;
   left: 202rpx;
-  z-index: 99;
 }
-page .bottom-warp .canteen-btn-warp .canteen-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
+page .bottom-warp .time-btn-warp {
+  position: absolute;
+  top: 142rpx;
+  left: 446rpx;
+}
+page .bottom-warp .selector-outer {
   width: 196rpx;
-  height: 39rpx;
-  margin-bottom: 10rpx;
-  padding: 10rpx 0;
-  opacity: 1;
-  border-radius: 15rpx;
-  border: 2rpx solid #ffffff00;
   background-color: #e2eaef;
-  font-size: 28rpx;
-  color: #b1b1b1;
-  font-family: Microsoft Yahei;
-}
-page .bottom-warp .canteen-btn-warp .canteen-btn .cur-canteen-warp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 10rpx;
-  border-bottom: 1rpx dotted #cbcdcd;
-  font-size: 35rpx;
-  color: #989898;
-  text-align: center;
-}
-page .bottom-warp .canteen-btn-warp .canteen-btn .cur-canteen-warp text {
-  font-size: 28rpx;
-  color: #b1b1b1;
-}
-page .bottom-warp .canteen-btn-warp .canteen-btn .canteen-selections {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 210rpx;
-  padding: 5rpx 0;
-  font-size: 30rpx;
-}
-page .bottom-warp .canteen-btn-warp .canteen-btn .canteen-select {
-  background-color: #1e90ff;
-  color: #ffffff;
+  box-shadow: none;
 }
 page .bottom-warp .menu-warp {
   display: flex;
