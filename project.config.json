@@ -102,10 +102,9 @@
           "scene": null
         },
         {
-          "id": 7,
           "name": "结算",
           "pathName": "pages/pay/index",
-          "query": "totalPrice=8.0",
+          "query": "getWay=getByDelivery",
           "scene": null
         },
         {
@@ -193,6 +192,7 @@
         {
           "name": "接单详情",
           "pathName": "pages/takeOrderDetail/index",
+          "query": "",
           "scene": null
         }
       ]

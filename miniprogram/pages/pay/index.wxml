@@ -70,7 +70,7 @@
 				 curitem-class="selector-curitem"
 				 item-class="selector-item"
 				 active-class="selector-active"
-				 options="{{options}}"
+				 options="{{focusOptions}}"
 				 itemHeight="{{32}}"
 				 selectorSize="{{selectorSize}}"
 				></drop-selector>

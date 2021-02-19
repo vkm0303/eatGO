@@ -1,36 +1,44 @@
-wx.cloud.init()
-const DB = wx.cloud.database()
+wx.cloud.init();
+const DB = wx.cloud.database();
+const { getAddressList } = require('../../api/api.js');
 Page({
     data: {
         //"我要带"变量
         curStartingIdx: 0,
-        startingOptions: ['北区食堂', '北区西餐厅', '竹韵食堂', '石井食堂'],
+        startingOptions: [],
         curFocusIdx: 0,
-        focusOptions: ['男生宿舍17B', '男生宿舍17A', '女生宿舍17B'],
+        focusOptions: [],
         //"我要吃"变量
         orderDetail: [],
         orderList: [],
         tabIndex: 0,
         getWayIndex: -1,
     },
-    onLoad: function(options) {
-        const canteenOrder = wx.getStorageSync("canteenOrder");
-        if (canteenOrder.length === 0) {
-            return
-        }
-        let totalPrice = 0
-        let totalNum = 0
-        for (let i = 0; i < canteenOrder.length; i++) {
-            totalPrice += Number(canteenOrder[i].totalPrice)
-            totalNum += Number(canteenOrder[i].num)
-        }
+    onLoad: async function(options) {
+        const that = this;
+
         wx.showLoading({ mask: false })
+
+        //获取取餐地点
+        const startingOptions = wx.getStorageSync('canteenList') || ['北区食堂', '北区西餐厅', '竹韵食堂', '石井食堂'];
+
+        //获取收货地址列表
+        const data = await getAddressList();
+        let focusOptions = [];
+        if (data.length) {
+            for (let v of data) {
+                focusOptions.push(v.addressName);
+            }
+        } else {
+            focusOptions = ['男生宿舍17B', '男生宿舍17A', '女生宿舍17B'];
+        }
+
         this.setData({
-            orderDetail: canteenOrder,
-            totalNum,
-            totalPrice,
+            focusOptions,
+            startingOptions,
             isLogin: true
         })
+
         wx.hideLoading()
     },
     onShow: function() {
@@ -47,17 +55,17 @@ Page({
     //切换Tabs
     handleItemChange(e) {
 
-            const db = wx.cloud.database();
-            db.collection('sztu_order')
-                .where({ isReceive: false })
-                .get().then(res => { this.setData({ orderList: res.data }) })  
+        const db = wx.cloud.database();
+        db.collection('sztu_order')
+            .where({ isReceive: false })
+            .get().then(res => { this.setData({ orderList: res.data }) })
 
     },
     moveLeft(e) {
         const that = this;
         const { index } = e.currentTarget.dataset;
-        
-        if(that.data.tabIndex === 1) {
+
+        if (that.data.tabIndex === 1) {
             let translateLeft = wx.createAnimation({
                 duration: 200,
                 timingFunction: 'linear',
@@ -73,7 +81,7 @@ Page({
     moveRight(e) {
         const that = this;
         const { index } = e.currentTarget.dataset;
-        if(that.data.tabIndex === 0) {
+        if (that.data.tabIndex === 0) {
             let translateRight = wx.createAnimation({
                 duration: 200,
                 timingFunction: 'linear',
@@ -91,7 +99,7 @@ Page({
         const that = this;
         const { flag } = e.currentTarget.dataset;
         const { index } = e.detail;
-        if(flag === 0) {
+        if (flag === 0) {
             that.setData({
                 curStartingIdx: index
             });
@@ -105,7 +113,7 @@ Page({
     handleWaySelect(e) {
         const that = this;
         let { index } = e.currentTarget.dataset;
-        if(that.data.getWayIndex === index) {
+        if (that.data.getWayIndex === index) {
             index = -1;
         }
         that.setData({
@@ -116,14 +124,14 @@ Page({
     gotoSubmit() {
         const that = this;
         const { getWayIndex } = that.data;
-        if(getWayIndex !== 0 && getWayIndex !== 1) {
+        if (getWayIndex !== 0 && getWayIndex !== 1) {
             wx.showToast({
                 title: '您还未选择取餐方式',
                 icon: 'none'
             });
         } else {
             let getWay = (getWayIndex === 0 ? 'byself' : 'byDelivery');
-            wx.navigateTo({url: `/pages/pay/index?getWay=${getWay}`});
+            wx.navigateTo({ url: `/pages/pay/index?getWay=${getWay}` });
         }
     },
 
@@ -137,8 +145,8 @@ Page({
             confirmText: '确定',
             confirmColor: '#3CC51F',
             success: (result) => {
-                if(result.confirm){
-                    wx.navigateTo({url: '/pages/takeOrderDetail/index'});
+                if (result.confirm) {
+                    wx.navigateTo({ url: '/pages/takeOrderDetail/index' });
                 }
             }
         });

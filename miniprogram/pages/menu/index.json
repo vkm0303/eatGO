@@ -1,6 +1,7 @@
 {
-  "usingComponents": {
-    "drop-selector": "../../components/drop-selector/index"
-  },
-  "navigationBarTitleText": "好吃Go"
+    "usingComponents": {
+        "drop-selector": "../../components/drop-selector/index",
+        "shopping-cart": "../../components/shopping-cart/shopping-cart"
+    },
+    "navigationBarTitleText": "好吃Go"
 }

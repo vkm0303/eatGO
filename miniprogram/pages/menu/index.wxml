@@ -162,3 +162,5 @@
 	<!-- 菜单区 结束 -->
 </view>
 
+<shopping-cart></shopping-cart>
+
