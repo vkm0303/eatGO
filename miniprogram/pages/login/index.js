@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-14 01:28:24
+ * @LastEditTime: 2021-02-21 16:58:00
  * @FilePath: \tastygo\miniprogram\pages\login\index.js
  */
 var account = ''
@@ -32,46 +32,49 @@ Page({
     },
     //登录事件
     handleLogin(e) {
-        // wx.showLoading({
-        //     title: "验证中",
-        //     mask: true
-        // })
-        const { userInfo } = e.detail
-        // wx.cloud.callFunction({
-        //     name: 'login',
-        //     data: {
-        //         account: account,
-        //         password: password
-        //     }
-        // }).then(res => {
-        //     console.log(res)
-        //     if (res.result.name == "") {
-        //         wx.showToast({
-        //             title: '登录失败',
-        //             icon: 'none'
-        //         })
-        //         wx.hideLoading()
-        //         return
-        //     }
-        //     userInfo.name = res.result.name
-        //     userInfo.no = res.result.no
-        //     userInfo.college = res.result.college
-        //     userInfo.major = res.result.major
-        //     userInfo.class = res.result.class
-        //     let app = getApp()
-        //     app.globalData.userInfo = userInfo
-        //     app.globalData.isLogin = true
-        //     wx.setStorageSync('userInfo', userInfo)
-        //     wx.setStorageSync('loginState', true);
-        //     //wx.hideLoading()
-        //     wx.switchTab({ url: '/pages/my/index' })
-        // })
-        let app = getApp()
-        app.globalData.userInfo = userInfo
-        app.globalData.isLogin = true
-        wx.setStorageSync('userInfo', userInfo)
-        wx.setStorageSync('loginState', true);
-        wx.switchTab({ url: '/pages/my/index' })
+        wx.showLoading({
+            title: "验证中",
+            mask: true
+        })
+        const { userInfo } = e.detail;
+        console.log(e)
+        wx.request({
+            url: 'https://isztu.tytion.net/api/login',
+            data: {
+                username: account,
+                password
+            },
+            method: 'POST',
+            success: (result) => {
+                if (result.data.ret) {
+                    let realname = result.data.msg.split('(')[0];
+                    let account = result.data.msg.split('(')[1].split(')')[0];
+                    userInfo.realname = realname;
+                    userInfo.no = account;
+
+                    let app = getApp();
+                    app.globalData.userInfo = userInfo;
+                    app.globalData.isLogin = true;
+                    wx.setStorageSync('userInfo', userInfo);
+                    wx.setStorageSync('loginState', true);
+                    wx.switchTab({ url: '/pages/my/index' });
+                } else {
+                    wx.showToast({
+                        title: '账号/密码错误',
+                        icon: 'none'
+                    });
+                }
+            },
+            fail: () => {
+                wx.showToast({
+                    title: '登录失败',
+                    icon: 'none'
+                });
+            },
+            complete: () => {
+                wx.hideLoading();
+            }
+        });
     },
     login() {
         var name = ""

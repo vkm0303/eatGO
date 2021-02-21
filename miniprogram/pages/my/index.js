@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-14 01:29:52
+ * @LastEditTime: 2021-02-21 16:59:13
  * @FilePath: \tastygo\miniprogram\pages\my\index.js
  */
 Page({
@@ -19,8 +19,8 @@ Page({
                 app.globalData.isLogin = true
                 this.setData({
                     headPicUrl: userInfo.avatarUrl,
-                    name: userInfo.nickName,
-                   // no: userInfo.no,
+                    name: userInfo.realname,
+                    no: userInfo.no,
                     isLogin: true
                 })
             }
@@ -28,8 +28,8 @@ Page({
             this.setData({ isLogin: false })
     },
     handleLogin(e) {
-        // wx.navigateTo({
-        //     url: '/pages/login/index'
-        // })
+        wx.navigateTo({
+            url: '/pages/login/index'
+        })
     }
 })

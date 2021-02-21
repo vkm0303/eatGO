@@ -1,0 +1,8 @@
+<view class="cart-warp">
+	<view class="cart-detail" wx:if="{{isShowDetail}}"></view>
+	<view class="cart">
+		<view class="left"></view>
+
+	</view>
+</view>
+

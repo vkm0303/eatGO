@@ -8,7 +8,7 @@
 <!-- logo -->
 <image class="logo" src="../../images/logo.png"></image>
 <!-- 登录信息输入 -->
-<view class="login-warp">
+<form class="login-warp" bindsubmit="handleLogin">
 	<view class="account-warp common">
 		<span class="icon iconfont icon-user-circle"></span>
 		<input
@@ -38,5 +38,5 @@
 		<text class="agreement-tip">登录前请先阅读并同意</text>
 		<span>《好吃GO隐私协议》</span>
 	</view>
-</view>
+</form>
 
