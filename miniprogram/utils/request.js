@@ -3,8 +3,8 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:24
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-01 02:06:18
- * @FilePath: \miniprogram\utils\request.js
+ * @LastEditTime: 2021-02-21 22:03:14
+ * @FilePath: \tastygo\miniprogram\utils\request.js
  */
 
 const app = getApp()
@@ -16,17 +16,13 @@ const wxRequest = (url, options) => {
             data: options.method === 'GET' ? options.data : JSON.stringify(options.data),
             header: {
                 'Content-Type': 'application/json; charset=UTF-8',
-                'x-token': 'x-token' // 看自己是否需要
+                //'x-token': 'x-token' // 看自己是否需要
             },
-            success(request) {
-                if (request.data.code === 200) {
-                    resolve(request.data)
-                } else {
-                    reject(request.data)
-                }
+            success(res) {
+                resolve(res)
             },
             fail(error) {
-                reject(error.data)
+                resolve(error)
             }
         })
     })
@@ -51,4 +47,7 @@ const remove = (url, options) => {
 
 const request = {get, post, put, remove };
 
-module.exports = request;
+module.exports = {
+    request,
+    wxRequest
+};

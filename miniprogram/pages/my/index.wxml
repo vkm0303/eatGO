@@ -29,7 +29,7 @@
 		<span class="common-text">喜爱菜品</span>
 		<span class="iconfont icon-iconyoujiantou"></span>
 	</navigator>
-	<navigator class="pay-record common-router">
+	<navigator class="pay-record common-router" url="/pages/cardRecord/index">
 		<image class="icon" src="../../icons/consume.png"></image>
 		<span class="common-text">消费记录</span>
 		<span class="iconfont icon-iconyoujiantou"></span>

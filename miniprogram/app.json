@@ -1,78 +1,78 @@
 {
-  "pages": [
-    "pages/accountManage/index",
-    "pages/address/index",
-    "pages/about/index",
-    "pages/add_dishes/index",
-    "pages/address/add_address/add_address",
-    "pages/bottom_block/bottom_block",
-    "pages/bottom_add/bottom_add",
-    "pages/canteenTakeout/index",
-    "pages/goodsDetail/goodsDetail",
-    "pages/goods_add/goods_add",
-    "pages/health/index",
-    "pages/healthRepo/index",
-    "pages/login/index",
-    "pages/more/index",
-    "pages/menu/index",
-    "pages/my/index",
-    "pages/myCollection/index",
-    "pages/myOrderList/index",
-    "pages/myOrderDetail/index",
-    "pages/nearTakeout/goods",
-    "pages/nearTakeout/pay/pay",
-    "pages/orderDetails/index",
-    "pages/pay/index",
-    "pages/remarks/index",
-    "pages/restaurant/restaurant",
-    "pages/secondhand/secondhand",
-    "pages/successMessage/index",
-    "pages/takeOrderDetail/index",
-    "pages/TEST/TEST"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#101010",
-    "selectedColor": "#101010",
-    "backgroundColor": "#ffffff",
-    "position": "bottom",
-    "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/menu/index",
-        "text": "菜品",
-        "iconPath": "icons/_menu.png",
-        "selectedIconPath": "icons/menu.png"
-      },
-      {
-        "pagePath": "pages/canteenTakeout/index",
-        "text": "食堂外带",
-        "iconPath": "icons/_canteen.png",
-        "selectedIconPath": "icons/canteen.png"
-      },
-      {
-        "pagePath": "pages/more/index",
-        "text": "发现",
-        "iconPath": "icons/_more.png",
-        "selectedIconPath": "icons/more.png"
-      },
-      {
-        "pagePath": "pages/my/index",
-        "text": "我",
-        "iconPath": "icons/_my.png",
-        "selectedIconPath": "icons/my.png"
-      }
-    ]
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
-  },
-  "entryPagePath": "pages/menu/index",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/accountManage/index",
+        "pages/address/index",
+        "pages/about/index",
+        "pages/add_dishes/index",
+        "pages/address/add_address/add_address",
+        "pages/bottom_block/bottom_block",
+        "pages/bottom_add/bottom_add",
+        "pages/canteenTakeout/index",
+        "pages/cardRecord/index",
+        "pages/goodsDetail/goodsDetail",
+        "pages/goods_add/goods_add",
+        "pages/health/index",
+        "pages/healthRepo/index",
+        "pages/login/index",
+        "pages/more/index",
+        "pages/menu/index",
+        "pages/my/index",
+        "pages/myCollection/index",
+        "pages/myOrderList/index",
+        "pages/myOrderDetail/index",
+        "pages/nearTakeout/goods",
+        "pages/nearTakeout/pay/pay",
+        "pages/orderDetails/index",
+        "pages/pay/index",
+        "pages/remarks/index",
+        "pages/restaurant/restaurant",
+        "pages/secondhand/secondhand",
+        "pages/successMessage/index",
+        "pages/takeOrderDetail/index",
+        "pages/TEST/TEST"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#101010",
+        "selectedColor": "#101010",
+        "backgroundColor": "#ffffff",
+        "position": "bottom",
+        "borderStyle": "white",
+        "list": [{
+                "pagePath": "pages/menu/index",
+                "text": "菜品",
+                "iconPath": "icons/_menu.png",
+                "selectedIconPath": "icons/menu.png"
+            },
+            {
+                "pagePath": "pages/canteenTakeout/index",
+                "text": "食堂外带",
+                "iconPath": "icons/_canteen.png",
+                "selectedIconPath": "icons/canteen.png"
+            },
+            {
+                "pagePath": "pages/more/index",
+                "text": "发现",
+                "iconPath": "icons/_more.png",
+                "selectedIconPath": "icons/more.png"
+            },
+            {
+                "pagePath": "pages/my/index",
+                "text": "我",
+                "iconPath": "icons/_my.png",
+                "selectedIconPath": "icons/my.png"
+            }
+        ]
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
+    "entryPagePath": "pages/menu/index",
+    "sitemapLocation": "sitemap.json"
 }

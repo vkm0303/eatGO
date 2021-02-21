@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-21 16:59:13
+ * @LastEditTime: 2021-02-21 20:08:21
  * @FilePath: \tastygo\miniprogram\pages\my\index.js
  */
 Page({

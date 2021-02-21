@@ -3,11 +3,11 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-19 22:55:00
+ * @LastEditTime: 2021-02-21 23:28:56
  * @FilePath: \tastygo\miniprogram\api\api.js
  */
 
-import request from '../utils/request.js';
+const { request } = require('../utils/request.js');
 const app = getApp();
 const { apiBaseUrl } = app.globalData;
 

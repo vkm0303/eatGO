@@ -1,0 +1,63 @@
+<view class="card-record-warp">
+	<view class="header">
+		<picker
+		 mode="date"
+		 value="{{date}}"
+		 start="2016-09-01"
+		 end="{{end}}"
+		 bindchange="bindDateChange"
+		>
+			<view class="date-warp">
+				<span class="year txt">{{year}} 年</span>
+				<view class="month">
+					<span class="num">{{month}}</span>
+					<span style="text-align: center;">月</span>
+					<span class="iconfont icon-right"></span>
+				</view>
+			</view>
+		</picker>
+
+		<view class="line"></view>
+
+		<view class="recharge common">
+			<span class="txt">充值</span>
+			<span class="num">0.00</span>
+		</view>
+
+		<view class="expand common">
+			<span class="txt">支出</span>
+			<span class="num">0.00</span>
+		</view>
+
+		<view class="balance common">
+			<span class="txt">余额</span>
+			<span class="num">{{balance}}</span>
+		</view>
+	</view>
+
+	<view class="main">
+		<view class="message">
+			<span style="margin-bottom: 6rpx;">现仅支持查看余额</span>
+			<span>账单功能暂未开放</span>
+		</view>
+		<!-- <view class="record-warp">
+			<view class="summary">
+				<span class="date">08月25日 星期二</span>
+				<span class="total-expend">- 20</span>
+			</view>
+			<view class="content">
+				<view class="record">
+					<span class="logo">饭</span>
+					<span class="type">饭堂消费</span>
+					<span class="num">-14</span>
+				</view>
+				<view class="record">
+					<span class="logo">饭</span>
+					<span class="type">饭堂消费</span>
+					<span class="num">-14</span>
+				</view>
+			</view>
+		</view> -->
+	</view>
+</view>
+

@@ -38,7 +38,7 @@
   },
   "appid": "wx2d37530643ea06bc",
   "projectname": "TastyGo",
-  "libVersion": "2.13.0",
+  "libVersion": "2.15.0",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
@@ -193,6 +193,12 @@
           "name": "接单详情",
           "pathName": "pages/takeOrderDetail/index",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "消费记录",
+          "pathName": "pages/cardRecord/index",
+          "query": "getWay=getByDelivery",
           "scene": null
         }
       ]

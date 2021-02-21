@@ -1,0 +1,107 @@
+.card-record-warp .header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  padding-left: 32rpx;
+  background-color: #ff824e;
+  color: #fff;
+}
+.card-record-warp .header .date-warp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 160rpx;
+  height: 100%;
+}
+.card-record-warp .header .date-warp .month .icon-right {
+  height: 100%;
+  margin-left: 10rpx;
+  font-size: 40rpx;
+  text-align: end;
+}
+.card-record-warp .header .line {
+  width: 2rpx;
+  height: 75rpx;
+  background-color: #fff;
+}
+.card-record-warp .header .recharge {
+  margin-left: 60rpx;
+}
+.card-record-warp .header .expand {
+  margin-left: 100rpx;
+}
+.card-record-warp .header .balance {
+  margin-left: 100rpx;
+}
+.card-record-warp .header .common {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-record-warp .header .txt {
+  padding-bottom: 6rpx;
+  font-size: 20rpx;
+}
+.card-record-warp .header .num {
+  margin-right: 6rpx;
+  font-size: 40rpx;
+}
+.card-record-warp .main {
+  width: 100%;
+}
+.card-record-warp .main .message {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50%;
+  margin-top: 200rpx;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #adadad;
+}
+.card-record-warp .main .record-warp {
+  margin-top: 18rpx;
+}
+.card-record-warp .main .record-warp .summary {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 13rpx 0;
+  border-bottom: 2rpx solid #fce4d2;
+  font-size: 20rpx;
+  color: #bcbab9;
+}
+.card-record-warp .main .record-warp .summary .date {
+  margin-left: 16rpx;
+}
+.card-record-warp .main .record-warp .summary .total-expend {
+  margin-left: 452rpx;
+}
+.card-record-warp .main .record-warp .content {
+  padding-left: 38rpx;
+  padding-top: 16rpx;
+}
+.card-record-warp .main .record-warp .content .record {
+  display: flex;
+  align-items: center;
+  padding-bottom: 36rpx;
+}
+.card-record-warp .main .record-warp .content .record .logo {
+  display: inline-block;
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  background-color: #ff824e;
+  text-align: center;
+  line-height: 76rpx;
+  font-family: Arial;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #fff;
+}
+.card-record-warp .main .record-warp .content .record .type {
+  margin-left: 36rpx;
+}
+.card-record-warp .main .record-warp .content .record .num {
+  margin-left: 346rpx;
+}

@@ -1,5 +1,4 @@
-import api from '../../api/api.js';
-
+const api = require('../../api/api.js');
 const app = getApp();
 var { userInfo, isLogin } = app.globalData;
 
@@ -15,12 +14,12 @@ Page({
         curEatTime: '', //当前选中的餐点
         curMenuList: [], //当前展示的菜单列表
         canteenList: [{
-            "canteenId": "ff808081775730a001775732ab050001",
+            "canteenId": "5",
             "canteenName": "北区食堂",
         }], //所有的食堂对象列表
         canteenOptions: ["北区食堂"],
         curCanteen: {
-            "canteenId": "ff808081775730a001775732ab050001",
+            "canteenId": "5",
             "canteenName": "北区食堂",
         }, //当前选中的食堂
         typeList: [], //菜类型对象列表
@@ -46,10 +45,10 @@ Page({
         } else {
             curEatTime = 'Dinner';
         }
-        that.handleCanteenSelect();
 
         //获取食堂列表
-        const canteenList = await api.getCanteenList();
+        const res = await api.getCanteenList();
+        const canteenList = res.data;
         let canteenOptions = [];
         for (let v of canteenList) {
             canteenOptions.push(v.canteenName);
@@ -61,7 +60,7 @@ Page({
             curCanteen: canteenList[0],
             curEatTime,
         });
-
+        that.handleCanteenSelect();
 
         wx.setStorageSync("canteenList", canteenOptions);
     },
@@ -93,7 +92,8 @@ Page({
 
         //获取展示的菜单数据并通过当前选择类型进行筛选
         const url = `/getMenuList?canteenId=${that.data.curCanteen.canteenId}&eatTime=${curEatTime}&time=Monday`;
-        menuData = await api.getMenuList(url);
+        const res = await api.getMenuList(url);
+        menuData = res.data;
         const curMenuList = menuData.filter((v) => {
             return v.typeName === that.data.curType;
         });
@@ -149,10 +149,12 @@ Page({
         });
 
         //获取当前食堂菜单的相关数据
-        const typeList = await api.getTypeList('/getTypeList');
+        let res = await api.getTypeList('/getTypeList');
+        const typeList = res.data;
 
         const url = `/getMenuList?canteenId=${that.data.curCanteen.canteenId}&eatTime=${that.data.curEatTime}&time=Monday`;
-        menuData = await api.getMenuList(url);
+        res = await api.getMenuList(url);
+        menuData = res.data;
         const curMenuList = menuData.filter((v) => {
             return v.typeName === typeList[0].typeName;
         });
