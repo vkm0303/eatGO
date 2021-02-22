@@ -4,6 +4,72 @@
   z-index: 99999;
   width: 100%;
 }
+.cart-warp .cart-detail {
+  overflow: hidden;
+  width: 100%;
+  padding: 20rpx 40rpx 60rpx;
+  border-radius: 40rpx 40rpx 0 0;
+  box-shadow: 0 0 12rpx 0 #d8e8f1;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.cart-warp .cart-detail .header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10rpx;
+}
+.cart-warp .cart-detail .header .title {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.cart-warp .cart-detail .header .clear {
+  font-size: 26rpx;
+  color: #a8a7a7;
+}
+.cart-warp .cart-detail .food {
+  position: relative;
+  display: flex;
+  padding: 20rpx 0;
+  border-top: 2rpx solid #e2e2e2;
+}
+.cart-warp .cart-detail .food .food-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
+}
+.cart-warp .cart-detail .food .detail {
+  margin-left: 20rpx;
+  color: #F76260;
+}
+.cart-warp .cart-detail .food .detail .food-name {
+  color: #4d4d4d;
+}
+.cart-warp .cart-detail .food .num-edit-btn {
+  position: absolute;
+  bottom: 20rpx;
+  right: 40rpx;
+  display: flex;
+  font-size: 24rpx;
+}
+.cart-warp .cart-detail .food .num-edit-btn .sub {
+  background-color: #ff824e;
+}
+.cart-warp .cart-detail .food .num-edit-btn .num {
+  margin: 0 15rpx;
+  font-size: 28rpx;
+}
+.cart-warp .cart-detail .food .num-edit-btn .add {
+  background-color: #ff824e;
+}
+.cart-warp .cart-detail .food .num-edit-btn .btn-common {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  line-height: 40rpx;
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+}
 .cart-warp .cart {
   display: flex;
   width: 90%;
