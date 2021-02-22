@@ -57,7 +57,7 @@
 		 outer-class="selector-outer"
 		 options="{{canteenOptions}}"
 		 itemHeight="{{30}}"
-		 bind:ItemSelect="handleCanteenSelect"
+		 bind:ItemSelect="loadMenuData"
 		></drop-selector>
 	</view>
 	<!-- 食堂选择按钮 结束 -->
@@ -68,7 +68,7 @@
 		 outer-class="selector-outer"
 		 options="{{timeOptions}}"
 		 itemHeight="{{30}}"
-		 bind:ItemSelect="handleTimeSelect"
+		 bind:ItemSelect="changeTime"
 		></drop-selector>
 	</view>
 	<!-- 时间下拉选择框 结束 -->
@@ -86,8 +86,8 @@
 		 bindscrolltolower="openScroll"
 		>
 			<view
-			 class="type-content {{typeIdx==index ? 'type-select' : ''}}"
-			 wx:for="{{typeList}}"
+			 class="type-content {{curTypeIdx==index ? 'type-select' : ''}}"
+			 wx:for="{{curTypeList}}"
 			 wx:for-item="type"
 			 wx:for-index="index"
 			 wx:key="index"
@@ -102,7 +102,7 @@
 
 		<!-- 右侧食品列表 开始 -->
 		<scroll-view class="food-list" scroll-y>
-			<view class="food-type">{{curType}}</view>
+			<view class="food-type">{{curType.typeName}}</view>
 			<view
 			 class="food-warp"
 			 wx:for="{{curMenuList}}"
@@ -110,13 +110,13 @@
 			 wx:for-item="food"
 			 wx:key="food_index"
 			>
-				<image class="food-img" src="{{'http://image.tastygo.cn'+food.pictureImg}}"></image>
+				<image class="food-img" src="{{'http://image.tastygo.cn'+food.menus[0].pictureImg}}"></image>
 				<view class="food-description">
-					<view class="name">{{food.foodName}}</view>
+					<view class="name">{{food.menus[0].foodName}}</view>
 					<view class="tag">
 						<view
 						 class="food-tag-name"
-						 wx:for="{{food.tags}}"
+						 wx:for="{{food.menus[0].tags}}"
 						 wx:for-item="tag"
 						 wx:for-index="tag_index"
 						 wx:key="tag_index"
@@ -124,40 +124,31 @@
 							{{tag}}
 						</view>
 					</view>
-					<view class="food-calorie">{{food.calorie}}qk</view>
+					<view class="food-calorie">{{food.menus[0].calorie}}qk</view>
 					<view class="food-bottom-warp">
 						<view class="food-price">
 							<text>￥</text>
-							<text class="food-price-text">{{food.price}}</text>
+							<text class="food-price-text">{{food.menus[0].price}}</text>
 						</view>
 						<view
 						 class="food-collect-btn iconfont {{food.isCollected?'icon-shoucang':'icon-aixin'}}"
 						 bindtap="handleFoodCollect"
-						 data-food_id="{{food.menuId}}"
+						 data-food_id="{{food.menus[0].menuId}}"
 						 data-index="{{food_index}}"
 						 data-state="{{food.isCollected}}"
 						></view>
 						<view
 						 class="food-add-btn"
 						 bindtap="handleAddFood"
-						 data-food="{{food}}"
+						 data-food="{{food.menus[0]}}"
 						>+
 						</view>
 					</view>
 				</view>
 			</view>
-			<view class="food-type">{{curType}}</view>
+			<view class="food-type">{{curType.typeName}}</view>
 		</scroll-view>
 		<!-- 右侧食品列表 结束 -->
-
-		<view class="purchase-info" wx:if="{{isAdd}}">
-			<span class="total-price">
-				<text class="">￥</text>
-				{{totalPrice}}
-			</span>
-			<view class="a"></view>
-			<view class="goto-pay-btn" bindtap="handlePay">Pay</view>
-		</view>
 	</view>
 	<!-- 菜单区 结束 -->
 </view>

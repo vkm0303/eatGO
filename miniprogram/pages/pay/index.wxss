@@ -178,16 +178,19 @@ page {
 }
 .order-detail-warp .fee-warp {
   padding-left: 48rpx;
-}
-.order-detail-warp .fee-warp view {
   margin-top: 40rpx;
   font-size: 22rpx;
 }
-.order-detail-warp .fee-warp view .fee-name {
+.order-detail-warp .fee-warp .fee-name {
   margin-right: 448rpx;
   font-size: 28rpx;
 }
-.order-detail-warp .fee-warp view .fee {
+.order-detail-warp .fee-warp .fee {
+  font-size: 36rpx;
+}
+.order-detail-warp .fee-warp .total-fee {
+  margin-top: 30rpx;
+  margin-left: 425rpx;
   font-size: 36rpx;
 }
 .order-detail-warp .fee-warp :last-child {

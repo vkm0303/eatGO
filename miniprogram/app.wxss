@@ -1,5 +1,5 @@
 @import './style/iconfonts.wxss';
-
+@import './style/weui.wxss';
 .green {
     color: #09BB07;
 }

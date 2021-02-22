@@ -3,11 +3,14 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-19 22:44:33
+ * @LastEditTime: 2021-02-22 20:59:01
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
-const { getAddressList } = require('../../api/api');
+const { getAddressList, getMenuDetail, submitOrder } = require('../../api/api');
+
+var canteenOrder = wx.getStorageSync('canteenOrder');
+var address = '男生宿舍17A';
 
 Page({
     data: {
@@ -17,41 +20,15 @@ Page({
         endTime: '23:59',
         presetHours: '12',
         presetMinutes: '30',
-        array: ["无需餐具", '1 份', '2 份', '3 份', '4 份', '5 份'],
-        arrIndex: -1,
-        remarks: '',
-        order: {
-            detail: [{
-                    "foodName": "煎饼果子",
-                    "pictureImg": "http://image.tastygo.cn/2021-02-09/5bf23d63f1284ccfbcdf6f2798d65424.jpg",
-                    "price": 1,
-                    "num": 1,
-                },
-                {
-                    "foodName": "煎饼果子",
-                    "pictureImg": "http://image.tastygo.cn/2021-02-09/5bf23d63f1284ccfbcdf6f2798d65424.jpg",
-                    "price": 1,
-                    "num": 3,
-                },
-                {
-                    "foodName": "煎饼果子",
-                    "pictureImg": "http://image.tastygo.cn/2021-02-09/5bf23d63f1284ccfbcdf6f2798d65424.jpg",
-                    "price": 1,
-                    "num": 3,
-                },
-                {
-                    "foodName": "煎饼果子",
-                    "pictureImg": "http://image.tastygo.cn/2021-02-09/5bf23d63f1284ccfbcdf6f2798d65424.jpg",
-                    "price": 1,
-                    "num": 3,
-                },
-            ]
-        },
+        tablewares: ["无需餐具", '1 份', '2 份', '3 份', '4 份', '5 份'],
+        tbwIdx: -1,
+        note: '',
+        orderDetail: [],
         focusOptions: [
-            '北区宿舍17B',
-            '北区宿舍17A',
+            '男生宿舍17B',
+            '男生宿舍17A',
         ],
-        getWay: 'byself',
+        getWay: 'byDelivery',
         timeOptions: [{
                 time: '11:20',
                 status: 0,
@@ -73,14 +50,25 @@ Page({
             hou: '00',
             min: '00',
             sec: '00'
-        }
+        },
+
+        totalPrice: 0
     },
     onLoad: async function(options) {
         const that = this;
         const { getWay } = options;
+
+        wx.showLoading({ title: '加载中' });
+
         that.setDefaultTime();
         that.setTimeRange();
-        const canteenOrder = wx.getStorageSync('canteenOrder')
+        let orderDetail = [];
+
+        for (let el of canteenOrder.menusId) {
+            let res = await getMenuDetail(el.menuId)
+            res.data[0].num = el.num;
+            orderDetail.push(res.data[0]);
+        };
 
         //获取收货地址列表
         const data = await getAddressList();
@@ -93,23 +81,49 @@ Page({
             focusOptions = ['男生宿舍17B', '男生宿舍17A', '女生宿舍17B'];
         }
 
+        canteenOrder.price += 4;
+
         that.setData({
             getWay,
             focusOptions,
-            canteenOrder,
-            totalNum: options.totalNum,
-            totalPrice: options.totalPrice
+            orderDetail,
+            totalPrice: canteenOrder.price.toFixed(1)
         });
         let endTime = toTimeStamp('21:20:00');
-        timeCountDown(that, endTime)
+        timeCountDown(that, endTime);
+
+        wx.hideLoading();
     },
     onShow: function() {
         const that = this;
-        const app = getApp();
-        that.setData({ addressInfo: app.globalData.currentAddress });
+        canteenOrder = wx.getStorageSync('canteenOrder');
     },
-    handleOrderSubmit() {
-        wx.navigateTo({ url: '/pages/successMessage/index' });
+    async handleOrderSubmit() {
+        const that = this;
+        const { presetHours, presetMinutes, tbwIdx, note } = that.data;
+        const app = getApp();
+        const campusId = app.globalData.userInfo.no;
+        canteenOrder.menusId = JSON.stringify(canteenOrder.menusId);
+        canteenOrder.campusId = campusId;
+        canteenOrder.address = address;
+        canteenOrder.arrivalTime = presetHours + ':' + presetMinutes;
+        canteenOrder.note = note;
+        canteenOrder.tableware = tbwIdx || 1;
+        console.log(canteenOrder)
+
+        let res = await submitOrder(canteenOrder);
+        console.log(res);
+        if (res.msg === 'success') {
+            wx.removeStorageSync('canteenOrder');
+            wx.removeStorageSync('orderDetail');
+            wx.navigateTo({ url: '/pages/successMessage/index' });
+        } else {
+            wx.showToast({
+                title: '提交失败',
+                icon: 'none',
+                duration: 3000
+            });
+        }
     },
     handleTimeBoxClick(e) {
         const that = this;
@@ -149,11 +163,21 @@ Page({
 
     handlePickerChange(e) {
         const that = this;
-        const arrIndex = Number(e.detail.value);
+        const tbwIdx = Number(e.detail.value);
         that.setData({
-            arrIndex,
+            tbwIdx,
         })
-        console.log(arrIndex)
+    },
+
+    handleAddressSelect(e) {
+        const that = this;
+        const { index } = e.detail;
+        address = that.data.focusOptions[index];
+    },
+
+    handleAddressInput(e) {
+        address += ' ';
+        address += e.detail.value;
     },
 
     setDefaultTime() {
@@ -203,16 +227,6 @@ Page({
         let nowHours = nowDate.getHours();
         let nowMinutes = nowDate.getMinutes();
         let startTime, endTime;
-        // if(nowHours >= 9 && nowHours < 11) {
-        //     startTime = '11:00';
-        //     endTime = '13:20'
-        // } else if(nowHours >= 14 && nowHours <=21) {
-        //     startTime = '17:00';
-        //     endTime = '21:20';
-        // } else {
-        //     startTime = '07:00';
-        //     endTime = '09:20'
-        // }
         if (nowHours < 10) {
             startTime = '0' + nowHours;
         } else {

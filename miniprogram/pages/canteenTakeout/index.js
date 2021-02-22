@@ -1,6 +1,6 @@
-wx.cloud.init();
 const DB = wx.cloud.database();
 const { getAddressList } = require('../../api/api.js');
+
 Page({
     data: {
         //"我要带"变量
@@ -23,10 +23,11 @@ Page({
         const startingOptions = wx.getStorageSync('canteenList') || ['北区食堂', '北区西餐厅', '竹韵食堂', '石井食堂'];
 
         //获取收货地址列表
-        const data = await getAddressList();
+        const res = await getAddressList();
+        let focusAddressList = res.data;
         let focusOptions = [];
-        if (data.length) {
-            for (let v of data) {
+        if (focusAddressList.length) {
+            for (let v of focusAddressList) {
                 focusOptions.push(v.addressName);
             }
         } else {
@@ -35,23 +36,14 @@ Page({
 
         this.setData({
             focusOptions,
+            focusAddressList,
             startingOptions,
-            isLogin: true
+            loginState: true
         })
 
         wx.hideLoading()
     },
-    onShow: function() {
-        const app = getApp()
-        const { currentAddress } = app.globalData
-        if (currentAddress.address != null) {
-            this.setData({
-                currentAddress: currentAddress,
-                isAddressExist: true,
-            })
-        } else
-            this.setData({ isAddressExist: false })
-    },
+    onShow: function() {},
     //切换Tabs
     handleItemChange(e) {
 
@@ -113,9 +105,11 @@ Page({
     handleWaySelect(e) {
         const that = this;
         let { index } = e.currentTarget.dataset;
+
         if (that.data.getWayIndex === index) {
             index = -1;
         }
+
         that.setData({
             getWayIndex: index
         })
@@ -123,15 +117,44 @@ Page({
 
     gotoSubmit() {
         const that = this;
-        const { getWayIndex } = that.data;
-        if (getWayIndex !== 0 && getWayIndex !== 1) {
-            wx.showToast({
-                title: '您还未选择取餐方式',
-                icon: 'none'
-            });
+        const userInfo = wx.getStorageSync('userInfo');
+        const loginState = wx.getStorageSync('loginState');
+        if (loginState && userInfo.wxid && userInfo.phone) {
+            const { getWayIndex } = that.data;
+            const ways = ['bySelf', 'byDelivery'];
+            let canteenOrder = wx.getStorageSync('canteenOrder');
+            if (canteenOrder) {
+                if (getWayIndex !== 0 && getWayIndex !== 1) {
+                    wx.showToast({
+                        title: '您还未选择取餐方式',
+                        icon: 'none'
+                    });
+                } else {
+                    let getWay = ways[getWayIndex];
+                    canteenOrder.getWay = getWayIndex;
+                    wx.setStorageSync('canteenOrder', canteenOrder);
+                    wx.navigateTo({ url: `/pages/pay/index?getWay=${getWay}` });
+                }
+            } else {
+                wx.showToast({
+                    title: '您还未添加订单',
+                    icon: 'none',
+                    duration: 3000
+                });
+            }
         } else {
-            let getWay = (getWayIndex === 0 ? 'byself' : 'byDelivery');
-            wx.navigateTo({ url: `/pages/pay/index?getWay=${getWay}` });
+            if (!loginState) {
+                wx.showToast({
+                    title: '请登录',
+                    icon: 'none'
+                });
+            } else if (!userInfo.wxid || !userInfo.phone) {
+                wx.showToast({
+                    title: '请先完善个人信息',
+                    icon: 'none',
+                    duration: 3000
+                });
+            }
         }
     },
 
@@ -151,89 +174,4 @@ Page({
             }
         });
     }
-
-
-    // handleReduceNum(e) {
-    //     let { index, price } = e.currentTarget.dataset
-    //     let { orderDetail } = this.data
-    //         //判断是否移除商品操作
-    //     if (orderDetail[index].num === 1) {
-    //         wx.showModal({
-    //             title: '提示',
-    //             content: '是否移除该菜品',
-    //             cancelText: '取消',
-    //             cancelColor: '#3CC51F',
-    //             confirmText: '移除',
-    //             confirmColor: '#dbdbdb',
-    //             success: (result) => {
-    //                 if (result.confirm) {
-    //                     orderDetail.splice(index, 1)
-    //                     this.setData({
-    //                         orderDetail,
-    //                         totalNum: --this.data.totalNum,
-    //                         totalPrice: this.data.totalPrice - e.currentTarget.dataset.price
-    //                     })
-    //                     wx.setStorageSync('canteenOrder', orderDetail)
-    //                 }
-    //             }
-    //         });
-    //     } else {
-    //         orderDetail[index].num--;
-    //         orderDetail[index].totalPrice -= Number(price)
-    //         this.setData({
-    //             orderDetail,
-    //             totalNum: --this.data.totalNum,
-    //             totalPrice: this.data.totalPrice - e.currentTarget.dataset.price
-    //         })
-    //         wx.setStorageSync('canteenOrder', orderDetail)
-    //     }
-    // },
-    // handleAddNum(e) {
-    //     let { index, price } = e.currentTarget.dataset
-    //     let { orderDetail } = this.data
-    //     orderDetail[index].num++;
-    //     orderDetail[index].totalPrice += Number(price)
-    //     this.setData({
-    //         orderDetail,
-    //         totalNum: ++this.data.totalNum,
-    //         totalPrice: this.data.totalPrice + Number(price)
-    //     })
-    //     wx.setStorageSync('canteenOrder', orderDetail)
-    // },
-    // handAddFood() {
-    //     wx.switchTab({
-    //         url: '/pages/index/index'
-    //     });
-    // },
-    // handlePay() {
-    //     const app = getApp()
-    //     if (app.globalData.isLogin) {
-    //         if (this.data.totalNum) {
-    //             if (this.data.defaultAddress === false)
-    //                 wx.showToast({
-    //                     title: '很没有添加地址噢~',
-    //                     icon: 'none',
-    //                     duration: 1000
-    //                 });
-    //             let url = "/pages/pay/index?totalPrice=" + this.data.totalPrice + "&totalNum=" + this.data.totalNum
-    //             let pages = getCurrentPages();
-    //             // 数组中索引最大的页面--当前页面
-    //             let currentPage = pages[pages.length - 1];
-    //             let index = currentPage.options.index
-    //             if (index) url += "&index=" + index
-    //             console.log(url)
-    //             wx.navigateTo({ url: url });
-    //         } else {
-    //             wx.showToast({
-    //                 title: '你还没有添加菜品噢~',
-    //                 icon: 'none'
-    //             });
-    //         }
-    //     } else {
-    //         wx.showToast({
-    //             title: '请登录',
-    //             icon: 'none'
-    //         })
-    //     }
-    // }
 })

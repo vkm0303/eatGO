@@ -1,8 +1,39 @@
 <view class="cart-warp">
-	<view class="cart-detail" wx:if="{{isShowDetail}}"></view>
+	<view class="cart-detail">
+		<view class="food">
+			<image class="food-img" src="{{foods.pictrueImg}}"></image>
+			<view class="detail">
+				<view class="food-name">烧鸭饭</view>
+				<span>￥</span>
+				<span class="price">13</span>
+			</view>
+			<view class="num-edit-btn">
+				<span class="add">+</span>
+				<span class="num">1</span>
+				<span class="sub">-</span>
+			</view>
+		</view>
+	</view>
 	<view class="cart">
-		<view class="left"></view>
-
+		<view class="left">
+			<view class="logo-warp">
+				<image class="logo" src="../../images/logo.png"></image>
+			</view>
+			<badge
+			 style="position: fixed; left: 110rpx; top: -30rpx;"
+			 extClass="badge"
+			 content="{{1}}"
+			 wx:if="{{totalNum}}"
+			></badge>
+			<view class="price-warp">
+				<view>
+					<span class="txt" style="font-size: 24rpx;">￥</span>
+					<span class="foods-price">19.9</span>
+				</view>
+				<view class="delivery-price">配送费 ￥3</view>
+			</view>
+		</view>
+		<view class="right">去发布</view>
 	</view>
 </view>
 

@@ -3,6 +3,12 @@ const app = getApp();
 var { userInfo, isLogin } = app.globalData;
 
 var menuData = []; //存放当前食堂的所有菜单数据
+// const eatTime = ['Breakfast', 'Lunch', 'Dinner'];
+
+const date = new Date();
+let preIdx = 0;
+let dayIdx = date.getDay();
+const days = ['Sunday', 'Monday', 'TuesDay', 'Wednesday', 'ThursDay', 'Friday', 'Saturday'];
 
 Page({
     data: {
@@ -12,7 +18,9 @@ Page({
             'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/pic3.png'
         ], //轮播图链接
         curEatTime: '', //当前选中的餐点
+
         curMenuList: [], //当前展示的菜单列表
+
         canteenList: [{
             "canteenId": "5",
             "canteenName": "北区食堂",
@@ -22,17 +30,19 @@ Page({
             "canteenId": "5",
             "canteenName": "北区食堂",
         }, //当前选中的食堂
-        typeList: [], //菜类型对象列表
+
+        curTypeList: [], //菜类型对象列表
         curType: '', //当前类型
-        typeIdx: 0, //当前类型的index，用于选择选中样式的展示
+        curTypeIdx: 0,
+
         totalPrice: 0,
         isAdd: false,
         StartScroll: false,
         timeOptions: ['今天', '明天', '后天'],
     },
+
     onLoad: async function(options) {
         const that = this;
-
 
         //根据当前时间设置默认选中餐点
         const curDate = new Date();
@@ -60,7 +70,7 @@ Page({
             curCanteen: canteenList[0],
             curEatTime,
         });
-        that.handleCanteenSelect();
+        that.loadMenuData();
 
         wx.setStorageSync("canteenList", canteenOptions);
     },
@@ -85,61 +95,46 @@ Page({
             }
         }
     },
+
     //选择餐点事件
     async handleIEatTimeClick(e) {
         const that = this;
         const curEatTime = e.currentTarget.dataset.time;
 
-        //获取展示的菜单数据并通过当前选择类型进行筛选
-        const url = `/getMenuList?canteenId=${that.data.curCanteen.canteenId}&eatTime=${curEatTime}&time=Monday`;
-        const res = await api.getMenuList(url);
-        menuData = res.data;
-        const curMenuList = menuData.filter((v) => {
-            return v.typeName === that.data.curType;
-        });
+        let curTypeList = [];
+        for (let v of menuData) {
+            if (v.menus[0].eatTime === curEatTime) {
+                curTypeList.push({ typeId: v.typeId, typeName: v.typeName });
+            }
+        }
+
+        //通过当前选择类型及餐点进行筛选
+        let curMenuList = [];
+        if (curTypeList.length) {
+            curMenuList = menuData.filter((v) => {
+                return v.typeName === curTypeList[0].typeName && v.menus[0].eatTime === curEatTime;
+            });
+        }
 
         that.setData({
+            curTypeIdx: 0,
             curEatTime,
+            curTypeList,
             curMenuList,
         });
     },
-    //点击选择饭堂按钮事件，创建动画函数
-    createAnimation() {
-        //展开列表框
-        let aniHeightAdd = wx.createAnimation({
-                duration: 150,
-                timingFunction: 'linear',
-                delay: 0,
-                transformOrigin: '50% 50% 0'
-            })
-            //收回列表框
-        aniHeightAdd.height(this.data.canteenList.length * 38).step()
-        let aniHeightReduce = wx.createAnimation({
-            duration: 200,
-            timingFunction: 'linear',
-            delay: 0,
-            transformOrigin: '50% 50% 0'
-        });
-        aniHeightReduce.height(19).step();
-
-        let { isCanteenClick } = this.data; //获取列表框状态
-        this.setData({
-            isCanteenClick: !isCanteenClick,
-            aniHeightAdd: aniHeightAdd.export(),
-            aniHeightReduce: aniHeightReduce.export()
-        })
-    },
-    //选择饭堂响应事件
-    async handleCanteenSelect(e) {
+    //加载菜单数据
+    async loadMenuData(e) {
         const that = this;
+        let { curCanteen, canteenList } = that.data;
         if (e) { //判断是否从onload函数调用
-            const curCanteen = e.currentTarget.dataset.canteen;
-            if (curCanteen === that.data.currentCanteen) {
+            const { index } = e.detail;
+            if (curCanteen.canteenId === canteenList[index].canteenId) {
                 return;
             }
 
             that.setData({
-                curCanteen,
+                curCanteen: canteenList[index],
             });
         }
 
@@ -148,42 +143,73 @@ Page({
             mask: false,
         });
 
-        //获取当前食堂菜单的相关数据
-        let res = await api.getTypeList('/getTypeList');
-        const typeList = res.data;
-
-        const url = `/getMenuList?canteenId=${that.data.curCanteen.canteenId}&eatTime=${that.data.curEatTime}&time=Monday`;
-        res = await api.getMenuList(url);
+        const res = await api.getMenuByCanteen(that.data.curCanteen.canteenId, days[dayIdx]);
         menuData = res.data;
-        const curMenuList = menuData.filter((v) => {
-            return v.typeName === typeList[0].typeName;
-        });
+
+        let curTypeList = [];
+        for (let v of menuData) {
+            if (v.menus[0].eatTime === that.data.curEatTime) {
+                curTypeList.push({ typeId: v.typeId, typeName: v.typeName });
+            }
+        }
+
+        let curMenuList = [];
+        let curTypeIdx = 0;
+        if (curTypeList.length) {
+            curMenuList = menuData.filter((v) => {
+                return v.typeName === curTypeList[curTypeIdx].typeName && v.menus[0].eatTime === that.data.curEatTime;
+            });
+        } else {
+            curTypeList[0] = '';
+            curTypeIdx = -1;
+        }
 
         that.setData({
-            typeList,
-            curType: typeList[0].typeName,
+            curType: curTypeList[0],
+            curTypeIdx,
+            curTypeList,
             curMenuList,
         });
 
         wx.hideLoading();
     },
+
+    //改变查询时间
+    changeTime(e) {
+        const that = this;
+        const { index } = e.detail;
+        if (preIdx < index) { //判断向前选择还是向后选择
+            dayIdx += (index - preIdx);
+        } else {
+            dayIdx -= (preIdx - index);
+        }
+        preIdx = index;
+        that.loadMenuData();
+    },
+
+    //选择日期事件
+    async handleDateSelect(e) {
+
+    },
+
     //切换菜单类名事件
     handleTypeChange(e) {
         const that = this;
-        const typeIdx = e.currentTarget.dataset.index; //获取点击的类名索引
-        const curType = that.data.typeList[typeIdx].typeName; //将当前类名改为目标点击的类名
+        const curTypeIdx = e.currentTarget.dataset.index; //获取点击的类名索引
+        const curType = that.data.curTypeList[curTypeIdx]; //将当前类名改为目标点击的类名
 
         //根据类名筛选数据
-        const curMenuList = menuData.filter((v) => {
-            return v.typeName === curType;
+        let curMenuList = menuData.filter((v) => {
+            return v.typeName === curType.typeName;
         });
 
         that.setData({
-            typeIdx,
+            curTypeIdx,
             curMenuList,
             curType,
         });
     },
+
     //点击收藏事件
     handleFoodCollect(e) {
         if (isLogin) {
@@ -222,48 +248,90 @@ Page({
             })
         }
     },
+
     //添加food订单
     handleAddFood(e) {
-        let canteenOrder = wx.getStorageSync("canteenOrder") || [];
-        let { totalPrice } = this.data;
-        let { food_id } = e.curTarget.dataset.food.menuId;
-        //查询是否已存在该food
-        const index = canteenOrder.findIndex(v => {
-            return v.food_id === food_id
-        })
-        if (index !== -1) {
-            //food存在，数量+1,价格相应增加
-            canteenOrder[index].num += 1
-            canteenOrder[index].totalPrice = Number(canteenOrder[index].price * canteenOrder[index].num)
-            totalPrice = (Number(totalPrice) + Number(canteenOrder[index].price)).toFixed(2)
-            this.setData({ totalPrice })
-            wx.setStorageSync("canteenOrder", canteenOrder)
-            return
-        }
-        //新添加food
-        let order = e.currentTarget.dataset.food_detail
-        order.totalPrice = Number(order.price)
-        order.num = 1
-        totalPrice = (Number(totalPrice) + Number(order.price)).toFixed(2)
-        if (canteenOrder.length) {
-            if (food_id.slice(0, 2) !== canteenOrder[0].food_id.slice(0, 2)) {
+        const that = this;
+        let canteenOrder = wx.getStorageSync('canteenOrder') || { menusId: [] };
+        let orderDetail = wx.getStorageSync('orderDetail') || [];
+        let menusId = { menuId: '', num: 1 };
+        let { totalPrice } = that.data;
+        let { food } = e.currentTarget.dataset;
+        let isExist = false;
+
+        menusId.menuId = food.menuId;
+        if (canteenOrder.canteenId) {
+            if (food.canteen !== canteenOrder.canteenId) {
                 wx.showToast({
-                    title: '只能选同一食堂的菜噢~',
+                    title: '仅可选择同一给食堂的菜单噢~',
                     icon: 'none',
-                    duration: 2000
+                    duration: 3000,
                 });
-                return
+                return;
             } else {
-                canteenOrder.push(order)
+                canteenOrder.menusId.forEach(el => {
+                    if (el.menuId === menusId.menuId) {
+                        el.num++;
+                        isExist = true;
+                    }
+                });
+                if (!isExist) {
+                    canteenOrder.menusId.push(menusId);
+                    orderDetail.push(food);
+                }
             }
         } else {
-            canteenOrder.push(order)
+            canteenOrder.canteenId = food.canteen;
+            canteenOrder.menusId[0] = menusId;
+            orderDetail.push(food);
         }
-        wx.setStorageSync("canteenOrder", canteenOrder); //将订单数据存储到内存中
-        this.setData({
+
+        totalPrice += food.price;
+        canteenOrder.price = totalPrice;
+
+        that.setData({
             totalPrice,
-            isAdd: true
         })
+        wx.setStorageSync('canteenOrder', canteenOrder);
+        wx.setStorageSync('orderDetail', orderDetail);
+
+        // //查询是否已存在该food
+        // const index = canteenOrder.findIndex(v => {
+        //     return v.food_id === food_id
+        // })
+        // if (index !== -1) {
+        //     //food存在，数量+1,价格相应增加
+        //     canteenOrder[index].num += 1
+        //     canteenOrder[index].totalPrice = Number(canteenOrder[index].price * canteenOrder[index].num)
+        //     totalPrice = (Number(totalPrice) + Number(canteenOrder[index].price)).toFixed(2)
+        //     that.setData({ totalPrice })
+        //     wx.setStorageSync("canteenOrder", canteenOrder)
+        //     return
+        // }
+        // //新添加food
+        // let order = e.currentTarget.dataset.food_detail
+        // order.totalPrice = Number(order.price)
+        // order.num = 1
+        // totalPrice = (Number(totalPrice) + Number(order.price)).toFixed(2)
+        // if (canteenOrder.length) {
+        //     if (food_id.slice(0, 2) !== canteenOrder[0].food_id.slice(0, 2)) {
+        //         wx.showToast({
+        //             title: '只能选同一食堂的菜噢~',
+        //             icon: 'none',
+        //             duration: 2000
+        //         });
+        //         return
+        //     } else {
+        //         canteenOrder.push(order)
+        //     }
+        // } else {
+        //     canteenOrder.push(order)
+        // }
+        // wx.setStorageSync("canteenOrder", canteenOrder); //将订单数据存储到内存中
+        // this.setData({
+        //     totalPrice,
+        //     isAdd: true
+        // })
     },
     //点击pay
     handlePay() {

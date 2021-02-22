@@ -95,13 +95,6 @@
           "scene": null
         },
         {
-          "id": -1,
-          "name": "食堂情况",
-          "pathName": "pages/canteenCondition/index",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "结算",
           "pathName": "pages/pay/index",
           "query": "getWay=getByDelivery",
@@ -198,6 +191,12 @@
         {
           "name": "消费记录",
           "pathName": "pages/cardRecord/index",
+          "query": "getWay=getByDelivery",
+          "scene": null
+        },
+        {
+          "name": "个人信息",
+          "pathName": "pages/userInfo/index",
           "query": "getWay=getByDelivery",
           "scene": null
         }

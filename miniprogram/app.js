@@ -3,21 +3,27 @@
  * @Author: 陈俊任
  * @Date: 2020-09-21 11:44:34
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-21 16:56:21
+ * @LastEditTime: 2021-02-22 22:01:41
  * @FilePath: \tastygo\miniprogram\app.js
  */
 //app.js
 App({
     onLaunch: function() {
         const that = this
-            // 展示本地存储能力
-        var logs = wx.getStorageSync('logs') || []
-        logs.unshift(Date.now())
-        wx.setStorageSync('logs', logs)
 
         // 登录
         wx.login({
                 success: res => {
+                    wx.getUserInfo({
+                        withCredentials: 'false',
+                        lang: 'zh_CN',
+                        timeout: 10000,
+                        success: (result) => {
+                            // console.log(result)
+                        },
+                        fail: () => {},
+                        complete: () => {}
+                    });
                     // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 }
             })
@@ -43,8 +49,6 @@ App({
             }
         })
 
-        //初始化地址信息
-        //const app = getApp()
         //初始化用户信息
         const loginState = wx.getStorageSync('loginState')
         if (loginState) {
@@ -52,21 +56,10 @@ App({
             that.globalData.userInfo = userInfo
             that.globalData.isLogin = loginState
         }
-        wx.cloud.init()
-        const addressList = wx.getStorageSync('addressList')
-        if (addressList) {
-            addressList.map((item) => {
-                if (item.isDefault) {
-                    that.globalData.defaultAddress = item
-                    that.globalData.currentAddress = item
-                }
-            })
-        }
+        wx.cloud.init();
     },
     globalData: {
         userInfo: {},
-        currentAddress: '',
-        defaultAddress: '',
         isLogin: false,
         apiBaseUrl: 'https://www.tastygo.cn/haochigoserver/wxapi',
     }

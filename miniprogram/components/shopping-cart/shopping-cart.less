@@ -1,11 +1,66 @@
 .cart-warp {
-  position: absolute;
+  position: fixed;
+  bottom: 15rpx;
   z-index: 99999;
   width: 100%;
   .cart {
+    display: flex;
     width: 90%;
-    height: 100rpx;
-    border-radius: 40rpx;
-    background-color: rgb(228, 134, 47);
+    height: 85rpx;
+    margin-left: 50%;
+    transform: translateX(-50%); 
+    border-radius: 50rpx;
+    background-color: #f3a482;
+    color: #fff;
+    .left {
+      width: 75%;
+      height: 100%;
+      .logo-warp {
+        position: fixed;
+        bottom:3rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100rpx;
+        height: 100rpx;
+        margin-left: 35rpx;
+        border-radius: 50%;
+        box-shadow: 0 0 4rpx 2rpx #f3a482;
+        background-color: #f59369;
+        .logo {
+          width: 75rpx;
+          height: 75rpx;
+        }
+      }
+
+      .badge {
+        margin-left: 135rpx;
+      }
+
+      .price-warp {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin-left: 150rpx;
+        .foods-price {
+          font-size: 36rpx;
+        }
+
+        .delivery-price {
+          margin-left: 25rpx;
+          font-size: 18rpx;
+        }
+      }
+    }
+
+    .right {
+      width: 25%;
+      height: 100%;
+      // margin-left: 210rpx;
+      border-radius: 0 50rpx 50rpx 0;
+      background-color: #ff824e;
+      text-align: center;
+      line-height: 85rpx;
+    }
   }
 }

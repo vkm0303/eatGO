@@ -20,16 +20,17 @@
         "pages/myCollection/index",
         "pages/myOrderList/index",
         "pages/myOrderDetail/index",
+        "pages/note/index",
         "pages/nearTakeout/goods",
         "pages/nearTakeout/pay/pay",
         "pages/orderDetails/index",
         "pages/pay/index",
-        "pages/remarks/index",
         "pages/restaurant/restaurant",
         "pages/secondhand/secondhand",
         "pages/successMessage/index",
         "pages/takeOrderDetail/index",
-        "pages/TEST/TEST"
+        "pages/TEST/TEST",
+        "pages/userInfo/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

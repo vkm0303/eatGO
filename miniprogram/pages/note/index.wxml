@@ -7,7 +7,7 @@
 	<textarea
 	 class="remarks"
 	 placeholder="备注..."
-	 value="{{remarks}}"
+	 value="{{note}}"
 	 bindinput="handleInput"
 	 bindconfirm="handleConfirm"
 	></textarea>

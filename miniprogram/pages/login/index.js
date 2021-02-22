@@ -3,11 +3,15 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-21 16:58:00
+ * @LastEditTime: 2021-02-22 16:39:11
  * @FilePath: \tastygo\miniprogram\pages\login\index.js
  */
+
+const { reg } = require('../../api/api');
+
 var account = ''
 var password = ''
+
 Page({
     data: {
         isVisible: true,
@@ -37,6 +41,7 @@ Page({
             mask: true
         })
         const { userInfo } = e.detail;
+        console.log(userInfo)
         console.log(e)
         wx.request({
             url: 'https://isztu.tytion.net/api/login',
@@ -45,7 +50,7 @@ Page({
                 password
             },
             method: 'POST',
-            success: (result) => {
+            success: async(result) => {
                 if (result.data.ret) {
                     let realname = result.data.msg.split('(')[0];
                     let account = result.data.msg.split('(')[1].split(')')[0];
@@ -55,6 +60,15 @@ Page({
                     let app = getApp();
                     app.globalData.userInfo = userInfo;
                     app.globalData.isLogin = true;
+
+                    // let res = await reg({
+                    //     campusId: userInfo.no,
+                    //     unionId: '',
+                    //     realname,
+                    //     nickname: userInfo.nickname,
+                    //     avatar: userInfo.avatar,
+                    // });
+
                     wx.setStorageSync('userInfo', userInfo);
                     wx.setStorageSync('loginState', true);
                     wx.switchTab({ url: '/pages/my/index' });

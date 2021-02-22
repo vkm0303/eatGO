@@ -1,0 +1,45 @@
+<view class="container">
+	<view class="top">
+		<view>
+			<image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+		</view>
+		<span class="realname">陈俊任</span>
+		<span class="no">201903010108</span>
+	</view>
+	<view class="editable-info">
+		<mp-cells title="联系方式" footer="该信息仅用于订单交易">
+			<mp-cell
+			 prop="wxid"
+			 title="微信号"
+			 ext-class="cell"
+			>
+				<input
+				 bindinput="wxidInput"
+				 data-field="wxid"
+				 class="weui-input"
+				 value="{{userInfo.wxid}}"
+				 placeholder="请输入微信号"
+				 placeholder-style="font-size: 26rpx"
+				/>
+			</mp-cell>
+			<mp-cell
+			 prop="mobile"
+			 title="手机号"
+			 ext-class="cell"
+			>
+				<input
+				 bindinput="phoneInput"
+				 data-field="mobile"
+				 class="weui-input"
+				 type="number"
+				 maxlength="11"
+				 value="{{userInfo.phone}}"
+				 placeholder="请输入手机号"
+				 placeholder-style="font-size: 26rpx"
+				/>
+			</mp-cell>
+		</mp-cells>
+	</view>
+	<view class="save" bindtap="save">保存</view>
+</view>
+
