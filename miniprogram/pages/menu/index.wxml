@@ -153,5 +153,10 @@
 	<!-- 菜单区 结束 -->
 </view>
 
-<!-- <shopping-cart></shopping-cart> -->
+<shopping-cart
+ orderData="{{orderDetail}}"
+ totalPrice="{{totalPrice}}"
+ totalNum="{{totalNum}}"
+ bind:itemNumChange="itemNumChange"
+></shopping-cart>
 

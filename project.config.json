@@ -56,7 +56,7 @@
       "list": [
         {
           "name": "首页",
-          "pathName": "pages/index/index",
+          "pathName": "pages/menu/index",
           "query": "",
           "scene": null
         },

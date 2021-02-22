@@ -1,34 +1,55 @@
-<view class="cart-warp">
-	<view class="cart-detail">
-		<view class="food">
-			<image class="food-img" src="{{foods.pictrueImg}}"></image>
+<view class="cart-warp" hidden="{{totalNum===0}}">
+	<view class="cart-detail" hidden="{{isHideDetail}}">
+		<view class="header">
+			<span class="title">购物车</span>
+			<span class="clear">清空</span>
+		</view>
+		<view
+		 class="food"
+		 wx:for="{{orderData}}"
+		 wx:key="index"
+		>
+			<image class="food-img" src="{{'http://image.tastygo.cn'+item.pictureImg}}"></image>
 			<view class="detail">
-				<view class="food-name">烧鸭饭</view>
-				<span>￥</span>
-				<span class="price">13</span>
+				<view class="food-name">{{item.foodName}}</view>
+				<span style="font-size: 24rpx">￥</span>
+				<span class="price red">{{item.price}}</span>
 			</view>
 			<view class="num-edit-btn">
-				<span class="add">+</span>
-				<span class="num">1</span>
-				<span class="sub">-</span>
+				<view
+				 class="sub btn-common"
+				 bindtap="editNum"
+				 data-num="{{-1}}"
+				 data-id="{{item.menuId}}"
+				>-
+				</view>
+				<span class="num">{{item.num}}</span>
+				<view
+				 class="add btn-common"
+				 bindtap="editNum"
+				 data-num="{{1}}"
+				 data-id="{{item.menuId}}"
+				>+
+				</view>
 			</view>
 		</view>
 	</view>
+
 	<view class="cart">
 		<view class="left">
-			<view class="logo-warp">
+			<view class="logo-warp" bindtap="handleShowDetail">
 				<image class="logo" src="../../images/logo.png"></image>
 			</view>
 			<badge
 			 style="position: fixed; left: 110rpx; top: -30rpx;"
 			 extClass="badge"
-			 content="{{1}}"
+			 content="{{totalNum}}"
 			 wx:if="{{totalNum}}"
 			></badge>
 			<view class="price-warp">
 				<view>
 					<span class="txt" style="font-size: 24rpx;">￥</span>
-					<span class="foods-price">19.9</span>
+					<span class="foods-price">{{totalPrice}}</span>
 				</view>
 				<view class="delivery-price">配送费 ￥3</view>
 			</view>

@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-22 16:39:11
+ * @LastEditTime: 2021-02-22 23:29:33
  * @FilePath: \tastygo\miniprogram\pages\login\index.js
  */
 
@@ -40,9 +40,7 @@ Page({
             title: "验证中",
             mask: true
         })
-        const { userInfo } = e.detail;
-        console.log(userInfo)
-        console.log(e)
+        const { userInfo, encryptedData } = e.detail;
         wx.request({
             url: 'https://isztu.tytion.net/api/login',
             data: {
@@ -57,21 +55,24 @@ Page({
                     userInfo.realname = realname;
                     userInfo.no = account;
 
-                    let app = getApp();
-                    app.globalData.userInfo = userInfo;
-                    app.globalData.isLogin = true;
+                    let res = await reg({
+                        campusId: userInfo.no,
+                        unionId: '0',
+                        realname,
+                        nickname: userInfo.nickName,
+                        avatar: userInfo.avatarUrl,
+                    });
 
-                    // let res = await reg({
-                    //     campusId: userInfo.no,
-                    //     unionId: '',
-                    //     realname,
-                    //     nickname: userInfo.nickname,
-                    //     avatar: userInfo.avatar,
-                    // });
-
-                    wx.setStorageSync('userInfo', userInfo);
-                    wx.setStorageSync('loginState', true);
-                    wx.switchTab({ url: '/pages/my/index' });
+                    if (res.msg !== 'fail') {
+                        wx.setStorageSync('userInfo', userInfo);
+                        wx.setStorageSync('loginState', true);
+                        wx.switchTab({ url: '/pages/my/index' });
+                    } else {
+                        wx.showToast({
+                            title: '登录失败',
+                            icon: 'none'
+                        });
+                    }
                 } else {
                     wx.showToast({
                         title: '账号/密码错误',

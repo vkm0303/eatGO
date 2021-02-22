@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-22 16:48:48
+ * @LastEditTime: 2021-02-22 22:18:03
  * @FilePath: \tastygo\miniprogram\api\api.js
  */
 
@@ -55,7 +55,7 @@ const submitOrder = async(order) => {
 
 //添加用户
 const reg = async(userInfo) => {
-    let { data } = await request.post(`${apiBaseUrl}` / addCampusUser, userInfo);
+    let { data } = await request.post(`${apiBaseUrl}/addCampusUser`, userInfo);
     return data;
 };
 

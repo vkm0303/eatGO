@@ -8,7 +8,7 @@ var menuData = []; //存放当前食堂的所有菜单数据
 const date = new Date();
 let preIdx = 0;
 let dayIdx = date.getDay();
-const days = ['Sunday', 'Monday', 'TuesDay', 'Wednesday', 'ThursDay', 'Friday', 'Saturday'];
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 Page({
     data: {
@@ -36,9 +36,13 @@ Page({
         curTypeIdx: 0,
 
         totalPrice: 0,
-        isAdd: false,
+        totalNum: 0,
+        isShowCart: false,
         StartScroll: false,
+
         timeOptions: ['今天', '明天', '后天'],
+
+        orderDetail: []
     },
 
     onLoad: async function(options) {
@@ -64,26 +68,29 @@ Page({
             canteenOptions.push(v.canteenName);
         }
 
+        const orderDetail = wx.getStorageSync('orderDetail');
+        const totalPrice = wx.getStorageSync('canteenOrder').price || 0;
+        const totalNum = that.computeTotalNum();
+        const isShowCart = !!orderDetail.length;
+
         that.setData({
+            isShowCart,
+            orderDetail,
+            totalPrice,
+            totalNum,
             canteenList,
             canteenOptions,
             curCanteen: canteenList[0],
             curEatTime,
         });
+
         that.loadMenuData();
 
         wx.setStorageSync("canteenList", canteenOptions);
     },
-    onShow: function() {
-        //判断是否有未处理订单
-        const canteenOrder = wx.getStorageSync("canteenOrder");
-        if (canteenOrder.length == 0)
-            this.setData({ isAdd: false });
-        if (isLogin, menuData) {
-            let account = userInfo.no;
-            this.loadCollectionList(this.data.curCanteen);
-        }
-    },
+
+    onShow: function() {},
+
     onShareAppMessage: function(res) {
         var that = this;
         return {
@@ -103,7 +110,7 @@ Page({
 
         let curTypeList = [];
         for (let v of menuData) {
-            if (v.menus[0].eatTime === curEatTime) {
+            if (v.menus[0].eatTime === curEatTime && v.menus[0].time === days[dayIdx]) {
                 curTypeList.push({ typeId: v.typeId, typeName: v.typeName });
             }
         }
@@ -112,7 +119,7 @@ Page({
         let curMenuList = [];
         if (curTypeList.length) {
             curMenuList = menuData.filter((v) => {
-                return v.typeName === curTypeList[0].typeName && v.menus[0].eatTime === curEatTime;
+                return v.typeName === curTypeList[0].typeName && v.menus[0].eatTime === curEatTime && v.menus[0].time === days[dayIdx];
             });
         }
 
@@ -148,7 +155,7 @@ Page({
 
         let curTypeList = [];
         for (let v of menuData) {
-            if (v.menus[0].eatTime === that.data.curEatTime) {
+            if (v.menus[0].eatTime === that.data.curEatTime && v.menus[0].time === days[dayIdx]) {
                 curTypeList.push({ typeId: v.typeId, typeName: v.typeName });
             }
         }
@@ -157,7 +164,7 @@ Page({
         let curTypeIdx = 0;
         if (curTypeList.length) {
             curMenuList = menuData.filter((v) => {
-                return v.typeName === curTypeList[curTypeIdx].typeName && v.menus[0].eatTime === that.data.curEatTime;
+                return v.typeName === curTypeList[curTypeIdx].typeName && v.menus[0].eatTime === that.data.curEatTime && v.menus[0].time === days[dayIdx];
             });
         } else {
             curTypeList[0] = '';
@@ -255,107 +262,148 @@ Page({
         let canteenOrder = wx.getStorageSync('canteenOrder') || { menusId: [] };
         let orderDetail = wx.getStorageSync('orderDetail') || [];
         let menusId = { menuId: '', num: 1 };
-        let { totalPrice } = that.data;
+        let { totalPrice, totalNum } = that.data;
         let { food } = e.currentTarget.dataset;
         let isExist = false;
 
         menusId.menuId = food.menuId;
-        if (canteenOrder.canteenId) {
-            if (food.canteen !== canteenOrder.canteenId) {
+        food.num = 1;
+        if (food.eatTime !== 'Breakfast' && food.time !== days[date.getDay()]) {
+            wx.showToast({
+                title: '除早餐外仅可以选择当天的菜品',
+                icon: 'none',
+                duration: 2000,
+            });
+        } else if (canteenOrder.canteenId) { //判断canteenOrder是否存在
+            if (food.canteen !== canteenOrder.canteenId) { //判断添加商品是否为同一个食堂
                 wx.showToast({
                     title: '仅可选择同一给食堂的菜单噢~',
                     icon: 'none',
                     duration: 3000,
                 });
                 return;
+            } else if (orderDetail.length && food.eatTime !== orderDetail[0].eatTime) {
+                wx.showToast({
+                    title: '仅可选择同一餐点的菜品',
+                    icon: 'none'
+                });
+                return;
+            } else if (orderDetail.length && food.time !== days[date.getDay()]) {
+                wx.showToast({
+                    title: '仅可选择同一天的菜品',
+                    icon: 'none'
+                });
             } else {
                 canteenOrder.menusId.forEach(el => {
-                    if (el.menuId === menusId.menuId) {
+                    if (el.menuId === menusId.menuId) { //判断订单中是否同样商品
                         el.num++;
+                        for (let v of orderDetail) {
+                            if (el.menuId === v.menuId) {
+                                v.num = el.num;
+                                break;
+                            }
+                        }
                         isExist = true;
                     }
                 });
-                if (!isExist) {
+                if (!isExist) { //订单不存在相同商品
                     canteenOrder.menusId.push(menusId);
                     orderDetail.push(food);
                 }
             }
-        } else {
+        } else { //订单为空时
             canteenOrder.canteenId = food.canteen;
             canteenOrder.menusId[0] = menusId;
             orderDetail.push(food);
         }
-
-        totalPrice += food.price;
+        totalNum++;
+        totalPrice += Number(food.price); //计算总价格
+        food.price = food.price.toFixed(1); //保留一位小数
         canteenOrder.price = totalPrice;
 
         that.setData({
+            totalNum,
             totalPrice,
+            orderDetail,
         })
         wx.setStorageSync('canteenOrder', canteenOrder);
         wx.setStorageSync('orderDetail', orderDetail);
-
-        // //查询是否已存在该food
-        // const index = canteenOrder.findIndex(v => {
-        //     return v.food_id === food_id
-        // })
-        // if (index !== -1) {
-        //     //food存在，数量+1,价格相应增加
-        //     canteenOrder[index].num += 1
-        //     canteenOrder[index].totalPrice = Number(canteenOrder[index].price * canteenOrder[index].num)
-        //     totalPrice = (Number(totalPrice) + Number(canteenOrder[index].price)).toFixed(2)
-        //     that.setData({ totalPrice })
-        //     wx.setStorageSync("canteenOrder", canteenOrder)
-        //     return
-        // }
-        // //新添加food
-        // let order = e.currentTarget.dataset.food_detail
-        // order.totalPrice = Number(order.price)
-        // order.num = 1
-        // totalPrice = (Number(totalPrice) + Number(order.price)).toFixed(2)
-        // if (canteenOrder.length) {
-        //     if (food_id.slice(0, 2) !== canteenOrder[0].food_id.slice(0, 2)) {
-        //         wx.showToast({
-        //             title: '只能选同一食堂的菜噢~',
-        //             icon: 'none',
-        //             duration: 2000
-        //         });
-        //         return
-        //     } else {
-        //         canteenOrder.push(order)
-        //     }
-        // } else {
-        //     canteenOrder.push(order)
-        // }
-        // wx.setStorageSync("canteenOrder", canteenOrder); //将订单数据存储到内存中
-        // this.setData({
-        //     totalPrice,
-        //     isAdd: true
-        // })
     },
+
     //点击pay
     handlePay() {
         wx.navigateTo({ url: '/pages/bangdai/index?totalPrice=' + this.data.totalPrice })
     },
+
     //加载收藏列表
     loadCollectionList(canteen, data) {
         const that = this
-            //menuData = data || wx.getStorageSync(canteenName)
-            // db.collection('user_collection').where({
-            //     canteen,
-            //     account
-            // }).get().then(res => {
-            //     //将menuData数据的收藏状态更新
-            //     const collect_idxs = res.data
-            //     for (var i = 0; i < collect_idxs.length; i++)
-            //         menuData[collect_idxs[i].type_index].list[collect_idxs[i].food_index].isCollected = true
-            //     that.setData({
-            //         curMenuList: menuData[that.data.type_idx].list
-            //     })
-            // })
     },
-    openScroll() {
 
+    //订单单个商品数量发生变化
+    itemNumChange(e) {
+        const that = this;
+        const { id, num } = e.detail;
+        let canteenOrder = wx.getStorageSync('canteenOrder');
+        let orderDetail = wx.getStorageSync('orderDetail');
+        let { totalNum, totalPrice } = that.data;
+
+        for (let i = 0; i < canteenOrder.menusId.length; i++) {
+            if (canteenOrder.menusId[i].menuId === id) {
+                canteenOrder.menusId[i].num += num;
+                if (canteenOrder.menusId[i].num === 0) {
+                    canteenOrder.menusId.splice(i, 1);
+                }
+                break;
+            }
+        }
+        for (let i = 0; i < orderDetail.length; i++) {
+            if (orderDetail[i].menuId === id) {
+                orderDetail[i].num += num;
+                canteenOrder.price += Number(orderDetail[i].price) * num;
+                totalPrice = canteenOrder.price;
+                if (orderDetail[i].num) {
+                    wx.setStorageSync('orderDetail', orderDetail);
+                    wx.setStorageSync('canteenOrder', canteenOrder);
+                } else {
+                    orderDetail.splice(i, 1);
+                    wx.setStorageSync('orderDetail', orderDetail);
+                    wx.setStorageSync('canteenOrder', canteenOrder);
+                    if (orderDetail.length === 0) {
+                        wx.removeStorageSync('orderDetail');
+                        wx.removeStorageSync('canteenOrder');
+                    }
+                }
+                break;
+            }
+        }
+
+        // console.log(totalPrice)
+        totalNum += num;
+
+        that.setData({
+            orderDetail,
+            totalNum,
+            totalPrice,
+        })
+    },
+
+    computeTotalNum() {
+        const that = this;
+        const canteenOrder = wx.getStorageSync('canteenOrder');
+        if (canteenOrder) {
+            let totalNum = 0;
+            canteenOrder.menusId.forEach((el) => {
+                totalNum += el.num;
+            });
+
+            return totalNum;
+        } else {
+            return 0;
+        }
+    },
+
+    openScroll() {
         this.setData({
             StartScroll: true
         })
