@@ -1,0 +1,35 @@
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28rpx;
+  color: #ffffff;
+  font-size: 28rpx;
+  font-family: Arial;
+}
+.tabs .tabs_title {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+.tabs .tabs_title :nth-child(1) {
+  position: absolute;
+  left: 152rpx;
+}
+.tabs .tabs_title :nth-child(2) {
+  position: absolute;
+  left: 344rpx;
+}
+.tabs .tabs_title .tabs_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 256rpx;
+  height: 68rpx;
+  border-radius: 59rpx;
+  background-color: #f7d6b1;
+}
+.tabs .tabs_title .active {
+  z-index: 999;
+  background-color: #ff824e;
+}

@@ -30,7 +30,9 @@
         "pages/successMessage/index",
         "pages/takeOrderDetail/index",
         "pages/TEST/TEST",
-        "pages/userInfo/index"
+        "pages/userInfo/index",
+        "pages/message/index",
+        "pages/chatroom/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -52,10 +52,10 @@
 .body .message .avatar {
   position: relative;
   top: 5rpx;
-  width: 60rpx;
-  height: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 5rpx;
-  margin: 15rpx;
+  margin: 0 15rpx;
 }
 
 .body .message .main {
@@ -85,7 +85,7 @@
 }
 
 .body .message.message__self .text-content {
-  background-color: paleturquoise;
+  background-color:rgb(158, 234, 106);
 }
 
 .body .message .text-wrapper {

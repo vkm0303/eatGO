@@ -1,0 +1,33 @@
+.chat{
+  display: flex;
+  border-bottom: 2rpx solid #EFEFEF;
+}
+.avatar{
+  height: 96rpx;
+  width: 96rpx;
+  margin: 16rpx 26rpx;
+  border-radius: 8rpx;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  flex-grow:1;
+}
+
+.username{
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 12rpx;
+  margin-top: 20rpx;
+}
+.message{
+font-size: 24rpx;
+color: #999;
+}
+.date{
+  color: #999;
+  width: auto;
+  margin-top: 20rpx;
+  margin-right:28rpx;
+  font-size: 22rpx;
+}

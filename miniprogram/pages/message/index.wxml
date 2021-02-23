@@ -1,0 +1,11 @@
+<navigator class="chat" wx:for="{{5}}" url="../chatroom/index">
+  <view>
+    <image class="avatar"
+      src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3788111788,1343719865&fm=26&gp=0.jpg"></image>
+  </view>
+  <view class="info">
+    <view class="username">Rouro</view>
+    <view class="message">在吗在吗？</view>
+  </view>
+  <view class="date">上午11:36</view>
+</navigator>
