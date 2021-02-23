@@ -49,9 +49,10 @@ Component({
         await this.initOpenID()
 
         const { envId, collection } = this.properties
-        const db = this.db = wx.cloud.database({
+        this.db = wx.cloud.database({
           env: envId,
         })
+        const db = this.db
         const _ = db.command
 
         const { data: initList } = await db.collection(collection).where(this.mergeCommonCriteria()).orderBy('sendTimeTS', 'desc').get()

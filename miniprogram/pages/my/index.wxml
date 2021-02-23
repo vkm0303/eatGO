@@ -24,7 +24,7 @@
 		<span class="common-text">个人信息</span>
 		<span class="iconfont icon-iconyoujiantou"></span>
 	</navigator>
-	<navigator class="message common-router">
+	<navigator class="message common-router" url="/pages/message/index">
 		<image class="icon" src="../../icons/message.png"></image>
 		<span class="common-text">我的消息</span>
 		<span class="iconfont icon-iconyoujiantou"></span>

@@ -1,0 +1,156 @@
+<view class="top-warp">
+	<!-- 搜索框 开始 -->
+	<view class="search-warp">
+		<view class="iconfont icon-sousuo"></view>
+		<input
+		 class="search_input"
+		 confirm-type="search"
+		 type="text"
+		 placeholder="搜索你想吃的美食"
+		 placeholder-class="input-placeholder"
+		></input>
+	</view>
+	<!-- 搜索框 结束 -->
+
+	<!-- 轮播图 开始 -->
+	<swiper
+	 indicator-dots="{{true}}"
+	 indicator-color="#dddddd"
+	 indicator-active-color="#333333"
+	 autoplay="{{true}}"
+	 interval="2000"
+	>
+		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
+			<image src="{{item.fileID}}"></image>
+		</swiper-item>
+	</swiper>
+	<!-- 轮播图 结束 -->
+</view>
+
+<view class="bottom-warp">
+	<!-- 时间选择栏 开始 -->
+	<view class="time-warp">
+		<view
+		 class="time {{curEatTime=='Breakfast' ? 'active' : ''}}"
+		 bindtap="handleITimeClick"
+		 data-time="Breakfast"
+		>早餐
+		</view>
+		<view
+		 class="time {{curEatTime=='Lunch' ? 'active' : ''}}"
+		 bindtap="handleITimeClick"
+		 data-time="Lunch"
+		>午餐
+		</view>
+		<view
+		 class="time {{curEatTime=='Dinner' ? 'active' : ''}}"
+		 bindtap="handleITimeClick"
+		 data-time="Dinner"
+		>晚餐
+		</view>
+	</view>
+	<!-- 时间选择栏 结束 -->
+
+	<!-- 食堂选择按钮 开始 -->
+	<view class="canteen-btn-warp" bindtap="createAnimation">
+		<view class="canteen-btn" animation="{{isCanteenClick ? aniHeightAdd : aniHeightReduce}}">
+			<view class="cur-canteen-warp">
+				<text decode="true">&nbsp;{{curCanteen.canteenName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+				<text class="iconfont icon-right"></text>
+			</view>
+			<view class="more-canteen">
+				<view
+				 class="canteen-selections {{curCanteen.canteenId===item.canteenId ? 'canteen-select' : ''}}"
+				 wx:for="{{canteenList}}"
+				 wx:key="item"
+				 bindtap="handleCanteenSelect"
+				 data-canteen="{{item}}"
+				>
+					{{item.canteenName}}
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 食堂选择按钮 结束 -->
+
+	<!-- 菜单区 开始 -->
+	<view class="menu-warp">
+		<!-- 左侧类名区域 开始 -->
+		<scroll-view class="type-list" scroll-y>
+			<view
+			 class="type-content {{typeIdx==index ? 'type-select' : ''}}"
+			 wx:for="{{typeList}}"
+			 wx:for-item="type"
+			 wx:for-index="index"
+			 wx:key="index"
+			 bindtap="handleTypeChange"
+			 data-index="{{index}}"
+			 data-type="{{type}}"
+			>
+				{{type.typeName}}
+			</view>
+		</scroll-view>
+		<!-- 左侧类名区域 结束 -->
+
+		<!-- 右侧食品列表 开始 -->
+		<scroll-view class="food-list" scroll-y>
+			<view class="food-type">{{curType}}</view>
+			<view
+			 class="food-warp"
+			 wx:for="{{curMenuList}}"
+			 wx:for-index="food_index"
+			 wx:for-item="food"
+			 wx:key="food_index"
+			>
+				<image class="food-img" src="{{'http://image.tastygo.cn'+food.pictureImg}}"></image>
+				<view class="food-description">
+					<view class="name">{{food.foodName}}</view>
+					<view class="tag">
+						<view
+						 class="food-tag-name"
+						 wx:for="{{food.tags}}"
+						 wx:for-item="tag"
+						 wx:for-index="tag_index"
+						 wx:key="tag_index"
+						>
+							{{tag}}
+						</view>
+					</view>
+					<view class="food-calorie">{{food.calorie}}qk</view>
+					<view class="food-bottom-warp">
+						<view class="food-price">
+							<text>￥</text>
+							<text class="food-price-text">{{food.price}}</text>
+						</view>
+						<view
+						 class="food-collect-btn iconfont {{food.isCollected?'icon-shoucang':'icon-aixin'}}"
+						 bindtap="handleFoodCollect"
+						 data-food_id="{{food.menuId}}"
+						 data-index="{{food_index}}"
+						 data-state="{{food.isCollected}}"
+						></view>
+						<view
+						 class="food-add-btn"
+						 bindtap="handleAddFood"
+						 data-food="{{food}}"
+						>+
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="food-type">{{curType}}</view>
+		</scroll-view>
+		<!-- 右侧食品列表 结束 -->
+
+		<view class="purchase-info" wx:if="{{isAdd}}">
+			<span class="total-price">
+				<text class="">￥</text>
+				{{totalPrice}}
+			</span>
+			<view class="a"></view>
+			<view class="goto-pay-btn" bindtap="handlePay">Pay</view>
+		</view>
+	</view>
+	<!-- 菜单区 结束 -->
+</view>
+
