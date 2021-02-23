@@ -7,7 +7,9 @@ var userInfo = { name: '', no: '' };
 
 // 云函数入口函数
 exports.main = async(event, context) => {
-    const { account, password } = event
+    // const { account, password } = event
+    const account = '201903010108';
+    const password = 'A13126034811';
     let Cookie = ''
     var encoded = ""
     var requestData = ""
@@ -17,7 +19,6 @@ exports.main = async(event, context) => {
         json: true,
         headers: {
             "content-type": "application/json",
-            "Connection": "keep-alive",
         },
         body: JSON.stringify(requestData)
     }
@@ -50,20 +51,14 @@ exports.main = async(event, context) => {
         json: true,
         headers: {
             "content-type": "application/json",
-            "Connection": "keep-alive",
-            "Host": "isea.sztu.edu.cn",
-            "Origin": "https://isea.sztu.edu.cn",
-            "Cookie": Cookie
         }
     }
     var postOption2 = {
-        url: 'https://isea.sztu.edu.cn/Logon.do?method=logon',
+        url: 'http://isea.sztu.edu.cn/Logon.do?method=logon',
         method: "POST",
         json: true,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Cookie': Cookie,
-            'Host': 'isea.sztu.edu.cn'
         },
         form: {
             'view': '1',
@@ -71,18 +66,19 @@ exports.main = async(event, context) => {
             'encoded': encoded
         }
     }
-
     const reg = new RegExp(/[^\u4e00-\u9fa5|,]+/, 'g')
     try {
         //请求https://isea.sztu.edu.cn/Logon.do?method=logon
         console.log(0)
         await request(postOption2, (err, response, body) => {
-            //用于302会自动重定向，因此需要在这里截取数据
+            console.log(response)
+                //用于302会自动重定向，因此需要在这里截取数据
             if (response.statusCode === 302) {
                 console.log(2)
                 getOption.url = response.headers.location
             }
         })
+
     } catch (e) {}
     try {
         await request(getOption, (err, response, body) => {

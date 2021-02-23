@@ -1,5 +1,8 @@
 const DB = wx.cloud.database();
-const { getAddressList } = require('../../api/api.js');
+const { getAddressList, getOrder, getCanteenList } = require('../../api/api.js');
+
+var canteenList = [];
+var focusAddressList = [];
 
 Page({
     data: {
@@ -8,9 +11,9 @@ Page({
         startingOptions: [],
         curFocusIdx: 0,
         focusOptions: [],
+        orderList: [],
         //"我要吃"变量
         orderDetail: [],
-        orderList: [],
         tabIndex: 0,
         getWayIndex: -1,
     },
@@ -21,10 +24,12 @@ Page({
 
         //获取取餐地点
         const startingOptions = wx.getStorageSync('canteenList') || ['北区食堂', '北区西餐厅', '竹韵食堂', '石井食堂'];
+        let res = await getCanteenList();
+        canteenList = res.data;
 
         //获取收货地址列表
-        const res = await getAddressList();
-        let focusAddressList = res.data;
+        res = await getAddressList();
+        focusAddressList = res.data;
         let focusOptions = [];
         if (focusAddressList.length) {
             for (let v of focusAddressList) {
@@ -34,9 +39,12 @@ Page({
             focusOptions = ['男生宿舍17B', '男生宿舍17A', '女生宿舍17B'];
         }
 
+        res = await getOrder(canteenList[0].canteenId, focusAddressList[0].addressId);
+        const orderList = res.data;
+
         this.setData({
             focusOptions,
-            focusAddressList,
+            orderList,
             startingOptions,
             loginState: true
         })
@@ -45,14 +53,14 @@ Page({
     },
     onShow: function() {},
     //切换Tabs
-    handleItemChange(e) {
+    // handleItemChange(e) {
 
-        const db = wx.cloud.database();
-        db.collection('sztu_order')
-            .where({ isReceive: false })
-            .get().then(res => { this.setData({ orderList: res.data }) })
+    //     const db = wx.cloud.database();
+    //     db.collection('sztu_order')
+    //         .where({ isReceive: false })
+    //         .get().then(res => { this.setData({ orderList: res.data }) })
 
-    },
+    // },
     moveLeft(e) {
         const that = this;
         const { index } = e.currentTarget.dataset;
@@ -121,7 +129,6 @@ Page({
         const loginState = wx.getStorageSync('loginState');
         if (loginState && userInfo.wxid && userInfo.phone) {
             const { getWayIndex } = that.data;
-            const ways = ['bySelf', 'byDelivery'];
             let canteenOrder = wx.getStorageSync('canteenOrder');
             if (canteenOrder) {
                 if (getWayIndex !== 0 && getWayIndex !== 1) {
@@ -130,10 +137,9 @@ Page({
                         icon: 'none'
                     });
                 } else {
-                    let getWay = ways[getWayIndex];
                     canteenOrder.getWay = getWayIndex;
                     wx.setStorageSync('canteenOrder', canteenOrder);
-                    wx.navigateTo({ url: `/pages/pay/index?getWay=${getWay}` });
+                    wx.navigateTo({ url: `/pages/pay/index?getWay=${getWayIndex}` });
                 }
             } else {
                 wx.showToast({

@@ -115,14 +115,13 @@
 			</view>
 			<view class="receive commond1">
 				<span class="rec-icon commond2">收</span>
-				<span class="rec-address commond3">{{item.receiveAddress.address}}</span>
-				<span class="building-num commond4">{{item.receiveAddress.building}}</span>
-				<span class="room-num commond4">{{item.receiveAddress.dormNo}}</span>
+				<span class="rec-address commond3">{{item.address}}</span>
+				<span class="building-num commond4">{{item.addressDetail}}</span>
 			</view>
-			<view class="time commond1">送达时间：12:00—12:30</view>
+			<view class="time commond1">送达时间：{{item.arrivalTime}}</view>
 			<view class="detail">
 				<span class="total-num">份数：{{item.totalNum}}</span>
-				<span class="total-price">金额：{{item.totalPrice}}元</span>
+				<span class="total-price">金额：{{item.price}}元</span>
 			</view>
 			<view class="rec-btn-warp">
 				<view class="rec-btn" bindtap="receiveOrder">确认接单</view>

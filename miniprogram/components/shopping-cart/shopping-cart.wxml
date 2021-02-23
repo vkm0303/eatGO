@@ -54,7 +54,7 @@
 				<view class="delivery-price">配送费 ￥3</view>
 			</view>
 		</view>
-		<view class="right">去发布</view>
+		<view class="right" bindtap="goToSubmit">去发布</view>
 	</view>
 </view>
 

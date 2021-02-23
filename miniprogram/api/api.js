@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-22 22:18:03
+ * @LastEditTime: 2021-02-23 15:13:42
  * @FilePath: \tastygo\miniprogram\api\api.js
  */
 
@@ -51,7 +51,13 @@ const getAddressList = async() => {
 const submitOrder = async(order) => {
     let { data } = await request.post(`${apiBaseUrl}/addOrder`, order);
     return data;
-}
+};
+
+//获取订单
+const getOrder = async(canteenId, addressId) => {
+    let { data } = await request.get(`${apiBaseUrl}/getOrder?canteenId=${canteenId}&addressId=${addressId}`);
+    return data;
+};
 
 //添加用户
 const reg = async(userInfo) => {
@@ -68,6 +74,7 @@ const api = {
     getMenuByCanteen,
     getAddressList,
     submitOrder,
+    getOrder,
     reg,
 };
 

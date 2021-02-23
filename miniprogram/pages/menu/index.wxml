@@ -157,6 +157,7 @@
  orderData="{{orderDetail}}"
  totalPrice="{{totalPrice}}"
  totalNum="{{totalNum}}"
+ url="{{'/pages/canteenTakeout/index'}}"
  bind:itemNumChange="itemNumChange"
 ></shopping-cart>
 

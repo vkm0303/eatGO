@@ -3,14 +3,16 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-22 20:59:01
+ * @LastEditTime: 2021-02-23 14:46:56
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
 const { getAddressList, getMenuDetail, submitOrder } = require('../../api/api');
 
 var canteenOrder = wx.getStorageSync('canteenOrder');
-var address = '男生宿舍17A';
+var addressIdx = 0;
+var addressList = [];
+var addressDetail = '';
 
 Page({
     data: {
@@ -25,10 +27,11 @@ Page({
         note: '',
         orderDetail: [],
         focusOptions: [
-            '男生宿舍17B',
             '男生宿舍17A',
+            '男生宿舍17B',
         ],
-        getWay: 'byDelivery',
+        addressList: [],
+        getWay: 0,
         timeOptions: [{
                 time: '11:20',
                 status: 0,
@@ -57,6 +60,7 @@ Page({
     onLoad: async function(options) {
         const that = this;
         const { getWay } = options;
+        that.setData({ getWay });
 
         wx.showLoading({ title: '加载中' });
 
@@ -71,10 +75,11 @@ Page({
         };
 
         //获取收货地址列表
-        const data = await getAddressList();
+        let res = await getAddressList();
+        addressList = res.data;
         let focusOptions = [];
-        if (data.length) {
-            for (let v of data) {
+        if (addressList.length) {
+            for (let v of addressList) {
                 focusOptions.push(v.addressName);
             }
         } else {
@@ -101,15 +106,15 @@ Page({
     async handleOrderSubmit() {
         const that = this;
         const { presetHours, presetMinutes, tbwIdx, note } = that.data;
-        const app = getApp();
-        const campusId = app.globalData.userInfo.no;
+        const campusId = wx.getStorageSync('userInfo').no;
+
         canteenOrder.menusId = JSON.stringify(canteenOrder.menusId);
         canteenOrder.campusId = campusId;
-        canteenOrder.address = address;
+        canteenOrder.addressId = addressList[addressIdx].addressId;
+        canteenOrder.addressDetail = addressDetail;
         canteenOrder.arrivalTime = presetHours + ':' + presetMinutes;
         canteenOrder.note = note;
-        canteenOrder.tableware = tbwIdx || 1;
-        console.log(canteenOrder)
+        canteenOrder.tableware = tbwIdx === -1 ? 1 : tbwIdx;
 
         let res = await submitOrder(canteenOrder);
         console.log(res);
@@ -170,14 +175,11 @@ Page({
     },
 
     handleAddressSelect(e) {
-        const that = this;
-        const { index } = e.detail;
-        address = that.data.focusOptions[index];
+        addressIdx = e.detail.index;
     },
 
     handleAddressInput(e) {
-        address += ' ';
-        address += e.detail.value;
+        addressDetail = e.detail.value;
     },
 
     setDefaultTime() {

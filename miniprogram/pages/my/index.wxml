@@ -19,22 +19,34 @@
 >登录
 </navigator>
 <view class="main-warp">
-	<navigator class="userinfo common-router" url="/pages/userInfo/index">
+	<navigator
+	 class="userinfo common-router"
+	 url="/pages/userInfo/index"
+	 wx:if="{{isLogin}}"
+	>
 		<image class="icon" src="../../icons/userInfo.png"></image>
 		<span class="common-text">个人信息</span>
 		<span class="iconfont icon-iconyoujiantou"></span>
 	</navigator>
-	<navigator class="message common-router">
+	<navigator class="message common-router" wx:if="{{isLogin}}">
 		<image class="icon" src="../../icons/message.png"></image>
 		<span class="common-text">我的消息</span>
 		<span class="iconfont icon-iconyoujiantou"></span>
 	</navigator>
-	<navigator class="collection common-router" url="/pages/myCollection/index">
+	<navigator
+	 class="collection common-router"
+	 url="/pages/myCollection/index"
+	 wx:if="{{isLogin}}"
+	>
 		<image class="icon" src="../../icons/collect.png"></image>
 		<span class="common-text">喜爱菜品</span>
 		<span class="iconfont icon-iconyoujiantou"></span>
 	</navigator>
-	<navigator class="pay-record common-router" url="/pages/cardRecord/index">
+	<navigator
+	 class="pay-record common-router"
+	 url="/pages/cardRecord/index"
+	 wx:if="{{isLogin}}"
+	>
 		<image class="icon" src="../../icons/consume.png"></image>
 		<span class="common-text">消费记录</span>
 		<span class="iconfont icon-iconyoujiantou"></span>

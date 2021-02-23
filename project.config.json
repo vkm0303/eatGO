@@ -97,7 +97,7 @@
         {
           "name": "结算",
           "pathName": "pages/pay/index",
-          "query": "getWay=getByDelivery",
+          "query": "getWay=1",
           "scene": null
         },
         {

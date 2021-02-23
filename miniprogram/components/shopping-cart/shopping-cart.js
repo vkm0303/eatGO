@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-19 23:54:31
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-23 04:12:28
+ * @LastEditTime: 2021-02-23 14:08:01
  * @FilePath: \tastygo\miniprogram\components\shopping-cart\shopping-cart.js
  */
 
@@ -48,6 +48,7 @@ Component({
                 });
             }
         },
+
         editNum(e) {
             const that = this;
             const { id, num } = e.currentTarget.dataset;
@@ -58,6 +59,14 @@ Component({
             }
             that.triggerEvent('itemNumChange', { id, num });
         },
+
+        goToSubmit() {
+            const that = this;
+            wx.switchTab({
+                url: that.properties.url
+            });
+        },
+
         _createAnimation() {
             const that = this;
             let slideTopAni = wx.createAnimation({

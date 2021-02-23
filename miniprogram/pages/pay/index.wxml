@@ -1,6 +1,6 @@
 <view class="page">
 	<view style="padding-bottom: 200rpx">
-		<block wx:if="{{getWay==='bySelf'}}">
+		<block wx:if="{{getWay==0}}">
 			<scroll-view
 			 class="time-selector-warp-1"
 			 scroll-x

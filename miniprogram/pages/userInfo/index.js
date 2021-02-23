@@ -3,14 +3,12 @@
  * @Author: 陈俊任
  * @Date: 2021-02-22 19:12:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-22 20:31:58
+ * @LastEditTime: 2021-02-23 14:50:48
  * @FilePath: \tastygo\miniprogram\pages\userInfo\index.js
  */
-
-const app = getApp();
 var wxid = '';
 var phone = '';
-var { userInfo } = app.globalData;
+var userInfo = wx.getStorageSync('userInfo');
 
 Page({
 
@@ -38,7 +36,7 @@ Page({
         });
         userInfo.wxid = wxid;
         userInfo.phone = phone;
-        app.globalData.userInfo = userInfo;
+        console.log(userInfo)
         wx.setStorageSync('userInfo', userInfo);
         wx.hideLoading();
         wx.showToast({

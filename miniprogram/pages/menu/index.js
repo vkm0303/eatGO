@@ -47,6 +47,7 @@ Page({
 
     onLoad: async function(options) {
         const that = this;
+        wx.showLoading({ title: '正在加载' });
 
         //根据当前时间设置默认选中餐点
         const curDate = new Date();
@@ -136,6 +137,8 @@ Page({
         let { curCanteen, canteenList } = that.data;
         if (e) { //判断是否从onload函数调用
             const { index } = e.detail;
+            wx.showLoading({ title: '正在加载' });
+
             if (curCanteen.canteenId === canteenList[index].canteenId) {
                 return;
             }
@@ -144,11 +147,6 @@ Page({
                 curCanteen: canteenList[index],
             });
         }
-
-        wx.showLoading({
-            title: '正在加载数据',
-            mask: false,
-        });
 
         const res = await api.getMenuByCanteen(that.data.curCanteen.canteenId, days[dayIdx]);
         menuData = res.data;
@@ -185,6 +183,7 @@ Page({
     changeTime(e) {
         const that = this;
         const { index } = e.detail;
+        wx.showLoading({ title: '正在加载' });
         if (preIdx < index) { //判断向前选择还是向后选择
             dayIdx += (index - preIdx);
         } else {
