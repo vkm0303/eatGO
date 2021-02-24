@@ -3,12 +3,16 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-23 16:05:16
+ * @LastEditTime: 2021-02-23 19:14:22
  * @FilePath: \tastygo\miniprogram\pages\my\index.js
  */
+const loginState = wx.getStorageSync('loginState');
 Page({
     data: {
-        isLogin: false,
+        isLogin: loginState,
+    },
+    onLoad: function() {
+
     },
     onShow: function() {
         const that = this;

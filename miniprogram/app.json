@@ -46,30 +46,26 @@
         "position": "bottom",
         "borderStyle": "white",
         "list": [{
-                "pagePath": "pages/menu/index",
-                "text": "菜品",
-                "iconPath": "icons/_menu.png",
-                "selectedIconPath": "icons/menu.png"
-            },
-            {
-                "pagePath": "pages/canteenTakeout/index",
-                "text": "食堂外带",
-                "iconPath": "icons/_canteen.png",
-                "selectedIconPath": "icons/canteen.png"
-            },
-            {
-                "pagePath": "pages/more/index",
-                "text": "发现",
-                "iconPath": "icons/_more.png",
-                "selectedIconPath": "icons/more.png"
-            },
-            {
-                "pagePath": "pages/my/index",
-                "text": "我",
-                "iconPath": "icons/_my.png",
-                "selectedIconPath": "icons/my.png"
-            }
-        ]
+            "pagePath": "pages/menu/index",
+            "text": "菜品",
+            "iconPath": "icons/_menu.png",
+            "selectedIconPath": "icons/menu.png"
+        }, {
+            "pagePath": "pages/canteenTakeout/index",
+            "text": "食堂外带",
+            "iconPath": "icons/_canteen.png",
+            "selectedIconPath": "icons/canteen.png"
+        }, {
+            "pagePath": "pages/more/index",
+            "text": "发现",
+            "iconPath": "icons/_more.png",
+            "selectedIconPath": "icons/more.png"
+        }, {
+            "pagePath": "pages/my/index",
+            "text": "我",
+            "iconPath": "icons/_my.png",
+            "selectedIconPath": "icons/my.png"
+        }]
     },
     "permission": {
         "scope.userLocation": {

@@ -3,13 +3,12 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-23 14:46:56
+ * @LastEditTime: 2021-02-24 13:04:32
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
 const { getAddressList, getMenuDetail, submitOrder } = require('../../api/api');
 
-var canteenOrder = wx.getStorageSync('canteenOrder');
 var addressIdx = 0;
 var addressList = [];
 var addressDetail = '';
@@ -59,20 +58,21 @@ Page({
     },
     onLoad: async function(options) {
         const that = this;
-        const { getWay } = options;
-        that.setData({ getWay });
-
         wx.showLoading({ title: '加载中' });
 
-        that.setDefaultTime();
-        that.setTimeRange();
-        let orderDetail = [];
+        let canteenOrder = wx.getStorageSync('canteenOrder');
+        let orderDetail = wx.getStorageSync('orderDetail');
+        const { getWay } = options;
 
-        for (let el of canteenOrder.menusId) {
-            let res = await getMenuDetail(el.menuId)
-            res.data[0].num = el.num;
-            orderDetail.push(res.data[0]);
-        };
+        canteenOrder.price += 4;
+        that.setData({
+            getWay,
+            orderDetail,
+            totalPrice: canteenOrder.price.toFixed(1)
+        });
+
+        that.setDefaultTime(); //设置默认时间
+        that.setTimeRange(); //设置时间选择器范围
 
         //获取收货地址列表
         let res = await getAddressList();
@@ -86,13 +86,8 @@ Page({
             focusOptions = ['男生宿舍17B', '男生宿舍17A', '女生宿舍17B'];
         }
 
-        canteenOrder.price += 4;
-
         that.setData({
-            getWay,
             focusOptions,
-            orderDetail,
-            totalPrice: canteenOrder.price.toFixed(1)
         });
         let endTime = toTimeStamp('21:20:00');
         timeCountDown(that, endTime);
@@ -101,11 +96,17 @@ Page({
     },
     onShow: function() {
         const that = this;
-        canteenOrder = wx.getStorageSync('canteenOrder');
+        const canteenOrder = wx.getStorageSync('canteenOrder');
+        if (!canteenOrder) {
+            wx.navigateBack({
+                delta: 1
+            });
+        }
     },
     async handleOrderSubmit() {
         const that = this;
         const { presetHours, presetMinutes, tbwIdx, note } = that.data;
+        let canteenOrder = wx.getStorageSync('canteenOrder');
         const campusId = wx.getStorageSync('userInfo').no;
 
         canteenOrder.menusId = JSON.stringify(canteenOrder.menusId);
@@ -119,6 +120,9 @@ Page({
         let res = await submitOrder(canteenOrder);
         console.log(res);
         if (res.msg === 'success') {
+            wx.requestSubscribeMessage({
+                tmplIds: ['LjrtLzhdr9neIoNPR8s08SLWKxyv6creVn627vrqQtU', 'GgNdlRXIff0qE3t3AP6VHMtg1nyqtzqcYDo4ZHwJmHo', 'Ylw5kbld12nZ5qvCM2tEwaoV7F7S1barD5YCxi8GpNM']
+            })
             wx.removeStorageSync('canteenOrder');
             wx.removeStorageSync('orderDetail');
             wx.navigateTo({ url: '/pages/successMessage/index' });
@@ -133,13 +137,6 @@ Page({
     handleTimeBoxClick(e) {
         const that = this;
         let { index } = e.currentTarget.dataset;
-        let ishideTimePicker = false;
-        if (index === that.data.timeBoxIndex) {
-            if (index === 1) {
-                ishideTimePicker = true;
-            }
-            index = -1;
-        }
         if (index === 0) {
             that.setDefaultTime();
         }
@@ -148,7 +145,7 @@ Page({
         });
     },
 
-    handleTimeSelect(e) {
+    pickerTimeSelect(e) {
         const that = this;
         let presetTime = e.detail.value;
         const presetHours = presetTime.split(':')[0];
@@ -157,13 +154,6 @@ Page({
             presetHours,
             presetMinutes,
         });
-    },
-
-    handleCancelSelect() {
-        const that = this;
-        this.setData({
-            timeBoxIndex: -1,
-        })
     },
 
     handlePickerChange(e) {

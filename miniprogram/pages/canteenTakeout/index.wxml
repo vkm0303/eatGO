@@ -78,7 +78,7 @@
 		 itemHeight="{{30}}"
 		 key="{{0}}"
 		 data-flag="{{0}}"
-		 bind:ItemSelect="SelectorItemSelect"
+		 bind:ItemSelect="selectorItemChange"
 		></drop-selector>
 
 		<view class="iconfont icon-iconyoujiantou" style="margin-top: 154rpx; line-height: 60rpx; color: #cfd2d8;"></view>
@@ -91,18 +91,28 @@
 		 options="{{focusOptions}}"
 		 itemHeight="{{30}}"
 		 key="{{0}}"
-		 data-flag="{{1}}"
-		 bind:ItemSelect="SelectorItemSelect"
+		 data-flag="{{0}}"
+		 bind:ItemSelect="selectorItemChange"
 		></drop-selector>
 
-		<view class="filter-btn">筛选</view>
+		<view class="filter-btn" bindtap="filter">筛选</view>
 	</view>
 
 	<scroll-view
 	 class="order-list"
-	 style="height: 85vh;"
 	 scroll-y
+	 scroll-anchoring
+	 enhanced
+	 show-scrollbar="{{false}}"
+	 refresher-default-style="dark"
+	 refresher-enabled="{{true}}"
+	 refresher-triggered="{{showTriggered}}"
+	 refresher-threshold="{{40}}"
 	 enable-flex
+	 lower-threshold="{{10}}"
+	 bindrefresherpulling="refresherPulling"
+	 bindrefresherrefresh="refresherStart"
+	 bindscrolltolower="scrollToLower"
 	>
 		<view
 		 class="order"
@@ -111,7 +121,7 @@
 		>
 			<view class="take commond1">
 				<span class="take-icon commond2">取</span>
-				<span class="take-address commond3">{{item.detail[0].canteen}}</span>
+				<span class="take-address commond3">{{item.canteen}}</span>
 			</view>
 			<view class="receive commond1">
 				<span class="rec-icon commond2">收</span>
@@ -124,9 +134,19 @@
 				<span class="total-price">金额：{{item.price}}元</span>
 			</view>
 			<view class="rec-btn-warp">
-				<view class="rec-btn" bindtap="receiveOrder">确认接单</view>
+				<view
+				 class="rec-btn"
+				 bindtap="receiveOrder"
+				 data-orderid="{{item.orderId}}"
+				>确认接单
+				</view>
 			</view>
 		</view>
+		<view class="tips" wx:if="{{isShowLoading&&!tips}}">
+			<mp-loading type="circle" tips="拼命加载中..."></mp-loading>
+		</view>
+
+		<view class="tips" hidden="{{!tips}}">{{tips}}</view>
 	</scroll-view>
 </view>
 

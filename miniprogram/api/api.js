@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-23 15:13:42
+ * @LastEditTime: 2021-02-25 01:05:58
  * @FilePath: \tastygo\miniprogram\api\api.js
  */
 
@@ -53,11 +53,34 @@ const submitOrder = async(order) => {
     return data;
 };
 
-//获取订单
-const getOrder = async(canteenId, addressId) => {
-    let { data } = await request.get(`${apiBaseUrl}/getOrder?canteenId=${canteenId}&addressId=${addressId}`);
+//接单
+const receiveOrder = async(params) => {
+    let { data } = await request.post(`${apiBaseUrl}/receiveOrder`, params);
     return data;
 };
+
+//取消订单
+const cancelOrder = async(params) => {
+    let { data } = await request.post(`${apiBaseUrl}/cancelOrder`, params);
+    return data;
+};
+
+//获取所有订单
+const getOrder = async(params) => {
+    let { data } = await request.get(`${apiBaseUrl}/getOrder`, params);
+    return data;
+};
+
+const getUserOrder = async(params) => {
+    let { data } = await request.get(`${apiBaseUrl}/getUserOrder`, params);
+    return data;
+};
+
+//获取用户所有订单
+const getOrderByUser = async(params) => {
+    let { data } = await request.get(`${apiBaseUrl}/getOrderByUser`, params);
+    return data;
+}
 
 //添加用户
 const reg = async(userInfo) => {
@@ -74,7 +97,11 @@ const api = {
     getMenuByCanteen,
     getAddressList,
     submitOrder,
+    receiveOrder,
+    cancelOrder,
     getOrder,
+    getUserOrder,
+    getOrderByUser,
     reg,
 };
 

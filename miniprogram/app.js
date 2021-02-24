@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2020-09-21 11:44:34
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-22 22:01:41
+ * @LastEditTime: 2021-02-24 13:11:51
  * @FilePath: \tastygo\miniprogram\app.js
  */
 //app.js
@@ -14,15 +14,16 @@ App({
         // 登录
         wx.login({
                 success: res => {
+                    console.log(res)
                     wx.getUserInfo({
                         withCredentials: 'false',
                         lang: 'zh_CN',
                         timeout: 10000,
                         success: (result) => {
-                            // console.log(result)
-                        },
-                        fail: () => {},
-                        complete: () => {}
+                            let userInfo = wx.getStorageSync('userInfo');
+                            userInfo.nickName = result.nickName;
+                            userInfo.avartar = result.avartarUrl;
+                        }
                     });
                     // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 }
@@ -56,7 +57,6 @@ App({
             that.globalData.userInfo = userInfo
             that.globalData.isLogin = loginState
         }
-        wx.cloud.init();
     },
     globalData: {
         userInfo: {},

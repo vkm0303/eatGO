@@ -1,7 +1,19 @@
 {
-  "desc": "关于本文件的更多信息，请参考文档 https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html",
-  "rules": [{
-  "action": "allow",
-  "page": "*"
-  }]
+    "desc": "关于本文件的更多信息，请参考文档 https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html",
+    "rules": [{
+        "action": "allow",
+        "page": "pages/menu/index"
+    }, {
+        "action": "allow",
+        "page": "pages/canteenTakeout/index"
+    }, {
+        "action": "allow",
+        "page": "pages/more/index"
+    }, {
+        "action": "allow",
+        "page": "pages/about/index"
+    }, {
+        "action": "disallow",
+        "page": "*"
+    }]
 }

@@ -11,7 +11,6 @@ page {
 .time-selector-warp-1 .time-selector-box {
   display: inline-block;
   width: 228rpx;
-  height: 126rpx;
   margin-right: 32rpx;
   box-sizing: border-box;
   border-radius: 20rpx;
@@ -31,25 +30,31 @@ page {
   font-weight: 700;
 }
 .time-selector-warp-1 .time-selector-box .time-warp .title {
+  display: flex;
+  align-items: center;
   width: 40rpx;
   word-wrap: break-word;
   white-space: normal;
   word-break: break-all;
+  text-align: center;
 }
 .time-selector-warp-1 .time-selector-box .status {
-  margin: 5rpx 0 8rpx;
+  margin: -4rpx 0 4rpx;
   text-align: center;
 }
 .time-selector-warp-1 .time-selector-box .deadline {
+  padding: 2rpx 0 4rpx;
   text-align: center;
 }
 .time-selector-warp-1 .active {
   border: 2rpx solid #ff824e;
 }
 .address-warp-1 {
+  display: flex;
+  align-items: center;
   width: 700rpx;
   height: 80rpx;
-  padding-top: 20rpx;
+  padding: 20rpx 0;
   padding-left: 26rpx;
   margin: 40rpx 0 40rpx 50%;
   transform: translateX(-50%);
@@ -57,6 +62,7 @@ page {
   border-radius: 16rpx;
   box-shadow: 0px 0px 6px 0px #dcecf5;
   background-color: #fff;
+  line-height: 80rpx;
   font-size: 28rpx;
   color: #545151;
 }
@@ -160,7 +166,7 @@ page {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-right: 36rpx;
+  margin-right: 6rpx;
   text-align: right;
   font-size: 22rpx;
 }
@@ -190,7 +196,8 @@ page {
 }
 .order-detail-warp .fee-warp .total-fee {
   margin-top: 30rpx;
-  margin-left: 425rpx;
+  margin-right: 46rpx;
+  text-align: right;
   font-size: 36rpx;
 }
 .order-detail-warp .fee-warp :last-child {

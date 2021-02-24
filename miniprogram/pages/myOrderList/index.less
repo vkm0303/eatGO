@@ -1,11 +1,34 @@
-.order-list-warp {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+page {
   background-color: #f8f8f8;
+  .tabs {
+    position: sticky;
+    display: flex;
+    width: 100%;
+    height: 100rpx;
+    color: #fff;
+    font-size: 32rpx;
+    .tabs-common {
+      flex: 1;
+      line-height: 100rpx;
+      text-align: center;
+      background-color: #f7d6b1;
+    } 
+    .active {
+      background-color: #ff824e;
+    }
+  }
+}
+.release {
+  height: 92vh;
+  .order-list-warp {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 44rpx;
+    box-sizing: border-box;
   .order-warp {
     width: 700rpx;
-    margin-top: 44rpx;
+    margin-bottom: 44rpx;
     margin-left: 50%;
     transform: translateX(-50%);
     padding: 36rpx;
@@ -21,8 +44,7 @@
       .details-warp {
         width: 325rpx;
         word-wrap:break-word; 
-        word-break:break-all; 
-        line-height: 150%;
+        word-break:break-all;
       }
       .way {
         margin-top: -3rpx;
@@ -43,8 +65,9 @@
       text-align: center;
       line-height: 56rpx;
     }
-    .status {
+    .disable {
       background-color: #cfcfcf;
     }
+  }
   }
 }

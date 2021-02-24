@@ -1,6 +1,4 @@
 const api = require('../../api/api.js');
-const app = getApp();
-var { userInfo, isLogin } = app.globalData;
 
 var menuData = []; //存放当前食堂的所有菜单数据
 // const eatTime = ['Breakfast', 'Lunch', 'Dinner'];
@@ -37,7 +35,6 @@ Page({
 
         totalPrice: 0,
         totalNum: 0,
-        isShowCart: false,
         StartScroll: false,
 
         timeOptions: ['今天', '明天', '后天'],
@@ -47,7 +44,10 @@ Page({
 
     onLoad: async function(options) {
         const that = this;
-        wx.showLoading({ title: '正在加载' });
+        wx.showLoading({
+            title: '正在加载',
+            mask: true
+        });
 
         //根据当前时间设置默认选中餐点
         const curDate = new Date();
@@ -90,7 +90,15 @@ Page({
         wx.setStorageSync("canteenList", canteenOptions);
     },
 
-    onShow: function() {},
+    onShow: function() {
+        const canteenOrder = wx.getStorageSync('canteenOrder');
+        if (!canteenOrder) {
+            this.setData({
+                totalNum: 0,
+                totalPrice: 0
+            });
+        }
+    },
 
     onShareAppMessage: function(res) {
         var that = this;
@@ -126,6 +134,7 @@ Page({
 
         that.setData({
             curTypeIdx: 0,
+            curType: curTypeList[0],
             curEatTime,
             curTypeList,
             curMenuList,
@@ -183,7 +192,10 @@ Page({
     changeTime(e) {
         const that = this;
         const { index } = e.detail;
-        wx.showLoading({ title: '正在加载' });
+        wx.showLoading({
+            title: '正在加载',
+            mask: true
+        });
         if (preIdx < index) { //判断向前选择还是向后选择
             dayIdx += (index - preIdx);
         } else {

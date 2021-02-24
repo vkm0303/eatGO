@@ -78,10 +78,11 @@
 		<!-- 左侧类名区域 开始 -->
 		<scroll-view
 		 class="type-list"
+		 style="{{curMenuList.length>=3?'height: 85vh':''}}"
 		 scroll-y
 		 lower-threshold="10"
 		 enhanced
-		 show-scrollbar="{{false}}"
+		 show-scrollbar="{{true}}"
 		 paging-enabled
 		 bindscrolltolower="openScroll"
 		>
@@ -101,7 +102,11 @@
 		<!-- 左侧类名区域 结束 -->
 
 		<!-- 右侧食品列表 开始 -->
-		<scroll-view class="food-list" scroll-y>
+		<scroll-view
+		 class="food-list"
+		 style="{{curMenuList.length>=3?'height: 85vh':''}}"
+		 scroll-y
+		>
 			<view class="food-type">{{curType.typeName}}</view>
 			<view
 			 class="food-warp"

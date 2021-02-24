@@ -16,7 +16,7 @@
     "scopeDataCheck": false,
     "uglifyFileName": true,
     "checkInvalidKey": true,
-    "checkSiteMap": true,
+    "checkSiteMap": false,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
@@ -97,7 +97,7 @@
         {
           "name": "结算",
           "pathName": "pages/pay/index",
-          "query": "getWay=1",
+          "query": "getWay=0",
           "scene": null
         },
         {
@@ -159,7 +159,7 @@
           "scene": null
         },
         {
-          "name": "我的订单",
+          "name": "我的订单列表",
           "pathName": "pages/myOrderList/index",
           "query": "",
           "scene": null
@@ -198,6 +198,12 @@
           "name": "个人信息",
           "pathName": "pages/userInfo/index",
           "query": "getWay=getByDelivery",
+          "scene": null
+        },
+        {
+          "name": "pages/chatroom/index",
+          "pathName": "pages/chatroom/index",
+          "query": "",
           "scene": null
         }
       ]

@@ -3,8 +3,8 @@
 		<view>
 			<image class="avatar" src="{{userInfo.avatarUrl}}"></image>
 		</view>
-		<span class="realname">陈俊任</span>
-		<span class="no">201903010108</span>
+		<span class="realname">{{userInfo.realname}}</span>
+		<span class="no">{{userInfo.no}}</span>
 	</view>
 	<view class="editable-info">
 		<mp-cells title="联系方式" footer="该信息仅用于订单交易">

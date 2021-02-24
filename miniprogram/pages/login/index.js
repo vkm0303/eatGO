@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-22 23:29:33
+ * @LastEditTime: 2021-02-23 22:03:01
  * @FilePath: \tastygo\miniprogram\pages\login\index.js
  */
 
@@ -49,6 +49,7 @@ Page({
             },
             method: 'POST',
             success: async(result) => {
+                console.log(result)
                 if (result.data.ret) {
                     let realname = result.data.msg.split('(')[0];
                     let account = result.data.msg.split('(')[1].split(')')[0];
@@ -62,7 +63,6 @@ Page({
                         nickname: userInfo.nickName,
                         avatar: userInfo.avatarUrl,
                     });
-
                     if (res.msg !== 'fail') {
                         wx.setStorageSync('userInfo', userInfo);
                         wx.setStorageSync('loginState', true);

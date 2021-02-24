@@ -1,32 +1,102 @@
-<view class="page">
-	<view class="order-list-warp">
-		<navigator
-		 url="/pages/myOrderDetail/index"
-		 class="order-warp"
-		 wx:for="{{orderList}}"
-		 wx:for-item="order"
-		 wx:key="index"
-		>
-			<view class="box-common">
-				<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
-				<text class="way">{{order.getWay}}</text>
-			</view>
-			<view class="box-common">
-				<text decode>取餐时间:&nbsp;&nbsp;&nbsp;</text>
-				<text class="text-common">{{order.getTime}}</text>
-			</view>
-			<view class="box-common">
-				<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
-				<view class="details-warp">
-					<text class="text-common" decode wx:for="{{order.details}}">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
-				</view>
-			</view>
-			<view class="box-common">
-				<text decode>下单时间:&nbsp;&nbsp;&nbsp;</text>
-				<text class="text-common">2021.02.16</text>
-			</view>
-			<view class="cancel-order-btn {{order.status?'status':''}}" catchtap="cancelOrder">取消订单</view>
-		</navigator>
+<view class="tabs">
+	<view
+	 class="myRelease tabs-common"
+	 animation="{{tabIdx===0?activeAni:disactiveAni}}"
+	 bindtap="tabsItemChange"
+	 data-index="{{0}}"
+	>发布
+	</view>
+	<view
+	 class="myReceive tabs-common"
+	 animation="{{tabIdx===1?activeAni:disactiveAni}}"
+	 bindtap="tabsItemChange"
+	 data-index="{{1}}"
+	>接单
 	</view>
 </view>
+
+<swiper
+ class="release"
+ current="{{tabIdx}}"
+ bindchange="swiperItemChange"
+ bindanimationfinish="animationFinish"
+>
+	<swiper-item>
+		<scroll-view
+		 class="order-list-warp"
+		 scroll-y
+		 bindscrolltolower="scrollToLower"
+		>
+			<navigator
+			 url="/pages/myOrderDetail/index"
+			 hover-class="none"
+			 class="order-warp"
+			 wx:for="{{orderList}}"
+			 wx:for-item="order"
+			 wx:key="index"
+			>
+				<view class="box-common">
+					<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
+					<text class="way">{{getWays[order.getWay]}}</text>
+				</view>
+				<view class="box-common">
+					<text decode>取餐时间:&nbsp;&nbsp;&nbsp;</text>
+					<text class="text-common">{{order.arrivalTime}}</text>
+				</view>
+				<view class="box-common">
+					<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
+					<view class="details-warp">
+						<text class="text-common" decode wx:for="{{order.menus}}" wx:key="index">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
+					</view>
+				</view>
+				<view class="box-common">
+					<text decode>下单时间:&nbsp;&nbsp;&nbsp;</text>
+					<text class="text-common">2021.02.16</text>
+				</view>
+				<view catchtap="preventTap">
+					<view
+					 class="cancel-order-btn  {{order.status===0?'':'disable'}}"
+					 catchtap="{{order.status===0?cancelOrder:''}}"
+					 data-orderid="{{order.orderId}}"
+					>
+						取消订单
+					</view>
+				</view>
+			</navigator>
+		</scroll-view>
+	</swiper-item>
+	<swiper-item>
+		<scroll-view class="release" scroll-y>
+			<view class="order-list-warp">
+				<navigator
+				 url="/pages/myOrderDetail/index"
+				 class="order-warp"
+				 wx:for="{{orderList}}"
+				 wx:for-item="order"
+				 wx:key="index"
+				>
+					<view class="box-common">
+						<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
+						<text class="way">{{getWays[order.getWay]}}</text>
+					</view>
+					<view class="box-common">
+						<text decode>取餐时间:&nbsp;&nbsp;&nbsp;</text>
+						<text class="text-common">{{order.arrivalTime}}</text>
+					</view>
+					<view class="box-common">
+						<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
+						<view class="details-warp">
+							<text class="text-common" decode wx:for="{{order.menus}}" wx:key="index">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
+						</view>
+					</view>
+					<view class="box-common">
+						<text decode>下单时间:&nbsp;&nbsp;&nbsp;</text>
+						<text class="text-common">2021.02.16</text>
+					</view>
+					<view class="cancel-order-btn {{order.status===0?'':'disable'}}" catchtap="cancelOrder">取消订单</view>
+				</navigator>
+			</view>
+		</scroll-view>
+	</swiper-item>
+</swiper>
 

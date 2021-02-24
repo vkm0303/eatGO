@@ -108,7 +108,7 @@ page .top-warp .search-warp .input-placeholder {
 page .top-warp .search-warp .icon-sousuo {
   position: absolute;
   left: 118rpx;
-  top: 14rpx;
+  top: 5rpx;
   width: 38rpx;
   height: 38rpx;
   font-size: 38rpx;
@@ -175,8 +175,8 @@ page .bottom-warp .menu-warp {
   margin-top: 42rpx;
 }
 page .bottom-warp .menu-warp .type-list {
-  flex: 8;
-  height: 90vh;
+  flex: 7;
+  height: 45vh;
 }
 page .bottom-warp .menu-warp .type-list .type-content {
   display: flex;
@@ -195,8 +195,9 @@ page .bottom-warp .menu-warp .type-list .type-select {
 }
 page .bottom-warp .menu-warp .food-list {
   flex: 21;
-  height: 85vh;
+  height: 45vh;
   margin-top: 64rpx;
+  margin-left: 16rpx;
 }
 page .bottom-warp .menu-warp .food-list .food-type {
   width: 96rpx;

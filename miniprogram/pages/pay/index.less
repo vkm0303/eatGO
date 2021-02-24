@@ -11,7 +11,6 @@ page {
     .time-selector-box {
         display: inline-block;
         width: 228rpx;
-        height: 126rpx;
         margin-right: 32rpx;
         box-sizing: border-box;
         border-radius: 20rpx;
@@ -29,17 +28,21 @@ page {
                 font-weight: 700;
             }
             .title {
+                display: flex;
+                align-items: center;
                 width: 40rpx;
                 word-wrap: break-word;
                 white-space: normal;
                 word-break: break-all;
+                text-align: center;
             }
         }
         .status {
-            margin: 5rpx 0 8rpx;
+            margin: -4rpx 0 4rpx;
             text-align: center;
         }
         .deadline {
+            padding: 2rpx 0 4rpx;
             text-align: center;
         }
     }
@@ -49,16 +52,19 @@ page {
 }
 
 .address-warp-1 {
+    display: flex;
+    align-items: center;
     width: 700rpx;
     height: 80rpx;
-    padding-top: 20rpx;
+    padding: 20rpx 0;
     padding-left: 26rpx;
-    margin: 40rpx 0 40rpx 50%;
+    margin:40rpx 0 40rpx 50%;
     transform: translateX(-50%);
     box-sizing: border-box;
     border-radius: 16rpx;
     box-shadow: 0px 0px 6px 0px #dcecf5;
     background-color: #fff;
+    line-height: 80rpx;
     font-size: 28rpx;
     color: #545151;
     .iconfont {
@@ -172,7 +178,7 @@ page {
                     flex: 1;
                     display: flex;
                     flex-direction: column;
-                    margin-right: 36rpx;
+                    margin-right: 6rpx;
                     text-align: right;
                     font-size: 22rpx;
                     .food-price-warp {
@@ -193,8 +199,8 @@ page {
     }
     .fee-warp {
         padding-left: 48rpx;
-            margin-top: 40rpx;
-            font-size: 22rpx;
+        margin-top: 40rpx;
+        font-size: 22rpx;
         .fee-name {
             margin-right: 224 * 2rpx;
             font-size: 28rpx;
@@ -204,7 +210,8 @@ page {
         }
         .total-fee {
             margin-top: 30rpx;
-            margin-left: 425rpx;
+            margin-right: 46rpx;
+            text-align: right;
             font-size: 36rpx;
         }
         :last-child {

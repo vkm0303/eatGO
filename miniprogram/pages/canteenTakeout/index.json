@@ -1,7 +1,8 @@
 {
     "usingComponents": {
-        "drop-selector": "../../components/drop-selector/index"
+        "drop-selector": "../../components/drop-selector/index",
+        "mp-loading": "../../components/loading/loading"
     },
     "navigationBarTitleText": "食堂外带",
-    "disableScroll": true
+    "backgroundTextStyle": "dark"
 }
