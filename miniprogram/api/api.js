@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-25 01:05:58
+ * @LastEditTime: 2021-02-26 14:07:06
  * @FilePath: \tastygo\miniprogram\api\api.js
  */
 
@@ -15,7 +15,7 @@ const { apiBaseUrl } = app.globalData;
 const getCanteenList = async() => {
     let { data } = await request.get(`${apiBaseUrl}/getCanteenList`)
     return data;
-}
+};
 
 //请求菜品类型列表
 const getTypeList = async(url) => {
@@ -27,7 +27,7 @@ const getTypeList = async(url) => {
 const getMenuDetail = async(menuId) => {
     let { data } = await request.get(`${apiBaseUrl}/getMenuDetail?menuId=${menuId}`)
     return data;
-}
+};
 
 //请求菜单数据，url需要食堂id及餐点
 const getMenuList = async(url) => {
@@ -80,11 +80,23 @@ const getUserOrder = async(params) => {
 const getOrderByUser = async(params) => {
     let { data } = await request.get(`${apiBaseUrl}/getOrderByUser`, params);
     return data;
-}
+};
+
+//获取订单详情
+const getOrderDetail = async(params) => {
+    let { data } = await request.get(`${apiBaseUrl}/getOrderById`, params);
+    return data;
+};
 
 //添加用户
 const reg = async(userInfo) => {
     let { data } = await request.post(`${apiBaseUrl}/addCampusUser`, userInfo);
+    return data;
+};
+
+//更新用户信息
+const updateUserInfo = async(params) => {
+    let { data } = await request.post(`${apiBaseUrl}/updateCampusUserDetail`, params);
     return data;
 };
 
@@ -102,7 +114,9 @@ const api = {
     getOrder,
     getUserOrder,
     getOrderByUser,
+    getOrderDetail,
     reg,
+    updateUserInfo
 };
 
 module.exports = api;

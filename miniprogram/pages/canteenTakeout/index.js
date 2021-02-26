@@ -95,16 +95,7 @@ Page({
             }
         } else {
             if (!loginState) {
-                wx.showModal({
-                    title: '您还未登录',
-                    content: '是否马上登录?',
-                    confirmText: '去登录',
-                    success: (result) => {
-                        if (result.confirm) {
-                            wx.navigateTo({ url: '/pages/login/index' });
-                        }
-                    }
-                });
+                that.unLoginMessage();
             } else if (!userInfo.wxid || !userInfo.phone) {
                 wx.showModal({
                     title: '个人信息未完善',
@@ -120,16 +111,31 @@ Page({
         }
     },
 
-    //"我要带"私有函数
+    /*
+     *"我要带"私有函数
+     */
+
+    //跳转订单列表页面
+    goToMyOrderList() {
+        const userInfo = wx.getStorageSync('userInfo');
+        if (userInfo) {
+            wx.navigateTo({
+                url: "/pages/myOrderList/index"
+            });
+        } else {
+            this.unLoginMessage();
+        }
+    },
+
+    //筛选按钮事件
+    filter() {
+        wx.showLoading({ title: 'Loading...' });
+        this.getOrderList('top');
+    },
 
     /*
      *  下拉刷新与上拉加载
      */
-    //筛选按钮事件
-    filter() {
-        wx.showLoading({ title: 'Loading...' });
-        this.getOrderList();
-    },
 
     //加载下拉刷新动画
     refresherPulling() {
@@ -137,7 +143,7 @@ Page({
         wx.showNavigationBarLoading();
         //loading 提示框
         wx.showLoading({
-            title: 'Loading...',
+            title: 'loading...',
         });
     },
 
@@ -152,16 +158,16 @@ Page({
     },
 
     //scroll-view滑动事件，若正在刷新，则停止
-    // stopRefresh() {
-    //     if (this.data.showTriggered) {
-    //         wx.hideNavigationBarLoading();
-    //         wx.hideLoading();
-    //         this.setData({
-    //             showTriggered: false,
-    //             tips: false
-    //         });
-    //     }
-    // },
+    stopRefresh() {
+        if (this.data.showTriggered) {
+            wx.hideNavigationBarLoading();
+            wx.hideLoading();
+            this.setData({
+                showTriggered: false,
+                tips: false
+            });
+        }
+    },
 
     //scroll-view触底事件，上拉加载
     scrollToLower() {
@@ -183,6 +189,7 @@ Page({
             currentPage,
             pageSize: PAGESIZE
         }
+        console.log(params)
         let res = await getOrder(params);
         orderList = type === 'top' ? res.data : orderList.concat(res.data);
         console.log(orderList)
@@ -220,7 +227,7 @@ Page({
     //切换Tabs到“我要带”
     async tabItemChange() {
         const that = this;
-        wx.showLoading({ title: 'Loading...' });
+        wx.showLoading({ title: 'loading...' });
 
         //获取取餐地点
         const startingOptions = wx.getStorageSync('canteenList') || ['北区食堂', '北区西餐厅', '竹韵食堂', '石井食堂'];
@@ -269,13 +276,14 @@ Page({
                             } else {
                                 wx.showModal({
                                     title: '接单失败',
-                                    content: '订单被截胡啦！刷新页面试试',
+                                    content: res.msg,
                                     showCancel: false,
-                                    confirmText: '刷新',
+                                    confirmText: '确定',
                                     success: (r) => {
                                         if (r.confirm) {
-                                            that.refresherPulling();
-                                            that.refresherStart();
+                                            // that.refresherPulling();
+                                            // that.refresherStart();
+                                            wx.navigateTo({ url: `/pages/takeOrderDetail/index?orderId=${orderId}` });
                                         }
                                     }
                                 });
@@ -307,5 +315,19 @@ Page({
                 }
             });
         }
+    },
+
+    //未登录提示弹出
+    unLoginMessage() {
+        wx.showModal({
+            title: '您还未登录',
+            content: '是否马上登录?',
+            confirmText: '去登录',
+            success: (result) => {
+                if (result.confirm) {
+                    wx.navigateTo({ url: '/pages/login/index' });
+                }
+            }
+        });
     }
 })

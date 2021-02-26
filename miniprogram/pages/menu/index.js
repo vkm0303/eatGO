@@ -11,9 +11,8 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 Page({
     data: {
         swiperImagesList: [
-            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/pic1.png',
-            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/pic2.png',
-            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/pic3.png'
+            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/1.jpg',
+            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/2.jpg'
         ], //轮播图链接
         curEatTime: '', //当前选中的餐点
 
@@ -134,9 +133,8 @@ Page({
 
         that.setData({
             curTypeIdx: 0,
-            curType: curTypeList[0],
-            curEatTime,
             curTypeList,
+            curEatTime,
             curMenuList,
         });
     },
@@ -352,7 +350,7 @@ Page({
     },
 
     //订单单个商品数量发生变化
-    itemNumChange(e) {
+    bindItemNumChange(e) {
         const that = this;
         const { id, num } = e.detail;
         let canteenOrder = wx.getStorageSync('canteenOrder');
@@ -397,6 +395,16 @@ Page({
             totalNum,
             totalPrice,
         })
+    },
+
+    bindClearCart() {
+        wx.removeStorageSync('canteenOrder');
+        wx.removeStorageSync('orderDetail');
+        this.setData({
+            totalNum: 0,
+            totalPrice: 0,
+            orderDetail: []
+        });
     },
 
     computeTotalNum() {

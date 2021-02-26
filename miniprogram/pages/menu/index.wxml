@@ -1,6 +1,6 @@
 <view class="top-warp">
 	<!-- 搜索框 开始 -->
-	<view class="search-warp">
+	<!-- <view class="search-warp">
 		<view class="iconfont icon-sousuo"></view>
 		<input
 		 class="search_input"
@@ -9,19 +9,19 @@
 		 placeholder="搜索你想吃的美食"
 		 placeholder-class="input-placeholder"
 		></input>
-	</view>
+	</view> -->
 	<!-- 搜索框 结束 -->
 
 	<!-- 轮播图 开始 -->
 	<swiper
-	 indicator-dots="{{true}}"
-	 indicator-color="#dddddd"
-	 indicator-active-color="#333333"
-	 autoplay="{{true}}"
-	 interval="2000"
+	 vertical
+	 circular
+	 autoplay
+	 duration="0"
+	 interval="2500"
 	>
 		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
-			<image src="{{item}}"></image>
+			<image src="{{item}}" mode="aspectFit"></image>
 		</swiper-item>
 	</swiper>
 	<!-- 轮播图 结束 -->
@@ -107,7 +107,7 @@
 		 style="{{curMenuList.length>=3?'height: 85vh':''}}"
 		 scroll-y
 		>
-			<view class="food-type">{{curType.typeName}}</view>
+			<view class="food-type">{{curTypeWList[curTypeIdx].typeName}}</view>
 			<view
 			 class="food-warp"
 			 wx:for="{{curMenuList}}"
@@ -151,7 +151,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="food-type">{{curType.typeName}}</view>
+			<view class="food-type">{{curTypeWList[curTypeIdx].typeName}}</view>
 		</scroll-view>
 		<!-- 右侧食品列表 结束 -->
 	</view>
@@ -163,6 +163,7 @@
  totalPrice="{{totalPrice}}"
  totalNum="{{totalNum}}"
  url="{{'/pages/canteenTakeout/index'}}"
- bind:itemNumChange="itemNumChange"
+ bind:itemNumChange="bindItemNumChange"
+ bind:clearCart="bindClearCart"
 ></shopping-cart>
 

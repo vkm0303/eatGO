@@ -1,22 +1,25 @@
-<view class="detail-warp">
+<import src="index.skeleton.wxml" />
+<template is="skeleton" wx-if="{{loading}}" />
+
+<view class="detail-warp" wx:else>
 	<view class="foods-content">
 		<span class="title">菜品</span>
 		<view class="food-warp">
 			<view
 			 class="food"
-			 wx:for="{{foods}}"
-			 wx:key="{{index}}"
+			 wx:for="{{orderDetail.menus}}"
+			 wx:key="index"
 			>
 				<image
 				 class="food-img"
-				 src="{{item.imgUrl}}"
+				 src="{{'http://image.tastygo.cn'+item.imgUrl}}"
 				 mode="aspectFit"
 				></image>
-				<view class="food-name">{{item.name}}</view>
+				<view class="food-name">{{item.foodName}}</view>
 				<span class="food-num">x{{item.num}}</span>
 				<span class="food-price">
 					<text class="symbol">￥</text>
-					<text class="price">{{item.price}}.0</text>
+					<text class="price">{{item.foodPrice}}</text>
 				</span>
 			</view>
 			<view class="delivery-fee">
@@ -33,7 +36,7 @@
 			<view class="total-fee">
 				<text decode>实付:&nbsp;</text>
 				<text class="symbol red">￥</text>
-				<text class="red">25</text>
+				<text class="red">{{orderDetail.price}}</text>
 			</view>
 		</view>
 	</view>
@@ -44,22 +47,37 @@
 			<view class="time-warp">
 				<span class="iconfont icon-clock"></span>
 				请在
-				<text class="time">30</text>
-				分钟内送达
+				<text class="time">{{orderDetail.arrivalTime}}</text>
+				前送达
 			</view>
 			<view class="consignee-info">
 				<span class="consignee">
 					<text decode>收餐:&nbsp;&nbsp;&nbsp;</text>
-					<text>xxxx</text>
+					<text>{{orderDetail.receiver.name}}</text>
 				</span>
-				<span class="tele-num">
+				<span class="common">
+					<text decode>微信:&nbsp;&nbsp;&nbsp;</text>
+					<text>{{orderDetail.receiver.wechat}}</text>
+					<span
+					 class="copy-btn iconfont icon-copy"
+					 bindtap="copy"
+					 data-content="{{orderDetail.receiver.wechat}}"
+					></span>
+				</span>
+				<span class="common">
 					<text decode>电话:&nbsp;&nbsp;&nbsp;</text>
-					<text>12345678901</text>
+					<text>{{orderDetail.receiver.phone}}</text>
+					<span
+					 class="copy-btn iconfont icon-copy"
+					 bindtap="copy"
+					 data-content="{{orderDetail.receiver.phone}}"
+					></span>
+
 				</span>
-				<text class="address" decode>地址:&nbsp;&nbsp;&nbsp;男生宿舍17B&nbsp;0347</text>
+				<text class="address" decode>地址:&nbsp;&nbsp;&nbsp;{{orderDetail.address}}&nbsp;{{orderDetail.addressDetail}}</text>
 			</view>
 			<view class="line"></view>
-			<span class="remarks">备注： xxxxxxx</span>
+			<span class="remarks">备注： {{orderDetail.note}}</span>
 		</view>
 	</view>
 	<view class="confirm-btn">确认送达</view>

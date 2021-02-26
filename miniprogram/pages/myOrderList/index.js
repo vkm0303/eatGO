@@ -3,7 +3,7 @@
  * @Author: AS
  * @Date: 2021-02-11 14:23:03
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-25 01:09:56
+ * @LastEditTime: 2021-02-27 00:13:44
  * @FilePath: \tastygo\miniprogram\pages\myOrderList\index.js
  */
 
@@ -17,8 +17,12 @@ Page({
 
     data: {
         tabIdx: 0,
-        orderList: [],
+        releaseOrderList: [],
+        receiveOrderList: [],
         getWays: ['自提', '送餐上门'],
+
+        loadingTips: '',
+        loading: true
     },
 
     onLoad: function(options) {
@@ -31,7 +35,7 @@ Page({
         wx.showLoading({
             title: '加载中',
         });
-        this.getUserOrderList(orderType[tabIdx]);
+        this.getUserOrderList(orderType[tabIdx], true);
     },
 
     onPullDownRefresh: function() {
@@ -62,7 +66,7 @@ Page({
             title: '加载中...',
             mask: true
         });
-        this.getUserOrderList(orderType[current]);
+        this.getUserOrderList(orderType[current], true);
     },
 
     scrollToLower() {
@@ -73,7 +77,8 @@ Page({
         this.getUserOrderList(orderType[this.data.tabIdx]);
     },
 
-    async getUserOrderList(orderType) {
+    async getUserOrderList(orderType, isClearData = false) {
+        let { releaseOrderList, receiveOrderList } = this.data;
         const userInfo = wx.getStorageSync('userInfo');
         const params = {
             id: userInfo.no,
@@ -82,10 +87,38 @@ Page({
             pageSize: PAGESIZE
         };
         let res = await getUserOrder(params);
-        let orderList = res.data;
-        this.setData({
-            orderList
-        });
+
+        let loadingTips = '';
+        if (!res.data.length) {
+            loadingTips = '已经到底了'
+        }
+
+        if (orderType === 'release') {
+            if (isClearData) {
+                releaseOrderList = [];
+            }
+            releaseOrderList.push(...res.data);
+
+            console.log(releaseOrderList)
+            this.setData({
+                releaseOrderList,
+                loadingTips,
+                loading: false
+            });
+        } else {
+            if (isClearData) {
+                receiveOrderList = [];
+            }
+            receiveOrderList.push(...res.data);
+
+            console.log(receiveOrderList)
+            this.setData({
+                receiveOrderList,
+                loadingTips,
+                loading: false
+            });
+        }
+
         wx.hideLoading();
     },
 
@@ -138,6 +171,13 @@ Page({
             disactiveAni: disactiveAni.export()
         });
 
+    },
+
+    goToOrderDetail(e) {
+        const orderId = e.currentTarget.dataset.orderid;
+        wx.navigateTo({
+            url: `/pages/takeOrderDetail/index?orderId=${orderId}`
+        });
     },
 
     //阻止点击穿透

@@ -2,7 +2,7 @@
 	<view class="cart-detail" hidden="{{isHideDetail}}">
 		<view class="header">
 			<span class="title">购物车</span>
-			<span class="clear">清空</span>
+			<span class="clear" bindtap="clear">清空</span>
 		</view>
 		<view
 		 class="food"

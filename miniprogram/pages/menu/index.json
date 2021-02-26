@@ -3,5 +3,6 @@
         "drop-selector": "../../components/drop-selector/index",
         "shopping-cart": "../../components/shopping-cart/shopping-cart"
     },
-    "navigationBarTitleText": "好吃Go"
+    "navigationBarTitleText": "好吃Go",
+    "navigationBarBackgroundColor": "#ff824e"
 }

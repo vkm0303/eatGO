@@ -1,0 +1,130 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/2/27 上午12:09:56 
+使用方法：
+在 D:\项目\tastygo\miniprogram\pages\myOrderList\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\项目\tastygo\miniprogram\pages\myOrderList\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="tabs">
+      <view class="myRelease tabs-common sk-transparent sk-text-34-0000-923 sk-text" data-index="0" style="transition: transform 300ms linear 0ms, background-color; transform-origin: 50% 50% 0px; background-color: rgb(255, 130, 78); background-position-x: 50%;">发布
+      </view>
+      <view class="myReceive tabs-common sk-transparent sk-text-34-0000-198 sk-text" data-index="1" style="transition: transform 300ms linear 0ms, background-color; transform-origin: 50% 50% 0px; background-color: rgb(247, 214, 177); background-position-x: 50%;">接单
+      </view>
+    </view>
+    <swiper class="release" current="0" autoplay="false">
+      <swiper-item style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+        <scroll-view scroll-y="true" class="order-list-warp" lower-threshold="6">
+          <navigator class="order-warp" hover-class="none">
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-742 sk-text">取餐方式:&nbsp;&nbsp;&nbsp;</text>
+              <text class="way sk-transparent sk-text--11-5385-440 sk-text">送餐上门</text>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-949 sk-text">取餐时间:&nbsp;&nbsp;&nbsp;</text>
+              <text class="text-common sk-transparent sk-text-0-0000-554 sk-text">17:30</text>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-464 sk-text">餐品内容:&nbsp;&nbsp;&nbsp;</text>
+              <view class="details-warp">
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-299 sk-text">菠菜*2&nbsp;&nbsp;&nbsp;</text>
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-541 sk-text">煎饼果子*1&nbsp;&nbsp;&nbsp;</text>
+              </view>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-963 sk-text">下单时间:&nbsp;&nbsp;&nbsp;</text>
+              <text class="text-common sk-transparent sk-text-0-0000-430 sk-text">2021-02-26 14:19:32</text>
+            </view>
+            <view>
+              <view class="cancel-order-btn sk-transparent sk-text-26-7857-42 sk-text" data-orderid="74008cb0402c48e69c146f75cae42fac" style="background-position-x: 50%;">
+                取消订单
+              </view>
+            </view>
+          </navigator>
+          <navigator class="order-warp" hover-class="none">
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-253 sk-text">取餐方式:&nbsp;&nbsp;&nbsp;</text>
+              <text class="way sk-transparent sk-text--11-5385-680 sk-text">送餐上门</text>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-175 sk-text">取餐时间:&nbsp;&nbsp;&nbsp;</text>
+              <text class="text-common sk-transparent sk-text-0-0000-645 sk-text">07:30</text>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-85 sk-text">餐品内容:&nbsp;&nbsp;&nbsp;</text>
+              <view class="details-warp">
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-528 sk-text">煎饼果子*4&nbsp;&nbsp;&nbsp;</text>
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-524 sk-text">番薯*1&nbsp;&nbsp;&nbsp;</text>
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-29 sk-text">豆沙包*1&nbsp;&nbsp;&nbsp;</text>
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-380 sk-text">菠菜*1&nbsp;&nbsp;&nbsp;</text>
+              </view>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-835 sk-text">下单时间:&nbsp;&nbsp;&nbsp;</text>
+              <text class="text-common sk-transparent sk-text-0-0000-472 sk-text">2021-02-22 21:01:06</text>
+            </view>
+            <view>
+              <view class="cancel-order-btn disable sk-transparent sk-text-26-7857-910 sk-text" data-orderid="0466109a95b74d8986be28fe01b8bf3a" style="background-position-x: 50%;">
+                取消订单
+              </view>
+            </view>
+          </navigator>
+          <navigator class="order-warp" hover-class="none">
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-496 sk-text">取餐方式:&nbsp;&nbsp;&nbsp;</text>
+              <text class="way sk-transparent sk-text--11-5385-306 sk-text">送餐上门</text>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-7 sk-text">取餐时间:&nbsp;&nbsp;&nbsp;</text>
+              <text class="text-common sk-transparent sk-text-0-0000-202 sk-text">18:41</text>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-512 sk-text">餐品内容:&nbsp;&nbsp;&nbsp;</text>
+              <view class="details-warp">
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-996 sk-text">煎饼果子*2&nbsp;&nbsp;&nbsp;</text>
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-758 sk-text">番薯*1&nbsp;&nbsp;&nbsp;</text>
+              </view>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-782 sk-text">下单时间:&nbsp;&nbsp;&nbsp;</text>
+              <text class="text-common sk-transparent sk-text-0-0000-627 sk-text">2021-02-22 18:11:18</text>
+            </view>
+            <view>
+              <view class="cancel-order-btn sk-transparent sk-text-26-7857-774 sk-text" data-orderid="6cc9ee0b11f841c3a94b560ce86f9bc8" style="background-position-x: 50%;">
+                取消订单
+              </view>
+            </view>
+          </navigator>
+          <navigator class="order-warp" hover-class="none">
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-162 sk-text">取餐方式:&nbsp;&nbsp;&nbsp;</text>
+              <text class="way sk-transparent sk-text--11-5385-341 sk-text">自提</text>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-201 sk-text">取餐时间:&nbsp;&nbsp;&nbsp;</text>
+              <text class="text-common sk-transparent sk-text-0-0000-683 sk-text">18:40</text>
+            </view>
+            <view class="box-common">
+              <text decode="true" class="sk-transparent sk-text-0-0000-305 sk-text">餐品内容:&nbsp;&nbsp;&nbsp;</text>
+              <view class="details-warp">
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-856 sk-text">煎饼果子*2&nbsp;&nbsp;&nbsp;</text>
+                <text decode="true" class="text-common sk-transparent sk-text-0-0000-313 sk-text">番薯*1&nbsp;&nbsp;&nbsp;</text>
+              </view>
+            </view>
+          </navigator>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</template>

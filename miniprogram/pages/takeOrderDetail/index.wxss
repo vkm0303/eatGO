@@ -1,3 +1,158 @@
+/*
+此文件为开发者工具生成，生成时间: 2021/2/25 下午1:36:59 
+
+在 D:\项目\tastygo\miniprogram\pages\takeOrderDetail\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+*/
+.sk-transparent {
+  color: transparent !important;
+}
+.sk-text-18-7500-751 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text {
+  background-origin: content-box !important;
+  background-clip: content-box !important;
+  background-color: transparent !important;
+  color: transparent !important;
+  background-repeat: repeat-y !important;
+}
+.sk-text-18-7500-401 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-622 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-opacity {
+  opacity: 0 !important;
+}
+.sk-text-18-7500-940 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 57.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-565 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-304 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-356 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 57.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-217 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-573 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 57.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-13 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-948 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 57.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-150 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 57.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-385 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 57.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-511 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-649 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 76.8rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-855 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-851 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-848 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-676 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-686 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-347 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-image {
+  background: #EFEFEF !important;
+}
+.sk-pseudo::before,
+.sk-pseudo::after {
+  background: #EFEFEF !important;
+  background-image: none !important;
+  color: transparent !important;
+  border-color: transparent !important;
+}
+.sk-pseudo-rect::before,
+.sk-pseudo-rect::after {
+  border-radius: 0 !important;
+}
+.sk-pseudo-circle::before,
+.sk-pseudo-circle::after {
+  border-radius: 50% !important;
+}
+.sk-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
+}
 .detail-warp {
   padding-top: 44rpx;
   background-color: #f4f4f4;
@@ -20,6 +175,7 @@
 }
 .detail-warp .foods-content .food-warp .food {
   display: flex;
+  align-items: center;
   margin-bottom: 42rpx;
 }
 .detail-warp .foods-content .food-warp .food .food-img {
@@ -27,15 +183,19 @@
   height: 46rpx;
 }
 .detail-warp .foods-content .food-warp .food .food-name {
+  display: flex;
+  align-items: center;
   width: 180rpx;
   margin-left: 16rpx;
   font-size: 32rpx;
 }
 .detail-warp .foods-content .food-warp .food .food-num {
-  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 90rpx;
 }
 .detail-warp .foods-content .food-warp .food .food-price {
-  margin-left: 220rpx;
+  margin-left: 160rpx;
 }
 .detail-warp .foods-content .food-warp .symbol {
   font-size: 22rpx;
@@ -100,8 +260,12 @@
   flex-direction: column;
   padding-left: 20rpx;
 }
-.detail-warp .delivery-detail .detail .consignee-info .consignee {
-  margin: 20rpx 0 12rpx;
+.detail-warp .delivery-detail .detail .consignee-info .common {
+  margin: 20rpx 0 0;
+}
+.detail-warp .delivery-detail .detail .consignee-info .common .copy-btn {
+  margin-left: 17rpx;
+  color: #ff824e;
 }
 .detail-warp .delivery-detail .detail .consignee-info .address {
   margin: 12rpx 0 18rpx;

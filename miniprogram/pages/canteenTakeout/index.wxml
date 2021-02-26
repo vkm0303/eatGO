@@ -14,14 +14,10 @@
 	<view class="animation-box" animation="{{moveAnimation}}"></view>
 </view>
 
-<navigator
- class="order-entry"
- url="/pages/myOrderList/index"
- hover-class="none"
->
+<view class="order-entry" bindtap="goToMyOrderList">
 	<span class="iconfont icon-order"></span>
 	<text class="order-text">订单</text>
-</navigator>
+</view>
 
 <view class="content-submit-order" hidden="{{tabIndex===1}}">
 	<view class="target-address">
@@ -113,6 +109,7 @@
 	 bindrefresherpulling="refresherPulling"
 	 bindrefresherrefresh="refresherStart"
 	 bindscrolltolower="scrollToLower"
+	 hidden="{{!orderList.length}}"
 	>
 		<view
 		 class="order"
@@ -148,5 +145,9 @@
 
 		<view class="tips" hidden="{{!tips}}">{{tips}}</view>
 	</scroll-view>
+	<view class="null-msg">
+		<span class="iconfont icon-null-order"></span>
+		<span class="msg">没有相关订单噢~</span>
+	</view>
 </view>
 

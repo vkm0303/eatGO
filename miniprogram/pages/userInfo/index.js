@@ -3,9 +3,12 @@
  * @Author: 陈俊任
  * @Date: 2021-02-22 19:12:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-24 13:06:35
+ * @LastEditTime: 2021-02-26 14:08:33
  * @FilePath: \tastygo\miniprogram\pages\userInfo\index.js
  */
+
+const { updateUserInfo } = require('../../api/api');
+
 var wxid = '';
 var phone = '';
 var userInfo = {};
@@ -31,17 +34,29 @@ Page({
         userInfo.phone = e.detail.value;
     },
 
-    save() {
+    async save() {
         wx.showLoading({
             title: '正在保存',
         });
-        console.log(userInfo)
-        wx.setStorageSync('userInfo', userInfo);
+        const params = {
+            campusId: userInfo.no,
+            wxId: wxid,
+            phone: phone
+        };
         wx.hideLoading();
-        wx.showToast({
-            title: '保存成功',
-            icon: 'none'
-        });
+        let res = await updateUserInfo(params);
+        if (res.code === 200) {
+            wx.setStorageSync('userInfo', userInfo);
+            wx.showToast({
+                title: '保存成功',
+                icon: 'none'
+            });
+        } else {
+            wx.showToast({
+                title: '保存失败',
+                icon: 'none'
+            });
+        }
     }
 
 })

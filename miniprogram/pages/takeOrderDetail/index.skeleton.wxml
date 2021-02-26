@@ -1,0 +1,85 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/2/25 下午1:36:59 
+使用方法：
+在 D:\项目\tastygo\miniprogram\pages\takeOrderDetail\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\项目\tastygo\miniprogram\pages\takeOrderDetail\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="detail-warp">
+      <view class="foods-content">
+        <span class="title sk-transparent sk-text-18-7500-751 sk-text">菜品</span>
+        <view class="food-warp">
+          <view class="food">
+            <image class="food-img sk-image" mode="aspectFit"></image>
+            <view class="food-name sk-transparent sk-text-18-7500-401 sk-text">烧鸭饭</view>
+            <span class="food-num sk-transparent sk-text-18-7500-622 sk-text">x2</span>
+            <span class="food-price">
+              <text class="symbol sk-transparent sk-opacity">￥</text>
+              <text class="price sk-transparent sk-text-18-7500-940 sk-text">9.0</text>
+            </span>
+          </view>
+          <view class="food">
+            <image class="food-img sk-image" mode="aspectFit"></image>
+            <view class="food-name sk-transparent sk-text-18-7500-565 sk-text">咸水鸡饭</view>
+            <span class="food-num sk-transparent sk-text-18-7500-304 sk-text">x2</span>
+            <span class="food-price">
+              <text class="symbol sk-transparent sk-opacity">￥</text>
+              <text class="price sk-transparent sk-text-18-7500-356 sk-text">8.0</text>
+            </span>
+          </view>
+          <view class="delivery-fee">
+            <text class="sk-transparent sk-text-18-7500-217 sk-text">配送费</text>
+            <text class="symbol fee-position sk-transparent sk-opacity">￥</text>
+            <text class="price sk-transparent sk-text-18-7500-573 sk-text">2.0</text>
+          </view>
+          <view class="packing-fee">
+            <text class="sk-transparent sk-text-18-7500-13 sk-text">包装费</text>
+            <text class="symbol fee-position sk-transparent sk-opacity">￥</text>
+            <text class="price sk-transparent sk-text-18-7500-948 sk-text">1.0</text>
+          </view>
+          <view class="line"></view>
+          <view class="total-fee">
+            <text decode="true" class="sk-transparent sk-text-18-7500-150 sk-text">实付:&nbsp;</text>
+            <text class="symbol red sk-transparent sk-opacity">￥</text>
+            <text class="red sk-transparent sk-text-18-7500-385 sk-text">25</text>
+          </view>
+        </view>
+      </view>
+      <view class="delivery-detail">
+        <span class="title sk-transparent sk-text-18-7500-511 sk-text">配送信息</span>
+        <view class="detail">
+          <view class="time-warp sk-transparent">
+            <span class="iconfont icon-clock sk-pseudo sk-pseudo-circle"></span>
+            请在
+            <text class="time sk-transparent sk-text-18-7500-649 sk-text">30</text> 分钟内送达
+          </view>
+          <view class="consignee-info">
+            <span class="consignee">
+              <text decode="true" class="sk-transparent sk-text-18-7500-855 sk-text">收餐:&nbsp;&nbsp;&nbsp;</text>
+              <text class="sk-transparent sk-text-18-7500-851 sk-text">xxxx</text>
+            </span>
+            <span class="tele-num">
+              <text decode="true" class="sk-transparent sk-text-18-7500-848 sk-text">电话:&nbsp;&nbsp;&nbsp;</text>
+              <text class="sk-transparent sk-text-18-7500-676 sk-text">12345678901</text>
+            </span>
+            <text decode="true" class="address sk-transparent sk-text-18-7500-686 sk-text">地址:&nbsp;&nbsp;&nbsp;男生宿舍17B&nbsp;0347</text>
+          </view>
+          <view class="line"></view>
+          <span class="remarks sk-transparent sk-text-18-7500-347 sk-text">备注： xxxxxxx</span>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

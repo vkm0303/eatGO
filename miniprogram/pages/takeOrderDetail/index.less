@@ -1,3 +1,4 @@
+@import "./index.skeleton.wxss";
 .detail-warp {
   padding-top: 44rpx;
   background-color: #f4f4f4;
@@ -20,6 +21,7 @@
       background-color: #fff;
       .food {
         display: flex;
+        align-items: center;
         margin-bottom: 42rpx;
         .food-img {
           width: 56rpx;
@@ -27,17 +29,21 @@
         }
 
         .food-name {
+          display: flex;
+          align-items: center;
           width: 180rpx;
           margin-left: 16rpx;
           font-size: 32rpx;
         }
 
         .food-num {
-          margin-left: 20rpx;
+          display: flex;
+          align-items: center;
+          margin-left: 90rpx;
         }
 
         .food-price {
-          margin-left: 220rpx;
+          margin-left: 160rpx;
         }
       }
       
@@ -109,8 +115,12 @@
         display: flex;
         flex-direction: column;
         padding-left: 20rpx;
-        .consignee {
-          margin: 20rpx 0 12rpx;
+        .common {
+          margin: 20rpx 0 0;
+          .copy-btn {
+            margin-left: 17rpx;
+            color: #ff824e;
+          }
         }
         .address {
           margin: 12rpx 0 18rpx;
