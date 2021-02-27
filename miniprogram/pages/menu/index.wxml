@@ -115,7 +115,10 @@
 			 wx:for-item="food"
 			 wx:key="food_index"
 			>
-				<image class="food-img" src="{{'http://image.tastygo.cn'+food.menus[0].pictureImg}}"></image>
+				<view class="img-warp">
+					<image class="food-img" src="{{'http://image.tastygo.cn'+food.menus[0].pictureImg}}"></image>
+					<image class="canteen-logo" src="../../images/canteen-logo.png"></image>
+				</view>
 				<view class="food-description">
 					<view class="name">{{food.menus[0].foodName}}</view>
 					<view class="tag">

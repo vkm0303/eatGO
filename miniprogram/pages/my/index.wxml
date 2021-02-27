@@ -16,7 +16,7 @@
  class="login-btn"
  url="/pages/login/index"
  wx:else
->登录
+>登录解锁更多功能
 </navigator>
 <view class="main-warp">
 	<navigator

@@ -1,31 +1,66 @@
-<view class="tabs-warp">
-	<view
-	 class="left-box text-center"
-	 data-index="{{0}}"
-	 bindtap="moveLeft"
-	>我要吃
+<view class="navbar" style="height: {{navBarHeight*2}}rpx; padding-left: {{menuRight}}rpx;">
+	<view class="tabs-warp" style="bottom: {{menuBottom*2}}rpx">
+		<view
+		 class="left-box text-center"
+		 data-index="{{0}}"
+		 bindtap="moveLeft"
+		>我要吃
+		</view>
+		<view
+		 class="right-box text-center"
+		 data-index="{{1}}"
+		 bindtap="moveRight"
+		>我要带
+		</view>
+		<view class="animation-box" animation="{{moveAnimation}}"></view>
 	</view>
-	<view
-	 class="right-box text-center"
-	 data-index="{{1}}"
-	 bindtap="moveRight"
-	>我要带
-	</view>
-	<view class="animation-box" animation="{{moveAnimation}}"></view>
 </view>
 
-<view class="order-entry" bindtap="goToMyOrderList">
-	<span class="iconfont icon-order"></span>
-	<text class="order-text">订单</text>
-</view>
+<view
+ class="content-submit-order"
+ style="padding-top: {{navBarHeight*2}}rpx"
+ hidden="{{tabIdx===1}}"
+>
+	<swiper
+	 class="swiper"
+	 current="0"
+	 autoplay
+	 circular
+	>
+		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
+			<image
+			 class="swiper-img"
+			 src="{{item}}"
+			 mode="aspectFit"
+			> </image>
+		</swiper-item>
+	</swiper>
 
-<view class="content-submit-order" hidden="{{tabIndex===1}}">
-	<view class="target-address">
-		<span class="iconfont icon-dingwei2"></span>
-		<span class="address-name">北区食堂</span>
+	<view class="ways">
+		<image class="bgc" src="../../images/ways.png"></image>
+		<view
+		 class="left common"
+		 bindtap="handleWaySelect"
+		 data-index="{{0}}"
+		></view>
+		<view
+		 class="right common"
+		 bindtap="handleWaySelect"
+		 data-index="{{1}}"
+		></view>
+	</view>
+
+	<view class="tips-outer">
+		<view class="tips">
+			<image class="icon" src="../../images/tips.jpg"></image>
+			<view class="content-warp">
+				<span class="head">注意事项</span>
+				<span class="content">若长时间无人接单，建议自行前往食堂根据取餐码取餐噢~</span>
+			</view>
+		</view>
 	</view>
 	<!-- 领取方式容器 开始 -->
-	<view class="get-ways-warp">
+	<!-- <view class="get-ways-warp">
 		<view
 		 class="get-way-box box-common {{getWayIndex === 0 ? 'active':'' }}"
 		 data-index="{{0}}"
@@ -54,15 +89,11 @@
 			<text class="way-name">送餐上门</text>
 			<text class="way-tip">接单员配送餐食值指定位置</text>
 		</view>
-	</view>
+	</view> -->
 	<!-- 领取方式容器 结束 -->
-	<view class="goto-submit-btn" bindtap="gotoSubmit">
-		<text decode>填写信息&nbsp;&nbsp;</text>
-		<span class="iconfont icon-iconyoujiantou"></span>
-	</view>
 </view>
 
-<view class="content-receive-order" hidden="{{tabIndex===0}}">
+<view class="content-receive-order" hidden="{{tabIdx===0}}">
 
 	<view class="address-warp">
 		<span class="iconfont icon-dian" style="color: #f7d479;"></span>
@@ -109,7 +140,6 @@
 	 bindrefresherpulling="refresherPulling"
 	 bindrefresherrefresh="refresherStart"
 	 bindscrolltolower="scrollToLower"
-	 hidden="{{!orderList.length}}"
 	>
 		<view
 		 class="order"
@@ -144,10 +174,11 @@
 		</view>
 
 		<view class="tips" hidden="{{!tips}}">{{tips}}</view>
+
+		<view class="null-msg" wx-if="{{!orderList.length}}">
+			<span class="iconfont icon-null-order"></span>
+			<span class="msg">没有相关订单噢~</span>
+		</view>
 	</scroll-view>
-	<view class="null-msg">
-		<span class="iconfont icon-null-order"></span>
-		<span class="msg">没有相关订单噢~</span>
-	</view>
 </view>
 

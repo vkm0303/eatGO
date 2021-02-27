@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2020-09-21 11:44:34
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-24 13:11:51
+ * @LastEditTime: 2021-02-27 18:18:35
  * @FilePath: \tastygo\miniprogram\app.js
  */
 //app.js
@@ -48,7 +48,17 @@ App({
                     })
                 }
             }
-        })
+        });
+
+        // 获取系统信息
+        const systemInfo = wx.getSystemInfoSync();
+        // 胶囊按钮位置信息
+        const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+        // 导航栏高度 = 状态栏到胶囊的间距（胶囊距上距离-状态栏高度） * 2 + 胶囊高度 + 状态栏高度
+        that.globalData.navBarHeight = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight;
+        that.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
+        that.globalData.menuBottom = menuButtonInfo.top - systemInfo.statusBarHeight;
+        that.globalData.menuHeight = menuButtonInfo.height;
 
         //初始化用户信息
         const loginState = wx.getStorageSync('loginState')
@@ -62,5 +72,10 @@ App({
         userInfo: {},
         isLogin: false,
         apiBaseUrl: 'https://www.tastygo.cn/haochigoserver/wxapi',
+
+        navBarHeight: 0, // 导航栏高度
+        menuRight: 0, // 胶囊距右方间距（方保持左、右间距一致）
+        menuBottom: 0, // 胶囊距底部间距（保持底部间距一致）
+        menuHeight: 0, // 胶囊高度（自定义内容可与胶囊高度保证一致）
     }
 })

@@ -1,19 +1,29 @@
 const { getAddressList, getOrder, getCanteenList, receiveOrder } = require('../../api/api.js');
 
+const app = getApp();
+
 var canteenList = [];
 var focusAddressList = [];
 var canteenIdx = 0;
 var addressIdx = 0;
 
-const PAGESIZE = 6;
+const PAGESIZE = 8;
 var currentPage = 0;
 
 Page({
     data: {
         //公共变量
-        tabIndex: 0,
+        tabIdx: 0,
+        navBarHeight: app.globalData.navBarHeight,
+        menuRight: app.globalData.menuRight,
+        menuBottom: app.globalData.menuBottom,
+        menuHeight: app.globalData.menuHeight,
 
         //"我要带"变量
+        swiperImagesList: [
+            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/3.jpg',
+            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/4.jpg'
+        ], //轮播图链接
         startingOptions: [],
         focusOptions: [],
         orderList: [],
@@ -22,7 +32,9 @@ Page({
 
         //"我要吃"变量
         orderDetail: [],
-        getWayIndex: -1,
+    },
+    onLoad: function(options) {
+        //const tabIdx
     },
 
     moveLeft(e) {
@@ -34,7 +46,7 @@ Page({
         });
         translateLeft.translateX(0).step();
         that.setData({
-            tabIndex: index,
+            tabIdx: index,
             moveAnimation: translateLeft.export(),
         });
     },
@@ -44,9 +56,9 @@ Page({
         let translateRight = wx.createAnimation({
             duration: 100
         });
-        translateRight.translateX(110).step();
+        translateRight.translateX(48).step();
         that.setData({
-            tabIndex: index,
+            tabIdx: index,
             moveAnimation: translateRight.export(),
         });
         that.tabItemChange();
@@ -57,40 +69,25 @@ Page({
 
     handleWaySelect(e) {
         const that = this;
-        let { index } = e.currentTarget.dataset;
-
-        if (that.data.getWayIndex === index) {
-            index = -1;
-        }
-
-        that.setData({
-            getWayIndex: index
-        })
+        const { index } = e.currentTarget.dataset;
+        that.goToSubmit(index);
     },
 
-    gotoSubmit() {
+    goToSubmit(getWayIdx) {
         const that = this;
         const userInfo = wx.getStorageSync('userInfo');
         const loginState = wx.getStorageSync('loginState');
         if (loginState && userInfo.wxid && userInfo.phone) {
-            const { getWayIndex } = that.data;
             let canteenOrder = wx.getStorageSync('canteenOrder');
             if (canteenOrder) {
-                if (getWayIndex !== 0 && getWayIndex !== 1) {
-                    wx.showToast({
-                        title: '您还未选择取餐方式',
-                        icon: 'none'
-                    });
-                } else {
-                    canteenOrder.getWay = getWayIndex;
-                    wx.setStorageSync('canteenOrder', canteenOrder);
-                    wx.navigateTo({ url: `/pages/pay/index?getWay=${getWayIndex}` });
-                }
+                canteenOrder.getWay = getWayIdx;
+                wx.setStorageSync('canteenOrder', canteenOrder);
+                wx.navigateTo({ url: `/pages/pay/index?getWay=${getWayIdx}` });
             } else {
                 wx.showToast({
                     title: '您还未添加订单',
                     icon: 'none',
-                    duration: 3000
+                    duration: 2000
                 });
             }
         } else {
@@ -114,18 +111,6 @@ Page({
     /*
      *"我要带"私有函数
      */
-
-    //跳转订单列表页面
-    goToMyOrderList() {
-        const userInfo = wx.getStorageSync('userInfo');
-        if (userInfo) {
-            wx.navigateTo({
-                url: "/pages/myOrderList/index"
-            });
-        } else {
-            this.unLoginMessage();
-        }
-    },
 
     //筛选按钮事件
     filter() {
@@ -192,7 +177,7 @@ Page({
         console.log(params)
         let res = await getOrder(params);
         orderList = type === 'top' ? res.data : orderList.concat(res.data);
-        console.log(orderList)
+        console.log(res)
         that.setData({
             orderList
         });

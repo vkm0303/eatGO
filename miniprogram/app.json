@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/menu/index",
         "pages/accountManage/index",
         "pages/address/index",
         "pages/about/index",
@@ -15,7 +16,6 @@
         "pages/healthRepo/index",
         "pages/login/index",
         "pages/more/index",
-        "pages/menu/index",
         "pages/my/index",
         "pages/myCollection/index",
         "pages/myOrderList/index",
@@ -44,7 +44,7 @@
         "selectedColor": "#101010",
         "backgroundColor": "#ffffff",
         "position": "bottom",
-        "borderStyle": "white",
+        "borderStyle": "black",
         "list": [{
             "pagePath": "pages/menu/index",
             "text": "菜品",

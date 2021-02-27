@@ -3,7 +3,7 @@
  * @Author: AS
  * @Date: 2021-02-11 14:23:03
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-27 00:13:44
+ * @LastEditTime: 2021-02-27 13:38:01
  * @FilePath: \tastygo\miniprogram\pages\myOrderList\index.js
  */
 
@@ -80,6 +80,9 @@ Page({
     async getUserOrderList(orderType, isClearData = false) {
         let { releaseOrderList, receiveOrderList } = this.data;
         const userInfo = wx.getStorageSync('userInfo');
+        if (isClearData) {
+            currentPage = 0;
+        }
         const params = {
             id: userInfo.no,
             orderType,
@@ -98,8 +101,8 @@ Page({
                 releaseOrderList = [];
             }
             releaseOrderList.push(...res.data);
-
             console.log(releaseOrderList)
+
             this.setData({
                 releaseOrderList,
                 loadingTips,
@@ -141,9 +144,9 @@ Page({
                     if (res.msg === 'success') {
                         wx.showLoading({
                             title: '刷新数据...',
-                            mask: true
+                            mask: false
                         });
-                        that.getUserOrderList(orderType[tabIdx]);
+                        that.getUserOrderList(orderType[tabIdx], true);
                     } else {
                         wx.showToast({
                             title: '取消订单失败',

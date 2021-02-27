@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-24 13:04:32
+ * @LastEditTime: 2021-02-28 01:15:35
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
@@ -16,7 +16,7 @@ var addressDetail = '';
 Page({
     data: {
         ishideTimePicker: false,
-        timeBoxIndex: -1,
+        timeBoxIndex: 0,
         startTime: '00:00',
         endTime: '23:59',
         presetHours: '12',
@@ -105,6 +105,16 @@ Page({
     },
     async handleOrderSubmit() {
         const that = this;
+
+        if (addressDetail === '' && that.data.getWay === 1) {
+            wx.showToast({
+                title: '未填写详细地址',
+                icon: 'none',
+                duration: 2000,
+            });
+            return;
+        }
+
         const { presetHours, presetMinutes, tbwIdx, note } = that.data;
         let canteenOrder = wx.getStorageSync('canteenOrder');
         const campusId = wx.getStorageSync('userInfo').no;

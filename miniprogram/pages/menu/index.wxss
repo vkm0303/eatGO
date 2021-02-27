@@ -126,7 +126,7 @@ page .top-warp swiper {
 page .top-warp swiper image {
   width: 100%;
   height: 100%;
-  border-radius: 0 0 70rpx 70rpx;
+  border-radius: 0 0 15rpx 15rpx;
 }
 page .bottom-warp {
   position: absolute;
@@ -134,7 +134,7 @@ page .bottom-warp {
   width: 100%;
   background-color: #fff;
   border-radius: 74rpx 74rpx 0 0;
-  box-shadow: 0px 0px 7px 0px #d8e8f1;
+  box-shadow: 0 -10rpx 14rpx -6rpx #d8e8f1;
 }
 page .bottom-warp .eat-time-warp {
   display: flex;
@@ -217,10 +217,26 @@ page .bottom-warp .menu-warp .food-list .food-warp {
   display: flex;
   margin-bottom: 16rpx;
 }
-page .bottom-warp .menu-warp .food-list .food-warp .food-img {
-  width: 222rpx;
+page .bottom-warp .menu-warp .food-list .food-warp .img-warp {
+  position: relative;
+  width: 220rpx;
   height: 180rpx;
+  box-sizing: border-box;
+}
+page .bottom-warp .menu-warp .food-list .food-warp .img-warp .food-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 8rpx solid #12391d;
   border-radius: 16rpx;
+}
+page .bottom-warp .menu-warp .food-list .food-warp .img-warp .canteen-logo {
+  position: absolute;
+  right: 12rpx;
+  bottom: 12rpx;
+  width: 68rpx;
+  height: 20rpx;
 }
 page .bottom-warp .menu-warp .food-list .food-warp .food-description {
   padding-left: 18rpx;

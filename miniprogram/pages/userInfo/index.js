@@ -3,14 +3,12 @@
  * @Author: 陈俊任
  * @Date: 2021-02-22 19:12:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-26 14:08:33
+ * @LastEditTime: 2021-02-27 13:17:42
  * @FilePath: \tastygo\miniprogram\pages\userInfo\index.js
  */
 
 const { updateUserInfo } = require('../../api/api');
 
-var wxid = '';
-var phone = '';
 var userInfo = {};
 
 Page({
@@ -40,8 +38,8 @@ Page({
         });
         const params = {
             campusId: userInfo.no,
-            wxId: wxid,
-            phone: phone
+            wxId: userInfo.wxid,
+            phone: userInfo.phone
         };
         wx.hideLoading();
         let res = await updateUserInfo(params);

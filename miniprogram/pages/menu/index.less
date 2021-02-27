@@ -52,7 +52,7 @@ page {
             image {
                 width: 100%;
                 height: 100%;
-                border-radius: 0 0 70rpx 70rpx;
+                border-radius: 0 0 15rpx 15rpx;
             }
         }
     }
@@ -64,7 +64,7 @@ page {
         // padding-top: 40rpx;
         background-color: #fff;
         border-radius: 74rpx 74rpx 0 0;
-        box-shadow: 0px 0px 7px 0px #d8e8f1;
+        box-shadow: 0 -10rpx 14rpx -6rpx #d8e8f1;
         //餐点按钮
         .eat-time-warp {
             display: flex;
@@ -148,10 +148,27 @@ page {
                 .food-warp {
                     display: flex;
                     margin-bottom: 16rpx;
-                    .food-img {
-                        width: 222rpx;
+                    .img-warp {
+                        position: relative;
+                        width: 220rpx;
                         height: 180rpx;
-                        border-radius: 16rpx;
+                        box-sizing: border-box;
+                        .food-img {
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            box-sizing: border-box;
+                            border: 8rpx solid #12391d;
+                            border-radius: 16rpx;
+                        }
+
+                        .canteen-logo {
+                            position: absolute;
+                            right: 12rpx;
+                            bottom: 12rpx;
+                            width: 68rpx;
+                            height: 20rpx;
+                        }
                     }
                     .food-description {
                         padding-left: 18rpx;

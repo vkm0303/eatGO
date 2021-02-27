@@ -48,13 +48,13 @@
 			></badge>
 			<view class="price-warp">
 				<view>
-					<span class="txt" style="font-size: 24rpx;">￥</span>
+					<span class="txt" style="font-size: 34rpx;">￥ </span>
 					<span class="foods-price">{{totalPrice}}</span>
 				</view>
-				<view class="delivery-price">配送费 ￥3</view>
+				<view class="delivery-price">另需配送费 ￥3</view>
 			</view>
 		</view>
-		<view class="right" bindtap="goToSubmit">去发布</view>
+		<view class="right" bindtap="goToSubmit">去下单</view>
 	</view>
 </view>
 

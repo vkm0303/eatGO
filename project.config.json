@@ -1,247 +1,248 @@
 {
-    "miniprogramRoot": "miniprogram/",
-    "cloudfunctionRoot": "cloudfunctions/",
-    "setting": {
-        "urlCheck": false,
-        "es6": true,
-        "enhance": true,
-        "postcss": true,
-        "preloadBackgroundData": false,
-        "minified": true,
-        "newFeature": true,
-        "coverView": true,
-        "nodeModules": true,
-        "autoAudits": true,
-        "showShadowRootInWxmlPanel": true,
-        "scopeDataCheck": false,
-        "uglifyFileName": true,
-        "checkInvalidKey": true,
-        "checkSiteMap": false,
-        "uploadWithSourceMap": true,
-        "compileHotReLoad": false,
-        "useMultiFrameRuntime": true,
-        "useApiHook": true,
-        "babelSetting": {
-            "ignore": [],
-            "disablePlugins": [],
-            "outputPath": ""
-        },
-        "enableEngineNative": false,
-        "useIsolateContext": true,
-        "useCompilerModule": true,
-        "userConfirmedUseCompilerModuleSwitch": false,
-        "packNpmManually": false,
-        "packNpmRelationList": [],
-        "minifyWXSS": true,
-        "bundle": false,
-        "useApiHostProcess": true
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": true,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": true,
+    "checkInvalidKey": true,
+    "checkSiteMap": false,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
     },
-    "appid": "wx2d37530643ea06bc",
-    "projectname": "TastyGo",
-    "libVersion": "2.15.0",
-    "simulatorType": "wechat",
-    "simulatorPluginLibVersion": {},
-    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-    "condition": {
-        "plugin": {
-            "list": []
-        },
-        "game": {
-            "list": []
-        },
-        "gamePlugin": {
-            "list": []
-        },
-        "miniprogram": {
-            "list": [{
-                    "name": "首页",
-                    "pathName": "pages/menu/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "登录",
-                    "pathName": "pages/login/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "发现",
-                    "pathName": "pages/more/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "我的",
-                    "pathName": "pages/my/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "TEST",
-                    "pathName": "pages/TEST/TEST",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "食堂帮带",
-                    "pathName": "pages/canteenTakeout/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "结算",
-                    "pathName": "pages/pay/index",
-                    "query": "getWay=0",
-                    "scene": null
-                },
-                {
-                    "id": 8,
-                    "name": "食谱",
-                    "pathName": "pages/health/index",
-                    "query": "totalPrice=8.0",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "健康报告",
-                    "pathName": "pages/healthRepo/index",
-                    "query": "totalPrice=8.0",
-                    "scene": null
-                },
-                {
-                    "name": "闲置",
-                    "pathName": "pages/secondhand/secondhand",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "地址",
-                    "pathName": "pages/address/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "添加地址",
-                    "pathName": "pages/address/add_address/add_address",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "登录",
-                    "pathName": "pages/login/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "账号管理",
-                    "pathName": "pages/accountManage/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "关于",
-                    "pathName": "pages/about/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "我的收藏",
-                    "pathName": "pages/myCollection/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "我的订单列表",
-                    "pathName": "pages/myOrderList/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "备注",
-                    "pathName": "pages/remarks/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "成功提示",
-                    "pathName": "pages/successMessage/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "我的订单详情",
-                    "pathName": "pages/myOrderDetail/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "接单详情",
-                    "pathName": "pages/takeOrderDetail/index",
-                    "query": "orderId=0466109a95b74d8986be28fe01b8bf3a",
-                    "scene": null
-                },
-                {
-                    "name": "消费记录",
-                    "pathName": "pages/cardRecord/index",
-                    "query": "getWay=getByDelivery",
-                    "scene": null
-                },
-                {
-                    "name": "个人信息",
-                    "pathName": "pages/userInfo/index",
-                    "query": "getWay=getByDelivery",
-                    "scene": null
-                },
-                {
-                    "name": "pages/chatroom/index",
-                    "pathName": "pages/chatroom/index",
-                    "query": "",
-                    "scene": null
-                }
-            ]
-        }
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "bundle": false,
+    "useApiHostProcess": true
+  },
+  "appid": "wx2d37530643ea06bc",
+  "projectname": "TastyGo",
+  "libVersion": "2.14.1",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "skeleton-config": {
+    "global": {
+      "loading": "",
+      "text": {
+        "color": "#EEEEEE"
+      },
+      "image": {
+        "shape": "",
+        "color": "#EFEFEF",
+        "shapeOpposite": []
+      },
+      "button": {
+        "color": "#EFEFEF",
+        "excludes": []
+      },
+      "pseudo": {
+        "color": "#EFEFEF",
+        "shape": "circle",
+        "shapeOpposite": []
+      },
+      "excludes": [],
+      "remove": [],
+      "empty": [],
+      "hide": [],
+      "grayBlock": [],
+      "showNative": false,
+      "backgroundColor": "transparent",
+      "mode": "fullscreen",
+      "templateName": "skeleton",
+      "cssUnit": "rpx",
+      "decimal": 4
     },
-    "skeleton-config": {
-        "global": {
-            "loading": "",
-            "text": {
-                "color": "#EEEEEE"
-            },
-            "image": {
-                "shape": "",
-                "color": "#EFEFEF",
-                "shapeOpposite": []
-            },
-            "button": {
-                "color": "#EFEFEF",
-                "excludes": []
-            },
-            "pseudo": {
-                "color": "#EFEFEF",
-                "shape": "circle",
-                "shapeOpposite": []
-            },
-            "excludes": [],
-            "remove": [],
-            "empty": [],
-            "hide": [],
-            "grayBlock": [],
-            "showNative": false,
-            "backgroundColor": "transparent",
-            "mode": "fullscreen",
-            "templateName": "skeleton",
-            "cssUnit": "rpx",
-            "decimal": 4
-        },
-        "pages": {
-            "pages/takeOrderDetail/index": {}
-        }
+    "pages": {
+      "pages/takeOrderDetail/index": {}
     }
+  },
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "首页",
+          "pathName": "pages/menu/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "登录",
+          "pathName": "pages/login/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发现",
+          "pathName": "pages/more/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "TEST",
+          "pathName": "pages/TEST/TEST",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "食堂帮带",
+          "pathName": "pages/canteenTakeout/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "结算",
+          "pathName": "pages/pay/index",
+          "query": "getWay=1",
+          "scene": null
+        },
+        {
+          "id": 8,
+          "name": "食谱",
+          "pathName": "pages/health/index",
+          "query": "totalPrice=8.0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "健康报告",
+          "pathName": "pages/healthRepo/index",
+          "query": "totalPrice=8.0",
+          "scene": null
+        },
+        {
+          "name": "闲置",
+          "pathName": "pages/secondhand/secondhand",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "地址",
+          "pathName": "pages/address/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加地址",
+          "pathName": "pages/address/add_address/add_address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "登录",
+          "pathName": "pages/login/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "账号管理",
+          "pathName": "pages/accountManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "关于",
+          "pathName": "pages/about/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的收藏",
+          "pathName": "pages/myCollection/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的订单列表",
+          "pathName": "pages/myOrderList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "备注",
+          "pathName": "pages/remarks/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "成功提示",
+          "pathName": "pages/successMessage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的订单详情",
+          "pathName": "pages/myOrderDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "接单详情",
+          "pathName": "pages/takeOrderDetail/index",
+          "query": "orderId=0466109a95b74d8986be28fe01b8bf3a",
+          "scene": null
+        },
+        {
+          "name": "消费记录",
+          "pathName": "pages/cardRecord/index",
+          "query": "getWay=getByDelivery",
+          "scene": null
+        },
+        {
+          "name": "个人信息",
+          "pathName": "pages/userInfo/index",
+          "query": "getWay=getByDelivery",
+          "scene": null
+        },
+        {
+          "name": "pages/chatroom/index",
+          "pathName": "pages/chatroom/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

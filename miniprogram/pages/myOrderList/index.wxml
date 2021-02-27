@@ -60,7 +60,7 @@
 				<view catchtap="preventTap">
 					<view
 					 class="cancel-order-btn  {{order.status===0?'':'disable'}}"
-					 catchtap="{{order.status===0?cancelOrder:''}}"
+					 catchtap="{{order.status===0?'cancelOrder':''}}"
 					 data-orderid="{{order.orderId}}"
 					>
 						取消订单

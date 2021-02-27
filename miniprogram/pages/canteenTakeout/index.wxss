@@ -1,34 +1,36 @@
 page {
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
   background-color: #f8f8f8;
 }
-.tabs-warp {
+.navbar {
   position: fixed;
+  z-index: 999;
+  width: 100%;
+  background-color: #f8f8f8;
+}
+.navbar .tabs-warp {
+  position: absolute;
   display: flex;
-  width: 474rpx;
-  height: 68rpx;
-  margin-top: 48rpx;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  border-radius: 59rpx;
+  width: 210rpx;
+  height: 57rpx;
+  margin-left: 20rpx;
+  border-radius: 30rpx;
   background-color: #f7d6b1;
   color: #fff;
+  font-size: 22rpx;
 }
-.tabs-warp .left-box {
+.navbar .tabs-warp .left-box {
   z-index: 3;
   width: 50%;
   height: 100%;
   padding-left: 2.5%;
 }
-.tabs-warp .right-box {
+.navbar .tabs-warp .right-box {
   z-index: 3;
   width: 50%;
   height: 100%;
   padding-right: 2.5%;
 }
-.tabs-warp .animation-box {
+.navbar .tabs-warp .animation-box {
   position: absolute;
   z-index: 2;
   width: 55%;
@@ -36,104 +38,85 @@ page {
   border-radius: 59rpx;
   background-color: #ff824e;
 }
-.tabs-warp .text-center {
+.navbar .tabs-warp .text-center {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.order-entry {
-  position: fixed;
-  top: 35rpx;
-  right: 40rpx;
-  display: flex;
-  flex-direction: column;
-  width: 44rpx;
-}
-.order-entry .icon-order {
-  font-size: 44rpx;
-  color: #ff824e;
-}
-.order-entry .order-text {
-  text-align: center;
-  font-size: 19rpx;
-  color: #101010;
 }
 .content-submit-order {
   width: 100%;
-  padding-top: 166rpx;
 }
-.content-submit-order .target-address {
-  display: flex;
-  justify-content: center;
-  height: 80rpx;
+.content-submit-order .swiper {
+  width: 100%;
+  height: 810rpx;
+}
+.content-submit-order .swiper .swiper-img {
+  width: 100%;
+  height: 100%;
+}
+.content-submit-order .ways {
+  position: relative;
+  top: -60rpx;
+  width: 660rpx;
+  height: 310rpx;
   margin-left: 50%;
   transform: translateX(-50%);
-}
-.content-submit-order .target-address .icon-dingwei2 {
-  padding-top: 4rpx;
-  line-height: 80rpx;
-  text-align: center;
-  color: #f97800;
-  font-size: 30rpx;
-}
-.content-submit-order .target-address .address-name {
-  margin-top: 3rpx;
-  margin-left: 13rpx;
-  color: #000000;
-  font-size: 28rpx;
-  line-height: 80rpx;
-  text-align: center;
-  font-family: SourceHanSansSC-regular;
-}
-.content-submit-order .get-ways-warp {
-  display: flex;
-  justify-content: space-between;
-  width: 88vw;
-  margin-top: 50rpx;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  font-family: PingFangSC-regular;
-}
-.content-submit-order .get-ways-warp .get-way-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 306rpx;
-  height: 306rpx;
   box-sizing: border-box;
-  border-radius: 40rpx;
+}
+.content-submit-order .ways .bgc {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+.content-submit-order .ways .right {
+  left: 50%;
+}
+.content-submit-order .ways .common {
+  position: absolute;
+  z-index: 99;
+  width: 50%;
+  height: 100%;
+}
+.content-submit-order .tips-outer {
+  width: 676rpx;
+  height: 124rpx;
+  padding: 8rpx;
+  margin-top: -38rpx;
+  margin-bottom: 20rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  border-radius: 20rpx;
   background-color: #fff;
 }
-.content-submit-order .get-ways-warp .get-way-box .box-img {
-  width: 124rpx;
-  height: 124rpx;
-  margin-top: 62rpx;
+.content-submit-order .tips-outer .tips {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  border: 2rpx solid #f58d52;
 }
-.content-submit-order .get-ways-warp .get-way-box .way-name {
-  margin: 8rpx 0;
-  font-size: 28rpx;
+.content-submit-order .tips-outer .tips .icon {
+  width: 66rpx;
+  height: 60rpx;
+  margin-left: 12rpx;
 }
-.content-submit-order .get-ways-warp .get-way-box .way-tip {
+.content-submit-order .tips-outer .tips .content-warp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 16rpx;
+}
+.content-submit-order .tips-outer .tips .content-warp .head {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.content-submit-order .tips-outer .tips .content-warp .content {
   font-size: 20rpx;
-}
-.content-submit-order .get-ways-warp .active {
-  border: 4rpx solid #ff824e;
-  color: #ff824e;
-}
-.content-submit-order .goto-submit-btn {
-  width: 260rpx;
-  height: 68rpx;
-  margin-top: 74rpx;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  border-radius: 20rpx;
-  background-color: #ff824e;
-  text-align: center;
-  line-height: 68rpx;
-  color: #fff;
-}
-.content-submit-order .goto-submit-btn .icon-iconyoujiantou {
-  padding-left: 10rpx;
+  color: #b9b9b9;
 }
 .content-receive-order .address-warp {
   display: flex;
