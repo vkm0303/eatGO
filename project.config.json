@@ -215,7 +215,7 @@
         {
           "name": "我的订单详情",
           "pathName": "pages/myOrderDetail/index",
-          "query": "",
+          "query": "orderId=d55a1ea1b4114b6db58ac804bf0a8b55",
           "scene": null
         },
         {

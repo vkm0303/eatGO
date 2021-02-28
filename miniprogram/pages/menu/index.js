@@ -1,12 +1,15 @@
 const api = require('../../api/api.js');
 
 var menuData = []; //存放当前食堂的所有菜单数据
-// const eatTime = ['Breakfast', 'Lunch', 'Dinner'];
+var eatTime;
 
 const date = new Date();
-let preIdx = 0;
-let dayIdx = date.getDay();
+var preIdx = 0;
+var dayIdx = date.getDay();
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+var currentPage = 0;
+const PAGESIZE = 10;
 
 Page({
     data: {
@@ -49,8 +52,7 @@ Page({
         });
 
         //根据当前时间设置默认选中餐点
-        const curDate = new Date();
-        const curTime = curDate.getHours() + 1;
+        const curTime = date.getHours() + 1;
         let curEatTime = '';
         if (curTime < 9 || curTime >= 19) {
             curEatTime = 'Breakfast';
@@ -59,6 +61,8 @@ Page({
         } else {
             curEatTime = 'Dinner';
         }
+
+        that.getEatTime();
 
         //获取食堂列表
         const res = await api.getCanteenList();
@@ -138,11 +142,12 @@ Page({
             curMenuList,
         });
     },
+
     //加载菜单数据
-    async loadMenuData(e) {
+    async loadMenuData(e, isClearData = false) {
         const that = this;
         let { curCanteen, canteenList } = that.data;
-        if (e) { //判断是否从onload函数调用
+        if (e) { //判断是否从点击事件调用
             const { index } = e.detail;
             wx.showLoading({ title: '正在加载' });
 
@@ -155,8 +160,21 @@ Page({
             });
         }
 
-        const res = await api.getMenuByCanteen(that.data.curCanteen.canteenId, days[dayIdx]);
+        const params = {
+            canteenId: that.data.curCanteen.canteenId,
+            day: days[dayIdx]
+        };
+
+        const res = await api.getMenuByCanteen(params);
+        console.log(res)
+
+        if (isClearData) {
+            menuData = [];
+        }
+
         menuData = res.data;
+
+        console.log(menuData)
 
         let curTypeList = [];
         for (let v of menuData) {
@@ -168,7 +186,7 @@ Page({
         let curMenuList = [];
         let curTypeIdx = 0;
         if (curTypeList.length) {
-            curMenuList = menuData.filter((v) => {
+            curMenuList = menuData.filter(v => {
                 return v.typeName === curTypeList[curTypeIdx].typeName && v.menus[0].eatTime === that.data.curEatTime && v.menus[0].time === days[dayIdx];
             });
         } else {
@@ -277,12 +295,13 @@ Page({
 
         menusId.menuId = food.menuId;
         food.num = 1;
-        if (food.eatTime !== 'Breakfast' && food.time !== days[date.getDay()]) {
+        if (food.eatTime !== eatTime || food.time !== days[date.getDay()]) {
             wx.showToast({
-                title: '除早餐外仅可以选择当天的菜品',
+                title: '不在当前点餐时间范围内',
                 icon: 'none',
                 duration: 2000,
             });
+            return;
         } else if (canteenOrder.canteenId) { //判断canteenOrder是否存在
             if (food.canteen !== canteenOrder.canteenId) { //判断添加商品是否为同一个食堂
                 wx.showToast({
@@ -339,11 +358,6 @@ Page({
         wx.setStorageSync('orderDetail', orderDetail);
     },
 
-    //点击pay
-    handlePay() {
-        wx.navigateTo({ url: '/pages/bangdai/index?totalPrice=' + this.data.totalPrice })
-    },
-
     //加载收藏列表
     loadCollectionList(canteen, data) {
         const that = this
@@ -387,7 +401,6 @@ Page({
             }
         }
 
-        // console.log(totalPrice)
         totalNum += num;
 
         that.setData({
@@ -395,6 +408,51 @@ Page({
             totalNum,
             totalPrice,
         })
+    },
+
+    /*
+     *  下拉刷新与上拉加载
+     */
+
+    //加载下拉刷新动画
+    refresherPulling() {
+        //导航条加载动画
+        wx.showNavigationBarLoading();
+        //loading 提示框
+        wx.showLoading({
+            title: 'loading...',
+        });
+    },
+
+    //下拉刷新被触发
+    refresherStart() {
+        const that = this;
+        that.setData({
+            showTriggered: true
+        });
+        currentPage = 0;
+        that.loadMenuData(null, true);
+    },
+
+    //scroll-view滑动事件，若正在刷新，则停止
+    stopRefresh() {
+        if (this.data.showTriggered) {
+            wx.hideNavigationBarLoading();
+            wx.hideLoading();
+            this.setData({
+                showTriggered: false,
+                tips: false
+            });
+        }
+    },
+
+    //scroll-view触底事件，上拉加载
+    scrollToLower() {
+        this.setData({
+            isShowLoading: true
+        });
+        currentPage++;
+        this.loadMenuData();
     },
 
     bindClearCart() {
@@ -422,10 +480,15 @@ Page({
         }
     },
 
-    openScroll() {
-        this.setData({
-            StartScroll: true
-        })
-        console.log(this.data.StartScroll)
+    getEatTime() {
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        if (hours < 7 || hours >= 21) {
+            eatTime = 'Breakfast';
+        } else if (hours >= 7 || hours < 11) {
+            eatTime = 'Lunch';
+        } else if (hours < 5) {
+            eatTime = 'Dinner';
+        }
     }
 })

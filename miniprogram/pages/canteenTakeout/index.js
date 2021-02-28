@@ -20,10 +20,15 @@ Page({
         menuHeight: app.globalData.menuHeight,
 
         //"我要带"变量
-        swiperImagesList: [
-            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/3.jpg',
-            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/4.jpg'
-        ], //轮播图链接
+        swiperImagesList: [{
+                preImg: 'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/3-min.jpg',
+                img: 'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/3.jpg'
+            },
+            {
+                preImg: 'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/4-min.jpg',
+                img: 'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/4.jpg'
+            }
+        ],
         startingOptions: [],
         focusOptions: [],
         orderList: [],
@@ -106,6 +111,13 @@ Page({
                 });
             }
         }
+    },
+
+    imgLoad() {
+        console.log(1)
+        this.setData({
+            isLoad: true
+        });
     },
 
     /*

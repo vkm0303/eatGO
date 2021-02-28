@@ -106,6 +106,18 @@
 		 class="food-list"
 		 style="{{curMenuList.length>=3?'height: 85vh':''}}"
 		 scroll-y
+		 scroll-anchoring
+		 enhanced
+		 show-scrollbar="{{false}}"
+		 refresher-default-style="dark"
+		 refresher-enabled="{{true}}"
+		 refresher-triggered="{{showTriggered}}"
+		 refresher-threshold="{{40}}"
+		 enable-flex
+		 lower-threshold="{{10}}"
+		 bindrefresherpulling="refresherPulling"
+		 bindrefresherrefresh="refresherStart"
+		 bindscrolltolower="scrollToLower"
 		>
 			<view class="food-type">{{curTypeWList[curTypeIdx].typeName}}</view>
 			<view

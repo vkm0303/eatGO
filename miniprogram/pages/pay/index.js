@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-28 01:15:35
+ * @LastEditTime: 2021-03-01 00:29:19
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
@@ -106,7 +106,7 @@ Page({
     async handleOrderSubmit() {
         const that = this;
 
-        if (addressDetail === '' && that.data.getWay === 1) {
+        if (addressDetail === '' && that.data.getWay == 1) {
             wx.showToast({
                 title: '未填写详细地址',
                 icon: 'none',

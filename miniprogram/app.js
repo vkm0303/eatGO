@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2020-09-21 11:44:34
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-27 18:18:35
+ * @LastEditTime: 2021-03-01 00:30:44
  * @FilePath: \tastygo\miniprogram\app.js
  */
 //app.js
@@ -67,6 +67,9 @@ App({
             that.globalData.userInfo = userInfo
             that.globalData.isLogin = loginState
         }
+
+        wx.removeStorageSync('canteenOrder');
+        wx.removeStorageSync('orderDetail');
     },
     globalData: {
         userInfo: {},

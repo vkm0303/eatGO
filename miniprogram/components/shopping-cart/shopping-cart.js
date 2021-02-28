@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-19 23:54:31
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-25 02:07:06
+ * @LastEditTime: 2021-03-01 00:33:16
  * @FilePath: \tastygo\miniprogram\components\shopping-cart\shopping-cart.js
  */
 
@@ -50,10 +50,19 @@ Component({
         },
 
         clear() {
-            this.triggerEvent('clearCart');
-            this.setData({
-                isHideDetail: true
+            const that = this;
+            wx.showModal({
+                title: '确定清空购物车吗？',
+                success: (result) => {
+                    if (result.confirm) {
+                        that.triggerEvent('clearCart');
+                        that.setData({
+                            isHideDetail: true
+                        });
+                    }
+                }
             });
+
         },
 
         editNum(e) {

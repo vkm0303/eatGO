@@ -3,13 +3,13 @@
  * @Author: AS
  * @Date: 2021-02-11 14:23:03
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-27 13:38:01
+ * @LastEditTime: 2021-02-28 19:11:07
  * @FilePath: \tastygo\miniprogram\pages\myOrderList\index.js
  */
 
 const { getUserOrder, cancelOrder } = require('../../api/api');
 
-const PAGESIZE = 10;
+const PAGESIZE = 3;
 var currentPage = 0;
 const orderType = ['release', 'receive'];
 
@@ -57,6 +57,7 @@ Page({
         });
     },
 
+
     swiperItemChange(e) {
         const { current } = e.detail;
         this.setData({
@@ -64,7 +65,6 @@ Page({
         });
         wx.showLoading({
             title: '加载中...',
-            mask: true
         });
         this.getUserOrderList(orderType[current], true);
     },
@@ -143,8 +143,7 @@ Page({
                     console.log(res)
                     if (res.msg === 'success') {
                         wx.showLoading({
-                            title: '刷新数据...',
-                            mask: false
+                            title: '刷新数据...'
                         });
                         that.getUserOrderList(orderType[tabIdx], true);
                     } else {

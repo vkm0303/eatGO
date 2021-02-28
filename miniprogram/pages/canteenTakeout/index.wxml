@@ -30,8 +30,16 @@
 		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
 			<image
 			 class="swiper-img"
-			 src="{{item}}"
+			 src="{{item.preImg}}"
 			 mode="aspectFit"
+			 hidden="{{isLoad}}"
+			> </image>
+			<image
+			 class="swiper-img"
+			 src="{{item.img}}"
+			 mode="aspectFit"
+			 hidden="{{!isLoad}}"
+			 bindload="imgLoad"
 			> </image>
 		</swiper-item>
 	</swiper>
@@ -54,43 +62,11 @@
 		<view class="tips">
 			<image class="icon" src="../../images/tips.jpg"></image>
 			<view class="content-warp">
-				<span class="head">注意事项</span>
-				<span class="content">若长时间无人接单，建议自行前往食堂根据取餐码取餐噢~</span>
+				<span class="head">温馨提醒</span>
+				<span class="content">若长时间无人接单，建议取消订单，选择“自取”重新下单自行取餐噢！</span>
 			</view>
 		</view>
 	</view>
-	<!-- 领取方式容器 开始 -->
-	<!-- <view class="get-ways-warp">
-		<view
-		 class="get-way-box box-common {{getWayIndex === 0 ? 'active':'' }}"
-		 data-index="{{0}}"
-		 bindtap="handleWaySelect"
-		>
-			<image
-			 class="box-img"
-			 src="{{ getWayIndex === 0 ? '../../images/_getBySelf.png':'../../images/getBySelf.png' }}"
-			 mode="widthFix"
-			>
-			</image>
-			<text class="way-name">自提</text>
-			<text class="way-tip">自行前往餐厅指定位置领取</text>
-		</view>
-		<view
-		 class="get-way-box box-common {{getWayIndex === 1 ? 'active':'' }}"
-		 data-index="{{1}}"
-		 bindtap="handleWaySelect"
-		>
-			<image
-			 class="box-img"
-			 src="{{ getWayIndex === 1 ? '../../images/_getByDelivery.png':'../../images/getByDelivery.png' }}"
-			 mode="widthFix"
-			>
-			</image>
-			<text class="way-name">送餐上门</text>
-			<text class="way-tip">接单员配送餐食值指定位置</text>
-		</view>
-	</view> -->
-	<!-- 领取方式容器 结束 -->
 </view>
 
 <view class="content-receive-order" hidden="{{tabIdx===0}}">

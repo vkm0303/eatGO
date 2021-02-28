@@ -32,7 +32,7 @@
 		 bindscrolltolower="scrollToLower"
 		>
 			<navigator
-			 url="/pages/myOrderDetail/index"
+			 url="/pages/myOrderDetail/index?orderId={{order.orderId}}"
 			 hover-class="none"
 			 class="order-warp"
 			 wx:for="{{releaseOrderList}}"

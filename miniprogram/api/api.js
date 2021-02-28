@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-26 14:07:06
+ * @LastEditTime: 2021-02-28 15:33:42
  * @FilePath: \tastygo\miniprogram\api\api.js
  */
 
@@ -19,13 +19,13 @@ const getCanteenList = async() => {
 
 //请求菜品类型列表
 const getTypeList = async(url) => {
-    let { data } = await request.get(`${apiBaseUrl}${url}`)
+    let { data } = await request.get(`${apiBaseUrl}${url}`);
     return data;
 };
 
 //请求菜品详情
 const getMenuDetail = async(menuId) => {
-    let { data } = await request.get(`${apiBaseUrl}/getMenuDetail?menuId=${menuId}`)
+    let { data } = await request.get(`${apiBaseUrl}/getMenuDetail?menuId=${menuId}`);
     return data;
 };
 
@@ -36,8 +36,8 @@ const getMenuList = async(url) => {
 };
 
 //通过食堂id获取菜单
-const getMenuByCanteen = async(id, day) => {
-    let { data } = await request.get(`${apiBaseUrl}/getMenuByCanteen`, { canteenId: id, day: day })
+const getMenuByCanteen = async(params) => {
+    let { data } = await request.get(`${apiBaseUrl}/getMenuByCanteen`, params);
     return data;
 };
 
@@ -62,6 +62,12 @@ const receiveOrder = async(params) => {
 //取消订单
 const cancelOrder = async(params) => {
     let { data } = await request.post(`${apiBaseUrl}/cancelOrder`, params);
+    return data;
+};
+
+//修改订单状态
+const changeOrderStatus = async(params) => {
+    let { data } = await request.post(`${apiBaseUrl}/changeOrderStatus`, params);
     return data;
 };
 
@@ -115,6 +121,7 @@ const api = {
     getUserOrder,
     getOrderByUser,
     getOrderDetail,
+    changeOrderStatus,
     reg,
     updateUserInfo
 };
