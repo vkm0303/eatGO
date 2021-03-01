@@ -44,6 +44,14 @@ Page({
         orderDetail: [],
 
         showTriggered: false,
+
+        linePos: null,
+        hh: '',
+        animation: null,
+        busPos: {},
+        bus_x: '',
+        bus_y: '',
+        finger: {},
     },
 
     onLoad: async function(options) {
@@ -79,6 +87,8 @@ Page({
         const totalNum = that.computeTotalNum();
         const isShowCart = !!orderDetail.length;
 
+
+
         that.setData({
             isShowCart,
             orderDetail,
@@ -96,6 +106,16 @@ Page({
     },
 
     onShow: function() {
+        //首先计算购物车的位置
+        let systemInfo = wx.getSystemInfoSync();
+        let hh = systemInfo.windowHeight;
+        var busPos = {};
+        busPos['x'] = 40; //x轴坐标是固定的
+        busPos['y'] = hh - 19;
+        this.setData({
+            busPos
+        })
+
         const canteenOrder = wx.getStorageSync('canteenOrder');
         if (!canteenOrder) {
             this.setData({
@@ -215,8 +235,9 @@ Page({
 
         let curMenuList = [];
         if (curTypeList.length) {
+            curTypeIdx = 0;
             menuData.filter(v => {
-                if (v.typeName === curTypeList[curTypeIdx].typeName) {
+                if (v.typeName === curTypeList[0].typeName) {
                     curMenuList = v.menus.filter(el => {
                         return el.eatTime === that.data.curEatTime;
                     });
@@ -226,7 +247,6 @@ Page({
             curTypeList[0] = '';
             curTypeIdx = -1;
         }
-
         that.setData({
             curType: curTypeList[0],
             curTypeIdx,
@@ -262,41 +282,46 @@ Page({
 
     //点击收藏事件
     handleFoodCollect(e) {
-        if (isLogin) {
-            const { account } = userInfo;
-            const food_index = e.currentTarget.dataset.index
-            const type_index = this.data.type_idx
-            const { state } = e.curTarget.dataset
-            menuData[type_index].list[food_index].isCollected = !state
-            this.setData({ curMenuList: menuData[type_index].list })
 
-            if (!state) {
-                // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-                db.collection('user_collection').add({
-                    // data 字段表示需新增的 JSON 数据
-                    data: {
-                        account,
-                        canteen: this.data.curCanteen,
-                        type_index: typeIdx,
-                        food_index: food_index
-                    }
-                })
-            } else {
-                db.collection('user_collection').where({
-                    account,
-                    type_index,
-                    food_index,
-                    canteen: this.data.curCanteen
-                }).get().then(res => {
-                    db.collection('user_collection').doc(res.data[0]._id).remove()
-                })
-            }
-        } else {
-            wx.showToast({
-                title: '请先登录',
-                icon: 'none'
-            })
-        }
+        wx.showToast({
+            title: '功能暂未开放',
+            icon: 'none'
+        });
+        // if (isLogin) {
+        //     const { account } = userInfo;
+        //     const food_index = e.currentTarget.dataset.index
+        //     const type_index = this.data.type_idx
+        //     const { state } = e.curTarget.dataset
+        //     menuData[type_index].list[food_index].isCollected = !state
+        //     this.setData({ curMenuList: menuData[type_index].list })
+
+        //     if (!state) {
+        //         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+        //         db.collection('user_collection').add({
+        //             // data 字段表示需新增的 JSON 数据
+        //             data: {
+        //                 account,
+        //                 canteen: this.data.curCanteen,
+        //                 type_index: typeIdx,
+        //                 food_index: food_index
+        //             }
+        //         })
+        //     } else {
+        //         db.collection('user_collection').where({
+        //             account,
+        //             type_index,
+        //             food_index,
+        //             canteen: this.data.curCanteen
+        //         }).get().then(res => {
+        //             db.collection('user_collection').doc(res.data[0]._id).remove()
+        //         })
+        //     }
+        // } else {
+        //     wx.showToast({
+        //         title: '请先登录',
+        //         icon: 'none'
+        //     })
+        // }
     },
 
     //添加food订单
@@ -313,7 +338,7 @@ Page({
         food.num = 1;
 
         const hours = date.getHours();
-        if (food.eatTime !== eatTime || eatTime !== 'Breakfast' && food.time !== days[dayIdx] || eatTime === 'Breakfast' && food.time === days[date.getDay()] && hours >= 21) {
+        if (food.eatTime !== eatTime || (eatTime !== 'Breakfast' && food.time !== days[dayIdx]) || (eatTime === 'Breakfast' && days[dayIdx] !== days[date.getDay()] && hours < 7) || (eatTime === 'Breakfast' && days[dayIdx] === days[date.getDay()] && hours >= 21)) {
             wx.showToast({
                 title: '不在当前点餐时间范围内',
                 icon: 'none',
@@ -368,6 +393,8 @@ Page({
         food.price = food.price.toFixed(1); //保留一位小数
         canteenOrder.price = totalPrice;
 
+        that.touchOnGoods(e);
+
         that.setData({
             totalNum,
             totalPrice,
@@ -379,11 +406,7 @@ Page({
 
     //加载收藏列表
     loadCollectionList(canteen, data) {
-        const that = this
-        wx.showToast({
-            title: '功能暂未开放',
-            icon: 'none'
-        });
+        const that = this;
     },
 
     //订单单个商品数量发生变化
@@ -511,5 +534,118 @@ Page({
         } else if (hours >= 11 && hours < 17) {
             eatTime = 'Dinner';
         }
-    }
+    },
+
+    showAddAni(e) {
+
+    },
+
+
+    /*加入购物车动效*/
+    touchOnGoods: function(e) {
+        var topPoint = {};
+        var { busPos, finger } = this.data;;
+        finger['x'] = e.detail.x; //点击的位置
+        finger['y'] = e.detail.y;
+
+        if (finger['y'] < busPos['y']) {
+            topPoint['y'] = finger['y'] - 150;
+        } else {
+            topPoint['y'] = busPos['y'] - 150;
+        }
+        topPoint['x'] = Math.abs(finger['x'] - busPos['x']) / 2;
+
+        if (finger['x'] > busPos['x']) {
+            topPoint['x'] = (finger['x'] - busPos['x']) / 2 + busPos['x'];
+        } else {
+            topPoint['x'] = (busPos['x'] - finger['x']) / 2 + finger['x'];
+        }
+        let linePos = this.bezier([busPos, topPoint, finger], 30);
+        this.setData({
+            topPoint,
+            finger,
+            linePos
+        })
+        this.startAnimation(e);
+    },
+    startAnimation: function(e) {
+        var index = 0,
+            that = this,
+            bezier_points = that.data.linePos['bezier_points'],
+            hide_good_box = false,
+            bus_x = that.data.finger['x'],
+            bus_y = that.data.finger['y'];
+        var len = bezier_points.length;
+        index = len;
+        let animation = wx.createAnimation({
+            duration: 30,
+            timingFunction: 'ease-out'
+        });
+        animation.opacity(1).step();
+        for (let i = index - 1; i > -1; i--) {
+            let deltX = bezier_points[i]['x'] - that.data.finger['x'];
+            let deltY = bezier_points[i]['y'] - that.data.finger['y'];
+            animation.translate(deltX, deltY).step();
+        }
+        animation.opacity(0).step();
+        that.setData({
+            bus_x,
+            bus_y,
+            animation: animation.export(),
+            hide_good_box
+        })
+    },
+    //获得了从点击到购物车之间轨迹的点的位置
+    bezier: function(pots, amount) {
+        var pot;
+        var lines;
+        var ret = [];
+        var points;
+        for (var i = 0; i <= amount; i++) {
+            points = pots.slice(0);
+            lines = [];
+            while ((pot = points.shift())) {
+                if (points.length) {
+                    lines.push(pointLine([pot, points[0]], i / amount));
+                } else if (lines.length > 1) {
+                    points = lines;
+                    lines = [];
+                } else {
+                    break;
+                }
+            }
+            ret.push(lines[0]);
+        }
+
+        function pointLine(points, rate) {
+            var pointA,
+                pointB,
+                pointDistance,
+                xDistance,
+                yDistance,
+                tan,
+                radian,
+                tmpPointDistance;
+            var ret = [];
+            pointA = points[0]; //点击
+            pointB = points[1]; //中间
+            xDistance = pointB.x - pointA.x;
+            yDistance = pointB.y - pointA.y;
+            pointDistance = Math.pow(
+                Math.pow(xDistance, 2) + Math.pow(yDistance, 2),
+                1 / 2
+            );
+            tan = yDistance / xDistance;
+            radian = Math.atan(tan);
+            tmpPointDistance = pointDistance * rate;
+            ret = {
+                x: pointA.x + tmpPointDistance * Math.cos(radian),
+                y: pointA.y + tmpPointDistance * Math.sin(radian)
+            };
+            return ret;
+        }
+        return {
+            bezier_points: ret
+        };
+    },
 })

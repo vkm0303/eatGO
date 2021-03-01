@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-28 15:33:42
+ * @LastEditTime: 2021-03-01 22:20:05
  * @FilePath: \tastygo\miniprogram\api\api.js
  */
 
@@ -106,6 +106,12 @@ const updateUserInfo = async(params) => {
     return data;
 };
 
+//获取用户信息
+const getUserInfo = async(params) => {
+    let { data } = await request.get(`${apiBaseUrl}/getUserInfo`, params);
+    return data;
+};
+
 
 const api = {
     getCanteenList,
@@ -123,7 +129,8 @@ const api = {
     getOrderDetail,
     changeOrderStatus,
     reg,
-    updateUserInfo
+    updateUserInfo,
+    getUserInfo,
 };
 
 module.exports = api;

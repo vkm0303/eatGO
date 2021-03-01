@@ -40,7 +40,7 @@
 		<span class="common-text">我的订单</span>
 		<span class="iconfont icon-iconyoujiantou"></span>
 	</navigator>
-	<navigator
+	<!-- <navigator
 	 class="collection common-router"
 	 url="/pages/myCollection/index"
 	 wx:if="{{isLogin}}"
@@ -48,7 +48,7 @@
 		<image class="icon" src="../../icons/collect.png"></image>
 		<span class="common-text">喜爱菜品</span>
 		<span class="iconfont icon-iconyoujiantou"></span>
-	</navigator>
+	</navigator> -->
 	<navigator
 	 class="pay-record common-router"
 	 url="/pages/cardRecord/index"

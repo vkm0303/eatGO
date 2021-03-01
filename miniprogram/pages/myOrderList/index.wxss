@@ -234,6 +234,7 @@
 }
 page {
   background-color: #f8f8f8;
+  height: 100vh;
 }
 page .tabs {
   position: sticky;
@@ -252,16 +253,18 @@ page .tabs .tabs-common {
 page .tabs .active {
   background-color: #ff824e;
 }
-.release {
-  height: 92vh;
+.common {
+  height: 100%;
+  padding-bottom: 210rpx;
+  box-sizing: border-box;
 }
-.release .order-list-warp {
+.common .order-list-warp {
   position: relative;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
 }
-.release .order-list-warp .order-warp {
+.common .order-list-warp .order-warp {
   width: 700rpx;
   margin-top: 44rpx;
   margin-left: 50%;
@@ -273,23 +276,23 @@ page .tabs .active {
   background-color: #fff;
   font-size: 26rpx;
 }
-.release .order-list-warp .order-warp .box-common {
+.common .order-list-warp .order-warp .box-common {
   display: flex;
   margin-bottom: 20rpx;
   line-height: 100%;
 }
-.release .order-list-warp .order-warp .box-common .details-warp {
+.common .order-list-warp .order-warp .box-common .details-warp {
   width: 325rpx;
   word-wrap: break-word;
   word-break: break-all;
 }
-.release .order-list-warp .order-warp .box-common .way {
+.common .order-list-warp .order-warp .box-common .way {
   margin-top: -3rpx;
   color: #ff8451;
   font-size: 32rpx;
   font-weight: 700;
 }
-.release .order-list-warp .order-warp .cancel-order-btn {
+.common .order-list-warp .order-warp .cancel-order-btn {
   position: absolute;
   right: 42rpx;
   bottom: 36rpx;
@@ -301,10 +304,10 @@ page .tabs .active {
   text-align: center;
   line-height: 56rpx;
 }
-.release .order-list-warp .order-warp .disable {
+.common .order-list-warp .order-warp .disable {
   background-color: #cfcfcf;
 }
-.release .order-list-warp .tips {
+.common .order-list-warp .tips {
   width: 100%;
   padding: 25rpx 0;
   margin-bottom: 10rpx;

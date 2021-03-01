@@ -3,11 +3,11 @@
  * @Author: 陈俊任
  * @Date: 2021-02-22 19:12:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-27 13:17:42
+ * @LastEditTime: 2021-03-01 22:23:12
  * @FilePath: \tastygo\miniprogram\pages\userInfo\index.js
  */
 
-const { updateUserInfo } = require('../../api/api');
+const { updateUserInfo, getUserInfo } = require('../../api/api');
 
 var userInfo = {};
 
@@ -16,9 +16,15 @@ Page({
     data: {
         userInfo: {}
     },
-    onLoad: function(options) {
+    onLoad: async function(options) {
         const that = this;
         userInfo = wx.getStorageSync('userInfo');
+        const res = await getUserInfo({ id: userInfo.no });
+        if (res.code === 200) {
+            userInfo.wxid = res.data.wxId;
+            userInfo.phone = res.data.phone;
+            wx.setStorageSync('userInfo', userInfo);
+        }
         that.setData({
             userInfo
         })

@@ -1,4 +1,4 @@
-<view class="map">
+<!-- <view class="map">
 	<map
 	 name=""
 	 style="width: 100%; height: 500rpx"
@@ -8,14 +8,17 @@
 	 scale="20"
 	 wx:if="{{markers}}"
 	></map>
-</view>
+</view> -->
+
+<import src="index.skeleton.wxml" />
+<template is="skeleton" wx-if="{{loading}}" />
 
 <view class="outer order-status">
 	订单状态:
 	<text class="status">{{status[orderDetail.status+1]}}</text>
 </view>
 
-<view class="outer delievry-info">
+<view class="outer delievry-info" wx:if="{{orderDetail.getWay===1}}">
 	<view class="head">
 		<span class="iconfont icon-delievry-man"></span>
 		<span class="title">配送员信息</span>
@@ -44,18 +47,29 @@
 		<span class="title">订单详情</span>
 	</view>
 
-	<view class="content-byself common">
+	<!-- <view class="getway-warp margin-common">
+		<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
+		<span class="getway">{{orderDetail.getWay===0?'自提':'配送'}}</span>
+	</view> -->
+
+	<view class="content-byself common" wx:if="{{orderDetail.getWay===0}}">
 		<span class="take-food-num">
-			<text decode>自取取餐码:&nbsp;&nbsp;&nbsp;</text>
-			<text class="num">88</text>
+			<text decode>取餐码:&nbsp;&nbsp;&nbsp;</text>
+			<text class="num">{{orderDetail.code}}</text>
 		</span>
-		<text class="take-food-time margin-common" decode>自取取餐时间:&nbsp;&nbsp;&nbsp;11:40</text>
-		<text class="time margin-common" decode>自取取餐地点:&nbsp;&nbsp;&nbsp;北区食堂二楼正门左侧置物架</text>
+		<text class="take-food-time margin-common" decode>取餐时间:&nbsp;&nbsp;&nbsp;11:40</text>
+		<text class="time margin-common" decode>取餐地点:&nbsp;&nbsp;&nbsp;北区食堂二楼正门左侧置物架</text>
 	</view>
 
+	<text class="time margin-common" decode wx:if="{{orderDetail.getWay===1}}">预定到达时间:&nbsp;&nbsp;&nbsp;{{orderDetail.arrivalTime}}</text>
 	<text class="address margin-common" decode>配送地址:&nbsp;&nbsp;&nbsp;{{orderDetail.address+' '+orderDetail.addressDetail}}</text>
-	<text class="foods-content margin-common" decode>餐品内容:&nbsp;&nbsp;&nbsp;烧鸭饭*1</text>
-	<text class="tableware margin-common" decode>餐具:&nbsp;&nbsp;&nbsp;{{orderDetail.tableware}}</text>
+	<span class="foods-content margin-common" decode>
+		<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
+		<view class="foods-warp">
+			<text class="foods" decode wx:for="{{orderDetail.menus}}" wx:key="index">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
+		</view>
+	</span>
+	<text class="tableware margin-common" decode>餐具:&nbsp;&nbsp;&nbsp;{{tableware[orderDetail.tableware]}}</text>
 	<view class="line"></view>
 	<span class="remarks">备注： {{orderDetail.note}}</span>
 </view>

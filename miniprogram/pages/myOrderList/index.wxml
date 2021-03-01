@@ -19,7 +19,7 @@
 </view>
 
 <swiper
- class="release"
+ class="common"
  current="{{tabIdx}}"
  bindchange="swiperItemChange"
  bindanimationfinish=""
@@ -81,40 +81,38 @@
 	</swiper-item>
 
 	<swiper-item>
-		<scroll-view class="release" scroll-y>
-			<view class="order-list-warp">
-				<view
-				 class="order-warp"
-				 wx:for="{{receiveOrderList}}"
-				 wx:for-item="order"
-				 wx:key="index"
-				>
-					<view class="box-common">
-						<text decode>送餐方式:&nbsp;&nbsp;&nbsp;</text>
-						<text class="way">{{getWays[order.getWay]}}</text>
+		<scroll-view class="order-list-warp" scroll-y>
+			<view
+			 class="order-warp"
+			 wx:for="{{receiveOrderList}}"
+			 wx:for-item="order"
+			 wx:key="index"
+			>
+				<view class="box-common">
+					<text decode>送餐方式:&nbsp;&nbsp;&nbsp;</text>
+					<text class="way">{{getWays[order.getWay]}}</text>
+				</view>
+				<view class="box-common">
+					<text decode>预计时间:&nbsp;&nbsp;&nbsp;</text>
+					<text class="text-common">{{order.arrivalTime}}</text>
+				</view>
+				<view class="box-common">
+					<text decode>订单内容:&nbsp;&nbsp;&nbsp;</text>
+					<view class="details-warp">
+						<text class="text-common" decode wx:for="{{order.menus}}" wx:key="index">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
 					</view>
-					<view class="box-common">
-						<text decode>预计时间:&nbsp;&nbsp;&nbsp;</text>
-						<text class="text-common">{{order.arrivalTime}}</text>
-					</view>
-					<view class="box-common">
-						<text decode>订单内容:&nbsp;&nbsp;&nbsp;</text>
-						<view class="details-warp">
-							<text class="text-common" decode wx:for="{{order.menus}}" wx:key="index">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
-						</view>
-					</view>
-					<view class="box-common">
-						<text decode>接单时间:&nbsp;&nbsp;&nbsp;</text>
-						<text class="text-common">2021.02.16</text>
-					</view>
-					<view catchtap="preventTap">
-						<view
-						 class="cancel-order-btn"
-						 bindtap="goToOrderDetail"
-						 data-orderid="{{order.orderId}}"
-						>
-							查看订单
-						</view>
+				</view>
+				<view class="box-common">
+					<text decode>接单时间:&nbsp;&nbsp;&nbsp;</text>
+					<text class="text-common">2021.02.16</text>
+				</view>
+				<view catchtap="preventTap">
+					<view
+					 class="cancel-order-btn"
+					 bindtap="goToOrderDetail"
+					 data-orderid="{{order.orderId}}"
+					>
+						查看订单
 					</view>
 				</view>
 			</view>

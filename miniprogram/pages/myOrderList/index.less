@@ -1,6 +1,7 @@
 @import "./index.skeleton.wxss";
 page {
   background-color: #f8f8f8;
+  height: 100vh;
   .tabs {
     position: sticky;
     display: flex;
@@ -19,8 +20,10 @@ page {
     }
   }
 }
-.release {
-  height: 92vh;
+.common {
+  height: 100%;
+  padding-bottom: 210rpx;
+  box-sizing: border-box;
   .order-list-warp {
     position: relative;
     width: 100%;

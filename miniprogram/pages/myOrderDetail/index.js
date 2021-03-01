@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-13 14:23:30
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-28 13:37:50
+ * @LastEditTime: 2021-03-01 23:14:36
  * @FilePath: \tastygo\miniprogram\pages\myOrderDetail\index.js
  */
 
@@ -14,7 +14,9 @@ const { getOrderDetail, changeOrderStatus } = require('../../api/api');
 Page({
     data: {
         getWay: '',
-        status: ['订单取消', '等待接单', '等待配送', '正在配送', '已送达', '待确认收货', '已结束']
+        status: [],
+        tableware: ['无需餐具', '1份', '2份', '3份', '4份', '5份'],
+        loading: true,
     },
     onLoad: async function(options) {
         const that = this;
@@ -89,8 +91,14 @@ Page({
         const that = this;
         const res = await getOrderDetail({ id: orderId });
         const orderDetail = res.data[0];
+        let status = ['订单取消', '等待接单', '等待配送', '正在配送', '已送达', '待确认收货', '已结束'];
+        if (orderDetail.getWay === 0) {
+            status = ['订单取消', '等待取餐', '等待取餐', '等待取餐', '已取餐', '待确认收货', '已结束']
+        }
         that.setData({
-            orderDetail
+            orderDetail,
+            status,
+            loading: false
         });
     }
 })

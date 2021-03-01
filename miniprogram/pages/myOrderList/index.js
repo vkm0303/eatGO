@@ -3,13 +3,13 @@
  * @Author: AS
  * @Date: 2021-02-11 14:23:03
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 18:13:03
+ * @LastEditTime: 2021-03-01 23:03:12
  * @FilePath: \tastygo\miniprogram\pages\myOrderList\index.js
  */
 
 const { getUserOrder, cancelOrder } = require('../../api/api');
 
-const PAGESIZE = 3;
+const PAGESIZE = 10;
 var currentPage = 0;
 const orderType = ['release', 'receive'];
 

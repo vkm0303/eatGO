@@ -53,15 +53,15 @@
 			<view class="consignee-info">
 				<span class="consignee">
 					<text decode>收餐:&nbsp;&nbsp;&nbsp;</text>
-					<text>{{orderDetail.receiver.name}}</text>
+					<text>{{orderDetail.release.name[1]}}**</text>
 				</span>
 				<span class="common">
 					<text decode>微信:&nbsp;&nbsp;&nbsp;</text>
-					<text>{{orderDetail.receiver.wechat}}</text>
+					<text>{{orderDetail.release.wechat}}</text>
 					<span
 					 class="copy-btn iconfont icon-copy"
 					 bindtap="copy"
-					 data-content="{{orderDetail.receiver.wechat}}"
+					 data-content="{{orderDetail.release.wechat}}"
 					></span>
 				</span>
 				<span class="common">

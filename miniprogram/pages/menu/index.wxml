@@ -168,6 +168,13 @@
 	<!-- 菜单区 结束 -->
 </view>
 
+<view
+ class="good_box"
+ animation="{{animation}}"
+ style="left: {{bus_x*2}}rpx; top: {{bus_y*2}}rpx; opacity: 0"
+>
+</view>
+
 <shopping-cart
  orderData="{{orderDetail}}"
  totalPrice="{{totalPrice}}"

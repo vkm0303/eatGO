@@ -1,3 +1,112 @@
+/*
+此文件为开发者工具生成，生成时间: 2021/3/1 下午11:13:10 
+
+在 D:\项目\tastygo\miniprogram\pages\myOrderDetail\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+*/
+.sk-transparent {
+  color: transparent !important;
+}
+.sk-text-18-7500-123 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text {
+  background-origin: content-box !important;
+  background-clip: content-box !important;
+  background-color: transparent !important;
+  color: transparent !important;
+  background-repeat: repeat-y !important;
+}
+.sk-text-18-7500-215 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-744 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 48rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-832 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 51.2rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-425 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-638 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-687 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-655 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-548 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-751 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-749 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-902 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 44.8rpx;
+  position: relative !important;
+}
+.sk-text-26-4706-32 {
+  background-image: linear-gradient(transparent 26.4706%, #EEEEEE 0%, #EEEEEE 73.5294%, transparent 0%) !important;
+  background-size: 100% 68rpx;
+  position: relative !important;
+}
+.sk-pseudo::before,
+.sk-pseudo::after {
+  background: #EFEFEF !important;
+  background-image: none !important;
+  color: transparent !important;
+  border-color: transparent !important;
+}
+.sk-pseudo-rect::before,
+.sk-pseudo-rect::after {
+  border-radius: 0 !important;
+}
+.sk-pseudo-circle::before,
+.sk-pseudo-circle::after {
+  border-radius: 50% !important;
+}
+.sk-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
+}
 page {
   height: 100vh;
   background-color: #f8f8f8;
@@ -9,6 +118,7 @@ page .common {
 page .head {
   display: flex;
   align-items: center;
+  margin-bottom: 10rpx;
 }
 page .head .iconfont {
   font-size: 55rpx;
@@ -58,14 +168,26 @@ page .delievry-info .null-delievry {
   padding-left: 10rpx;
   font-size: 30rpx;
 }
+page .detail-warp .getway-warp .getway {
+  font-size: 40rpx;
+  color: #ff824e;
+}
 page .detail-warp .content-byself .take-food-num {
   display: flex;
   align-items: center;
   margin-bottom: 2rpx;
 }
 page .detail-warp .content-byself .take-food-num .num {
-  font-size: 48rpx;
+  font-size: 40rpx;
   color: #ff824e;
+}
+page .detail-warp .foods-content {
+  display: flex;
+}
+page .detail-warp .foods-content .foods-warp {
+  width: 325rpx;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 page .detail-warp .margin-common {
   margin-bottom: 24rpx;

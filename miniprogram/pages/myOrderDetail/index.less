@@ -1,3 +1,4 @@
+@import "./index.skeleton.wxss";
 page {
   height: 100vh;
   background-color: #f8f8f8;
@@ -9,6 +10,7 @@ page {
   .head {
     display: flex;
     align-items: center;
+    margin-bottom: 10rpx;
     .iconfont {
       font-size: 55rpx;
       color: #23aaf2;
@@ -69,15 +71,31 @@ page {
   }
 
   .detail-warp {
+    .getway-warp {
+      .getway {
+          font-size: 40rpx;
+          color: #ff824e;
+      }
+    }
+
     .content-byself {
       .take-food-num {
         display: flex;
         align-items: center;
         margin-bottom: 2rpx;
         .num {
-          font-size: 48rpx;
+          font-size: 40rpx;
           color: #ff824e;
         }
+      }
+    }
+
+    .foods-content {
+      display: flex;
+      .foods-warp {
+        width: 325rpx;
+        word-wrap:break-word; 
+        word-break:break-all;
       }
     }
 

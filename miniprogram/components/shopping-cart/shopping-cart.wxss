@@ -1,22 +1,23 @@
 .cart-warp {
   position: fixed;
-  bottom: 35rpx;
+  bottom: 0;
   z-index: 99999;
   width: 100%;
+  background-color: #fff;
 }
 .cart-warp .cart-detail {
   overflow: hidden;
   width: 100%;
-  padding: 20rpx 40rpx 60rpx;
+  padding: 20rpx 40rpx 40rpx;
   border-radius: 40rpx 40rpx 0 0;
   box-shadow: 0 -6rpx 10rpx -3rpx #98c8e4;
   box-sizing: border-box;
-  background-color: #fff;
 }
 .cart-warp .cart-detail .header {
   display: flex;
   justify-content: space-between;
   padding-bottom: 10rpx;
+  border-bottom: 1rpx solid #e9e8e8;
 }
 .cart-warp .cart-detail .header .title {
   font-size: 28rpx;
@@ -30,7 +31,7 @@
   position: relative;
   display: flex;
   padding: 20rpx 0;
-  border-top: 2rpx solid #e2e2e2;
+  border-bottom: 1rpx solid #f7f5f5;
 }
 .cart-warp .cart-detail .food .food-img {
   width: 120rpx;
@@ -76,6 +77,7 @@
   display: flex;
   width: 90%;
   height: 95rpx;
+  margin-bottom: 35rpx;
   margin-left: 50%;
   transform: translateX(-50%);
   border-radius: 50rpx;

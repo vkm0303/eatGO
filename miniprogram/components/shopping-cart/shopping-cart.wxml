@@ -4,35 +4,43 @@
 			<span class="title">购物车</span>
 			<span class="clear" bindtap="clear">清空</span>
 		</view>
-		<view
-		 class="food"
-		 wx:for="{{orderData}}"
-		 wx:key="index"
+		<scroll-view
+		 class="list"
+		 scroll-y
+		 enhanced
+		 show-scrollbar="{{false}}"
+		 style="{{scrollHeight}}"
 		>
-			<image class="food-img" src="{{'http://image.tastygo.cn'+item.pictureImg}}"></image>
-			<view class="detail">
-				<view class="food-name">{{item.foodName}}</view>
-				<span style="font-size: 24rpx">￥</span>
-				<span class="price red">{{item.price}}</span>
-			</view>
-			<view class="num-edit-btn">
-				<view
-				 class="sub btn-common"
-				 bindtap="editNum"
-				 data-num="{{-1}}"
-				 data-id="{{item.menuId}}"
-				>-
+			<view
+			 class="food"
+			 wx:for="{{orderData}}"
+			 wx:key="index"
+			>
+				<image class="food-img" src="{{'http://image.tastygo.cn'+item.pictureImg}}"></image>
+				<view class="detail">
+					<view class="food-name">{{item.foodName}}</view>
+					<span style="font-size: 24rpx">￥</span>
+					<span class="price red">{{item.price}}</span>
 				</view>
-				<span class="num">{{item.num}}</span>
-				<view
-				 class="add btn-common"
-				 bindtap="editNum"
-				 data-num="{{1}}"
-				 data-id="{{item.menuId}}"
-				>+
+				<view class="num-edit-btn">
+					<view
+					 class="sub btn-common"
+					 bindtap="editNum"
+					 data-num="{{-1}}"
+					 data-id="{{item.menuId}}"
+					>-
+					</view>
+					<span class="num">{{item.num}}</span>
+					<view
+					 class="add btn-common"
+					 bindtap="editNum"
+					 data-num="{{1}}"
+					 data-id="{{item.menuId}}"
+					>+
+					</view>
 				</view>
 			</view>
-		</view>
+		</scroll-view>
 	</view>
 
 	<view class="cart">

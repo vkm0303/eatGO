@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-19 23:54:31
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 00:33:16
+ * @LastEditTime: 2021-03-01 23:53:16
  * @FilePath: \tastygo\miniprogram\components\shopping-cart\shopping-cart.js
  */
 
@@ -31,7 +31,8 @@ Component({
      * 组件的初始数据
      */
     data: {
-        isHideDetail: true
+        isHideDetail: true,
+        scrollHeight: ''
     },
 
     /**
@@ -42,9 +43,14 @@ Component({
             const that = this;
             const { isHideDetail } = that.data;
             // that._createAnimation();
+            let scrollHeight = '';
             if (that.properties.totalNum) {
+                if (that.properties.orderData.length > 4) {
+                    scrollHeight = 'height:640rpx';
+                }
                 that.setData({
-                    isHideDetail: !isHideDetail
+                    isHideDetail: !isHideDetail,
+                    scrollHeight
                 });
             }
         },
