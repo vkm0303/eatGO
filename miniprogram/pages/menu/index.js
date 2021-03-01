@@ -41,7 +41,9 @@ Page({
 
         timeOptions: ['今天', '明天', '后天'],
 
-        orderDetail: []
+        orderDetail: [],
+
+        showTriggered: false,
     },
 
     onLoad: async function(options) {
@@ -130,8 +132,12 @@ Page({
         //通过当前选择类型及餐点进行筛选
         let curMenuList = [];
         if (curTypeList.length) {
-            curMenuList = menuData.filter((v) => {
-                return v.typeName === curTypeList[0].typeName && v.menus[0].eatTime === curEatTime && v.menus[0].time === days[dayIdx];
+            menuData.filter(v => {
+                if (v.typeName === curTypeList[0].typeName) {
+                    curMenuList = v.menus.filter(el => {
+                        return el.eatTime === curEatTime;
+                    });
+                }
             });
         }
 
@@ -143,10 +149,34 @@ Page({
         });
     },
 
+    //切换菜单类名事件
+    handleTypeChange(e) {
+        const that = this;
+        const curTypeIdx = e.currentTarget.dataset.index; //获取点击的类名索引
+        const curType = that.data.curTypeList[curTypeIdx]; //将当前类名改为目标点击的类名
+
+        //根据类名筛选数据
+        let curMenuList = [];
+
+        menuData.filter((v) => {
+            if (v.typeName === curType.typeName) {
+                curMenuList = v.menus.filter(el => {
+                    return el.eatTime === that.data.curEatTime;
+                });
+            }
+        });
+
+        that.setData({
+            curTypeIdx,
+            curMenuList,
+            curType,
+        });
+    },
+
     //加载菜单数据
     async loadMenuData(e, isClearData = false) {
         const that = this;
-        let { curCanteen, canteenList } = that.data;
+        let { curCanteen, canteenList, curTypeIdx } = that.data;
         if (e) { //判断是否从点击事件调用
             const { index } = e.detail;
             wx.showLoading({ title: '正在加载' });
@@ -184,10 +214,13 @@ Page({
         }
 
         let curMenuList = [];
-        let curTypeIdx = 0;
         if (curTypeList.length) {
-            curMenuList = menuData.filter(v => {
-                return v.typeName === curTypeList[curTypeIdx].typeName && v.menus[0].eatTime === that.data.curEatTime && v.menus[0].time === days[dayIdx];
+            menuData.filter(v => {
+                if (v.typeName === curTypeList[curTypeIdx].typeName) {
+                    curMenuList = v.menus.filter(el => {
+                        return el.eatTime === that.data.curEatTime;
+                    });
+                }
             });
         } else {
             curTypeList[0] = '';
@@ -202,6 +235,7 @@ Page({
         });
 
         wx.hideLoading();
+        that.stopRefresh();
     },
 
     //改变查询时间
@@ -224,24 +258,6 @@ Page({
     //选择日期事件
     async handleDateSelect(e) {
 
-    },
-
-    //切换菜单类名事件
-    handleTypeChange(e) {
-        const that = this;
-        const curTypeIdx = e.currentTarget.dataset.index; //获取点击的类名索引
-        const curType = that.data.curTypeList[curTypeIdx]; //将当前类名改为目标点击的类名
-
-        //根据类名筛选数据
-        let curMenuList = menuData.filter((v) => {
-            return v.typeName === curType.typeName;
-        });
-
-        that.setData({
-            curTypeIdx,
-            curMenuList,
-            curType,
-        });
     },
 
     //点击收藏事件
@@ -295,7 +311,9 @@ Page({
 
         menusId.menuId = food.menuId;
         food.num = 1;
-        if (food.eatTime !== eatTime || food.time !== days[date.getDay()]) {
+
+        const hours = date.getHours();
+        if (food.eatTime !== eatTime || eatTime !== 'Breakfast' && food.time !== days[dayIdx] || eatTime === 'Breakfast' && food.time === days[date.getDay()] && hours >= 21) {
             wx.showToast({
                 title: '不在当前点餐时间范围内',
                 icon: 'none',
@@ -316,11 +334,12 @@ Page({
                     icon: 'none'
                 });
                 return;
-            } else if (orderDetail.length && food.time !== days[date.getDay()]) {
+            } else if (orderDetail.length && food.time !== orderDetail[0].time) {
                 wx.showToast({
                     title: '仅可选择同一天的菜品',
                     icon: 'none'
                 });
+                return;
             } else {
                 canteenOrder.menusId.forEach(el => {
                     if (el.menuId === menusId.menuId) { //判断订单中是否同样商品
@@ -361,6 +380,10 @@ Page({
     //加载收藏列表
     loadCollectionList(canteen, data) {
         const that = this
+        wx.showToast({
+            title: '功能暂未开放',
+            icon: 'none'
+        });
     },
 
     //订单单个商品数量发生变化
@@ -436,14 +459,12 @@ Page({
 
     //scroll-view滑动事件，若正在刷新，则停止
     stopRefresh() {
-        if (this.data.showTriggered) {
-            wx.hideNavigationBarLoading();
-            wx.hideLoading();
-            this.setData({
-                showTriggered: false,
-                tips: false
-            });
-        }
+        wx.hideNavigationBarLoading();
+        wx.hideLoading();
+        this.setData({
+            showTriggered: false,
+            tips: false
+        });
     },
 
     //scroll-view触底事件，上拉加载
@@ -485,9 +506,9 @@ Page({
         const minutes = date.getMinutes();
         if (hours < 7 || hours >= 21) {
             eatTime = 'Breakfast';
-        } else if (hours >= 7 || hours < 11) {
+        } else if (hours >= 7 && hours < 11) {
             eatTime = 'Lunch';
-        } else if (hours < 5) {
+        } else if (hours >= 11 && hours < 17) {
             eatTime = 'Dinner';
         }
     }

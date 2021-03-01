@@ -278,9 +278,9 @@ Page({
                                     confirmText: '确定',
                                     success: (r) => {
                                         if (r.confirm) {
-                                            // that.refresherPulling();
-                                            // that.refresherStart();
-                                            wx.navigateTo({ url: `/pages/takeOrderDetail/index?orderId=${orderId}` });
+                                            that.refresherPulling();
+                                            that.refresherStart();
+                                            //wx.navigateTo({ url: `/pages/takeOrderDetail/index?orderId=${orderId}` });
                                         }
                                     }
                                 });

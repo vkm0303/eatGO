@@ -47,7 +47,7 @@
         "borderStyle": "black",
         "list": [{
             "pagePath": "pages/menu/index",
-            "text": "菜品",
+            "text": "菜单",
             "iconPath": "icons/_menu.png",
             "selectedIconPath": "icons/menu.png"
         }, {

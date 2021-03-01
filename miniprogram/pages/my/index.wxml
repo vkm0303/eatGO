@@ -7,17 +7,20 @@
 		</view>
 	</view>
 </view>
+
 <view class="user-info" wx:if="{{isLogin}}">
 	<image class="user-head-pic" src="{{headPicUrl}}"></image>
 	<span class="user-name">{{name}}同学</span>
 	<span class="user-account">{{no}}</span>
 </view>
+
 <navigator
  class="login-btn"
  url="/pages/login/index"
  wx:else
 >登录解锁更多功能
 </navigator>
+
 <view class="main-warp">
 	<navigator
 	 class="userinfo common-router"
@@ -33,7 +36,7 @@
 	 url="/pages/myOrderList/index"
 	 wx:if="{{isLogin}}"
 	>
-		<image class="icon" src="../../icons/message.png"></image>
+		<image class="icon" src="../../icons/order.png"></image>
 		<span class="common-text">我的订单</span>
 		<span class="iconfont icon-iconyoujiantou"></span>
 	</navigator>

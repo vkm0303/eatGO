@@ -14,10 +14,8 @@
 
 	<!-- 轮播图 开始 -->
 	<swiper
-	 vertical
 	 circular
 	 autoplay
-	 duration="0"
 	 interval="2500"
 	>
 		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
@@ -128,39 +126,36 @@
 			 wx:key="food_index"
 			>
 				<view class="img-warp">
-					<image class="food-img" src="{{'http://image.tastygo.cn'+food.menus[0].pictureImg}}"></image>
+					<image class="food-img" src="{{'http://image.tastygo.cn'+food.pictureImg}}"></image>
 					<image class="canteen-logo" src="../../images/canteen-logo.png"></image>
 				</view>
 				<view class="food-description">
-					<view class="name">{{food.menus[0].foodName}}</view>
-					<view class="tag">
-						<view
-						 class="food-tag-name"
-						 wx:for="{{food.menus[0].tags}}"
-						 wx:for-item="tag"
-						 wx:for-index="tag_index"
-						 wx:key="tag_index"
-						>
-							{{tag}}
+					<view class="food-name">{{food.foodName}}</view>
+					<view class="food-tag">
+						<view class="tag-name">
+							猪肉
+						</view>
+						<view class="tag-name">
+							猪肉
 						</view>
 					</view>
-					<view class="food-calorie">{{food.menus[0].calorie}}qk</view>
+					<view class="food-calorie">{{food.calorie}}qk</view>
 					<view class="food-bottom-warp">
 						<view class="food-price">
 							<text>￥</text>
-							<text class="food-price-text">{{food.menus[0].price}}</text>
+							<text class="food-price-text">{{food.price}}</text>
 						</view>
 						<view
 						 class="food-collect-btn iconfont {{food.isCollected?'icon-shoucang':'icon-aixin'}}"
 						 bindtap="handleFoodCollect"
-						 data-food_id="{{food.menus[0].menuId}}"
+						 data-food_id="{{food.menuId}}"
 						 data-index="{{food_index}}"
 						 data-state="{{food.isCollected}}"
 						></view>
 						<view
 						 class="food-add-btn"
 						 bindtap="handleAddFood"
-						 data-food="{{food.menus[0]}}"
+						 data-food="{{food}}"
 						>+
 						</view>
 					</view>

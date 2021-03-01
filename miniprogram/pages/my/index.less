@@ -1,10 +1,13 @@
-
+page {
+  background-color: #ffffff;
+}
 .bgc-warp {
   position: relative;
   top: -55rpx;
+  z-index: -1;
   width: 100%;
   height: 175 * 2rpx;
-  z-index: -1;
+  box-sizing: border-box;
   .bg {
     width: 100%;
     height: 100%;
@@ -16,10 +19,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  z-index: 9999;
   width: 100%;
   margin-top: -207rpx;
-  z-index: 9999;
-  align-items: center;
+  box-sizing: border-box;
   font-size: 28rpx;
   color: #7a7a7a;
   font-family: PingFangSC-regular;
@@ -36,33 +40,33 @@
   }
 }
 .login-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 60%;
   height: 70rpx;
   opacity: 0.9;
   margin-left: 50%;
   transform: translateX(-50%);
+  background: linear-gradient(to right, #e65c00 , #f8b029 );
   //background: linear-gradient(to right, #f4741f 0%,#f38237 100%);
-  background:-webkit-radial-gradient(circle,#f4741f, #f38135, #ee8037);
+  //background:-webkit-radial-gradient(circle,#f47621, #f78133, #f3a041);
   //background-color: #f38237;
   border-radius: 15rpx;
+  box-shadow: 2rpx 4rpx 8rpx #cecdcd;
+  line-height: 70rpx;
+  text-align: center;
   color: #ffffff;
-}
-page {
-  background-color: #ffffff;
 }
 .main-warp {
   position: relative;
   top: 30rpx;
+  width: 100%;
   .common-router {
     position: relative;
     display: flex;
     align-items: center;
-    width: 343 * 2rpx;
+    width: 100%;
     height: 102rpx;
     padding-left: 64rpx;
+    box-sizing: border-box;
     font-family: PingFangSC-regular;
     font-weight: 500;
     color: #7a7a7a;

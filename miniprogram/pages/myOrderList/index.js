@@ -3,7 +3,7 @@
  * @Author: AS
  * @Date: 2021-02-11 14:23:03
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-28 19:11:07
+ * @LastEditTime: 2021-03-01 18:13:03
  * @FilePath: \tastygo\miniprogram\pages\myOrderList\index.js
  */
 
@@ -36,6 +36,7 @@ Page({
             title: '加载中',
         });
         this.getUserOrderList(orderType[tabIdx], true);
+        wx.hideLoading();
     },
 
     onPullDownRefresh: function() {
@@ -63,16 +64,10 @@ Page({
         this.setData({
             tabIdx: current
         });
-        wx.showLoading({
-            title: '加载中...',
-        });
         this.getUserOrderList(orderType[current], true);
     },
 
     scrollToLower() {
-        this.setData({
-            isShowLoading: true
-        });
         currentPage++;
         this.getUserOrderList(orderType[this.data.tabIdx]);
     },
@@ -121,8 +116,6 @@ Page({
                 loading: false
             });
         }
-
-        wx.hideLoading();
     },
 
     cancelOrder(e) {
@@ -146,6 +139,7 @@ Page({
                             title: '刷新数据...'
                         });
                         that.getUserOrderList(orderType[tabIdx], true);
+                        wx.hideLoading();
                     } else {
                         wx.showToast({
                             title: '取消订单失败',
