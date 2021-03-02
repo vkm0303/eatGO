@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-19 23:54:31
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 23:53:16
+ * @LastEditTime: 2021-03-02 13:57:15
  * @FilePath: \tastygo\miniprogram\components\shopping-cart\shopping-cart.js
  */
 
@@ -32,7 +32,30 @@ Component({
      */
     data: {
         isHideDetail: true,
-        scrollHeight: ''
+        scrollHeight: '',
+    },
+
+    observers: {
+        'orderData': function(params) { //  'params'是要监听的字段，（params）是已更新变化后的数据
+            const that = this;
+            console.log(params)
+            let animation = wx.createAnimation({
+                duration: 200,
+            });
+
+            animation.rotate3d(1, 0, 0, 60);
+            animation.translateZ(8).step();
+            that.setData({
+                addAni: animation.export()
+            });
+            setTimeout(() => {
+                animation.rotate3d(1, 0, 0, 0).step();
+                that.setData({
+                    addAni: animation.export()
+                });
+            }, 1000)
+            console.log(this.data.addAni)
+        }
     },
 
     /**

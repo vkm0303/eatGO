@@ -46,7 +46,12 @@
 	<view class="cart">
 		<view class="left">
 			<view class="logo-warp" bindtap="handleShowDetail">
-				<image class="logo" src="../../images/logo.png"></image>
+				<image
+				 class="logo"
+				 src="../../images/logo-top.png"
+				 animation="{{addAni}}"
+				></image>
+				<image class="logo" src="../../images/logo-bottom.png"></image>
 			</view>
 			<badge
 			 style="position: fixed; left: 110rpx; top: -30rpx;"
@@ -64,5 +69,7 @@
 		</view>
 		<view class="right" bindtap="goToSubmit">去下单</view>
 	</view>
+
 </view>
+<!-- <view class="mask" hidden="{{totalNum===0}}"></view> -->
 

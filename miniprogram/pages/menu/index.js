@@ -520,15 +520,11 @@ Page({
         const minutes = date.getMinutes();
         if (hours < 7 || hours >= 21) {
             eatTime = 'Breakfast';
-        } else if (hours >= 7 && hours < 12) {
+        } else if (hours >= 7 && hours < 17) {
             eatTime = 'Lunch';
         } else if (hours >= 11 && hours < 17) {
             eatTime = 'Dinner';
         }
-    },
-
-    onScroll(e) {
-        //console.log(e)
     },
 
 

@@ -116,7 +116,6 @@
 		 bindrefresherpulling="refresherPulling"
 		 bindrefresherrefresh="refresherStart"
 		 bindscrolltolower="scrollToLower"
-		 bindscroll="onScroll"
 		>
 			<view class="food-type">{{curTypeWList[curTypeIdx].typeName}}</view>
 			<view
