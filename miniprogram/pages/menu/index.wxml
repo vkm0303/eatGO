@@ -102,7 +102,7 @@
 		<!-- 右侧食品列表 开始 -->
 		<scroll-view
 		 class="food-list"
-		 style="{{curMenuList.length>=3?'height: 85vh':''}}"
+		 style="{{curMenuList.length>=3?(totalNum?'height: 82vh;padding-bottom: 100rpx;':'height: 82vh;'):''}}"
 		 scroll-y
 		 scroll-anchoring
 		 enhanced
@@ -116,6 +116,7 @@
 		 bindrefresherpulling="refresherPulling"
 		 bindrefresherrefresh="refresherStart"
 		 bindscrolltolower="scrollToLower"
+		 bindscroll="onScroll"
 		>
 			<view class="food-type">{{curTypeWList[curTypeIdx].typeName}}</view>
 			<view
@@ -176,6 +177,7 @@
 </view>
 
 <shopping-cart
+ id="cart"
  orderData="{{orderDetail}}"
  totalPrice="{{totalPrice}}"
  totalNum="{{totalNum}}"

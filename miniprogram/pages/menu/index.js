@@ -106,15 +106,6 @@ Page({
     },
 
     onShow: function() {
-        //首先计算购物车的位置
-        let systemInfo = wx.getSystemInfoSync();
-        let hh = systemInfo.windowHeight;
-        var busPos = {};
-        busPos['x'] = 40; //x轴坐标是固定的
-        busPos['y'] = hh - 19;
-        this.setData({
-            busPos
-        })
 
         const canteenOrder = wx.getStorageSync('canteenOrder');
         if (!canteenOrder) {
@@ -529,68 +520,88 @@ Page({
         const minutes = date.getMinutes();
         if (hours < 7 || hours >= 21) {
             eatTime = 'Breakfast';
-        } else if (hours >= 7 && hours < 11) {
+        } else if (hours >= 7 && hours < 12) {
             eatTime = 'Lunch';
         } else if (hours >= 11 && hours < 17) {
             eatTime = 'Dinner';
         }
     },
 
-    showAddAni(e) {
-
+    onScroll(e) {
+        //console.log(e)
     },
 
 
     /*加入购物车动效*/
     touchOnGoods: function(e) {
+        const that = this;
+
         var topPoint = {};
-        var { busPos, finger } = this.data;;
-        finger['x'] = e.detail.x; //点击的位置
-        finger['y'] = e.detail.y;
+        var { busPos, finger } = that.data;;
 
-        if (finger['y'] < busPos['y']) {
-            topPoint['y'] = finger['y'] - 150;
-        } else {
-            topPoint['y'] = busPos['y'] - 150;
-        }
-        topPoint['x'] = Math.abs(finger['x'] - busPos['x']) / 2;
+        let query = that.createSelectorQuery();
 
-        if (finger['x'] > busPos['x']) {
-            topPoint['x'] = (finger['x'] - busPos['x']) / 2 + busPos['x'];
-        } else {
-            topPoint['x'] = (busPos['x'] - finger['x']) / 2 + finger['x'];
-        }
-        let linePos = this.bezier([busPos, topPoint, finger], 30);
-        this.setData({
-            topPoint,
-            finger,
-            linePos
-        })
-        this.startAnimation(e);
+        query.select('#cart').boundingClientRect().selectViewport().scrollOffset().exec(res => {
+            res[0].top // #the-id节点的上边界坐标
+            res[1].scrollTop // 显示区域的竖直滚动位置
+
+            busPos['x'] = res[0].left;
+            busPos['y'] = res[0].top + res[1].scrollTop;
+
+            finger['x'] = e.detail.x;
+            finger['y'] = e.detail.y;
+
+            let distance = 200;
+            if (res[1].scrollTop < 20) {
+                distance = 420;
+            }
+
+            if (finger['y'] < busPos['y']) {
+                topPoint['y'] = finger['y'] - distance;
+            } else {
+                topPoint['y'] = busPos['y'] - distance;
+            }
+            topPoint['x'] = Math.abs(finger['x'] - busPos['x']) / 2;
+
+            if (finger['x'] > busPos['x']) {
+                topPoint['x'] = (finger['x'] - busPos['x']) / 2 + busPos['x'];
+            } else {
+                topPoint['x'] = (busPos['x'] - finger['x']) / 2 + finger['x'];
+            }
+            let linePos = that.bezier([busPos, topPoint, finger], 30);
+            that.setData({
+                topPoint,
+                finger,
+                linePos,
+                bus_x: finger['x'],
+                bus_y: finger['y']
+            })
+            that.startAnimation(e);
+        });
     },
     startAnimation: function(e) {
         var index = 0,
             that = this,
             bezier_points = that.data.linePos['bezier_points'],
-            hide_good_box = false,
-            bus_x = that.data.finger['x'],
-            bus_y = that.data.finger['y'];
+            hide_good_box = false;
         var len = bezier_points.length;
         index = len;
         let animation = wx.createAnimation({
-            duration: 30,
+            duration: 20,
             timingFunction: 'ease-out'
         });
         animation.opacity(1).step();
         for (let i = index - 1; i > -1; i--) {
             let deltX = bezier_points[i]['x'] - that.data.finger['x'];
             let deltY = bezier_points[i]['y'] - that.data.finger['y'];
+            if (i < 6) {
+                deltX = -265;
+            }
             animation.translate(deltX, deltY).step();
         }
         animation.opacity(0).step();
+        animation.translate(0, 0).step;
         that.setData({
-            bus_x,
-            bus_y,
             animation: animation.export(),
             hide_good_box
         })
