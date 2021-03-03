@@ -3,11 +3,11 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 00:29:19
+ * @LastEditTime: 2021-03-04 00:49:05
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
-const { getAddressList, getMenuDetail, submitOrder } = require('../../api/api');
+const { getAddressList, submitOrder } = require('../../api/api');
 
 var addressIdx = 0;
 var addressList = [];
@@ -63,8 +63,19 @@ Page({
         let canteenOrder = wx.getStorageSync('canteenOrder');
         let orderDetail = wx.getStorageSync('orderDetail');
         const { getWay } = options;
+        const { timeOptions } = that.data;
 
-        canteenOrder.price += 4;
+        if (getWay == 1) {
+            canteenOrder.price += 4;
+        } else {
+            for (let el of timeOptions) {
+                if (el.status !== -1) {
+                    canteenOrder.arrivalTime = el.time;
+                    break;
+                }
+            }
+        }
+
         that.setData({
             getWay,
             orderDetail,
@@ -121,14 +132,19 @@ Page({
 
         canteenOrder.menusId = JSON.stringify(canteenOrder.menusId);
         canteenOrder.campusId = campusId;
-        canteenOrder.addressId = addressList[addressIdx].addressId;
-        canteenOrder.addressDetail = addressDetail;
         canteenOrder.arrivalTime = presetHours + ':' + presetMinutes;
         canteenOrder.note = note;
         canteenOrder.tableware = tbwIdx === -1 ? 1 : tbwIdx;
 
+        if (that.data.getWay == 1) {
+            canteenOrder.addressId = addressList[addressIdx].addressId;
+            canteenOrder.addressDetail = addressDetail;
+        } else {
+            canteenOrder.addressId = 0;
+            canteenOrder.addressDetail = '北区食堂二楼正门左侧置物架';
+        }
+
         let res = await submitOrder(canteenOrder);
-        console.log(res);
         if (res.msg === 'success') {
             wx.requestSubscribeMessage({
                 tmplIds: ['LjrtLzhdr9neIoNPR8s08SLWKxyv6creVn627vrqQtU', 'GgNdlRXIff0qE3t3AP6VHMtg1nyqtzqcYDo4ZHwJmHo', 'Ylw5kbld12nZ5qvCM2tEwaoV7F7S1barD5YCxi8GpNM']
@@ -144,6 +160,7 @@ Page({
             });
         }
     },
+
     handleTimeBoxClick(e) {
         const that = this;
         let { index } = e.currentTarget.dataset;

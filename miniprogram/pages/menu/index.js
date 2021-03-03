@@ -190,7 +190,10 @@ Page({
         let { curCanteen, canteenList, curTypeIdx } = that.data;
         if (e) { //判断是否从点击事件调用
             const { index } = e.detail;
-            wx.showLoading({ title: '正在加载' });
+            wx.showLoading({
+                title: '正在加载',
+                mask: false
+            });
 
             if (curCanteen.canteenId === canteenList[index].canteenId) {
                 return;
@@ -253,10 +256,6 @@ Page({
     changeTime(e) {
         const that = this;
         const { index } = e.detail;
-        wx.showLoading({
-            title: '正在加载',
-            mask: true
-        });
         if (preIdx < index) { //判断向前选择还是向后选择
             dayIdx += (index - preIdx);
         } else {
@@ -264,11 +263,6 @@ Page({
         }
         preIdx = index;
         that.loadMenuData();
-    },
-
-    //选择日期事件
-    async handleDateSelect(e) {
-
     },
 
     //点击收藏事件
@@ -329,7 +323,7 @@ Page({
         food.num = 1;
 
         const hours = date.getHours();
-        if (food.eatTime !== eatTime || (eatTime !== 'Breakfast' && food.time !== days[dayIdx]) || (eatTime === 'Breakfast' && days[dayIdx] !== days[date.getDay()] && hours < 7) || (eatTime === 'Breakfast' && days[dayIdx] === days[date.getDay()] && hours >= 21)) {
+        if (food.eatTime !== eatTime || (eatTime !== 'Breakfast' && food.time !== days[dayIdx]) || (eatTime === 'Breakfast' && days[dayIdx] !== days[date.getDay()] && hours < 7) || (eatTime === 'Breakfast' && dayIdx === date.getDay() && hours >= 21)) {
             wx.showToast({
                 title: '不在当前点餐时间范围内',
                 icon: 'none',
@@ -591,7 +585,7 @@ Page({
             let deltX = bezier_points[i]['x'] - that.data.finger['x'];
             let deltY = bezier_points[i]['y'] - that.data.finger['y'];
             if (i < 6) {
-                deltX = -265;
+                deltX = -290;
             }
             animation.translate(deltX, deltY).step();
         }

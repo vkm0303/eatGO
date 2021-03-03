@@ -1,0 +1,52 @@
+<!--
+此文件为开发者工具生成，生成时间: 2021/3/1 下午11:35:37 
+使用方法：
+在 D:\项目\tastygo\miniprogram\pages\myOrderDetail\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx-if="{{loading}}" />
+```
+
+在 D:\项目\tastygo\miniprogram\pages\myOrderDetail\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="outer order-status sk-transparent">
+      订单状态:
+      <text class="status sk-transparent sk-text-18-7500-905 sk-text">等待取餐</text>
+    </view>
+    <view class="outer detail-warp">
+      <view class="head">
+        <span class="iconfont icon-order-detail sk-pseudo sk-pseudo-circle"></span>
+        <span class="title sk-transparent sk-text-18-7500-618 sk-text">订单详情</span>
+      </view>
+      <view class="content-byself common">
+        <span class="take-food-num">
+          <text decode="true" class="sk-transparent sk-text-18-7500-619 sk-text">取餐码:&nbsp;&nbsp;&nbsp;</text>
+          <text class="num sk-transparent sk-text-18-7500-969 sk-text">2213</text>
+        </span>
+        <text decode="true" class="take-food-time margin-common sk-transparent sk-text-18-7500-970 sk-text">取餐时间:&nbsp;&nbsp;&nbsp;11:40</text>
+        <text decode="true" class="time margin-common sk-transparent sk-text-18-7500-827 sk-text">取餐地点:&nbsp;&nbsp;&nbsp;北区食堂二楼正门左侧置物架</text>
+      </view>
+      <text decode="true" class="address margin-common sk-transparent sk-text-18-7500-439 sk-text">配送地址:&nbsp;&nbsp;&nbsp;男生宿舍17B 111</text>
+      <span class="foods-content margin-common">
+        <text decode="true" class="sk-transparent sk-text-18-7500-954 sk-text">餐品内容:&nbsp;&nbsp;&nbsp;</text>
+        <view class="foods-warp">
+          <text decode="true" class="foods sk-transparent sk-text-18-7500-105 sk-text">芋头*1&nbsp;&nbsp;&nbsp;</text>
+          <text decode="true" class="foods sk-transparent sk-text-18-7500-486 sk-text">金*1&nbsp;&nbsp;&nbsp;</text>
+        </view>
+      </span>
+      <text decode="true" class="tableware margin-common sk-transparent sk-text-18-7500-125 sk-text">餐具:&nbsp;&nbsp;&nbsp;1份</text>
+      <view class="line"></view>
+      <span class="remarks sk-transparent sk-text-18-7500-774 sk-text">备注： </span>
+    </view>
+    <view class="confirm-btn sk-transparent sk-text-26-4706-553 sk-text" style="background-position-x: 50%;">确认收货
+    </view>
+  </view>
+</template>
