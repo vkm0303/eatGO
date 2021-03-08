@@ -1,6 +1,9 @@
 const api = require('../../api/api.js');
 
 var menuData = []; //存放当前食堂的所有菜单数据
+var canteenList = [];
+var canteenIdx = 0;
+
 var eatTime;
 
 const date = new Date();
@@ -21,15 +24,7 @@ Page({
 
         curMenuList: [], //当前展示的菜单列表
 
-        canteenList: [{
-            "canteenId": "5",
-            "canteenName": "北区食堂",
-        }], //所有的食堂对象列表
         canteenOptions: ["北区食堂"],
-        curCanteen: {
-            "canteenId": "5",
-            "canteenName": "北区食堂",
-        }, //当前选中的食堂
 
         curTypeList: [], //菜类型对象列表
         curType: '', //当前类型
@@ -42,8 +37,6 @@ Page({
         timeOptions: ['今天', '明天', '后天'],
 
         orderDetail: [],
-
-        showTriggered: false,
 
         linePos: null,
         hh: '',
@@ -76,7 +69,7 @@ Page({
 
         //获取食堂列表
         const res = await api.getCanteenList();
-        const canteenList = res.data;
+        canteenList = res.data;
         let canteenOptions = [];
         for (let v of canteenList) {
             canteenOptions.push(v.canteenName);
@@ -85,18 +78,12 @@ Page({
         const orderDetail = wx.getStorageSync('orderDetail');
         const totalPrice = wx.getStorageSync('canteenOrder').price || 0;
         const totalNum = that.computeTotalNum();
-        const isShowCart = !!orderDetail.length;
-
-
 
         that.setData({
-            isShowCart,
             orderDetail,
             totalPrice,
             totalNum,
-            canteenList,
             canteenOptions,
-            curCanteen: canteenList[0],
             curEatTime,
         });
 
@@ -135,10 +122,15 @@ Page({
 
         let curTypeList = [];
         for (let v of menuData) {
-            if (v.menus[0].eatTime === curEatTime && v.menus[0].time === days[dayIdx]) {
-                curTypeList.push({ typeId: v.typeId, typeName: v.typeName });
+            for (let el of v.menus) {
+                if (el.eatTime === curEatTime) {
+                    curTypeList.push({ typeId: v.typeId, typeName: v.typeName });
+                    break;
+                }
             }
         }
+
+        console.log(curTypeList)
 
         //通过当前选择类型及餐点进行筛选
         let curMenuList = [];
@@ -151,6 +143,7 @@ Page({
                 }
             });
         }
+        console.log(curMenuList)
 
         that.setData({
             curTypeIdx: 0,
@@ -187,25 +180,20 @@ Page({
     //加载菜单数据
     async loadMenuData(e, isClearData = false) {
         const that = this;
-        let { curCanteen, canteenList, curTypeIdx } = that.data;
+        let { curTypeIdx, curEatTime } = that.data;
         if (e) { //判断是否从点击事件调用
-            const { index } = e.detail;
-            wx.showLoading({
-                title: '正在加载',
-                mask: false
-            });
-
-            if (curCanteen.canteenId === canteenList[index].canteenId) {
+            if (canteenIdx === e.detail.index) {
                 return;
+            } else {
+                canteenIdx = e.detail.index;
+                wx.showLoading({
+                    title: '正在加载',
+                    mask: false
+                });
             }
-
-            that.setData({
-                curCanteen: canteenList[index],
-            });
         }
-
         const params = {
-            canteenId: that.data.curCanteen.canteenId,
+            canteenId: canteenList[canteenIdx].canteenId,
             day: days[dayIdx]
         };
 
@@ -218,12 +206,13 @@ Page({
 
         menuData = res.data;
 
-        console.log(menuData)
-
         let curTypeList = [];
         for (let v of menuData) {
-            if (v.menus[0].eatTime === that.data.curEatTime && v.menus[0].time === days[dayIdx]) {
-                curTypeList.push({ typeId: v.typeId, typeName: v.typeName });
+            for (let el of v.menus) {
+                if (el.eatTime === curEatTime) {
+                    curTypeList.push({ typeId: v.typeId, typeName: v.typeName });
+                    break;
+                }
             }
         }
 
@@ -249,7 +238,6 @@ Page({
         });
 
         wx.hideLoading();
-        that.stopRefresh();
     },
 
     //改变查询时间
@@ -258,8 +246,14 @@ Page({
         const { index } = e.detail;
         if (preIdx < index) { //判断向前选择还是向后选择
             dayIdx += (index - preIdx);
+            if (dayIdx > 6) {
+                dayIdx = 7 - dayIdx;
+            }
         } else {
             dayIdx -= (preIdx - index);
+            if (dayIdx < 0) {
+                dayIdx = 7 + dayIdx;
+            }
         }
         preIdx = index;
         that.loadMenuData();
@@ -441,49 +435,6 @@ Page({
         })
     },
 
-    /*
-     *  下拉刷新与上拉加载
-     */
-
-    //加载下拉刷新动画
-    refresherPulling() {
-        //导航条加载动画
-        wx.showNavigationBarLoading();
-        //loading 提示框
-        wx.showLoading({
-            title: 'loading...',
-        });
-    },
-
-    //下拉刷新被触发
-    refresherStart() {
-        const that = this;
-        that.setData({
-            showTriggered: true
-        });
-        currentPage = 0;
-        that.loadMenuData(null, true);
-    },
-
-    //scroll-view滑动事件，若正在刷新，则停止
-    stopRefresh() {
-        wx.hideNavigationBarLoading();
-        wx.hideLoading();
-        this.setData({
-            showTriggered: false,
-            tips: false
-        });
-    },
-
-    //scroll-view触底事件，上拉加载
-    scrollToLower() {
-        this.setData({
-            isShowLoading: true
-        });
-        currentPage++;
-        this.loadMenuData();
-    },
-
     bindClearCart() {
         wx.removeStorageSync('canteenOrder');
         wx.removeStorageSync('orderDetail');
@@ -502,7 +453,6 @@ Page({
             canteenOrder.menusId.forEach((el) => {
                 totalNum += el.num;
             });
-
             return totalNum;
         } else {
             return 0;
@@ -512,7 +462,7 @@ Page({
     getEatTime() {
         const hours = date.getHours();
         const minutes = date.getMinutes();
-        if (hours < 7 || hours >= 21) {
+        if (hours < 7 || hours >= 18) {
             eatTime = 'Breakfast';
         } else if (hours >= 7 && hours < 17) {
             eatTime = 'Lunch';
@@ -523,7 +473,7 @@ Page({
 
 
     /*加入购物车动效*/
-    touchOnGoods: function(e) {
+    touchOnGoods(e) {
         const that = this;
 
         var topPoint = {};
@@ -569,7 +519,7 @@ Page({
             that.startAnimation(e);
         });
     },
-    startAnimation: function(e) {
+    startAnimation() {
         var index = 0,
             that = this,
             bezier_points = that.data.linePos['bezier_points'],
@@ -597,7 +547,7 @@ Page({
         })
     },
     //获得了从点击到购物车之间轨迹的点的位置
-    bezier: function(pots, amount) {
+    bezier(pots, amount) {
         var pot;
         var lines;
         var ret = [];

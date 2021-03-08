@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 12:39:08
+ * @LastEditTime: 2021-03-07 21:19:14
  * @FilePath: \tastygo\miniprogram\pages\my\index.js
  */
 const loginState = wx.getStorageSync('loginState');
@@ -19,9 +19,9 @@ Page({
         const userInfo = wx.getStorageSync('userInfo');
         if (userInfo) {
             that.setData({
-                headPicUrl: userInfo.avatarUrl,
-                name: userInfo.realname,
-                no: userInfo.no,
+                headPicUrl: userInfo.avatar,
+                name: userInfo.realName,
+                no: userInfo.campusId,
                 isLogin: true
             })
         } else {

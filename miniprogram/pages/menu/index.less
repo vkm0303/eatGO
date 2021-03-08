@@ -59,8 +59,9 @@ page {
     .bottom-warp {
         position: sticky;
         width: 100%;
+        height: 60%;
         margin-top: -105rpx;
-        // padding-top: 40rpx;
+        box-sizing: border-box;
         background-color: #fff;
         border-radius: 74rpx 74rpx 0 0;
         box-shadow: 0 -10rpx 14rpx -6rpx #d8e8f1;
@@ -70,8 +71,7 @@ page {
             justify-content: center;
             align-items: center;
             padding-top: 42rpx;
-            :nth-child(1),
-            :nth-child(2) {
+            .margin-right{
                 margin-right: 22rpx;
             }
             .eat-time {
@@ -112,7 +112,7 @@ page {
             //左侧类名区域
             .type-list {
                 flex: 7;
-                height: 45vh;
+                height: 78vh;
                 .type-content {
                     display: flex;
                     justify-content: center;
@@ -132,7 +132,7 @@ page {
             //右侧食品列表区域
             .food-list {
                 flex: 21;
-                height: 45vh;
+                height: 82vh;
                 margin-top: 64rpx;
                 margin-left: 16rpx;
                 box-sizing: border-box;

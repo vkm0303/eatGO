@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2020-09-21 11:44:34
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 22:18:59
+ * @LastEditTime: 2021-03-07 21:20:24
  * @FilePath: \tastygo\miniprogram\app.js
  */
 App({
@@ -20,7 +20,7 @@ App({
                         timeout: 10000,
                         success: (result) => {
                             let userInfo = wx.getStorageSync('userInfo');
-                            userInfo.nickName = result.nickName;
+                            userInfo.nickname = result.nickName;
                             userInfo.avartar = result.avartarUrl;
                         }
                     });

@@ -1,5 +1,5 @@
 /*
-此文件为开发者工具生成，生成时间: 2021/3/1 下午11:13:10 
+此文件为开发者工具生成，生成时间: 2021/3/1 下午11:35:37 
 
 在 D:\项目\tastygo\miniprogram\pages\myOrderDetail\index.wxss 中引入样式
 ```
@@ -11,7 +11,7 @@
 .sk-transparent {
   color: transparent !important;
 }
-.sk-text-18-7500-123 {
+.sk-text-18-7500-905 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 51.2rpx;
   position: relative !important;
@@ -23,62 +23,62 @@
   color: transparent !important;
   background-repeat: repeat-y !important;
 }
-.sk-text-18-7500-215 {
+.sk-text-18-7500-618 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 51.2rpx;
   position: relative !important;
 }
-.sk-text-18-7500-744 {
-  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
-  background-size: 100% 48rpx;
-  position: relative !important;
-}
-.sk-text-18-7500-832 {
-  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
-  background-size: 100% 51.2rpx;
-  position: relative !important;
-}
-.sk-text-18-7500-425 {
+.sk-text-18-7500-619 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 41.6rpx;
   position: relative !important;
 }
-.sk-text-18-7500-638 {
+.sk-text-18-7500-969 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 64rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-970 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 41.6rpx;
   position: relative !important;
 }
-.sk-text-18-7500-687 {
+.sk-text-18-7500-827 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 41.6rpx;
   position: relative !important;
 }
-.sk-text-18-7500-655 {
+.sk-text-18-7500-439 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 41.6rpx;
   position: relative !important;
 }
-.sk-text-18-7500-548 {
+.sk-text-18-7500-954 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 41.6rpx;
   position: relative !important;
 }
-.sk-text-18-7500-751 {
+.sk-text-18-7500-105 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 41.6rpx;
   position: relative !important;
 }
-.sk-text-18-7500-749 {
+.sk-text-18-7500-486 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 41.6rpx;
   position: relative !important;
 }
-.sk-text-18-7500-902 {
+.sk-text-18-7500-125 {
+  background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
+  background-size: 100% 41.6rpx;
+  position: relative !important;
+}
+.sk-text-18-7500-774 {
   background-image: linear-gradient(transparent 18.75%, #EEEEEE 0%, #EEEEEE 81.25%, transparent 0%) !important;
   background-size: 100% 44.8rpx;
   position: relative !important;
 }
-.sk-text-26-4706-32 {
+.sk-text-26-4706-553 {
   background-image: linear-gradient(transparent 26.4706%, #EEEEEE 0%, #EEEEEE 73.5294%, transparent 0%) !important;
   background-size: 100% 68rpx;
   position: relative !important;
@@ -185,7 +185,7 @@ page .detail-warp .foods-content {
   display: flex;
 }
 page .detail-warp .foods-content .foods-warp {
-  width: 325rpx;
+  width: 442rpx;
   word-wrap: break-word;
   word-break: break-all;
 }

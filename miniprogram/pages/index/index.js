@@ -3,24 +3,24 @@ import api from '../../api/api.js';
 const app = getApp();
 var { userInfo, isLogin } = app.globalData;
 
-var menuData = [];//存放当前食堂的所有菜单数据
+var menuData = []; //存放当前食堂的所有菜单数据
 
 Page({
     data: {
-        swiperImagesList: [],//轮播图链接
-        curEatTime: '',//当前选中的餐点
-        curMenuList: [],//当前展示的菜单列表
+        swiperImagesList: [], //轮播图链接
+        curEatTime: '', //当前选中的餐点
+        curMenuList: [], //当前展示的菜单列表
         canteenList: [{
             "canteenId": "ff808081775730a001775732ab050001",
             "canteenName": "北区食堂",
-        }],//所有的食堂对象列表
+        }], //所有的食堂对象列表
         curCanteen: {
             "canteenId": "ff808081775730a001775732ab050001",
             "canteenName": "北区食堂",
-        },//当前选中的食堂
-        typeList: [],//菜类型对象列表
-        curType: '',//当前类型
-        typeIdx: 0,//当前类型的index，用于选择选中样式的展示
+        }, //当前选中的食堂
+        typeList: [], //菜类型对象列表
+        curType: '', //当前类型
+        typeIdx: 0, //当前类型的index，用于选择选中样式的展示
         totalPrice: 0,
         isAdd: false,
         StartScroll: false,
@@ -30,7 +30,7 @@ Page({
 
         //获取食堂列表
         const canteenList = await api.getCanteenList('/getCanteenList');
-        
+
 
         //根据当前时间设置默认选中餐点
         const curDate = new Date();
@@ -60,7 +60,7 @@ Page({
         if (canteenOrder.length == 0)
             this.setData({ isAdd: false });
         if (isLogin, menuData) {
-            let account = userInfo.no;
+            let account = userInfo.campusId;
             this.loadCollectionList(this.data.curCanteen);
         }
     },
@@ -79,29 +79,29 @@ Page({
     async handleITimeClick(e) {
         const that = this;
         const curEatTime = e.currentTarget.dataset.time;
-        
+
         //获取展示的菜单数据并通过当前选择类型进行筛选
         const url = `/getMenuList?canteenId=${that.data.curCanteen.canteenId}&eatTime=${curEatTime}&time=Monday`;
         menuData = await api.getMenuList(url);
         const curMenuList = menuData.filter((v) => {
             return v.typeName === that.data.curType;
-        });  
+        });
 
         that.setData({
             curEatTime,
-            curMenuList,     
-       });
+            curMenuList,
+        });
     },
     //点击选择饭堂按钮事件，创建动画函数
     createAnimation() {
         //展开列表框
         let aniHeightAdd = wx.createAnimation({
-            duration: 150,
-            timingFunction: 'linear',
-            delay: 0,
-            transformOrigin: '50% 50% 0'
-        })
-        //收回列表框
+                duration: 150,
+                timingFunction: 'linear',
+                delay: 0,
+                transformOrigin: '50% 50% 0'
+            })
+            //收回列表框
         aniHeightAdd.height(this.data.canteenList.length * 38).step()
         let aniHeightReduce = wx.createAnimation({
             duration: 200,
@@ -111,7 +111,7 @@ Page({
         });
         aniHeightReduce.height(19).step();
 
-        let { isCanteenClick } = this.data;//获取列表框状态
+        let { isCanteenClick } = this.data; //获取列表框状态
         this.setData({
             isCanteenClick: !isCanteenClick,
             aniHeightAdd: aniHeightAdd.export(),
@@ -121,7 +121,7 @@ Page({
     //选择饭堂响应事件
     async handleCanteenSelect(e) {
         const that = this;
-        if(e) { //判断是否从onload函数调用
+        if (e) { //判断是否从onload函数调用
             const curCanteen = e.currentTarget.dataset.canteen;
             if (curCanteen === that.data.currentCanteen) {
                 return;
@@ -131,7 +131,7 @@ Page({
                 curCanteen,
             });
         }
-        
+
         wx.showLoading({
             title: '正在加载数据',
             mask: false,
@@ -157,8 +157,8 @@ Page({
     //切换菜单类名事件
     handleTypeChange(e) {
         const that = this;
-        const typeIdx = e.currentTarget.dataset.index;//获取点击的类名索引
-        const curType = that.data.typeList[typeIdx].typeName;//将当前类名改为目标点击的类名
+        const typeIdx = e.currentTarget.dataset.index; //获取点击的类名索引
+        const curType = that.data.typeList[typeIdx].typeName; //将当前类名改为目标点击的类名
 
         //根据类名筛选数据
         const curMenuList = menuData.filter((v) => {
@@ -214,7 +214,7 @@ Page({
         let canteenOrder = wx.getStorageSync("canteenOrder") || [];
         let { totalPrice } = this.data;
         let { food_id } = e.curTarget.dataset.food.menuId;
-            //查询是否已存在该food
+        //查询是否已存在该food
         const index = canteenOrder.findIndex(v => {
             return v.food_id === food_id
         })
@@ -259,7 +259,7 @@ Page({
     //加载收藏列表
     loadCollectionList(canteen, data) {
         const that = this
-        //menuData = data || wx.getStorageSync(canteenName)
+            //menuData = data || wx.getStorageSync(canteenName)
             // db.collection('user_collection').where({
             //     canteen,
             //     account

@@ -1,4 +1,4 @@
-@import "../../style/iconfonts.wxss";
+
 //切换身份登录
 .stu-login-btn {
   display: flex;
@@ -65,7 +65,7 @@
     }
   }
   //公共样式
-  input {
+  common-input {
     width: 100%;
     height: 100%;
     padding-left: 80rpx;
@@ -118,8 +118,60 @@
     color: #ffffff;
     font-size: 24rpx;
     font-family: PingFangSC-regular;
-    span {
-      color: #f8c094;
+    .checkbox {
+      transform: scale(0.6, 0.6);
     }
+  }
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.4;
+}
+.agreement-content {
+  position: fixed;
+  top: 40rpx;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 90vh;
+  padding: 0 40rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  background-color: #fff;
+  .title {
+    width: 100%;
+    margin-top: 30rpx;
+    text-align: center;
+    font-weight: 700;
+  }
+  .content {
+    margin-bottom: 40rpx;
+    font-size: 26rpx;
+    .text-strong {
+      font-weight: 700;
+    }
+  }
+  .confirm-btn {
+    height: 40rpx;
+    padding: 10rpx 0;
+    margin-bottom: 40rpx;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15rpx;
+    box-shadow: 2rpx 1rpx 3rpx 2rpx #f88959;
+    background-color: #ff824e;
+    text-align: center;
+    line-height: 40rpx;
+    font-size: 26rpx;
+    color: #fff;
   }
 }

@@ -3,9 +3,11 @@
  * @Author: 陈俊任
  * @Date: 2021-02-19 23:54:31
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-02 20:29:58
+ * @LastEditTime: 2021-03-08 10:33:25
  * @FilePath: \tastygo\miniprogram\components\shopping-cart\shopping-cart.js
  */
+
+var oldNum = 0;
 
 Component({
     properties: {
@@ -36,23 +38,26 @@ Component({
     },
 
     observers: {
-        'orderData': function() {
+        'totalNum': function(newNum) {
             const that = this;
-            let animation = wx.createAnimation({
-                duration: 200,
-            });
+            if (newNum > oldNum) {
+                let animation = wx.createAnimation({
+                    duration: 200,
+                });
 
-            animation.rotate3d(1, 0, 0, 60);
-            animation.translateZ(8).step();
-            that.setData({
-                addAni: animation.export()
-            });
-            setTimeout(() => {
-                animation.rotate3d(1, 0, 0, 0).step();
+                animation.rotate3d(1, 0, 0, 60);
+                animation.translateZ(8).step();
                 that.setData({
                     addAni: animation.export()
                 });
-            }, 1100)
+                setTimeout(() => {
+                    animation.rotate3d(1, 0, 0, 0).step();
+                    that.setData({
+                        addAni: animation.export()
+                    });
+                }, 1100);
+            }
+            oldNum = newNum;
         }
     },
 
@@ -76,6 +81,7 @@ Component({
             }
         },
 
+        //清空购物车
         clear() {
             const that = this;
             wx.showModal({
@@ -92,6 +98,7 @@ Component({
 
         },
 
+        //编辑商品数量
         editNum(e) {
             const that = this;
             const { id, num } = e.currentTarget.dataset;
@@ -132,20 +139,12 @@ Component({
                 slideTopAni: slideTopAni.export(),
                 slideBottomAni: slideBottomAni.export()
             })
-        }
+        },
+
+        preventMove() {}
     },
 
-    pageLifetimes: {
-        show: function() {
-            // 页面被展示
-        },
-        hide: function() {
-            // 页面被隐藏
-        },
-        resize: function(size) {
-            // 页面尺寸变化
-        }
-    },
+    pageLifetimes: {},
 
     lifetimes: {
         attached: function() {},

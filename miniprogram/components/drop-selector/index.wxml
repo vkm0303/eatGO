@@ -1,7 +1,7 @@
 <view class="slot position-class">
 	<view
 	 class="selector-box outer-class"
-	 style="{{itemHeight>0?('height:'+(itemHeight*2)+'rpx'):''}}"
+	 style="{{itemHeight>0?(isSelectorFold?('height:'+(itemHeight*2)+'rpx'):'height:'+(itemHeight*2)+'rpx;'+'padding-bottom: 20rpx;'):''}}"
 	 animation="{{isSelectorFold ? aniHeightReduce : aniHeightAdd}}"
 	 bindtap="handleSelectorClick"
 	>

@@ -215,18 +215,26 @@ page {
 .content-receive-order .order-list .order .receive .rec-icon {
   background-color: #b8c4f2;
 }
-.content-receive-order .order-list .order .receive .building-num {
-  margin-left: 26rpx;
+.content-receive-order .order-list .order .receive .address-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48rpx;
+  margin-left: 22rpx;
+  padding: 4rpx 20rpx;
+  border-radius: 9px;
+  background-color: #fff0de;
+  font-size: 24rpx;
 }
 .content-receive-order .order-list .order .receive .room-num {
   width: 74rpx;
   height: 48rpx;
   margin-left: 20rpx;
 }
-.content-receive-order .order-list .order .commond1 {
+.content-receive-order .order-list .order .common {
   margin-left: 22rpx;
 }
-.content-receive-order .order-list .order .commond1 .commond2 {
+.content-receive-order .order-list .order .common .icon-common {
   width: 48rpx;
   height: 48rpx;
   border-radius: 50%;
@@ -235,19 +243,10 @@ page {
   font-size: 28rpx;
   color: #0e0d0d;
 }
-.content-receive-order .order-list .order .commond1 .commond3 {
+.content-receive-order .order-list .order .common .address-common {
   display: flex;
   align-items: center;
   margin-left: 22rpx;
-  font-size: 24rpx;
-}
-.content-receive-order .order-list .order .commond1 .commond4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48rpx;
-  border-radius: 9px;
-  background-color: #fff0de;
   font-size: 24rpx;
 }
 .content-receive-order .order-list .order .detail {

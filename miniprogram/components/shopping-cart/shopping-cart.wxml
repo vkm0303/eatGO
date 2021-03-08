@@ -1,4 +1,8 @@
-<view class="cart-warp" hidden="{{totalNum===0}}">
+<view
+ class="cart-warp"
+ hidden="{{totalNum===0}}"
+ catch:touchmove="preventMove"
+>
 	<view class="cart-detail" hidden="{{isHideDetail}}">
 		<view class="header">
 			<span class="title">购物车</span>

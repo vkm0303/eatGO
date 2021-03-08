@@ -3,7 +3,7 @@
  * @Author: AS
  * @Date: 2021-02-11 14:23:03
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 23:03:12
+ * @LastEditTime: 2021-03-07 21:23:34
  * @FilePath: \tastygo\miniprogram\pages\myOrderList\index.js
  */
 
@@ -79,7 +79,7 @@ Page({
             currentPage = 0;
         }
         const params = {
-            id: userInfo.no,
+            id: userInfo.campusId,
             orderType,
             currentPage,
             pageSize: PAGESIZE

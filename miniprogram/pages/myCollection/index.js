@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-15 13:25:25
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-24 14:29:09
+ * @LastEditTime: 2021-03-07 21:22:40
  * @FilePath: \tastygo\miniprogram\pages\myCollection\index.js
  */
 const app = getApp()
@@ -18,7 +18,7 @@ Page({
     onShow: function() {
 
         if (app.globalData.isLogin)
-            account = app.globalData.userInfo.no
+            account = app.globalData.userInfo.campusId
         this.onLoadCollectionList()
     },
     onLoadCollectionList() {

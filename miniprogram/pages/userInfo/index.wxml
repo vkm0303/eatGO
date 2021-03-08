@@ -1,10 +1,10 @@
 <view class="container">
 	<view class="top">
 		<view>
-			<image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+			<image class="avatar" src="{{userInfo.avatar}}"></image>
 		</view>
 		<span class="realname">{{userInfo.realname}}</span>
-		<span class="no">{{userInfo.no}}</span>
+		<span class="no">{{userInfo.campusId}}</span>
 	</view>
 	<view class="editable-info">
 		<mp-cells title="联系方式" footer="该信息仅用于订单交易">
@@ -17,7 +17,7 @@
 				 bindinput="wxidInput"
 				 data-field="wxid"
 				 class="weui-input"
-				 value="{{userInfo.wxid}}"
+				 value="{{userInfo.wxId}}"
 				 placeholder="请输入微信号"
 				 placeholder-style="font-size: 26rpx"
 				/>

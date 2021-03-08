@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-15 13:25:23
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-23 16:05:31
+ * @LastEditTime: 2021-03-07 21:21:01
  * @FilePath: \tastygo\miniprogram\pages\accountManage\index.js
  */
 
@@ -17,8 +17,8 @@ Page({
         if (userInfo) {
             that.setData({
                 headPicUrl: userInfo.avatarUrl,
-                name: userInfo.realname,
-                no: userInfo.no,
+                name: userInfo.realName,
+                no: userInfo.campusId,
                 isLogin: true
             })
         }

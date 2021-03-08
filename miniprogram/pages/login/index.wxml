@@ -12,6 +12,7 @@
 	<view class="account-warp common">
 		<span class="icon iconfont icon-user-circle"></span>
 		<input
+		 class="common-input"
 		 type="text"
 		 placeholder="请输入{{login_id?'学号':'工号'}}"
 		 placeholder-class="placeholder-class"
@@ -21,6 +22,7 @@
 	<view class="password-warp common">
 		<span class="icon iconfont icon-md-lock"></span>
 		<input
+		 class="common-input"
 		 password="{{isVisible}}"
 		 placeholder="请输入{{login_id?'教务系统密码':'密码'}}"
 		 placeholder-class="placeholder-class"
@@ -35,8 +37,55 @@
 	>登录
 	</button>
 	<view class="agreement-warp">
-		<text class="agreement-tip">登录前请先阅读并同意</text>
-		<span>《好吃GO隐私协议》</span>
+		<checkbox
+		 class="checkbox"
+		 value=""
+		 checked="{{isAgree}}"
+		 bindtap="checkedChange"
+		/>
+		<text class="" >登录前请先阅读并同意</text>
+		<span style="color: #f8c094;" bindtap="showAgreement">《好吃GO隐私协议》</span>
 	</view>
 </form>
+
+<view class="mask" hidden="{{isHideAgreement}}"></view>
+
+<scroll-view
+ class="agreement-content"
+ scroll-y
+ enhanced
+ show-scrollbar="{{false}}"
+ hidden="{{isHideAgreement}}"
+>
+	<view class="title">好吃GO小程序隐私保护指引</view>
+	<view class="content">
+		<text space decode>
+		本指引是好吃GO小程序开发者收集、使用和存储你的信息而制定。
+
+		开发者收集的信息根据法律规定，开发者仅收集实现小程序功能所必要的信息。
+
+		开发者收集你的用户信息（微信昵称、头像、性别、地区），用于注册、登录小程序。
+		
+		开发者收集你的手机号码，用于订单交易与你取得联系。
+
+		<text class="text-strong">开发者对信息的存储</text>
+		存储地点 境内
+		存储期限 小程序停止运营后及时删除
+
+		<text class="text-strong">信息的使用规则</text>
+		开发者将会在本指引所涵盖的用途内使用收集的信息。
+		如开发者使用你的信息超出本指引目的或合理范围，会及时更新本指引，同时，开发者在使用你的信息前，再次以小程序浮窗等方式告知并征得你的明示同意
+
+		<text class="text-strong">信息对外提供</text>
+		开发者承诺
+		- 不会主动共享或转让你的信息至任何第三方，如存在确需共享或转让时，开发者应当直接或确认第三方征得你的明示同意。
+		- 不会对外公开披露你的信息，如必须公开披露时，开发者应当向你告知公开披露的目的、披露信息的类型及可能涉及的信息，并征得你的明示同意
+
+		若你认为开发者未遵守上述约定，或有其他的投诉建议、未成年人个人信息相关问题，可通过以下方式与开发者联系；或者向微信进行投诉。
+
+		<text class="text-strong">邮箱 tastygo@163.com</text>
+		</text>
+	</view>
+	<view class="confirm-btn" bindtap="agreementConfirm">我已知晓</view>
+</scroll-view>
 

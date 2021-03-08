@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-04 00:49:05
+ * @LastEditTime: 2021-03-07 21:29:04
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
@@ -128,7 +128,7 @@ Page({
 
         const { presetHours, presetMinutes, tbwIdx, note } = that.data;
         let canteenOrder = wx.getStorageSync('canteenOrder');
-        const campusId = wx.getStorageSync('userInfo').no;
+        const { campusId } = wx.getStorageSync('userInfo');
 
         canteenOrder.menusId = JSON.stringify(canteenOrder.menusId);
         canteenOrder.campusId = campusId;

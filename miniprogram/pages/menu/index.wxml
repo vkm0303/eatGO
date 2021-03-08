@@ -29,13 +29,13 @@
 	<!-- 餐点选择栏 开始 -->
 	<view class="eat-time-warp">
 		<view
-		 class="eat-time {{curEatTime=='Breakfast' ? 'active' : ''}}"
+		 class="eat-time margin-right {{curEatTime=='Breakfast' ? 'active' : ''}}"
 		 bindtap="handleIEatTimeClick"
 		 data-time="Breakfast"
 		>早餐
 		</view>
 		<view
-		 class="eat-time {{curEatTime=='Lunch' ? 'active' : ''}}"
+		 class="eat-time margin-right {{curEatTime=='Lunch' ? 'active' : ''}}"
 		 bindtap="handleIEatTimeClick"
 		 data-time="Lunch"
 		>午餐
@@ -76,13 +76,11 @@
 		<!-- 左侧类名区域 开始 -->
 		<scroll-view
 		 class="type-list"
-		 style="{{curMenuList.length>=3?'height: 85vh':''}}"
 		 scroll-y
 		 lower-threshold="10"
 		 enhanced
 		 show-scrollbar="{{true}}"
 		 paging-enabled
-		 bindscrolltolower="openScroll"
 		>
 			<view
 			 class="type-content {{curTypeIdx==index ? 'type-select' : ''}}"
@@ -102,22 +100,13 @@
 		<!-- 右侧食品列表 开始 -->
 		<scroll-view
 		 class="food-list"
-		 style="{{curMenuList.length>=3?(totalNum?'height: 82vh;padding-bottom: 100rpx;':'height: 82vh;'):''}}"
+		 style="{{totalNum?'padding-bottom: 120rpx':''}}"
 		 scroll-y
 		 scroll-anchoring
 		 enhanced
 		 show-scrollbar="{{false}}"
-		 refresher-default-style="dark"
-		 refresher-enabled="{{true}}"
-		 refresher-triggered="{{showTriggered}}"
-		 refresher-threshold="{{40}}"
 		 enable-flex
-		 lower-threshold="{{10}}"
-		 bindrefresherpulling="refresherPulling"
-		 bindrefresherrefresh="refresherStart"
-		 bindscrolltolower="scrollToLower"
 		>
-			<view class="food-type">{{curTypeWList[curTypeIdx].typeName}}</view>
 			<view
 			 class="food-warp"
 			 wx:for="{{curMenuList}}"
@@ -126,8 +115,16 @@
 			 wx:key="food_index"
 			>
 				<view class="img-warp">
-					<image class="food-img" src="{{'http://image.tastygo.cn'+food.pictureImg}}"></image>
-					<image class="canteen-logo" src="../../images/canteen-logo.png"></image>
+					<image
+					 class="food-img"
+					 src="{{'http://image.tastygo.cn'+food.pictureImg}}"
+					 lazy-load
+					></image>
+					<image
+					 class="canteen-logo"
+					 src="../../images/canteen-logo.png"
+					 lazy-load
+					></image>
 				</view>
 				<view class="food-description">
 					<view class="food-name">{{food.foodName}}</view>
@@ -161,7 +158,6 @@
 					</view>
 				</view>
 			</view>
-			<view class="food-type">{{curTypeWList[curTypeIdx].typeName}}</view>
 		</scroll-view>
 		<!-- 右侧食品列表 结束 -->
 	</view>

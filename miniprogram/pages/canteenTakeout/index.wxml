@@ -94,7 +94,7 @@
 		 options="{{focusOptions}}"
 		 itemHeight="{{30}}"
 		 key="{{0}}"
-		 data-flag="{{0}}"
+		 data-flag="{{1}}"
 		 bind:ItemSelect="selectorItemChange"
 		></drop-selector>
 
@@ -122,16 +122,16 @@
 		 wx:for="{{orderList}}"
 		 wx:key="index"
 		>
-			<view class="take commond1">
-				<span class="take-icon commond2">取</span>
-				<span class="take-address commond3">{{item.canteen}}</span>
+			<view class="take common">
+				<span class="take-icon icon-common">取</span>
+				<span class="take-address address-common">{{item.canteen}}</span>
 			</view>
-			<view class="receive commond1">
-				<span class="rec-icon commond2">收</span>
-				<span class="rec-address commond3">{{item.address}}</span>
-				<span class="building-num commond4">{{item.addressDetail}}</span>
+			<view class="receive common">
+				<span class="rec-icon icon-common">收</span>
+				<span class="rec-address address-common">{{item.address}}</span>
+				<span class="address-detail">{{item.addressDetail}}</span>
 			</view>
-			<view class="time commond1">送达时间：{{item.arrivalTime}}</view>
+			<view class="time common">送达时间：{{item.arrivalTime}}</view>
 			<view class="detail">
 				<span class="total-num">份数：{{item.totalNum}}</span>
 				<span class="total-price">金额：{{item.price}}元</span>

@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-22 19:12:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 22:23:12
+ * @LastEditTime: 2021-03-08 09:45:33
  * @FilePath: \tastygo\miniprogram\pages\userInfo\index.js
  */
 
@@ -19,10 +19,9 @@ Page({
     onLoad: async function(options) {
         const that = this;
         userInfo = wx.getStorageSync('userInfo');
-        const res = await getUserInfo({ id: userInfo.no });
+        const res = await getUserInfo({ id: userInfo.campusId });
         if (res.code === 200) {
-            userInfo.wxid = res.data.wxId;
-            userInfo.phone = res.data.phone;
+            userInfo = res.data;
             wx.setStorageSync('userInfo', userInfo);
         }
         that.setData({
@@ -31,7 +30,7 @@ Page({
     },
 
     wxidInput(e) {
-        userInfo.wxid = e.detail.value;
+        userInfo.wxId = e.detail.value;
     },
 
     phoneInput(e) {
@@ -43,8 +42,8 @@ Page({
             title: '正在保存',
         });
         const params = {
-            campusId: userInfo.no,
-            wxId: userInfo.wxid,
+            campusId: userInfo.campusId,
+            wxId: userInfo.wxId,
             phone: userInfo.phone
         };
         wx.hideLoading();

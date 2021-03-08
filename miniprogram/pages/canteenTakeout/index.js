@@ -82,7 +82,7 @@ Page({
         const that = this;
         const userInfo = wx.getStorageSync('userInfo');
         const loginState = wx.getStorageSync('loginState');
-        if (loginState && userInfo.wxid && userInfo.phone) {
+        if (loginState && userInfo.wxId && userInfo.phone) {
             let canteenOrder = wx.getStorageSync('canteenOrder');
             if (canteenOrder) {
                 canteenOrder.getWay = getWayIdx;
@@ -98,7 +98,7 @@ Page({
         } else {
             if (!loginState) {
                 that.unLoginMessage();
-            } else if (!userInfo.wxid || !userInfo.phone) {
+            } else if (!userInfo.wxId || !userInfo.phone) {
                 wx.showModal({
                     title: '个人信息未完善',
                     content: '是否去完善个人信息?',
@@ -248,7 +248,7 @@ Page({
             startingOptions,
         });
 
-        that.getOrderList();
+        that.getOrderList('top');
     },
 
     //接受订单
@@ -257,7 +257,7 @@ Page({
         const orderId = e.currentTarget.dataset.orderid;
         const userInfo = wx.getStorageSync('userInfo');
         if (userInfo) {
-            if (userInfo.wxid && userInfo.phone) {
+            if (userInfo.wxId && userInfo.phone) {
                 wx.showModal({
                     title: '是否确定接单',
                     content: '接单后不可取消',
@@ -265,7 +265,7 @@ Page({
                         if (result.confirm) {
                             const params = {
                                 orderId,
-                                receiveUserId: userInfo.no,
+                                receiveUserId: userInfo.campusId,
                             };
                             const res = await receiveOrder(params);
                             if (res.msg === 'success') {
@@ -278,8 +278,6 @@ Page({
                                     confirmText: '确定',
                                     success: (r) => {
                                         if (r.confirm) {
-                                            that.refresherPulling();
-                                            that.refresherStart();
                                             //wx.navigateTo({ url: `/pages/takeOrderDetail/index?orderId=${orderId}` });
                                         }
                                     }

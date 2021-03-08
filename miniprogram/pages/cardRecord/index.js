@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-21 18:46:15
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-21 23:57:00
+ * @LastEditTime: 2021-03-08 10:45:48
  * @FilePath: \tastygo\miniprogram\pages\cardRecord\index.js
  */
 
@@ -27,7 +27,7 @@ Page({
         const end = `${year}-${month}-${day}`;
 
         const app = getApp();
-        const username = app.globalData.userInfo.no;
+        const username = app.globalData.userInfo.campusId;
 
         let password = wx.getStorageSync('queryPassword');
         if (password) {
@@ -76,9 +76,9 @@ Page({
         let res = await wxRequest('http://card.sztu.edu.cn/wechat/login/userLogin.html', {
             method: 'GET',
             data: {
-                username,
-                password,
-                bind_type: 'sno'
+                username, //校园卡号
+                password, //查询密码
+                bind_type: 'sno' //卡类型
             }
         });
         if (res.data.retcode !== '0') {
