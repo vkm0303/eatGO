@@ -114,16 +114,17 @@
 					¥
 					<text class="fee">1.0</text>
 				</view>
-				<view style="margin-top: 10rpx">
+				<view style="margin-top: 10rpx" wx:if="{{getWay == 1}}">
 					<text class="fee-name">配送费</text>
 					¥
-					<text class="fee">3.0</text>
+					<text class="fee">2.0</text>
 				</view>
 				<view class="line"></view>
 				<view class="total-fee">
 					<text decode>总计:&nbsp;</text>
 					<text class="red">￥</text>
 					<text class="red">{{totalPrice}}</text>
+					(未包含打包费)
 				</view>
 			</view>
 		</view>
@@ -148,14 +149,16 @@
 			 url="/pages/note/index"
 			>
 				<span class="common">备注</span>
-				<span class="tip {{note?'note':''}}">{{note?note:'选填'}}
+				<span class="tip" style="color: {{note?'#000':''}}">{{note?note:'选填'}}
 				</span>
 				<span class="iconfont icon-iconyoujiantou"></span>
 			</navigator>
 		</view>
 	</view>
-
-	<view class="confirm-order-btn" bindtap="handleOrderSubmit">确认订单</view>
+	<view class="btn-warp">
+		<view class="add-food-btn btn-common" bindtap="goBackToMenu">继续添加</view>
+		<view class="confirm-order-btn btn-common" bindtap="handleOrderSubmit">确认订单</view>
+	</view>
 
 </view>
 

@@ -57,12 +57,12 @@
 			<text decode>取餐码:&nbsp;&nbsp;&nbsp;</text>
 			<text class="num">{{orderDetail.code}}</text>
 		</span>
-		<text class="take-food-time margin-common" decode>取餐时间:&nbsp;&nbsp;&nbsp;11:40</text>
+		<text class="take-food-time margin-common" decode>预定取餐时间:&nbsp;&nbsp;&nbsp;11:40</text>
 		<text class="time margin-common" decode>取餐地点:&nbsp;&nbsp;&nbsp;北区食堂二楼正门左侧置物架</text>
 	</view>
 
-	<text class="time margin-common" decode wx:if="{{orderDetail.getWay===1}}">预定到达时间:&nbsp;&nbsp;&nbsp;{{orderDetail.arrivalTime}}</text>
-	<text class="address margin-common" decode>配送地址:&nbsp;&nbsp;&nbsp;{{orderDetail.address+' '+orderDetail.addressDetail}}</text>
+	<text class="time margin-common" decode wx:if="{{orderDetail.getWay}}">预定到达时间:&nbsp;&nbsp;&nbsp;{{orderDetail.arrivalTime}}</text>
+	<text class="address margin-common" decode wx:if="{{orderDetail.getWay}}">配送地址:&nbsp;&nbsp;&nbsp;{{orderDetail.address+' '+orderDetail.addressDetail}}</text>
 	<span class="foods-content margin-common" decode>
 		<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
 		<view class="foods-warp">
@@ -71,7 +71,11 @@
 	</span>
 	<text class="tableware margin-common" decode>餐具:&nbsp;&nbsp;&nbsp;{{tableware[orderDetail.tableware]}}</text>
 	<view class="line"></view>
-	<span class="remarks">备注： {{orderDetail.note}}</span>
+	<span class="remarks">备注： {{orderDetail.note?orderDetail.note:'无'}}</span>
+	<span class="total-price">总金额：
+		<text class="price">{{orderDetail.price + 2}}  </text>
+		(未包含包装费)
+	</span>
 </view>
 
 <view

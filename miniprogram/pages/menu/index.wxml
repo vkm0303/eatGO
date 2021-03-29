@@ -129,11 +129,13 @@
 				<view class="food-description">
 					<view class="food-name">{{food.foodName}}</view>
 					<view class="food-tag">
-						<view class="tag-name">
-							猪肉
-						</view>
-						<view class="tag-name">
-							猪肉
+						<view
+						 class="tag-name"
+						 wx:for="{{food.ingredient}}"
+						 wx:for-item="tag"
+						 wx:key="index"
+						>
+							{{tag===''?'暂无':tag}}
 						</view>
 					</view>
 					<view class="food-calorie">{{food.calorie}}qk</view>
@@ -176,7 +178,7 @@
  orderData="{{orderDetail}}"
  totalPrice="{{totalPrice}}"
  totalNum="{{totalNum}}"
- url="{{'/pages/canteenTakeout/index'}}"
+ url="{{'/pages/canteenTakeout/index?tabIdx=0'}}"
  bind:itemNumChange="bindItemNumChange"
  bind:clearCart="bindClearCart"
 ></shopping-cart>

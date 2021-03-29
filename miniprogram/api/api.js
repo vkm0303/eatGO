@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 22:20:05
+ * @LastEditTime: 2021-03-28 13:40:57
  * @FilePath: \tastygo\miniprogram\api\api.js
  */
 
@@ -94,6 +94,12 @@ const getOrderDetail = async(params) => {
     return data;
 };
 
+//筛选
+const filterOrder = async(params) => {
+    let { data } = await request.get(`${apiBaseUrl}/filterOrder`, params);
+    return data;
+};
+
 //添加用户
 const reg = async(userInfo) => {
     let { data } = await request.post(`${apiBaseUrl}/addCampusUser`, userInfo);
@@ -112,6 +118,12 @@ const getUserInfo = async(params) => {
     return data;
 };
 
+//查询校园卡余额
+const queryBalance = async(params) => {
+    let { data } = await request.post(`${apiBaseUrl}/weChatLogin`, params);
+    return data;
+}
+
 
 const api = {
     getCanteenList,
@@ -124,6 +136,7 @@ const api = {
     receiveOrder,
     cancelOrder,
     getOrder,
+    filterOrder,
     getUserOrder,
     getOrderByUser,
     getOrderDetail,
@@ -131,6 +144,7 @@ const api = {
     reg,
     updateUserInfo,
     getUserInfo,
+    queryBalance,
 };
 
 module.exports = api;

@@ -55,11 +55,6 @@
             "iconPath": "icons/_canteen.png",
             "selectedIconPath": "icons/canteen.png"
         }, {
-            "pagePath": "pages/more/index",
-            "text": "发现",
-            "iconPath": "icons/_more.png",
-            "selectedIconPath": "icons/more.png"
-        }, {
             "pagePath": "pages/my/index",
             "text": "我",
             "iconPath": "icons/_my.png",

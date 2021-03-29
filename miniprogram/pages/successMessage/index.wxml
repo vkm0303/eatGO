@@ -1,15 +1,44 @@
-<view class="success">
-	<view class="icon-success">
-		<icon
-		 type="success"
-		 size="120"
-		 color="#ff824e"
-		>
-		</icon>
+<view class="success-message" bindtap="goToOrderDetail">
+	提交成功，查看订单信息
+	<span class="iconfont icon-iconyoujiantou"></span>
+</view>
+
+<view class="order-operation outer">
+	<view class="arrival-time">预定
+		<span style="color: #d68721;">{{orderDetail.arrivalTime}}</span>
+		{{orderDetail.getWay?'前送达':'取餐(打包时间约为15分钟)'}}
+	</view>
+	<view class="line"></view>
+	<view class="warp">
+		<view class="cancel-btn" bindtap="cancel">
+			<span class="iconfont icon-cancel-order"></span>
+			<span>取消订单</span>
+		</view>
+		<view class="fee-tips">
+			<span class="title">费用提示</span>
+			<span class="content">包装费用请以实际为准</span>
+		</view>
 	</view>
 </view>
 
-<view class="message">已发布</view>
-
-<view class="tips">订单被接单前可随时在"我的"的“我的订单”中取消订单</view>
+<view class="order-content outer">
+	<span class="title">订单基础信息</span>
+	<view class="line"></view>
+	<view class="common">
+		<span>{{orderDetail.getWay?'配送地址':'取餐地址'}}</span>
+		<span class="content">{{orderDetail.getWay?orderDetail.address:''+' '+orderDetail.addressDetail}}</span>
+	</view>
+	<view class="common">
+		<span>电话</span>
+		<span class="content">{{orderDetail.releaser.phone}}</span>
+	</view>
+	<view class="common">
+		<span>备注</span>
+		<span class="content">{{orderDetail.note?orderDetail.note:'无'}}</span>
+	</view>
+	<view class="common">
+		<span>餐具数量</span>
+		<span class="content">{{tablewares[orderDetail.tableware]}}</span>
+	</view>
+</view>
 

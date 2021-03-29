@@ -134,6 +134,12 @@
         {
           "name": "我的消息",
           "pathName": "pages/message/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/successMessage/index",
+          "pathName": "pages/successMessage/index",
           "scene": null
         }
       ]

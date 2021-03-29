@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-13 14:23:30
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-01 23:14:36
+ * @LastEditTime: 2021-03-29 13:01:54
  * @FilePath: \tastygo\miniprogram\pages\myOrderDetail\index.js
  */
 
@@ -93,7 +93,7 @@ Page({
         const orderDetail = res.data[0];
         let status = ['订单取消', '等待接单', '等待配送', '正在配送', '已送达', '待确认收货', '已结束'];
         if (orderDetail.getWay === 0) {
-            status = ['订单取消', '等待取餐', '等待取餐', '等待取餐', '已取餐', '待确认收货', '已结束']
+            status = ['订单取消', '等待打包', '等待取餐', '等待取餐', '已取餐', '待确认收货', '已结束']
         }
         that.setData({
             orderDetail,

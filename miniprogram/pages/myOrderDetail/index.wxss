@@ -203,6 +203,14 @@ page .detail-warp .remarks {
   margin-top: 18rpx;
   font-size: 28rpx;
 }
+page .detail-warp .total-price {
+  margin-top: 15rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+page .detail-warp .total-price .price {
+  color: #000;
+}
 .confirm-btn {
   width: 228rpx;
   height: 68rpx;

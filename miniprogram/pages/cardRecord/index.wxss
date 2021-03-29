@@ -32,7 +32,7 @@
   margin-left: 100rpx;
 }
 .card-record-warp .header .balance {
-  margin-left: 100rpx;
+  margin-left: 80rpx;
 }
 .card-record-warp .header .common {
   display: flex;

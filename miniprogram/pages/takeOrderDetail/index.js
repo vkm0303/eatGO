@@ -3,30 +3,17 @@
  * @Author: 陈俊任
  * @Date: 2021-02-13 14:23:30
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-02-27 00:10:07
+ * @LastEditTime: 2021-03-28 14:51:47
  * @FilePath: \tastygo\miniprogram\pages\takeOrderDetail\index.js
  */
 
-const { getOrderDetail } = require('../../api/api');
+const { getOrderDetail, changeOrderStatus } = require('../../api/api');
 
 Page({
     data: {
-        foods: [{
-                name: '烧鸭饭',
-                imgUrl: 'https://image.16pic.com/00/69/73/16pic_6973241_s.jpg?imageView2/0/format/png',
-                num: 2,
-                price: 9
-            },
-            {
-                name: '咸水鸡饭',
-                imgUrl: 'https://image.16pic.com/00/69/73/16pic_6973241_s.jpg?imageView2/0/format/png',
-                num: 2,
-                price: 8
-            },
-        ],
         orderDetail: {},
+        status: ['订单取消', '等待接单', '等待打包', '等待配送', '已送达', '待确认收货', '已结束'],
         loading: true
-
     },
 
     /**
@@ -49,5 +36,20 @@ Page({
     copy(e) {
         const { content } = e.currentTarget.dataset;
         wx.setClipboardData({ data: content });
+    },
+
+    //确认送达
+    async deliver() {
+        const { orderDetail } = this.data;
+        if (orderDetail.status != 2) {
+            return;
+        }
+        const params = {
+            orderId: orderDetail.orderId,
+            orderType: 'release',
+            action: '3'
+        }
+        let res = await changeOrderStatus(params);
+        console.log(res)
     }
 })

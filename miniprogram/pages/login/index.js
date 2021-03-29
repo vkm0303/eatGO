@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-07 21:22:05
+ * @LastEditTime: 2021-03-17 22:53:57
  * @FilePath: \tastygo\miniprogram\pages\login\index.js
  */
 
@@ -139,6 +139,7 @@ Page({
     agreementConfirm() {
         const that = this;
         that.setData({
+            isAgree: true,
             isHideAgreement: true
         });
     }

@@ -68,7 +68,7 @@ Page({
         that.getEatTime();
 
         //获取食堂列表
-        const res = await api.getCanteenList();
+        let res = await api.getCanteenList();
         canteenList = res.data;
         let canteenOptions = [];
         for (let v of canteenList) {
@@ -88,6 +88,11 @@ Page({
         });
 
         that.loadMenuData();
+
+        let userInfo = wx.getStorageSync('userInfo');
+        res = await api.getUserInfo({ id: userInfo.campusId });
+        userInfo = res.data;
+        wx.setStorageSync('userInfo', userInfo);
 
         wx.setStorageSync("canteenList", canteenOptions);
     },
@@ -130,8 +135,6 @@ Page({
             }
         }
 
-        console.log(curTypeList)
-
         //通过当前选择类型及餐点进行筛选
         let curMenuList = [];
         if (curTypeList.length) {
@@ -144,6 +147,7 @@ Page({
             });
         }
         console.log(curMenuList)
+        that.tagsToArray(curMenuList);
 
         that.setData({
             curTypeIdx: 0,
@@ -169,6 +173,8 @@ Page({
                 });
             }
         });
+
+        that.tagsToArray(curMenuList);
 
         that.setData({
             curTypeIdx,
@@ -230,6 +236,9 @@ Page({
             curTypeList[0] = '';
             curTypeIdx = -1;
         }
+
+        that.tagsToArray(curMenuList);
+
         that.setData({
             curType: curTypeList[0],
             curTypeIdx,
@@ -445,6 +454,17 @@ Page({
         });
     },
 
+    //将菜品标签数据转换为数组
+    tagsToArray(menuList) {
+        let ingredient = [];
+        for (let el of menuList) {
+            if (typeof el.ingredient !== 'object') {
+                ingredient = (el.ingredient.split('、'));
+                el.ingredient = ingredient;
+            }
+        }
+    },
+
     computeTotalNum() {
         const that = this;
         const canteenOrder = wx.getStorageSync('canteenOrder');
@@ -461,12 +481,11 @@ Page({
 
     getEatTime() {
         const hours = date.getHours();
-        const minutes = date.getMinutes();
         if (hours < 7 || hours >= 18) {
             eatTime = 'Breakfast';
-        } else if (hours >= 7 && hours < 17) {
+        } else if (hours >= 9 && hours < 13) {
             eatTime = 'Lunch';
-        } else if (hours >= 11 && hours < 17) {
+        } else if (hours >= 13 && hours < 17) {
             eatTime = 'Dinner';
         }
     },

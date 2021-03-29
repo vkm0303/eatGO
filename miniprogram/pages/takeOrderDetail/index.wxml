@@ -2,8 +2,22 @@
 <template is="skeleton" wx-if="{{loading}}" />
 
 <view class="detail-warp" wx:else>
+	<span class="title-common">取餐信息</span>
+	<view class="outer">
+		<span class="take-food-num">
+			<text decode>取餐码:&nbsp;&nbsp;&nbsp;</text>
+			<text class="num">{{orderDetail.code}}</text>
+		</span>
+		<span class="other">
+			<span class="status">订单状态：
+				<text class="red" style="font-weight: 700;">{{status[orderDetail.status+1]}}</text>
+			</span>
+			<text class="time margin-common" decode>取餐地点：北区食堂二楼正门左侧置物架</text>
+		</span>
+	</view>
+
 	<view class="foods-content">
-		<span class="title">菜品</span>
+		<span class="title-common">菜品</span>
 		<view class="food-warp">
 			<view
 			 class="food"
@@ -34,15 +48,16 @@
 			</view>
 			<view class="line"></view>
 			<view class="total-fee">
-				<text decode>实付:&nbsp;</text>
+				<text decode>实付:&nbsp;&nbsp;&nbsp;</text>
 				<text class="symbol red">￥</text>
-				<text class="red">{{orderDetail.price}}</text>
+				<text class="red" decode>{{orderDetail.price + 2}}&nbsp;</text>
+				(未包含包装费)
 			</view>
 		</view>
 	</view>
 
 	<view class="delivery-detail">
-		<span class="title">配送信息</span>
+		<span class="title-common">配送信息</span>
 		<view class="detail">
 			<view class="time-warp">
 				<span class="iconfont icon-clock"></span>
@@ -53,24 +68,24 @@
 			<view class="consignee-info">
 				<span class="consignee">
 					<text decode>收餐:&nbsp;&nbsp;&nbsp;</text>
-					<text>{{orderDetail.release.name[1]}}**</text>
+					<text>{{orderDetail.releaser.name[0]}}**</text>
 				</span>
 				<span class="common">
 					<text decode>微信:&nbsp;&nbsp;&nbsp;</text>
-					<text>{{orderDetail.release.wechat}}</text>
+					<text>{{orderDetail.releaser.wechat}}</text>
 					<span
 					 class="copy-btn iconfont icon-copy"
 					 bindtap="copy"
-					 data-content="{{orderDetail.release.wechat}}"
+					 data-content="{{orderDetail.releaser.wechat}}"
 					></span>
 				</span>
 				<span class="common">
 					<text decode>电话:&nbsp;&nbsp;&nbsp;</text>
-					<text>{{orderDetail.receiver.phone}}</text>
+					<text>{{orderDetail.releaser.phone}}</text>
 					<span
 					 class="copy-btn iconfont icon-copy"
 					 bindtap="copy"
-					 data-content="{{orderDetail.receiver.phone}}"
+					 data-content="{{orderDetail.releaser.phone}}"
 					></span>
 
 				</span>
@@ -80,7 +95,13 @@
 			<span class="remarks">备注： {{orderDetail.note}}</span>
 		</view>
 	</view>
-	<view class="confirm-btn">确认送达</view>
-	<view class="slot"></view>
+
+	<view
+	 class="confirm-btn"
+	 style="background-color:{{orderDetail.status == 2 ? '#ff824e':'#cfcfcf'}}"
+	 bindtap="deliver"
+	>{{orderDetail.status
+		<3?'确认送达':'已送达'}}</view> <view class="slot">
+	</view>
 </view>
 

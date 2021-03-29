@@ -1,4 +1,4 @@
-const { getAddressList, getOrder, getCanteenList, receiveOrder } = require('../../api/api.js');
+const { getAddressList, filterOrder, getCanteenList, receiveOrder } = require('../../api/api.js');
 
 const app = getApp();
 
@@ -7,7 +7,7 @@ var focusAddressList = [];
 var canteenIdx = 0;
 var addressIdx = 0;
 
-const PAGESIZE = 8;
+const PAGESIZE = 10;
 var currentPage = 0;
 
 Page({
@@ -38,14 +38,13 @@ Page({
         //"我要吃"变量
         orderDetail: [],
     },
-    onLoad: function(options) {
-        //const tabIdx
-    },
+    onLoad: function(options) {},
+
+    onShow: function() {},
 
     moveLeft(e) {
         const that = this;
         const { index } = e.currentTarget.dataset;
-
         let translateLeft = wx.createAnimation({
             duration: 100
         });
@@ -89,10 +88,15 @@ Page({
                 wx.setStorageSync('canteenOrder', canteenOrder);
                 wx.navigateTo({ url: `/pages/pay/index?getWay=${getWayIdx}` });
             } else {
-                wx.showToast({
-                    title: '您还未添加订单',
-                    icon: 'none',
-                    duration: 2000
+                wx.switchTab({
+                    url: '/pages/menu/index',
+                    success: (result) => {
+                        wx.showToast({
+                            title: '您还未添加订单',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                    }
                 });
             }
         } else {
@@ -127,6 +131,7 @@ Page({
     //筛选按钮事件
     filter() {
         wx.showLoading({ title: 'Loading...' });
+        currentPage = 0;
         this.getOrderList('top');
     },
 
@@ -187,7 +192,7 @@ Page({
             pageSize: PAGESIZE
         }
         console.log(params)
-        let res = await getOrder(params);
+        let res = await filterOrder(params);
         orderList = type === 'top' ? res.data : orderList.concat(res.data);
         console.log(res)
         that.setData({
@@ -201,7 +206,7 @@ Page({
         } else {
             let tips = false;
             if (res.data.length === 0) {
-                tips = '已经到底了'
+                tips = '已经到底了~'
             }
             that.setData({
                 isShowLoading: false,
@@ -269,6 +274,9 @@ Page({
                             };
                             const res = await receiveOrder(params);
                             if (res.msg === 'success') {
+                                wx.requestSubscribeMessage({
+                                    tmplIds: ['C3zpuPVIVQYXYtjEtt7kFVEa2MwcwEnkqZ6kGyBb4eA']
+                                });
                                 wx.navigateTo({ url: `/pages/takeOrderDetail/index?orderId=${orderId}` });
                             } else {
                                 wx.showModal({

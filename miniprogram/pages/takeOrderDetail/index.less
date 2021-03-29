@@ -3,12 +3,42 @@
   padding-top: 44rpx;
   background-color: #f4f4f4;
   font-size: 28rpx;
-  .foods-content {
-    .title {
-      margin-left: 26rpx;
-      font-size: 28rpx;
+  .outer {
+    display: flex;
+    flex-direction: column;
+    width: 700rpx;
+    padding: 20rpx;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 15rpx;
+    margin-bottom: 40rpx;
+    box-sizing: border-box;
+    border-radius: 30rpx;
+    box-shadow: 0px 0px 6px 0px #dcecf5;
+    background-color: #fff;
+    .take-food-num {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10rpx;
+      font-size: large;
+      font-weight: 700;
+      .num {
+        font-size: 60rpx;
+        color: #23b2f5;
+      }
     }
-
+    .other {
+      display: flex;
+      flex-direction: column;
+      margin-left: 30rpx;
+      margin-bottom: 20rpx;
+      .status {
+        margin-bottom: 10rpx;
+      }
+    }
+  }
+  .foods-content {
     .food-warp {
       width: 700rpx;
       padding: 54rpx 48rpx;
@@ -58,7 +88,7 @@
       }
 
       .delivery-fee {
-        margin-top: 98rpx;
+        margin-top: 60rpx;
         margin-bottom: 16rpx;
       }
 
@@ -72,7 +102,6 @@
 
       .total-fee {
         margin-top: 20rpx;
-        margin-left: 444rpx;
         font-size: 36rpx;
       }
     }
@@ -80,9 +109,6 @@
 
   .delivery-detail {
     margin-top: 44rpx;
-    .title {
-      margin-left: 26rpx;
-    }
     .detail {
       display: flex;
       flex-direction: column;
@@ -114,7 +140,6 @@
       .consignee-info {
         display: flex;
         flex-direction: column;
-        padding-left: 20rpx;
         .common {
           margin: 20rpx 0 0;
           .copy-btn {
@@ -133,6 +158,10 @@
       }
     } 
   }
+
+  .title-common {
+    margin-left: 26rpx;
+  }
   
   .line {
     width: 105%;
@@ -149,8 +178,7 @@
     margin-left: 50%;
     transform: translateX(-50%);
     border-radius: 20rpx;
-    box-shadow: 0px 0px 3px 0px #ff824e;
-    background-color: #ff824e;
+    //box-shadow: 0px 0px 3px 0px #ff824e;
     color: #fff;
     font-size: 28rpx;
     text-align: center;

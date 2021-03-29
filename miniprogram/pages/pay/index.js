@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-07 21:29:04
+ * @LastEditTime: 2021-03-29 19:43:13
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
@@ -64,9 +64,9 @@ Page({
         let orderDetail = wx.getStorageSync('orderDetail');
         const { getWay } = options;
         const { timeOptions } = that.data;
-
+        //canteenOrder.price += 1;
         if (getWay == 1) {
-            canteenOrder.price += 4;
+            canteenOrder.price += 2;
         } else {
             for (let el of timeOptions) {
                 if (el.status !== -1) {
@@ -114,7 +114,7 @@ Page({
             });
         }
     },
-    async handleOrderSubmit() {
+    handleOrderSubmit() {
         const that = this;
 
         if (addressDetail === '' && that.data.getWay == 1) {
@@ -125,40 +125,55 @@ Page({
             });
             return;
         }
+        wx.showModal({
+            title: '确认订单',
+            content: '是否确认提交？',
+            showCancel: true,
+            success: async(result) => {
+                if (result.confirm) {
+                    const { presetHours, presetMinutes, tbwIdx, note } = that.data;
+                    let canteenOrder = wx.getStorageSync('canteenOrder');
+                    const { campusId } = wx.getStorageSync('userInfo');
 
-        const { presetHours, presetMinutes, tbwIdx, note } = that.data;
-        let canteenOrder = wx.getStorageSync('canteenOrder');
-        const { campusId } = wx.getStorageSync('userInfo');
+                    canteenOrder.menusId = JSON.stringify(canteenOrder.menusId);
+                    canteenOrder.campusId = campusId;
+                    canteenOrder.arrivalTime = presetHours + ':' + presetMinutes;
+                    canteenOrder.note = note;
+                    canteenOrder.tableware = tbwIdx === -1 ? 1 : tbwIdx;
 
-        canteenOrder.menusId = JSON.stringify(canteenOrder.menusId);
-        canteenOrder.campusId = campusId;
-        canteenOrder.arrivalTime = presetHours + ':' + presetMinutes;
-        canteenOrder.note = note;
-        canteenOrder.tableware = tbwIdx === -1 ? 1 : tbwIdx;
+                    let tmplIds = ['LjrtLzhdr9neIoNPR8s08SLWKxyv6creVn627vrqQtU', 'GgNdlRXIff0qE3t3AP6VHMtg1nyqtzqcYDo4ZHwJmHo', 'Ylw5kbld12nZ5qvCM2tEwaoV7F7S1barD5YCxi8GpNM'];
+                    if (that.data.getWay == 1) {
+                        canteenOrder.addressId = addressList[addressIdx].addressId;
+                        canteenOrder.addressDetail = addressDetail;
+                    } else {
+                        canteenOrder.addressId = 0;
+                        canteenOrder.addressDetail = '北区食堂二楼正门左侧置物架';
+                        tmplIds = ['C3zpuPVIVQYXYtjEtt7kFVEa2MwcwEnkqZ6kGyBb4eA'];
 
-        if (that.data.getWay == 1) {
-            canteenOrder.addressId = addressList[addressIdx].addressId;
-            canteenOrder.addressDetail = addressDetail;
-        } else {
-            canteenOrder.addressId = 0;
-            canteenOrder.addressDetail = '北区食堂二楼正门左侧置物架';
-        }
+                    }
 
-        let res = await submitOrder(canteenOrder);
-        if (res.msg === 'success') {
-            wx.requestSubscribeMessage({
-                tmplIds: ['LjrtLzhdr9neIoNPR8s08SLWKxyv6creVn627vrqQtU', 'GgNdlRXIff0qE3t3AP6VHMtg1nyqtzqcYDo4ZHwJmHo', 'Ylw5kbld12nZ5qvCM2tEwaoV7F7S1barD5YCxi8GpNM']
-            })
-            wx.removeStorageSync('canteenOrder');
-            wx.removeStorageSync('orderDetail');
-            wx.navigateTo({ url: '/pages/successMessage/index' });
-        } else {
-            wx.showToast({
-                title: '提交失败',
-                icon: 'none',
-                duration: 3000
-            });
-        }
+                    let res = await submitOrder(canteenOrder);
+                    if (res.msg === 'success') {
+                        wx.requestSubscribeMessage({ tmplIds });
+                        wx.removeStorageSync('canteenOrder');
+                        wx.removeStorageSync('orderDetail');
+                        wx.navigateTo({ url: `/pages/successMessage/index?orderId=${res.orderId}` });
+                    } else {
+                        wx.showToast({
+                            title: '提交失败',
+                            icon: 'none',
+                            duration: 3000
+                        });
+                    }
+                }
+            }
+        });
+    },
+
+    goBackToMenu() {
+        wx.switchTab({
+            url: '/pages/menu/index'
+        });
     },
 
     handleTimeBoxClick(e) {

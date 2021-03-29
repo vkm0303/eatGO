@@ -3,11 +3,12 @@
  * @Author: 陈俊任
  * @Date: 2021-02-21 18:46:15
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-08 10:45:48
+ * @LastEditTime: 2021-03-17 23:02:15
  * @FilePath: \tastygo\miniprogram\pages\cardRecord\index.js
  */
 
 const { wxRequest } = require("../../utils/request");
+const { queryBalance } = require('../../api/api');
 
 Page({
     data: {
@@ -52,20 +53,6 @@ Page({
             month,
             end,
         });
-
-        // const { account } = res.data.card[0];
-        // res = await wxRequest('http://card.sztu.edu.cn/wechat/bill/all.html', {
-        //     method: 'GET',
-        //     data: {
-        //         account,
-        //         kaaccount: '',
-        //         page: 1,
-        //         rows: 100,
-        //         startDate: '20210101',
-        //         endDate: '20210131'
-        //     },
-        //     cookie,
-        // });
     },
 
     async queryBalance(username, password) {
@@ -73,21 +60,20 @@ Page({
         wx.showLoading({
             title: '查询中'
         });
-        let res = await wxRequest('http://card.sztu.edu.cn/wechat/login/userLogin.html', {
-            method: 'GET',
-            data: {
-                username, //校园卡号
-                password, //查询密码
-                bind_type: 'sno' //卡类型
-            }
-        });
-        if (res.data.retcode !== '0') {
+        const params = {
+            username, //校园卡号
+            password, //查询密码
+            bind_type: 'sno' //卡类型
+        }
+        let res = await queryBalance(params);
+        console.log(res)
+        if (res.code != 200) {
             wx.showToast({
-                title: '密码错误',
+                title: res.msg,
                 icon: 'none'
             });
         } else {
-            const balance = res.data.card[0].db_balance / 100;
+            const balance = res.data[0].db_balance / 100;
             that.setData({
                 balance
             })

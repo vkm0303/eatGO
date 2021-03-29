@@ -68,7 +68,7 @@
 					<span class="txt" style="font-size: 34rpx;">￥ </span>
 					<span class="foods-price">{{totalPrice}}</span>
 				</view>
-				<view class="delivery-price">另需配送费 ￥3</view>
+				<view class="delivery-price">另需配送费 ￥2</view>
 			</view>
 		</view>
 		<view class="right" bindtap="goToSubmit">去下单</view>

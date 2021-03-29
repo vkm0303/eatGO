@@ -158,9 +158,40 @@
   background-color: #f4f4f4;
   font-size: 28rpx;
 }
-.detail-warp .foods-content .title {
-  margin-left: 26rpx;
-  font-size: 28rpx;
+.detail-warp .outer {
+  display: flex;
+  flex-direction: column;
+  width: 700rpx;
+  padding: 20rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 15rpx;
+  margin-bottom: 40rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  box-shadow: 0px 0px 6px 0px #dcecf5;
+  background-color: #fff;
+}
+.detail-warp .outer .take-food-num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rpx;
+  font-size: large;
+  font-weight: 700;
+}
+.detail-warp .outer .take-food-num .num {
+  font-size: 60rpx;
+  color: #23b2f5;
+}
+.detail-warp .outer .other {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+  margin-bottom: 20rpx;
+}
+.detail-warp .outer .other .status {
+  margin-bottom: 10rpx;
 }
 .detail-warp .foods-content .food-warp {
   width: 700rpx;
@@ -206,7 +237,7 @@
   font-size: 36rpx;
 }
 .detail-warp .foods-content .food-warp .delivery-fee {
-  margin-top: 98rpx;
+  margin-top: 60rpx;
   margin-bottom: 16rpx;
 }
 .detail-warp .foods-content .food-warp .packing-fee {
@@ -217,14 +248,10 @@
 }
 .detail-warp .foods-content .food-warp .total-fee {
   margin-top: 20rpx;
-  margin-left: 444rpx;
   font-size: 36rpx;
 }
 .detail-warp .delivery-detail {
   margin-top: 44rpx;
-}
-.detail-warp .delivery-detail .title {
-  margin-left: 26rpx;
 }
 .detail-warp .delivery-detail .detail {
   display: flex;
@@ -258,7 +285,6 @@
 .detail-warp .delivery-detail .detail .consignee-info {
   display: flex;
   flex-direction: column;
-  padding-left: 20rpx;
 }
 .detail-warp .delivery-detail .detail .consignee-info .common {
   margin: 20rpx 0 0;
@@ -275,6 +301,9 @@
   margin-left: 20rpx;
   font-size: 28rpx;
 }
+.detail-warp .title-common {
+  margin-left: 26rpx;
+}
 .detail-warp .line {
   width: 105%;
   height: 2rpx;
@@ -289,8 +318,6 @@
   margin-left: 50%;
   transform: translateX(-50%);
   border-radius: 20rpx;
-  box-shadow: 0px 0px 3px 0px #ff824e;
-  background-color: #ff824e;
   color: #fff;
   font-size: 28rpx;
   text-align: center;

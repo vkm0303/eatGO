@@ -118,17 +118,6 @@ page {
     display: flex;
     align-items: center;
     margin: 44rpx 24rpx;
-    .selector-position {
-    }
-    .selector-item {
-    
-    }
-    .selector-curitem {
-    
-    }
-    .selector-active {
-    
-    }
     .address-detail-warp {
         display: flex;
         flex-direction: column;
@@ -211,7 +200,6 @@ page {
         .total-fee {
             margin-top: 30rpx;
             margin-right: 46rpx;
-            text-align: right;
             font-size: 36rpx;
         }
         :last-child {
@@ -240,6 +228,7 @@ page {
     .notes {
         display: flex;
         padding-top: 28rpx;
+        color: #000;
     }
     span {
         display: inline-block;
@@ -268,18 +257,25 @@ page {
         }
     }
 }
-
-.confirm-order-btn {
+.btn-warp {
     position: fixed;
     bottom: 100rpx;
-    width: 228rpx;
-    height: 68rpx;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    background-color: #ff824e;
-    border-radius: 20rpx;
-    color: #fff;
-    font-size: 32rpx;
-    text-align: center;
-    line-height: 68rpx;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    .btn-common {
+        width: 228rpx;
+        height: 68rpx;
+        border-radius: 20rpx;
+        color: #fff;
+        font-size: 32rpx;
+        text-align: center;
+        line-height: 68rpx;
+    }
+    .add-food-btn {
+        background-color: #23b2f5;
+    }
+    .confirm-order-btn {
+        background-color: #ff824e;
+    }
 }

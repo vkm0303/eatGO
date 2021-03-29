@@ -40,6 +40,10 @@
 			 wx:key="index"
 			>
 				<view class="box-common">
+					<text decode>订单编号:&nbsp;&nbsp;&nbsp;</text>
+					<text class="text-common">{{order.orderId}}</text>
+				</view>
+				<view class="box-common">
 					<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
 					<text class="way">{{getWays[order.getWay]}}</text>
 				</view>
@@ -81,13 +85,22 @@
 	</swiper-item>
 
 	<swiper-item>
-		<scroll-view class="order-list-warp" scroll-y>
+		<scroll-view
+		 class="order-list-warp"
+		 scroll-y
+		 lower-threshold="6"
+		 bindscrolltolower="scrollToLower"
+		>
 			<view
 			 class="order-warp"
 			 wx:for="{{receiveOrderList}}"
 			 wx:for-item="order"
 			 wx:key="index"
 			>
+				<view class="box-common">
+					<text decode>订单编号:&nbsp;&nbsp;&nbsp;</text>
+					<text class="text-common">{{order.orderId}}</text>
+				</view>
 				<view class="box-common">
 					<text decode>送餐方式:&nbsp;&nbsp;&nbsp;</text>
 					<text class="way">{{getWays[order.getWay]}}</text>
@@ -104,7 +117,7 @@
 				</view>
 				<view class="box-common">
 					<text decode>接单时间:&nbsp;&nbsp;&nbsp;</text>
-					<text class="text-common">2021.02.16</text>
+					<text class="text-common">{{order.createTime.substr(0, 3)}}</text>
 				</view>
 				<view catchtap="preventTap">
 					<view
@@ -116,6 +129,16 @@
 					</view>
 				</view>
 			</view>
+
+			<view
+			 class="tips"
+			 style="margin-top: -22rpx;"
+			 wx:if="{{isShowLoading&&!loadingTips}}"
+			>
+				<mp-loading type="circle" tips="拼命加载中..."></mp-loading>
+			</view>
+
+			<view class="tips" hidden="{{!loadingTips}}">{{loadingTips}}</view>
 		</scroll-view>
 	</swiper-item>
 </swiper>

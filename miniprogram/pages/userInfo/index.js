@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-22 19:12:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-08 09:45:33
+ * @LastEditTime: 2021-03-28 15:02:22
  * @FilePath: \tastygo\miniprogram\pages\userInfo\index.js
  */
 
@@ -52,7 +52,14 @@ Page({
             wx.setStorageSync('userInfo', userInfo);
             wx.showToast({
                 title: '保存成功',
-                icon: 'none'
+                icon: 'none',
+                success: () => {
+                    setTimeout(() => {
+                        wx.navigateBack({
+                            delta: 1
+                        });
+                    }, 500);
+                }
             });
         } else {
             wx.showToast({

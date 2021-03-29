@@ -299,6 +299,7 @@ page .tabs .active {
 }
 .common .order-list-warp .order-warp .box-common {
   display: flex;
+  align-items: center;
   margin-bottom: 20rpx;
 }
 .common .order-list-warp .order-warp .box-common .details-warp {

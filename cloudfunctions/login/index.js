@@ -44,6 +44,7 @@ exports.main = async(event, context) => {
             }
         })
     } catch (e) {}
+    console.log(encoded);
     if (encoded == "")
         return userInfo
             //封装请求头
