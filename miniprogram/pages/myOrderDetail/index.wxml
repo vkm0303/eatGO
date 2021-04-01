@@ -73,7 +73,7 @@
 	<view class="line"></view>
 	<span class="remarks">备注： {{orderDetail.note?orderDetail.note:'无'}}</span>
 	<span class="total-price">总金额：
-		<text class="price">{{orderDetail.price + 2}}  </text>
+		<text class="price red">{{orderDetail.price}}  </text>
 		(未包含包装费)
 	</span>
 </view>

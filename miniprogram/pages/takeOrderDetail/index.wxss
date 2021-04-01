@@ -241,6 +241,8 @@
   margin-bottom: 16rpx;
 }
 .detail-warp .foods-content .food-warp .packing-fee {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 20rpx;
 }
 .detail-warp .foods-content .food-warp .fee-position {
@@ -298,7 +300,6 @@
 }
 .detail-warp .delivery-detail .detail .remarks {
   margin-top: 18rpx;
-  margin-left: 20rpx;
   font-size: 28rpx;
 }
 .detail-warp .title-common {

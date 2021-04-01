@@ -191,7 +191,7 @@ Page({
             currentPage,
             pageSize: PAGESIZE
         }
-        console.log(params)
+
         let res = await filterOrder(params);
         orderList = type === 'top' ? res.data : orderList.concat(res.data);
         console.log(res)
@@ -262,7 +262,7 @@ Page({
         const orderId = e.currentTarget.dataset.orderid;
         const userInfo = wx.getStorageSync('userInfo');
         if (userInfo) {
-            if (userInfo.wxId && userInfo.phone) {
+            if (userInfo.wxId && userInfo.phone) { //判断用户联系方式是否完整
                 wx.showModal({
                     title: '是否确定接单',
                     content: '接单后不可取消',
@@ -283,10 +283,9 @@ Page({
                                     title: '接单失败',
                                     content: res.msg,
                                     showCancel: false,
-                                    confirmText: '确定',
                                     success: (r) => {
                                         if (r.confirm) {
-                                            //wx.navigateTo({ url: `/pages/takeOrderDetail/index?orderId=${orderId}` });
+                                            that.getOrderList('top');
                                         }
                                     }
                                 });

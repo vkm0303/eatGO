@@ -140,6 +140,13 @@
         {
           "name": "pages/successMessage/index",
           "pathName": "pages/successMessage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "员工端",
+          "pathName": "pages/employeeEnd/employeeEnd",
+          "query": "",
           "scene": null
         }
       ]

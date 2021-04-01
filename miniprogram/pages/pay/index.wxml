@@ -109,22 +109,27 @@
 				</view>
 			</view>
 			<view class="fee-warp">
-				<view>
-					<text class="fee-name">打包费</text>
-					¥
-					<text class="fee">1.0</text>
+				<view class="fee-outer">
+					<text class="fee-name">包装费</text>
+					<text>以实际为准</text>
 				</view>
-				<view style="margin-top: 10rpx" wx:if="{{getWay == 1}}">
+				<view
+				 class="fee-outer"
+				 style="margin-top: 10rpx"
+				 wx:if="{{getWay == 1}}"
+				>
 					<text class="fee-name">配送费</text>
-					¥
-					<text class="fee">2.0</text>
+					<span class="fee">
+						<text class="symbol">￥ </text>
+						<text>2.0</text>
+					</span>
 				</view>
 				<view class="line"></view>
 				<view class="total-fee">
 					<text decode>总计:&nbsp;</text>
-					<text class="red">￥</text>
+					<text class="red symbol">￥</text>
 					<text class="red">{{totalPrice}}</text>
-					(未包含打包费)
+					(未包含包装费)
 				</view>
 			</view>
 		</view>

@@ -43,12 +43,11 @@
 			</view>
 			<view class="packing-fee">
 				<text>包装费</text>
-				<text class="symbol fee-position">￥</text>
-				<text class="price">1.0</text>
+				<text>以实际为准</text>
 			</view>
 			<view class="line"></view>
 			<view class="total-fee">
-				<text decode>实付:&nbsp;&nbsp;&nbsp;</text>
+				<text decode>总计:&nbsp;&nbsp;&nbsp;</text>
 				<text class="symbol red">￥</text>
 				<text class="red" decode>{{orderDetail.price + 2}}&nbsp;</text>
 				(未包含包装费)

@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-29 19:43:13
+ * @LastEditTime: 2021-03-29 22:30:45
  * @FilePath: \tastygo\miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
@@ -64,7 +64,7 @@ Page({
         let orderDetail = wx.getStorageSync('orderDetail');
         const { getWay } = options;
         const { timeOptions } = that.data;
-        //canteenOrder.price += 1;
+
         if (getWay == 1) {
             canteenOrder.price += 2;
         } else {
@@ -105,8 +105,8 @@ Page({
 
         wx.hideLoading();
     },
+
     onShow: function() {
-        const that = this;
         const canteenOrder = wx.getStorageSync('canteenOrder');
         if (!canteenOrder) {
             wx.navigateBack({
@@ -114,9 +114,9 @@ Page({
             });
         }
     },
+
     handleOrderSubmit() {
         const that = this;
-
         if (addressDetail === '' && that.data.getWay == 1) {
             wx.showToast({
                 title: '未填写详细地址',
@@ -125,6 +125,7 @@ Page({
             });
             return;
         }
+
         wx.showModal({
             title: '确认订单',
             content: '是否确认提交？',
@@ -135,6 +136,7 @@ Page({
                     let canteenOrder = wx.getStorageSync('canteenOrder');
                     const { campusId } = wx.getStorageSync('userInfo');
 
+                    //存储订单相关信息
                     canteenOrder.menusId = JSON.stringify(canteenOrder.menusId);
                     canteenOrder.campusId = campusId;
                     canteenOrder.arrivalTime = presetHours + ':' + presetMinutes;
@@ -142,6 +144,8 @@ Page({
                     canteenOrder.tableware = tbwIdx === -1 ? 1 : tbwIdx;
 
                     let tmplIds = ['LjrtLzhdr9neIoNPR8s08SLWKxyv6creVn627vrqQtU', 'GgNdlRXIff0qE3t3AP6VHMtg1nyqtzqcYDo4ZHwJmHo', 'Ylw5kbld12nZ5qvCM2tEwaoV7F7S1barD5YCxi8GpNM'];
+
+                    //根据取餐方式选择对应订阅消息模板及地址
                     if (that.data.getWay == 1) {
                         canteenOrder.addressId = addressList[addressIdx].addressId;
                         canteenOrder.addressDetail = addressDetail;
@@ -154,10 +158,13 @@ Page({
 
                     let res = await submitOrder(canteenOrder);
                     if (res.msg === 'success') {
-                        wx.requestSubscribeMessage({ tmplIds });
+                        wx.requestSubscribeMessage({ tmplIds }); //退出订阅通知
+
+                        //去除订单存储
                         wx.removeStorageSync('canteenOrder');
                         wx.removeStorageSync('orderDetail');
-                        wx.navigateTo({ url: `/pages/successMessage/index?orderId=${res.orderId}` });
+
+                        wx.navigateTo({ url: `/pages/successMessage/index?orderId=${res.orderId}` }); //跳转至成功页面
                     } else {
                         wx.showToast({
                             title: '提交失败',
@@ -187,6 +194,7 @@ Page({
         });
     },
 
+    //时间选择
     pickerTimeSelect(e) {
         const that = this;
         let presetTime = e.detail.value;
@@ -198,6 +206,7 @@ Page({
         });
     },
 
+    //餐具选择
     handlePickerChange(e) {
         const that = this;
         const tbwIdx = Number(e.detail.value);
@@ -206,14 +215,17 @@ Page({
         })
     },
 
+    //选择下拉框地址
     handleAddressSelect(e) {
         addressIdx = e.detail.index;
     },
 
+    //输入详细地址
     handleAddressInput(e) {
         addressDetail = e.detail.value;
     },
 
+    //设置默认时间
     setDefaultTime() {
         const that = this;
         let nowDate = new Date();
@@ -255,6 +267,7 @@ Page({
         });
     },
 
+    //设置可选择时间范围
     setTimeRange() {
         const that = this;
         let nowDate = new Date();

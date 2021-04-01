@@ -4,7 +4,7 @@
  mode="aspectFill"
 ></image>
 <!-- 切换身份登录按钮 -->
-<view class="stu-login-btn" bindtap="handleChangeId">{{login_id?'教职工登录':'学生登录'}}</view>
+<view class="stu-login-btn" bindtap="handleChangeId">{{login_id?'员工登录':'学生登录'}}</view>
 <!-- logo -->
 <image class="logo" src="../../images/logo.png"></image>
 <!-- 登录信息输入 -->

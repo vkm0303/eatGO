@@ -187,16 +187,16 @@ page {
         }
     }
     .fee-warp {
-        padding-left: 48rpx;
-        margin-top: 40rpx;
-        font-size: 22rpx;
-        .fee-name {
-            margin-right: 224 * 2rpx;
-            font-size: 28rpx;
+        padding: 40rpx 48rpx 0;
+        font-size: 28rpx;
+        .fee-outer {
+            display: flex;
+            justify-content: space-between;
+            .fee {
+                font-size: 36rpx;
+            }
         }
-        .fee {
-            font-size: 36rpx;
-        }
+        
         .total-fee {
             margin-top: 30rpx;
             margin-right: 46rpx;
@@ -205,6 +205,9 @@ page {
         :last-child {
             padding-bottom: 28rpx;
         }
+    }
+    .symbol {
+        font-size: 22rpx;
     }
 }
 

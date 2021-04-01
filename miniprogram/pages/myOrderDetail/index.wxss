@@ -209,7 +209,7 @@ page .detail-warp .total-price {
   font-weight: 500;
 }
 page .detail-warp .total-price .price {
-  color: #000;
+  font-size: 34rpx;
 }
 .confirm-btn {
   width: 228rpx;

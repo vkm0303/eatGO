@@ -183,15 +183,14 @@ page {
   font-size: 32rpx;
 }
 .order-detail-warp .fee-warp {
-  padding-left: 48rpx;
-  margin-top: 40rpx;
-  font-size: 22rpx;
-}
-.order-detail-warp .fee-warp .fee-name {
-  margin-right: 448rpx;
+  padding: 40rpx 48rpx 0;
   font-size: 28rpx;
 }
-.order-detail-warp .fee-warp .fee {
+.order-detail-warp .fee-warp .fee-outer {
+  display: flex;
+  justify-content: space-between;
+}
+.order-detail-warp .fee-warp .fee-outer .fee {
   font-size: 36rpx;
 }
 .order-detail-warp .fee-warp .total-fee {
@@ -201,6 +200,9 @@ page {
 }
 .order-detail-warp .fee-warp :last-child {
   padding-bottom: 28rpx;
+}
+.order-detail-warp .symbol {
+  font-size: 22rpx;
 }
 .other {
   width: 700rpx;

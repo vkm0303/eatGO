@@ -10,6 +10,8 @@
         "pages/bottom_add/bottom_add",
         "pages/canteenTakeout/index",
         "pages/cardRecord/index",
+        "pages/employeeEnd/employeeEnd",
+        "pages/employeeEndDetail/employeeEndDetail",
         "pages/goodsDetail/goodsDetail",
         "pages/goods_add/goods_add",
         "pages/health/index",

@@ -3,7 +3,7 @@
  * @Author: 陈俊任
  * @Date: 2020-09-21 11:44:34
  * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-07 21:20:24
+ * @LastEditTime: 2021-03-30 14:28:39
  * @FilePath: \tastygo\miniprogram\app.js
  */
 App({
@@ -19,9 +19,9 @@ App({
                         lang: 'zh_CN',
                         timeout: 10000,
                         success: (result) => {
-                            let userInfo = wx.getStorageSync('userInfo');
-                            userInfo.nickname = result.nickName;
-                            userInfo.avartar = result.avartarUrl;
+                            // let userInfo = wx.getStorageSync('userInfo');
+                            // userInfo.nickname = result.nickName;
+                            // userInfo.avartar = result.avartarUrl;
                         }
                     });
                     // 发送 res.code 到后台换取 openId, sessionKey, unionId
