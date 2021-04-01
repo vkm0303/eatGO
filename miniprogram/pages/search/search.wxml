@@ -1,0 +1,59 @@
+<view class="top">
+  <view class="topsearch">
+    <view class="frame">
+      <input value="{{shoopingtext}}" bindinput="shoppinginput" bindconfirm="search" placeholder="请输入取餐号码"></input>
+      <view class="buttonn" style="background-color:rgb(207, 207, 207); width: 40rpx; height: 40rpx; line-height:40rpx;margin-top:20rpx" bindtap="deleteText">×</view>
+    </view>
+    <button class="buttonn" style="background-color:rgb(77, 220, 191); width: 100rpx" bindtap="search">搜索</button>
+  </view>
+</view>
+<view class="history" wx:if="{{history}}">
+  <view class="history_title">
+    <text>历史搜索</text>
+    <image src="../../images/shanchu.png" mode="widthFix" style="width:5%;" bindtap="cleanhistory"></image>
+  </view>
+  <view class="history_text">
+    <text wx:for="{{newArray}}" wx:key="key" data-text="{{item}}" bindtap="textfz">{{item}}</text>
+  </view>
+</view>
+<view class="none" wx:if="{{noneview}}">
+  <text>抱歉，没有相关订单</text>
+</view>
+<view class='common' wx:if="{{shoppinglist}}">
+  <view class='order-list-warp' wx:if="{{shoppinglist}}" >
+        <view class="order-warp"  wx:key="index" >
+          <view class="box-common">
+            <text decode>取餐时间:&nbsp;&nbsp;&nbsp;</text>
+            <text class="way">{{orderItem.arrivalTime}}</text>
+          </view>
+          <view class="box-common">
+            <text decode>取餐号码:&nbsp;&nbsp;&nbsp;</text>
+            <text class="text-common">{{orderItem.code}}</text>
+          </view>
+          <view class="box-common">
+            <text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
+            <view class="details-warp">
+              <text class="text-common" wx:for="{{orderItem.menus}}" wx:key="index">{{item.foodName}}×{{item.num}} </text>
+            </view>
+          </view>
+          <view class="box-common">
+            <text decode>下单时间:&nbsp;&nbsp;&nbsp;</text>
+            <text class="text-common">{{orderItem.createTime}}</text>
+          </view>
+          <view class="box-common">
+            <text decode>订单编号:&nbsp;&nbsp;&nbsp;</text>
+            <text class="text-common">{{orderItem.orderId}}</text>
+          </view>
+          <view class="box-common" style="background-color: #fff">
+            <button class="buttonn" style="background-color: rgb(0, 158, 196); font-size: 28rpx;"
+              bindtap="toOrderDetail" data-orderid="{{orderItem.orderId}}">查看详情</button>
+
+            <button class="buttonn" style="background-color: rgb(207, 207, 207); font-size: 28rpx;"
+               wx:if="{{orderItem.status==2}}">已打包</button>
+
+            <button class="buttonn" style="background-color: rgb(77, 220, 191); font-size: 28rpx;"
+              bindtap="receiveOrderHandle" data-orderid="{{orderItem.orderId}}" wx:else>打包</button>
+          </view>
+        </view>
+      </view>
+</view>

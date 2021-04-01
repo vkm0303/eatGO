@@ -14,7 +14,7 @@
 		<input
 		 class="common-input"
 		 type="text"
-		 placeholder="请输入{{login_id?'学号':'工号'}}"
+		 placeholder="请输入{{login_id?'学号':'账号'}}"
 		 placeholder-class="placeholder-class"
 		 bindinput="accInput"
 		></input>

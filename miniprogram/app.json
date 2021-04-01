@@ -10,8 +10,7 @@
         "pages/bottom_add/bottom_add",
         "pages/canteenTakeout/index",
         "pages/cardRecord/index",
-        "pages/employeeEnd/employeeEnd",
-        "pages/employeeEndDetail/employeeEndDetail",
+        "pages/category/category",
         "pages/goodsDetail/goodsDetail",
         "pages/goods_add/goods_add",
         "pages/health/index",
@@ -33,7 +32,9 @@
         "pages/takeOrderDetail/index",
         "pages/userInfo/index",
         "pages/message/index",
-        "pages/chatroom/index"
+        "pages/chatroom/index",
+        "pages/search/search"
+        
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -56,7 +57,13 @@
             "text": "食堂外带",
             "iconPath": "icons/_canteen.png",
             "selectedIconPath": "icons/canteen.png"
-        }, {
+        },{
+            "pagePath": "pages/more/index",
+            "text": "发现",
+            "iconPath": "icons/_more.png",
+            "selectedIconPath": "icons/more.png"
+        }, 
+         {
             "pagePath": "pages/my/index",
             "text": "我",
             "iconPath": "icons/_my.png",

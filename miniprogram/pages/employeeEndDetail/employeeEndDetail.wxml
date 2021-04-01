@@ -1,0 +1,76 @@
+<!--pages/employeeEndDetail/employeeEndDetail.wxml-->
+<view style="background-color: rgb(244, 244, 244); padding-top: 50rpx">
+<view class="orderId" >订单号: {{orderId}}</view>
+</view>
+<view class="detail-warp" >
+	<view class="foods-content">
+		<span class="titlet">菜品</span>
+		<view class="food-warp">
+			<view
+			 class="food"
+			 wx:for="{{orderDetail.menus}}"
+			 wx:key="index"
+			>
+				<image
+				 class="food-img"
+				 src="{{'http://image.tastygo.cn'+item.imgUrl}}"
+				 mode="aspectFit"
+				></image>
+				<view class="food-name">{{item.foodName}}</view>
+				<span class="food-num">x{{item.num}}</span>
+				<span class="food-price">
+					<text class="symbol">￥</text>
+					<text class="price">{{item.foodPrice}}</text>
+				</span>
+			</view>
+			<view class="packing-fee">
+				<text>包装费以实际为准</text>
+				<!-- <text class="symbol fee-position">￥</text>
+				<text class="price">1.0</text> -->
+			</view>
+			<view class="line"></view>
+			<view class="total-fee" style="margin-left: 20rpx">
+				<text decode>实付:&nbsp;</text>
+				<text class="symbol red">￥</text>
+				<text class="red">{{orderDetail.price}}</text>(未包含包装费)
+			</view>
+		</view>
+	</view>
+  <view class="delivery-detail" style="margin-bottom: 50rpx">
+		<span class="titlet">配送信息</span>
+		<view class="detail">
+			<view class="time-warp">
+				<span class="iconfont icon-clock"></span>
+				学生将在
+				<text class="time">{{orderDetail.arrivalTime}}</text>
+				前来取餐
+			</view>
+			<view class="consignee-info">
+				<span class="consignee">
+					<text decode>取餐人:&nbsp;&nbsp;&nbsp;</text>
+					<text >{{orderDetail.getWay==1?orderDetail.receiver.name : orderDetail.releaser.name }}</text>
+				</span>
+				<span class="common">
+					<text decode>取餐号:&nbsp;&nbsp;&nbsp;</text>
+					<text>{{orderDetail.code}}</text>
+				</span>
+				<span class="common">
+					<text decode>电&nbsp;&nbsp;&nbsp;话:&nbsp;&nbsp;&nbsp;</text>
+					<text>{{orderDetail.releaser.phone}}</text>
+				</span>
+				<span class="address">
+					<text decode>餐&nbsp;&nbsp;&nbsp;具:&nbsp;&nbsp;&nbsp;</text>
+					<text>{{orderDetail.tableware}}份</text>
+				</span>
+			</view>
+			<view class="line"></view>
+			<span class="remarks">备注：{{orderDetail.note.length==0? '无' : orderDetail.note }}</span>
+		</view>
+	</view>
+	
+
+	<button class="buttonn" style="background-color: rgb(207, 207, 207); font-size: 28rpx;" wx:if="{{orderDetail.status==2}}">已打包</button>
+	<button class="buttonn" style="background-color: rgb(77, 220, 191); font-size: 28rpx;"
+					bindtap="receiveOrderHandle" data-orderid="{{orderDetail.orderId}}" wx:else>打包</button>
+	<view class="slot"></view>
+</view>

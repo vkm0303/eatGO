@@ -1,0 +1,87 @@
+<view class="search_input" style="z-index: 100; position: fixed; top: 0px; ">
+	<navigator class="nav1" url="/pages/search/search" open-type="navigate">搜索</navigator>
+</view>
+
+<view class="tabs" style="z-index: 100; position: fixed; top: 110rpx; ">
+	<view class="myRelease tabs-common" animation="{{tabIdx===0?activeAni:disactiveAni}}" bindtap="tabsItemChange"
+		data-index="{{0}}">未打包
+	</view>
+	<view class="myReceive tabs-common" animation="{{tabIdx===1?activeAni:disactiveAni}}" bindtap="tabsItemChange"
+		data-index="{{1}}">已打包
+	</view>
+</view>
+
+<view class="common" style="margin-top:250rpx" wx:if="{{tabIdx==0}}">
+	<view wx:if="{{orderList==''}}" style="display:flex; justify-content: center;margin-top:400rpx">今天还没有订单哦~</view>
+	<view class="order-list-warp">
+		<view class="order-warp" wx:for="{{orderList}}" wx:key="index"
+			wx:if="{{(item.status==1&&item.getWay==1)||(item.status==1&&item.getWay==0)}}">
+			<view class="box-common">
+				<text decode>取餐时间:&nbsp;&nbsp;&nbsp;</text>
+				<text class="way">{{item.arrivalTime}}</text>
+			</view>
+			<view class="box-common">
+				<text decode>取餐号码:&nbsp;&nbsp;&nbsp;</text>
+				<text class="way" style="color: #42a5f5">{{item.code}}</text>
+			</view>
+			<view class="box-common">
+				<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
+				<view class="details-warp">
+					<text class="text-common" wx:for="{{item.menus}}" wx:key="index">{{item.foodName}}×{{item.num}} </text>
+				</view>
+			</view>
+			<view class="box-common">
+				<text decode>下单时间:&nbsp;&nbsp;&nbsp;</text>
+				<text class="text-common">{{item.createTime}}</text>
+			</view>
+			<view class="box-common">
+				<text decode>订单编号:&nbsp;&nbsp;&nbsp;</text>
+				<text class="text-common">{{item.orderId}}</text>
+			</view>
+			<view class="box-common" style="background-color: #fff">
+				<button class="buttonn" style="background-color: rgb(0, 158, 196); font-size: 28rpx;" bindtap="toOrderDetail"
+					data-orderid="{{item.orderId}}">查看详情</button>
+				<button class="buttonn" style="background-color: rgb(77, 220, 191); font-size: 28rpx;"
+					bindtap="receiveOrderHandle" data-orderid="{{item.orderId}}">打包</button>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+<view class="common" style="margin-top:250rpx" wx:if="{{tabIdx==1}}">
+	<view wx:if="{{orderList==''}}" style="display:flex; justify-content: center;margin-top:400rpx">今天还没有接单哦~</view>
+	<view class="order-list-warp">
+		<view class="order-warp" wx:for="{{orderList}}" wx:key="index"
+			wx:if="{{(item.status==2&&item.getWay==1)||(item.status==2&&item.getWay==0)}}">
+			<view class="box-common">
+				<text decode>取餐时间:&nbsp;&nbsp;&nbsp;</text>
+				<text class="way">{{item.arrivalTime}}</text>
+			</view>
+			<view class="box-common">
+				<text decode>取餐号码:&nbsp;&nbsp;&nbsp;</text>
+				<text class="way" style="color: #42a5f5">{{item.code}}</text>
+			</view>
+			<view class="box-common">
+				<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
+				<view class="details-warp">
+					<text class="text-common" wx:for="{{item.menus}}" wx:key="index">{{item.foodName}}×{{item.num}} </text>
+				</view>
+			</view>
+			<view class="box-common">
+				<text decode>下单时间:&nbsp;&nbsp;&nbsp;</text>
+				<text class="text-common">{{item.createTime}}</text>
+			</view>
+			<view class="box-common">
+				<text decode>订单编号:&nbsp;&nbsp;&nbsp;</text>
+				<text class="text-common">{{item.orderId}}</text>
+			</view>
+			<view class="box-common" style="background-color: #fff">
+				<button class="buttonn" style="background-color: rgb(0, 158, 196); font-size: 28rpx;" bindtap="toOrderDetail"
+					data-orderid="{{item.orderId}}">查看详情</button>
+				<button class="buttonn" style="background-color: rgb(207, 207, 207); font-size: 28rpx;"
+					data-orderid="{{item.orderId}}">已打包</button>
+			</view>
+		</view>
+	</view>
+</view>

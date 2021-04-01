@@ -1,18 +1,167 @@
 // pages/goodsDetail/goodsDetail.js
+var that;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    dataDetail: {},
+    comment: [], //留言
+    content: '',
+    id: '',
+    isAnonymous: false,
+    input_bottom:0
+  },
+  // 获取到焦点
+  focus: function (e) {
+    let that = this
+      this.setData({
+        input_bottom: that.data. input_bottom
+      })
+  },
+ 
+  // 失去焦点
+  no_focus: function (e) {
+      this.setData({
+        input_bottom: 0
+      })
   },
 
+  previewImg(e) {
+    let imgData = e.currentTarget.dataset.img;
+    wx.previewImage({
+      current: imgData[0],
+      urls: this.data.dataDetail.fileIDs
+    })
+  },
+  //获取评论内容
+  getComment(e) {
+    this.setData({
+      content: e.detail.value
+    })
+  },
+  sendComment(e) {
+    let that = this;
+    var array
+    var date = new Date();
+    var month = date.getMonth() + 1;
+    var now = date.getFullYear() + "/" + month + "/" +
+      date.getDate() + " " + date.getHours() + ":" +
+      date.getMinutes(); //得到此时的时间
+    var id = wx.getStorageSync('userInfo').realName + "(" + wx.getStorageSync('userInfo').campusId + ")";
+    console.log(id)
+    wx.showModal({
+      title: '是否匿名评论？',
+      content: '',
+      cancelText: '否',
+      confirmText: '是',
+      success: res => {
+        if (res.confirm) {
+          this.setData({
+            isAnonymous: true
+          })
+        }else{
+          this.setData({
+            isAnonymous: false
+          })
+        }
+        array = {
+          id: id,
+          content: that.data.content,
+          time: now,
+          isAnonymous: that.data.isAnonymous
+        };
+        let newArray = that.data.dataDetail.comments;
+        newArray = newArray.concat(array);
+        wx.cloud.database().collection('second_hand').doc(that.data.dataDetail._id).update({
+          data: {
+            comments: newArray
+          },
+          success: res => {
+            that.data.comment = '';
+            that.setData({
+              comment: ''
+            });
+            wx.showToast({
+              title: '评论成功',
+              icon: 'none',
+              duration: 1000,
+            });
+            that.onShow();
+          },
+          fail: err => {
+            console.error('评论失败', err)
+            wx.showToast({
+              title: '评论失败，重试看看',
+              icon: 'none',
+              duration: 1000,
+            });
+          }
+        })
+      },
+      fail: err => {
+        console.error('评论失败', err)
+        wx.showToast({
+          title: '评论失败，重试看看',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+  },
+  //点击下载后复制下载链接
+  copyUserNumber: function (event) {
+    console.log(event)
+    wx.setClipboardData({
+      data: this.data.dataDetail.userNumber,
+      success: res => {
+        console.log("复制成功", res)
+        wx.showToast({
+          title: '已复制微信号or手机号',
+          icon: 'none',
+          duration: 2500,
+        })
+      },
+      fail: res => {
+        console.log("复制失败", res)
+      }
+    })
+  },
+  getDataDetail() {
+    wx.cloud.database().collection('second_hand')
+      .doc(that.data.id)
+      .get({
+        success(res) {
+          console.log("请求成功", res)
+          that.setData({
+            dataDetail: res.data
+          })
+        },
+        fail(res) {
+          console.log("请求失败", res)
+        }
+      }),
+      wx.getUserInfo({
+        success: function (res) {
+          console.log(res);
+          var avatarUrl = 'userInfo.avatarUrl';
+          var nickName = 'userInfo.nickName';
+          that.setData({
+            [avatarUrl]: res.userInfo.avatarUrl,
+            [nickName]: res.userInfo.nickName,
+          })
+        }
+      })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    that = this
+    that.data.id = options.id
+    wx.onKeyboardHeightChange(res => {
+      that.data.input_bottom = res.height
+    })
   },
 
   /**
@@ -26,7 +175,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    that.getDataDetail();
   },
 
   /**

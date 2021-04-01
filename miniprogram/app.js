@@ -9,7 +9,9 @@
 App({
     onLaunch: function() {
         const that = this
-
+        wx.cloud.init({
+            env: 'test-v14h8'
+          })
         // 登录
         wx.login({
                 success: res => {
