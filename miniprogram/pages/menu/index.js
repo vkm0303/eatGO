@@ -17,8 +17,8 @@ const PAGESIZE = 10;
 Page({
     data: {
         swiperImagesList: [
-            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/1.jpg',
-            'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/2.jpg'
+            'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/1.jpg',
+            'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/2.jpg'
         ], //轮播图链接
         curEatTime: '', //当前选中的餐点
 

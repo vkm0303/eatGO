@@ -1,0 +1,22 @@
+/* pages/employeeEndDetail/employeeEndDetail.wxss */
+@import "../takeOrderDetail/index.wxss";
+.buttonn{
+  width: 143px;
+  height: 64rpx;
+  border-radius: 32px;
+  color: rgba(255, 255, 255, 100);
+  font-size: 32rpx;
+  line-height: 64rpx; 
+  text-align: center;
+  box-shadow: 0px 0px 3px 0px ;
+  margin-top: 100rpx;
+}
+
+.orderId{
+  width:80%;
+  color: rgba(119, 119, 119, 0.8);
+  margin: 0 7%;
+  padding: 20rpx;
+  border-radius: 10px;
+  background-color: rgba(119, 119, 119, 0.3);
+}

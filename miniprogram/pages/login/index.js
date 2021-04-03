@@ -7,7 +7,7 @@
  * @FilePath: \tastygo\miniprogram\pages\login\index.js
  */
 
-const { reg, getUserInfo } = require('../../api/api');
+const { reg, getUserInfo, auth } = require('../../api/api');
 const { request } = require('../../utils/request');
 
 var account = ''
@@ -55,13 +55,11 @@ Page({
             mask: false
         });
         let { userInfo, encryptedData, iv } = e.detail;
-        let result = await request.post('https://isztu.tytion.net/api/login', {
-            username: account,
-            password
-        });
-        if (result.data.ret) {
-            let realname = result.data.msg.split('(')[0];
-            let account = result.data.msg.split('(')[1].split(')')[0];
+        let result = await auth({username: account, password});
+        console.log(result)
+        if (result.code == 200) {
+            let realname = result.data.split('(')[0];
+            let account = result.data.split('(')[1].split(')')[0];
             userInfo.realname = realname;
             userInfo.campusId = account;
             wx.login({

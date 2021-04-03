@@ -100,6 +100,12 @@ const filterOrder = async(params) => {
     return data;
 };
 
+//教务系统认证
+const auth = async(params) => {
+    let { data } = await request.post(`${apiBaseUrl}/auth`, params);
+    return data;
+};
+
 //添加用户
 const reg = async(userInfo) => {
     let { data } = await request.post(`${apiBaseUrl}/addCampusUser`, userInfo);
@@ -141,6 +147,7 @@ const api = {
     getOrderByUser,
     getOrderDetail,
     changeOrderStatus,
+    auth,
     reg,
     updateUserInfo,
     getUserInfo,

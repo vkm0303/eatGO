@@ -21,7 +21,7 @@
     "compileHotReLoad": true,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -37,7 +37,7 @@
     "packNpmRelationList": [],
     "minifyWXSS": true
   },
-  "appid": "wx2d37530643ea06bc",
+  "appid": "wxf4f66b453ebf84e2",
   "projectname": "TastyGo",
   "libVersion": "2.15.0",
   "simulatorType": "wechat",

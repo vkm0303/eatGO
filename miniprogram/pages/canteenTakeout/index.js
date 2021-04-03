@@ -21,12 +21,12 @@ Page({
 
         //"我要带"变量
         swiperImagesList: [{
-                preImg: 'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/3-min.jpg',
-                img: 'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/3.jpg'
+                preImg: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/3-min.jpg',
+                img: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/3.jpg'
             },
             {
-                preImg: 'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/4-min.jpg',
-                img: 'cloud://test-v14h8.7465-test-v14h8-1303227913/swiper_images/4.jpg'
+                preImg: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/4-min.jpg',
+                img: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/4.jpg'
             }
         ],
         startingOptions: [],
