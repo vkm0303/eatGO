@@ -1,0 +1,2 @@
+/* pages/secondhand/my.wxss */
+@import "/pages/secondhand/secondhand.wxss";

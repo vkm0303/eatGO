@@ -9,6 +9,7 @@ Page({
     comment: [], //留言
     content: '',
     id: '',
+    userID:'',
     isAnonymous: false,
     input_bottom:0
   },
@@ -45,12 +46,12 @@ Page({
     var array
     var date = new Date();
     var month = date.getMonth() + 1;
-    var now = date.getFullYear() + "/" + month + "/" +
-      date.getDate() + " " + date.getHours() + ":" +
-      date.getMinutes(); //得到此时的时间
+    var now = month + "-" + (date.getDate()<10? "0"+date.getDate():date.getDate()) + " " + (date.getHours()<10? "0"+date.getHours(): date.getHours()) + ":" + (date.getMinutes()<10? "0"+date.getMinutes():date.getMinutes()); //得到此时的时间
     var id = wx.getStorageSync('userInfo').realName + "(" + wx.getStorageSync('userInfo').campusId + ")";
     console.log(id)
-    wx.showModal({
+    var userAvatarUrl =  wx.getStorageSync('userInfo').avatar;
+    var nickname =  wx.getStorageSync('userInfo').nickname;
+     wx.showModal({
       title: '是否匿名评论？',
       content: '',
       cancelText: '否',
@@ -69,7 +70,9 @@ Page({
           id: id,
           content: that.data.content,
           time: now,
-          isAnonymous: that.data.isAnonymous
+          isAnonymous: that.data.isAnonymous,
+          userAvatarUrl: userAvatarUrl,
+          nickname : nickname
         };
         let newArray = that.data.dataDetail.comments;
         newArray = newArray.concat(array);
@@ -83,9 +86,9 @@ Page({
               comment: ''
             });
             wx.showToast({
-              title: '评论成功',
+              title: '评论成功,长按可删除',
               icon: 'none',
-              duration: 1000,
+              duration: 2000,
             });
             that.onShow();
           },
@@ -162,8 +165,55 @@ Page({
     wx.onKeyboardHeightChange(res => {
       that.data.input_bottom = res.height
     })
+    var id = wx.getStorageSync('userInfo').realName + "(" + wx.getStorageSync('userInfo').campusId + ")";
+    that.data.userID = id
   },
-
+  longPress: function (event) {
+    console.log("长按删除",event)
+    var that = this;
+    var index = event.currentTarget.dataset.index;
+    console.log(that.data.userID)
+    console.log(that.data.dataDetail.comments[index].id)
+    if(that.data.userID == that.data.dataDetail.comments[index].id)
+    {
+      console.log("是本用户")
+      wx.showModal({
+        title: '提示信息',
+        content: '是否删除这条评论',
+        showCancel: true,
+        confirmText: '确定',
+        success: function (res) {
+          if (res.confirm) {
+            that.data.dataDetail.comments.splice(index,1)
+            wx.cloud.database().collection('second_hand').doc(that.data.dataDetail._id).update({
+              data: {
+                comments: that.data.dataDetail.comments
+              },
+              success: res => {
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'none',
+                  duration: 1000,
+                });
+                that.onShow();
+              },
+              fail: err => {
+                console.error('删除失败', err)
+                wx.showToast({
+                  title: '删除失败，重试看看',
+                  icon: 'none',
+                  duration: 1000,
+                });
+              }
+            })
+          } else if (res.cancel) {}
+        }
+      })
+    }else{
+      console.log("不是发评论的用户")
+    }
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

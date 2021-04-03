@@ -15,6 +15,7 @@ Page({
   },
   onLoad: function(options) {
     let that = this;
+    
     that.getUserInfo();
   },
   getUserInfo(){
@@ -227,7 +228,8 @@ Page({
           nickName: this.data.nickName,
           comments:[],
           id: id,
-          searchStatus: 0 //搜索状态
+          isDelete: false,
+          isSold: false
         },
         success: res => {
           wx.hideLoading()

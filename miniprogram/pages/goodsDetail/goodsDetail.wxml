@@ -23,27 +23,27 @@
 
 <view class="massageblock">
 	<view class="massagetitle">全部留言 ({{dataDetail.comments.length}})</view>
-	<view wx:if="{{dataDetail.comments.length==0}}" style="margin: 30rpx 0 0 20rpx; font-size: 28rpx; color:#777777"> 暂时还没有留言哦~</view>
-	<view class="secondblock" wx:for="{{dataDetail.comments}}">
-		<view class="touxiang2" wx:if="{{!item.isAnonymous}}">
-			<open-data type="userAvatarUrl"></open-data>
-		</view>
+	<view wx:if="{{dataDetail.comments.length==0}}" style="margin: 30rpx 0 0 20rpx; font-size: 28rpx; color:#777777">
+		暂时还没有留言哦~</view>
+	<view class="secondblock" wx:for="{{dataDetail.comments}}" bindlongpress="longPress" data-index="{{index}}">
+		<image class="touxiang2" wx:if="{{!item.isAnonymous}}" src='{{item.userAvatarUrl}}'>
+		</image>
 		<image class="touxiang2" wx:if="{{item.isAnonymous}}"
 			src='http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcWYNW5btfreUsNGtJUnZpx6A3w*EUtssKMp819OdDVipUQDzhTG736Ovz8UrmK1Uzq3TdUfa0ASzVQhWcEPXJ9k!/b&bo=bgFqAQAAAAADFzY!&rf=viewer_4'>
 		</image>
 
 		<view class="person">
 			<view class="name">
-				<open-data type="userNickName" style="color:#3f51B5" wx:if="{{!item.isAnonymous}}"></open-data>
-
+				<text class="showname2" wx:if="{{!item.isAnonymous}}">{{item.nickname}}</text>
 				<text class="showname2" wx:if="{{item.isAnonymous}}">匿名</text>
+				<view class="tel">
+					<text class="massagetime">{{item.time}}</text>
+				</view>
 			</view>
 			<view class="tel">
 				<text class="major">{{item.content}}</text>
 			</view>
-			<view class="tel">
-				<text class="massagetime">{{item.time}}</text>
-			</view>
+
 		</view>
 	</view>
 </view>
@@ -60,7 +60,7 @@
 </view> -->
 
 <view class="bottomrow" style='position:fixed;bottom:{{input_bottom}}px'>
-	
+
 	<view style="display:flex; flex:3">
 		<input class="commentBlock" maxlength="300" placeholder="我要留言" bindchange="getComment" value="{{comment}}"
 			bindconfirm="sendComment" adjust-position='{{false}}' bindfocus="focus" bindblur='no_focus'></input>

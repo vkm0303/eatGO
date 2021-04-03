@@ -2,7 +2,7 @@
 var request = require('request-promise');
 request = request.defaults({ jar: true });
 const cloud = require('wx-server-sdk');
-cloud.init({ env: 'test-v14h8' });
+cloud.init({ env: 'tastygo-4giu9tldc5678879' });
 var userInfo = { name: '', no: '' };
 
 // 云函数入口函数

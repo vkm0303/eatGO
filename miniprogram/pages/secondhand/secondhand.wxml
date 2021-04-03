@@ -1,8 +1,13 @@
-<view class="search_input">
+
+<view class="search_input top">
 	<navigator class="nav1" url="/pages/secondHandSearch/secondHandSearch" open-type="navigate">搜索</navigator>
-	<!-- <navigator class="nav2" url="/pages/search/index" open-type="navigate">足迹</navigator> -->
+	<view style="flex: 1">
+		<navigator class="nav2" url="./my" open-type="navigate">我的</navigator>
+	</view>
 </view>
-<swiper autoplay circular interval="2000" indicator-dots indicator-color="#fff" indicator-active-color="#d81e06">
+<view style="height:110rpx"></view>
+
+<swiper autoplay circular interval="2000" indicator-dots indicator-color="#fff" indicator-active-color="#d81e06" >
 	<swiper-item>
 		<image mode="widthFix"
 			src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/ruAMsa53pVQWN7FLK88i5if.T7wJYBVe9JdQy2PbwevHNkfazp6ikBlmZLRcaMxTiemxWoswj4uM5LKLpiCdoO1oI8F0521m4KQR2e3a928!/b&bo=vAJeAQAAAAADB8M!&rf=viewer_4" />
@@ -26,7 +31,7 @@
 	</view>
 </view>
 
-<view class="containern">
+<view class="containern" wx:if="{{dataList!=''}}">
 	<view class="cardn" wx:for="{{dataList}}" wx:key="index">
 		<view>
 			<!-- <navigator class="goods" url="../goodsDetail/goodsDetail.wxml" open-type="switchTab"> -->
@@ -48,7 +53,7 @@
 		</view>
 	</view>
 </view>
-
+<view wx:else  style="display:flex; color: #888; justify-content: center;margin-top:180rpx">还没有闲置商品哦，点击加号发布吧~</view>
 
 <view class="bottomrow">
     <button  open-type='getUserInfo' class="centerimg" bindtap="qufabu">

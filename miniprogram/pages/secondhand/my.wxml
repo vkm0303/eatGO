@@ -1,4 +1,3 @@
-<!--pages/category/category.wxml-->
 <view class="containern" wx:if="{{dataList!=''}}">
 	<view class="cardn" wx:for="{{dataList}}" wx:key="index">
 		<view>
@@ -21,4 +20,4 @@
 		</view>
 	</view>
 </view>
-<view wx:else  style="display:flex; color: #888; justify-content: center;margin-top:400rpx">还没有该分类的商品哦~~</view>
+<view wx:else  style="display:flex; color: #888; justify-content: center;margin-top:400rpx">您还没有发布过商品哦~</view>

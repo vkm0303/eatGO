@@ -6,7 +6,7 @@ const cloud = require('wx-server-sdk')
 // 初始化 cloud
 cloud.init({
   // API 调用都保持和云函数当前所在环境一致
-  env: 'yunkaifatest-4g01g7vqb48430f2'
+  env: 'tastygo-4giu9tldc5678879'
 })
 
 /**

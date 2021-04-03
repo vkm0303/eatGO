@@ -15,15 +15,16 @@
  }
  .touxiang2{
   width: 80rpx;
-height: 80rpx;
-/* border-radius: 50%; */
+  height: 80rpx;
+  border-radius: 50%;
+  margin-top : 8rpx;
  }
  .text{
   margin-left: 30rpx;
  }
  .person{
    width: 75%;
-   height: 130rpx;
+   height: 114rpx;
    margin-left: 30rpx;
    
  }
@@ -110,7 +111,7 @@ margin-top: 10rpx;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-bottom: 15rpx;
+  /* margin-bottom: 15rpx; */
   margin-top: 15rpx;
   border-bottom: 1rpx solid rgba(207, 201, 201, 0.3);
 }
@@ -118,6 +119,8 @@ margin-top: 10rpx;
 .massagetime{
   font-size: 20rpx;
   color: rgba(190, 185, 185, 100);
+  position: absolute;
+  right: 38rpx;
 }
 
 .bottomrow{

@@ -10,7 +10,7 @@ App({
     onLaunch: function() {
         const that = this
         wx.cloud.init({
-            env: 'test-v14h8'
+            env: 'tastygo-4giu9tldc5678879'
           })
         // 登录
         wx.login({

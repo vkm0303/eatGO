@@ -28,6 +28,7 @@
         "pages/pay/index",
         "pages/restaurant/restaurant",
         "pages/secondhand/secondhand",
+        "pages/secondhand/my",
         "pages/successMessage/index",
         "pages/takeOrderDetail/index",
         "pages/userInfo/index",
