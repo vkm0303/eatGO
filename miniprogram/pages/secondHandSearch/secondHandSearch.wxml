@@ -1,0 +1,46 @@
+<view class="top">
+  <view class="topsearch">
+    <view class="frame">
+      <input value="{{shoopingtext}}" bindinput="shoppinginput" bindconfirm="search" placeholder="请输入商品名称"></input>
+      <view class="buttonn" style="background-color:rgb(207, 207, 207); width: 40rpx; height: 40rpx; line-height:40rpx;margin-top:20rpx" bindtap="deleteText">×</view>
+    </view>
+    <button class="buttonn" style="background-color:#FF824E; width: 100rpx" bindtap="search">搜索</button>
+  </view>
+</view>
+<view class="history" wx:if="{{history}}">
+  <view class="history_title">
+    <text>历史搜索</text>
+    <image src="../../images/shanchu.png" mode="widthFix" style="width:5%;" bindtap="cleanhistory"></image>
+  </view>
+  <view class="history_text">
+    <text wx:for="{{newArray}}" wx:key="key" data-text="{{item}}" bindtap="textfz">{{item}}</text>
+  </view>
+</view>
+<view class="none" wx:if="{{noneview}}">
+  <text>抱歉，没有找到相关商品</text>
+</view>
+
+
+<view class="containern" wx:if="{{shoppinglist}}">
+	<view class="cardn" wx:for="{{searchList}}" wx:key="index">
+		<view>
+			<view class="goods" bindtap="toGoods" data-id="{{item._id}}">
+				<image class="goodsImage" mode="aspectFill" src="{{item.fileIDs[0]}}">
+				</image>
+				<view class="goodsInfor">
+					<view class="oldDegree" >{{item.degree}}</view>
+					<view class="price">￥{{item.goodPrice}}</view>
+					<view class="name">{{item.goodName}}</view>
+				</view>
+				<view class="user">
+					<view>
+						<image class="Profile" src="{{item.avatarUrl}}"></image>
+					</view>
+					<view class="username">{{item.nickName}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+

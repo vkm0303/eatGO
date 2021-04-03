@@ -1,10 +1,10 @@
 <!--pages/employeeEndDetail/employeeEndDetail.wxml-->
 <view style="background-color: rgb(244, 244, 244); padding-top: 50rpx">
-<view class="orderId" >订单号: {{orderId}}</view>
+	<view class="orderId">订单号: {{orderId}}</view>
 </view>
-<view class="detail-warp" >
+<view class="detail-warp">
 	<view class="foods-content">
-		<span class="title">菜品</span>
+		<span class="titlet">菜品</span>
 		<view class="food-warp">
 			<view
 			 class="food"
@@ -32,12 +32,13 @@
 			<view class="total-fee" style="margin-left: 20rpx">
 				<text decode>实付:&nbsp;</text>
 				<text class="symbol red">￥</text>
-				<text class="red">{{orderDetail.price}}</text>(未包含包装费)
+				<text class="red">{{orderDetail.price}}</text>
+				(未包含包装费)
 			</view>
 		</view>
 	</view>
-  <view class="delivery-detail" style="margin-bottom: 50rpx">
-		<span class="title">配送信息</span>
+	<view class="delivery-detail" style="margin-bottom: 50rpx">
+		<span class="titlet">配送信息</span>
 		<view class="detail">
 			<view class="time-warp">
 				<span class="iconfont icon-clock"></span>
@@ -67,10 +68,21 @@
 			<span class="remarks">备注：{{orderDetail.note.length==0? '无' : orderDetail.note }}</span>
 		</view>
 	</view>
-	
 
-	<button class="buttonn" style="background-color: rgb(207, 207, 207); font-size: 28rpx;" wx:if="{{orderDetail.status==2}}">已打包</button>
-	<button class="buttonn" style="background-color: rgb(77, 220, 191); font-size: 28rpx;"
-					bindtap="receiveOrderHandle" data-orderid="{{orderDetail.orderId}}" wx:else>打包</button>
+	<button
+	 class="buttonn"
+	 style="background-color: rgb(207, 207, 207); font-size: 28rpx;"
+	 wx:if="{{orderDetail.status==2}}"
+	>已打包
+	</button>
+	<button
+	 class="buttonn"
+	 style="background-color: rgb(77, 220, 191); font-size: 28rpx;"
+	 bindtap="receiveOrderHandle"
+	 data-orderid="{{orderDetail.orderId}}"
+	 wx:else
+	>打包
+	</button>
 	<view class="slot"></view>
 </view>
+

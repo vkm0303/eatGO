@@ -1,15 +1,134 @@
-<textarea class="desc" placeholder="品牌型号、新旧程度、入手渠道、转手原因" bindinput="getInput" />
-<view class="iamgeRootAll">
+<!-- <view style="margin: 20rpx 40rpx 0 40rpx ;">
+  <view class="title">
+    <view class="text">商品名称</view>
+    <input type="text" style="flex:1; color:#383838" bindinput="getgoodName" placeholder="请输入名称"></input>
+  </view>
+  <view class="title">
+    <view class="text">商品价格</view>
+    <input type="text" style="flex:1; color:#383838" bindinput="getgoodPrice" placeholder="请输入价格"></input>
+  </view>
+  <view class="title">
+    <view class="text">新旧程度</view>
+    <input type="text" style="flex:1; color:#383838" bindinput="getdegree" placeholder="全新or九成新"></input>
+  </view>
+  <view class="title">
+    <view class="text">联系方式</view>
+    <input type="text" style="flex:1; color:#383838" bindinput="getNumber" placeholder="手机号or微信号"></input>
+  </view>
+
+  <view class="container">
+		<picker bindchange="PickerChangeA" name='select-category' value="{{sort}}" range="{{picker}}">
+			<view class="picker">
+				<view class="fb-type">
+					<view style="flex:1;">商品分类</view>
+					<view style="position: absolute; left: 202rpx;">{{picker[sort]}}</view>
+					<image  style="height: 36rpx; width: 36rpx;" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/pickerArrow-a8b918f05f.png"></image>
+				</view>
+			</view>
+		</picker>
+	</view>
+  <view style="height:80rpx;display: flex;align-items: center;">商品描述</view>
+  <textarea class="desc" placeholder="品牌型号、入手渠道、转手原因" style="color:#383838" bindinput="getDesc" />
+  <view style="height:80rpx;display: flex;align-items: center;">商品图片(最多4张，第一张为封面)</view>
+</view> -->
+
+<view>
+  <view class="container1">
+    <!-- 商品名称 -->
+    <view class="goodname">
+      <view class="informationTitle">商品名称</view>
+      <view class="inputblock">
+        <input type="text" class="input1" placeholder="请填写商品名称" bindinput="getgoodName"></input>
+      </view>
+    </view>
+    <!-- 商品价格和分类 -->
+    <view style="display: flex">
+      <!-- 商品价格 -->
+      <view style="flex:1">
+        <view class="informationTitle">商品价格</view>
+        <view class="inputblock" style="margin-right: 10rpx;">
+          <input type="number" class="input2" placeholder="请填写商品价格" bindinput="getgoodPrice"></input>
+        </view>
+      </view>
+      <view style="width: 40rpx; margin-right: 30rpx; margin-top: 116rpx;font-size: 28rpx;">元</view>
+      <!-- 商品分类 -->
+      <view style="flex:1">
+        <view class="informationTitle">商品分类</view>
+          <picker bindchange="PickerChangeA" name='select-category' value="{{sort}}" range="{{picker}}">
+              <view class="inputblock" style="display: flex; justify-content: center; align-items: center;">
+                <view style="flex:1; margin-left: 40rpx; color: #848484; ">{{picker[sort]}}</view>
+                <view>
+                  <image style="height: 36rpx; width: 36rpx; margin-right: 20rpx;margin-top: 10rpx;"
+                    src="../../images/pull.png">
+                  </image>
+                </view>
+              </view>
+          </picker>
+      </view>
+    </view>
+    <!-- 新旧程度 -->
+    <view class="goodname">
+      <view class="informationTitle">新旧程度</view>
+      <view class="inputblock">
+        <input type="text" class="input1" placeholder="请填写商品新旧程度，全新、九成新等等" bindinput="getdegree" maxlength="3"></input>
+      </view>
+    </view>
+    <!-- 联系方式 -->
+    <view class="goodname">
+      <view class="informationTitle">联系方式</view>
+      <view class="inputblock">
+        <input type="text" class="input1" placeholder="请填写您的手机号或微信号" bindinput="getNumber"></input>
+      </view>
+    </view>
+    <!-- 商品描述 -->
+    <view class="goodname">
+      <view class="informationTitle">商品描述</view>
+      <view class="gooddesc">
+        <textarea style=" margin: 30rpx 10rpx 0 30rpx; width: 92%; "  placeholder="请描述您的商品，如品牌型号、入手渠道、转手原因等等" bindinput="getDesc"></textarea>
+      </view>
+    </view>
+    <!-- 上传图片 -->
+    <view style="display:flex">
+      <view class="informationTitle" >上传图片</view>
+      <view class="promptInformation" style="flex:1">(最多四张，第一张为封面)</view>
+    </view>
+    <view class="iamgeRootAll">
+      <block wx:for="{{imgList}}" wx:key="index">
+        <view class="imgItem">
+          <image class="img" src='{{item}}' mode='aspectFill'></image>
+          <image class="closeImg" bindtap="DeleteImg" src="../../images/close3.png" data-index="{{index}}"></image>
+        </view>
+      </block>
+      <!-- 选择图片按钮 -->
+      <view wx:if="{{imgList.length<4}}" class="imgItem" bindtap="ChooseImage">
+        <image class="photo" src="../../images/addphoto.png"></image>
+      </view>
+    </view>
+  </view>
+  <button class="click" bindtap="publish">发 布</button>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <view class="iamgeRootAll">
   <block wx:for="{{imgList}}" wx:key="index">
     <view class="imgItem">
       <image class="img" src='{{item}}' mode='aspectFill'></image>
       <image class="closeImg" bindtap="DeleteImg" src="../../images/delete.png" data-index="{{index}}"></image>
     </view>
   </block>
-  <!-- 选择图片按钮 -->
-  <view wx:if="{{imgList.length<9}}" class="imgItem" bindtap="ChooseImage">
-    <image class="photo" src="../../images/addphoto.png"></image>
-  </view>
-</view>
 
-<button class="click" bindtap="publish">发 布</button>
+<view wx:if="{{imgList.length<4}}" class="imgItem" bindtap="ChooseImage">
+  <image class="photo" src="../../images/addphoto.png"></image>
+</view>
+</view> -->
+
+<!-- <button class="click" bindtap="publish">发 布</button> -->

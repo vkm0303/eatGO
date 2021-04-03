@@ -1,15 +1,13 @@
 .desc {
   margin-top: 25rpx;
-  width: 86%;
+  width: 100%;
   margin: auto;
-  border: solid 1px gainsboro;
-  border-radius: 10px;
+  border-bottom: solid 1px gainsboro;
   height: 300rpx;
-  padding: 15rpx;
+  
 }
 
 .iamgeRootAll {
-  margin-top: 30rpx;
   margin-bottom: 60rpx;
   display: flex;
   display: -webkit-flex;
@@ -20,15 +18,15 @@
 }
 .click{
   width: 143px;
-height: 64rpx;
-border-radius: 32px;
-background-color: rgba(255, 130, 78, 100);
-color: rgba(255, 255, 255, 100);
-font-size: 32rpx;
-line-height: 64rpx;
-text-align: center;
-box-shadow: 0px 0px 3px 0px rgba(255, 130, 78, 100);
-font-family: Microsoft Yahei;
+  height: 64rpx;
+  border-radius: 32px;
+  background-color: rgba(255, 130, 78, 100);
+  color: rgba(255, 255, 255, 100);
+  font-size: 32rpx;
+  line-height: 64rpx;
+  text-align: center;
+  box-shadow: 0px 0px 3px 0px rgba(255, 130, 78, 100);
+  margin-bottom: 50rpx;
 }
 
 
@@ -57,7 +55,71 @@ font-family: Microsoft Yahei;
 .photo {
   width: 170rpx;
   height: 170rpx;
-  margin: 10px;
-  border: solid 1px gainsboro;
-  border-radius: 10px;
+  
 }
+.title{
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1rpx gainsboro;
+}
+.container{
+  min-height: 100%;
+  border-bottom: solid 1rpx gainsboro;
+}
+
+.fb-type{
+height: 100rpx;
+width: 100%;
+background: #fff;
+margin-bottom: 0rpx;
+display: flex;
+flex-direction: row;
+align-items: center;
+
+}
+.fb-type .type-label{
+  flex: 1;
+  
+}
+
+.container1{
+  margin: 64rpx;
+}
+.informationTitle{
+  color: #FF824E;
+  font-size: 28rpx;
+  font-weight: 700;
+  /* margin-bottom: 20rpx;
+  margin-top: 30rpx; */
+  margin: 30rpx 0 20rpx 10rpx;
+}
+.promptInformation{
+  color: #777777 ;
+  font-size: 24rpx;
+  font-weight:bold;
+  margin: 35rpx 0 20rpx 10rpx;
+}
+.inputblock{
+  /* left: 24px; 
+  top: 126px;
+  width: 328px; */
+  height: 40px;
+  line-height: 20px;
+  border-radius: 4px;
+  background-color: rgba(245, 245, 245, 100);
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 100);
+  font-size: 27rpx;
+}
+.gooddesc{
+  height: 280rpx;
+  line-height: 20px;
+  border-radius: 4px;
+  background-color: rgba(245, 245, 245, 100);
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 100);
+  font-size: 27rpx;
+  padding-bottom: 20rpx ;
+}
+

@@ -1,0 +1,23 @@
+<!--pages/category/category.wxml-->
+<view class="containern">
+	<view class="cardn" wx:for="{{dataList}}" wx:key="index">
+		<view>
+			<!-- <navigator class="goods" url="../goodsDetail/goodsDetail.wxml" open-type="switchTab"> -->
+			<view class="goods" bindtap="toGoods" data-id="{{item._id}}">
+				<image class="goodsImage" mode="aspectFill" src="{{item.fileIDs[0]}}">
+				</image>
+				<view class="goodsInfor">
+					<view class="oldDegree">{{item.degree}}</view>
+					<view class="price">￥{{item.goodPrice}}</view>
+					<view class="name">{{item.goodName}}</view>
+				</view>
+				<view class="user">
+					<view>
+						<image class="Profile" src="{{item.avatarUrl}}"></image>
+					</view>
+					<view class="username">{{item.nickName}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

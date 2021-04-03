@@ -1,54 +1,72 @@
 <view class="firstblock">
-	<image class="touxiang1" src='../../images/tx1.png'></image>
+	<image class="touxiang1" src='{{dataDetail.avatarUrl}}'></image>
 	<view class="person">
 		<view class="name">
-			<text class="showname1">Yuilak</text>
+			<text class="showname1">{{dataDetail.nickName}}</text>
 		</view>
 		<view class="tel">
-			<text class="major">18级工业设计</text>
+			<text class="showtime">{{dataDetail.createTime}}</text>
 		</view>
 	</view>
 </view>
 <view class="goodsInfor">
-	<view class="oldDegree">九成新</view>
-	<view class="price">￥8999.00</view>
-	<view class="goodsName">Apple 2019款 Macbook Pro 13.3 苹果笔记本电脑，九成新，功能全部正常</view>
+	<view style="display:flex">
+		<view class="oldDegree" style="width: 46px;">{{dataDetail.degree}}</view>
+		<view class="price" style="flex:1">￥{{dataDetail.goodPrice}}</view>
+	</view>
+	<view class="goodsName">{{dataDetail.desc}}</view>
 </view>
-<view class="goodsImages">
-	<image mode="widthFix" class="image1" src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/ruAMsa53pVQWN7FLK88i5m.SjjvSnwMvHofFITOP1lTHKFh6OWkz9yvW6PqH9pOHOL38ZJ42v0jPWfNj*tJp5iLp0bifGjbQqnGU5QZFhuA!/b&bo=WwEHAQAAAAADB34!&rf=viewer_4"></image>
-	<image mode="widthFix" class="image2" src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcRCGsKiuNeK2gPly224lSkc6QJipYLvCl52IWRIr79J.UEN5nxvmNsrdssdnB9lGHlxeC6JpHNwPcHz8qwNGJuA!/b&bo=WwHRAQAAAAADN5g!&rf=viewer_4"></image>
-	<image mode="widthFix" class="image3" src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcRCGsKiuNeK2gPly224lSkelpGnFZqCTJZoiJzsXJSmJjy3wug5gyH8*Ufh55yzNEPKQ0oAbmp*RU9chJCzJHmU!/b&bo=WwHRAQAAAAADN5g!&rf=viewer_4"></image>
+<view class="goodsImages" wx:for="{{dataDetail.fileIDs}}" wx:for-item="itemImg" wx:key="index">
+	<image mode="widthFix" class="image1" src="{{itemImg}}" data-img='{{[itemImg,item.fileIDs]}}' bindtap="previewImg">
+	</image>
 </view>
 
 <view class="massageblock">
-	<view class="massagetitle">全部留言 (2)</view>
-	<view class="secondblock">
-		<image class="touxiang2" src='http://b195.photo.store.qq.com/psb?/V10yZfu63jdkwj/ya2hHbWVaQGYJb9LBIE2uZL4DqgkAELiCvix3D7kkqg!/b/dMMAAAAAAAAA&bo=EgtABhILQAYRFyA!&rf=viewer_4'></image>
-		<view class="person">
-			<view class="name">
-				<text class="showname2">Healer</text>
-			</view>
-			<view class="tel">
-				<text class="major">你这个是什么时候买的啊?</text>
-			</view>
-			<view class="tel">
-				<text class="massagetime">38分钟前</text>
-			</view>
+	<view class="massagetitle">全部留言 ({{dataDetail.comments.length}})</view>
+	<view wx:if="{{dataDetail.comments.length==0}}" style="margin: 30rpx 0 0 20rpx; font-size: 28rpx; color:#777777"> 暂时还没有留言哦~</view>
+	<view class="secondblock" wx:for="{{dataDetail.comments}}">
+		<view class="touxiang2" wx:if="{{!item.isAnonymous}}">
+			<open-data type="userAvatarUrl"></open-data>
 		</view>
-	</view>
-  <view class="secondblock">
-		<image class="touxiang2" src='../../images/tx1.png'></image>
+		<image class="touxiang2" wx:if="{{item.isAnonymous}}"
+			src='http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcWYNW5btfreUsNGtJUnZpx6A3w*EUtssKMp819OdDVipUQDzhTG736Ovz8UrmK1Uzq3TdUfa0ASzVQhWcEPXJ9k!/b&bo=bgFqAQAAAAADFzY!&rf=viewer_4'>
+		</image>
+
 		<view class="person">
 			<view class="name">
-				<text class="showname2">Yuilak</text>
+				<open-data type="userNickName" style="color:#3f51B5" wx:if="{{!item.isAnonymous}}"></open-data>
+
+				<text class="showname2" wx:if="{{item.isAnonymous}}">匿名</text>
 			</view>
 			<view class="tel">
-				<text class="major">回复@Healer：一个月前</text>
+				<text class="major">{{item.content}}</text>
 			</view>
 			<view class="tel">
-				<text class="massagetime">29分钟前</text>
+				<text class="massagetime">{{item.time}}</text>
 			</view>
 		</view>
 	</view>
 </view>
-<include src="/pages/bottom_block/bottom_block.wxml"/>
+<!-- 评论框 -->
+<!-- <view style="height: 170rpx; width: 100%; background-color: #fff;" >
+	<view class="submitview" style="bottom:{{input_bottom}}rpx" >
+		<view class="cf-box">
+			<textarea class="cf-content" cursor-spacing="20" fixed="true"  maxlength="-1" auto-height
+				placeholder="我要评论"></textarea>
+			<text class="cf-send touch-active" bindtap="send">发送</text>
+		</view>
+	</view>
+
+</view> -->
+
+<view class="bottomrow" style='position:fixed;bottom:{{input_bottom}}px'>
+	
+	<view style="display:flex; flex:3">
+		<input class="commentBlock" maxlength="300" placeholder="我要留言" bindchange="getComment" value="{{comment}}"
+			bindconfirm="sendComment" adjust-position='{{false}}' bindfocus="focus" bindblur='no_focus'></input>
+		<view style="flex:1;" class="sendclass" bindtap="sendComment">发送</view>
+	</view>
+	<view style="flex:1">
+		<view class="iwant" bindtap="copyUserNumber">我想要</view>
+	</view>
+</view>
