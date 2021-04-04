@@ -6,7 +6,8 @@ Page({
    */
   data: {
     userID:'',
-    dataList:[]
+    dataList:[],
+    isClear: false,
   },
 
   /**
@@ -23,23 +24,117 @@ Page({
         success(res) {
           console.log("请求成功", res)
           var List = res.data
-          console.log(1)
           List=List.filter(item=>item.id==that.data.userID)
           console.log(List)
+           //判断是不是被清空了
+          var count = 0;
+          for(var i=0; i<List.length;i++)
+          {
+            console.log(List[i].isDelete)
+            if(List[i].isDelete == true)
+            {
+              count++;
+            }
+          }
+          if(count==List.length){
+            that.data.isClear = true
+          }
           that.setData({
-            dataList: List
+            dataList: List,
+            isClear : that.data.isClear
           })
         },
         fail(res) {
           console.log("请求失败", res)
         }
       })
+     
+      
+     
   },
   toGoods: function(e){
     console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: '../goodsDetail/goodsDetail?id='+e.currentTarget.dataset.id,
     })
+  },
+  qufabu: function(){
+    var userInfo = wx.getStorageSync('userInfo');
+    if(!userInfo)
+    {
+      wx.showModal({
+        title: '您还未登录',
+        content: '是否马上登录?',
+        confirmText: '去登录',
+        success: (result) => {
+            if (result.confirm) {
+                wx.navigateTo({ url: '/pages/login/index' });
+            }
+        }
+    });
+   }else{
+    wx.navigateTo({
+      url: '../goods_add/goods_add'
+    })
+   }
+  },
+  changeStatus(e){
+   var that = this;
+   var id = e.currentTarget.dataset.id;
+   wx.showActionSheet({
+     itemList: ['已卖出', '删除'],
+     success(res){
+      if (res.tapIndex == 0) {
+        //已卖出
+        wx.cloud.database().collection('second_hand').doc(id).update({
+          data:{
+            isSold: true
+          },
+          success(res){
+            console.log("已卖出成功",res)
+            that.onLoad();
+          },
+          fail(res){
+            console.log("已卖出失败",res)
+          }
+        })
+      } else if (res.tapIndex == 1) {
+        //删除
+        wx.showModal({
+          title: '提示信息',
+          content: '确定要删除该商品吗？',
+          confirmText: '确定',
+          cancelText: '取消',
+          success: function (res) {
+            if (res.confirm) {
+              wx.cloud.database().collection('second_hand').doc(id).update({
+                data:{
+                  isDelete : true
+                },
+                success(res){
+                  console.log("删除成功",res)
+                  wx.showToast({
+                    title: '删除成功',
+                    icon: 'none'
+                  })
+                  that.onLoad();
+                },
+                fail(res){
+                  console.log("删除失败",res)
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+     },
+     fail(res){
+      console.log(res)
+    },
+
+   })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

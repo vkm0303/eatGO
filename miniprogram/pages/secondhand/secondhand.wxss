@@ -152,7 +152,7 @@ swiper image{
 .cardn{
   /* height: 270rpx; */
   line-height: 50rpx;
-  border-radius: 16px;
+  border-radius: 8px;
   /* background-color: white; */
   box-shadow: 1px 1px 5px 0px rgba(191, 191, 191, 100);
 }

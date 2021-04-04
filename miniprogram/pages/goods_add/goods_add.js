@@ -8,31 +8,21 @@ Page({
     goodPrice: '',
     degree:'全新',
     sort: 0,
-    avatarUrl:'',
-    nickName:'',
     userNumber:'',
+    id:'',
+    nickName:'',
+    avatar:'',
     picker: ['学习用品', '数码产品', '服饰箱包', '食品日用', '运动周边']
   },
   onLoad: function(options) {
-    let that = this;
-    
-    that.getUserInfo();
-  },
-  getUserInfo(){
-    let that = this
-    wx.getUserInfo({
-      success: function (res) {
-        console.log("获取用户信息成功",res);
-        var avatarUrl = 'userInfo.avatarUrl';
-        var nickName = 'userInfo.nickName';
-        that.setData({
-          avatarUrl: res.userInfo.avatarUrl,
-          nickName: res.userInfo.nickName,
-        })
-      },
-      fail: function (res) {
-        console.log("获取用户信息失败",res);
-      }
+    var id = wx.getStorageSync('userInfo').realName + "(" + wx.getStorageSync('userInfo').campusId + ")";
+    var avatar = wx.getStorageSync('userInfo').avatar;
+    var nickName = wx.getStorageSync('userInfo').nickname
+    console.log(id)
+    this.setData({
+        id:id,
+        avatar:avatar,
+        nickName: nickName
     })
   },
   //获得商品分类
@@ -141,7 +131,6 @@ Page({
     let degree = this.data.degree
     let sort = this.data.sort
     let userNumber = this.data.userNumber
-    let id = wx.getStorageSync('userInfo').realname + "(" + wx.getStorageSync('userInfo').no + ")";
     if (this.data.goodName == '') {
       wx.showToast({
         icon: 'none',
@@ -168,22 +157,6 @@ Page({
         title: '请选择商品图片',
       })
     } else {
-
-   
-    wx.getUserInfo({
-      success: function (res) {
-        console.log("获取用户信息成功",res);
-        var avatarUrl = 'userInfo.avatarUrl';
-        var nickName = 'userInfo.nickName';
-        that.setData({
-          avatarUrl: res.userInfo.avatarUrl,
-          nickName: res.userInfo.nickName,
-        })
-      },
-      fail: function (res) {
-        console.log("获取用户信息失败",res);
-      }
-    })
     wx.showLoading({
       title: '发布中...',
     })
@@ -224,12 +197,12 @@ Page({
           degree: this.data.degree,
           sort: this.data.sort,
           userNumber : this.data.userNumber,
-          avatarUrl: this.data.avatarUrl,
+          avatarUrl: this.data.avatar,
           nickName: this.data.nickName,
           comments:[],
-          id: id,
-          isDelete: false,
-          isSold: false
+          id: this.data.id,
+          isDelete: false, //是否被删除 
+          isSold: false //是否已卖出
         },
         success: res => {
           wx.hideLoading()

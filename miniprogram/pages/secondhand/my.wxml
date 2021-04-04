@@ -1,12 +1,13 @@
 <view class="containern" wx:if="{{dataList!=''}}">
-	<view class="cardn" wx:for="{{dataList}}" wx:key="index">
-		<view>
+	<view class="cardn" wx:for="{{dataList}}" wx:key="index" wx:if="{{item.isDelete==false}}">
+		<view >
 			<!-- <navigator class="goods" url="../goodsDetail/goodsDetail.wxml" open-type="switchTab"> -->
-			<view class="goods" bindtap="toGoods" data-id="{{item._id}}">
+			<view class="goods" bindtap="toGoods" data-id="{{item._id}}" bindlongpress="changeStatus">
 				<image class="goodsImage" mode="aspectFill" src="{{item.fileIDs[0]}}">
 				</image>
 				<view class="goodsInfor">
-					<view class="oldDegree">{{item.degree}}</view>
+					<view class="oldDegree"  wx:if="{{item.isSold==false}}">{{item.degree}}</view>
+					<view class="oldDegree"  style="background-color: rgba(118, 118, 118, 0.3);"  wx:else>已卖出</view>
 					<view class="price">￥{{item.goodPrice}}</view>
 					<view class="name">{{item.goodName}}</view>
 				</view>
@@ -21,3 +22,10 @@
 	</view>
 </view>
 <view wx:else  style="display:flex; color: #888; justify-content: center;margin-top:400rpx">您还没有发布过商品哦~</view>
+<view wx:if="{{isClear}}"  style="display:flex; color: #888; justify-content: center;margin-top:400rpx">之前发布的商品已经被删除了哦~</view>
+<view wx:if="{{isClear}}"  style="display:flex; color: #888; justify-content: center;margin-top:20rpx">点击加号发布吧!</view>
+<view class="bottomrow">
+    <button  open-type='getUserInfo' class="centerimg" bindtap="qufabu">
+       <image class="bottomimg" style="background-color: white" src="/images/add1.png"></image>
+    </button>
+</view>

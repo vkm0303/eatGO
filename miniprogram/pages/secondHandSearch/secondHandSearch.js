@@ -17,7 +17,6 @@ Page({
     })
   },
   onShow: function () {
-    this.getAllData();
   },
   onLoad: function (options) {
     this.getAllData();
@@ -103,20 +102,46 @@ Page({
   },
 
   getAllData() {
-    let that = this;
-    wx.cloud.database().collection('second_hand')
-      .orderBy('createTime', 'desc') //按发布动态排序
-      .get({
-        success(res) {
-          console.log("请求成功", res)
+    // let that = this;
+    // wx.cloud.database().collection('second_hand')
+    // .where({
+    //   isDelete: false,
+    //   isSold: false
+    // })
+    //   .orderBy('createTime', 'desc') //按发布动态排序
+    //   .get({
+    //     success(res) {
+    //       console.log("请求成功", res)
+    //       that.setData({
+    //         shoopingarray: res.data
+    //       })
+    //     },
+    //     fail(res) {
+    //       console.log("请求失败", res)
+    //     }
+    //   })
+      let that = this;
+      wx.cloud.database().collection('second_hand').count().then(async res => {
+      let total = res.total;
+      // 计算需分几次取
+      const batchTimes = Math.ceil(total / 20)
+      // 承载所有读操作的 promise 的数组
+      for (let i = 0; i < batchTimes; i++) {
+        await  wx.cloud.database().collection('second_hand').skip(i * 20).limit(20)
+        .where({
+          isDelete: false,
+          isSold: false
+        }).get().then(async res => {
+          let new_data = res.data
+          let old_data = that.data.shoopingarray
           that.setData({
-            shoopingarray: res.data
+            shoopingarray: old_data.concat(new_data)
           })
-        },
-        fail(res) {
-          console.log("请求失败", res)
-        }
-      })
+        })
+      }
+      console.log(that.data.shoopingarray)
+    })
+    
      
   },
  

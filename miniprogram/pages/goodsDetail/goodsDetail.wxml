@@ -67,6 +67,7 @@
 		<view style="flex:1;" class="sendclass" bindtap="sendComment">发送</view>
 	</view>
 	<view style="flex:1">
-		<view class="iwant" bindtap="copyUserNumber">我想要</view>
+		<view class="iwant" bindtap="copyUserNumber" wx:if="{{dataDetail.isSold==false}}">我想要</view>
+		<view class="iwant"  style="background-color: rgba(118, 118, 118, 0.5);box-shadow: 0px 0px 3px 0px"  wx:else>已卖出</view>
 	</view>
 </view>

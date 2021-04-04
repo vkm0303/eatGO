@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataList:[]
+    dataList:[],
+    isClear: false
   },
 
   /**
@@ -21,8 +22,21 @@ Page({
           console.log("请求成功", res)
           var List = res.data
           List=List.filter(item=>item.sort==id)
+          var count = 0;
+          for(var i=0; i<List.length;i++)
+          {
+            console.log(List[i].isDelete)
+            if(List[i].isDelete == true)
+            {
+              count++;
+            }
+          }
+          if(count==List.length){
+            that.data.isClear = true
+          }
           that.setData({
-            dataList: List
+            dataList: List,
+            isClear : that.data.isClear
           })
         },
         fail(res) {

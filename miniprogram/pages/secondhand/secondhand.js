@@ -6,8 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    catesList: [
-      {
+    catesList: [{
         index: 0,
         name: "学习用品",
         image_src: "../../images/1.png",
@@ -16,106 +15,114 @@ Page({
       },
       {
         index: 1,
-       name: "数码产品",
-       image_src: "../../images/2.png",
-       open_type: "",
-       navigator_url: ""
-     },
-     {
-      index: 2,
-       name: "服饰箱包",
-       image_src: "../../images/3.png",
-       open_type: "",
-       navigator_url: ""
-     },
-     {
-      index: 3,
-       name: "食品日用",
-       image_src: "../../images/4.png",
-       open_type: "",
-       navigator_url: ""
-     },
-     {
-      index: 4,
-      name: "运动周边",
-      image_src: "../../images/5.png",
-      open_type: "",
-      navigator_url: ""
-    }
+        name: "数码产品",
+        image_src: "../../images/2.png",
+        open_type: "",
+        navigator_url: ""
+      },
+      {
+        index: 2,
+        name: "服饰箱包",
+        image_src: "../../images/3.png",
+        open_type: "",
+        navigator_url: ""
+      },
+      {
+        index: 3,
+        name: "食品日用",
+        image_src: "../../images/4.png",
+        open_type: "",
+        navigator_url: ""
+      },
+      {
+        index: 4,
+        name: "运动周边",
+        image_src: "../../images/5.png",
+        open_type: "",
+        navigator_url: ""
+      }
     ],
     dataList: [],
     dataListt: [],
   },
-  qufabu: function(){
+  qufabu: function () {
     var userInfo = wx.getStorageSync('userInfo');
-    if(!userInfo)
-    {
+    if (!userInfo) {
       wx.showModal({
         title: '您还未登录',
         content: '是否马上登录?',
         confirmText: '去登录',
         success: (result) => {
-            if (result.confirm) {
-                wx.navigateTo({ url: '/pages/login/index' });
-            }
+          if (result.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/index'
+            });
+          }
         }
-    });
-   }else{
-    wx.navigateTo({
-      url: '../goods_add/goods_add'
-    })
-   }
-    
-  },
-  toCategory(e){
-    console.log(e.currentTarget.dataset.id)
-    wx.navigateTo({
-      url: '../category/category?id='+e.currentTarget.dataset.id,
-    })
-  },
-  toGoods: function(e){
-    var userInfo = wx.getStorageSync('userInfo');
-    if(!userInfo)
-    {
-      wx.showModal({
-        title: '您还未登录',
-        content: '是否马上登录?',
-        confirmText: '去登录',
-        success: (result) => {
-            if (result.confirm) {
-                wx.navigateTo({ url: '/pages/login/index' });
-            }
-        }
-    });
-    }else{
-      console.log(e.currentTarget.dataset.id)
+      });
+    } else {
       wx.navigateTo({
-        url: '../goodsDetail/goodsDetail?id='+e.currentTarget.dataset.id,
+        url: '../goods_add/goods_add'
       })
     }
+
+  },
+  toCategory(e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: '../category/category?id=' + e.currentTarget.dataset.id,
+    })
+  },
+  toGoods: function (e) {
+    var userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.showModal({
+        title: '您还未登录',
+        content: '是否马上登录?',
+        confirmText: '去登录',
+        success: (result) => {
+          if (result.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/index'
+            });
+          }
+        }
+      });
+    } else {
+      console.log(e.currentTarget.dataset.id)
+      wx.navigateTo({
+        url: '../goodsDetail/goodsDetail?id=' + e.currentTarget.dataset.id,
+      })
+    }
+  },
+  toMyPage() {
+    wx.navigateTo({
+      url: './my',
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    let that = this;
-    wx.cloud.database().collection('second_hand')
-      .limit(10)
-      .orderBy('createTime', 'desc') //按发布动态排序
-      .get({
-        success(res) {
-          console.log("请求成功", res)
-          that.setData({
-            dataList: res.data
-          })
-        },
-        fail(res) {
-          console.log("请求失败", res)
-        }
-      })
-     
+    this.getData();
   },
-
+getData(){
+  let that = this;
+  wx.cloud.database().collection('second_hand')
+    .limit(10)
+    .orderBy('createTime', 'desc') //按发布动态排序
+    .get({
+      success(res) {
+        console.log("请求成功", res)
+        that.setData({
+          dataList: res.data
+        })
+      },
+      fail(res) {
+        console.log("请求失败", res)
+      }
+    })
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -147,15 +154,22 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
+  onPullDownRefresh: function (e) {
+    console.log("用户下拉了")
+    this.onLoad();
+    wx.stopPullDownRefresh();
+    wx.showToast({
+      title: '刷新成功',
+      icon: "none",
+      duration: 1000
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-    var that = this ;
+  onReachBottom: function () {
+    var that = this;
     // wx.showLoading({
     //   title: '加载中',
     //   duration: 2000
@@ -167,7 +181,7 @@ Page({
       .skip(that.data.dataList.length)
       .limit(10)
       .get({
-        success: function(res) {
+        success: function (res) {
           // res.data 是包含以上定义的两条记录的数组
           if (res.data.length > 0) {
             for (var i = 0; i < res.data.length; i++) {

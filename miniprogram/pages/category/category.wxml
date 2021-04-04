@@ -1,6 +1,6 @@
 <!--pages/category/category.wxml-->
 <view class="containern" wx:if="{{dataList!=''}}">
-	<view class="cardn" wx:for="{{dataList}}" wx:key="index">
+	<view class="cardn" wx:for="{{dataList}}" wx:key="index" wx:if="{{item.isDelete==false}}">
 		<view>
 			<!-- <navigator class="goods" url="../goodsDetail/goodsDetail.wxml" open-type="switchTab"> -->
 			<view class="goods" bindtap="toGoods" data-id="{{item._id}}">
@@ -21,4 +21,4 @@
 		</view>
 	</view>
 </view>
-<view wx:else  style="display:flex; color: #888; justify-content: center;margin-top:400rpx">还没有该分类的商品哦~~</view>
+<view wx:if="{{isClear==true||dataList==''}}"  style="display:flex; color: #888; justify-content: center;margin-top:400rpx">还没有该分类的商品哦~</view>

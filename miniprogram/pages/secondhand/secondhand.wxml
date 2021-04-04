@@ -2,7 +2,8 @@
 <view class="search_input top">
 	<navigator class="nav1" url="/pages/secondHandSearch/secondHandSearch" open-type="navigate">搜索</navigator>
 	<view style="flex: 1">
-		<navigator class="nav2" url="./my" open-type="navigate">我的</navigator>
+		<view class="nav2" bindtap="toMyPage">我的</view>
+		<!-- <navigator  url="./my" open-type="navigate">我的</navigator> -->
 	</view>
 </view>
 <view style="height:110rpx"></view>
@@ -32,14 +33,15 @@
 </view>
 
 <view class="containern" wx:if="{{dataList!=''}}">
-	<view class="cardn" wx:for="{{dataList}}" wx:key="index">
+	<view class="cardn" wx:for="{{dataList}}" wx:key="index" wx:if="{{item.isDelete==false}}">
 		<view>
 			<!-- <navigator class="goods" url="../goodsDetail/goodsDetail.wxml" open-type="switchTab"> -->
 			<view class="goods" bindtap="toGoods" data-id="{{item._id}}">
 				<image class="goodsImage" mode="aspectFill" src="{{item.fileIDs[0]}}">
 				</image>
 				<view class="goodsInfor">
-					<view class="oldDegree" >{{item.degree}}</view>
+					<view class="oldDegree"  wx:if="{{item.isSold==false}}">{{item.degree}}</view>
+					<view class="oldDegree"  style="background-color: rgba(118, 118, 118, 0.3);"  wx:else>已卖出</view>
 					<view class="price">￥{{item.goodPrice}}</view>
 					<view class="name">{{item.goodName}}</view>
 				</view>

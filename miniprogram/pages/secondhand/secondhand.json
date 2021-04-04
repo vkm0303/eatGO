@@ -1,4 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "二手闲置"
+  "navigationBarTitleText": "二手闲置",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#666"
 }

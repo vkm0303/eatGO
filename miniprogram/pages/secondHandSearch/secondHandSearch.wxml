@@ -7,6 +7,7 @@
     <button class="buttonn" style="background-color:#FF824E; width: 100rpx" bindtap="search">搜索</button>
   </view>
 </view>
+<view style="height:120rpx"></view>
 <view class="history" wx:if="{{history}}">
   <view class="history_title">
     <text>历史搜索</text>
@@ -17,7 +18,7 @@
   </view>
 </view>
 <view class="none" wx:if="{{noneview}}">
-  <text>抱歉，没有找到相关商品</text>
+  <text>仅搜索未卖出的商品，没有找到相关商品</text>
 </view>
 
 
@@ -28,7 +29,8 @@
 				<image class="goodsImage" mode="aspectFill" src="{{item.fileIDs[0]}}">
 				</image>
 				<view class="goodsInfor">
-					<view class="oldDegree" >{{item.degree}}</view>
+					<view class="oldDegree"  wx:if="{{item.isSold==false}}">{{item.degree}}</view>
+					<view class="oldDegree"  style="background-color: rgba(118, 118, 118, 0.3);"  wx:else>已卖出</view>
 					<view class="price">￥{{item.goodPrice}}</view>
 					<view class="name">{{item.goodName}}</view>
 				</view>
