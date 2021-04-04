@@ -96,9 +96,26 @@ Page({
     }
   },
   toMyPage() {
-    wx.navigateTo({
-      url: './my',
-    })
+    var userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.showModal({
+        title: '您还未登录',
+        content: '是否马上登录?',
+        confirmText: '去登录',
+        success: (result) => {
+          if (result.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/index'
+            });
+          }
+        }
+      });
+    } else {
+      wx.navigateTo({
+        url: './my',
+      })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面加载
