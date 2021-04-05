@@ -70,7 +70,7 @@
     <view class="goodname">
       <view class="informationTitle">新旧程度</view>
       <view class="inputblock">
-        <input type="text" class="input1" placeholder="请填写商品新旧程度，全新、九成新等等" bindinput="getdegree" maxlength="3"></input>
+        <input type="text" class="input1" placeholder="全新、九成新等等，限3个字" bindinput="getdegree" value="{{degree}}" ></input>
       </view>
     </view>
     <!-- 联系方式 -->
@@ -84,7 +84,7 @@
     <view class="goodname">
       <view class="informationTitle">商品描述</view>
       <view class="gooddesc">
-        <textarea style=" margin: 30rpx 10rpx 0 30rpx; width: 92%; "  placeholder="请描述您的商品，如品牌型号、入手渠道、转手原因等等" bindinput="getDesc"></textarea>
+        <textarea maxlength="-1" style=" margin: 30rpx 10rpx 0 30rpx; width: 92%; height: 260rpx "  placeholder="请描述您的商品，如品牌型号、入手渠道、转手原因等等" bindinput="getDesc"></textarea>
       </view>
     </view>
     <!-- 上传图片 -->

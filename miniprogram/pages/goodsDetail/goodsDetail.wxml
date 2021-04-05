@@ -29,7 +29,7 @@
 		<image class="touxiang2" wx:if="{{!item.isAnonymous}}" src='{{item.userAvatarUrl}}'>
 		</image>
 		<image class="touxiang2" wx:if="{{item.isAnonymous}}"
-			src='http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcWYNW5btfreUsNGtJUnZpx6A3w*EUtssKMp819OdDVipUQDzhTG736Ovz8UrmK1Uzq3TdUfa0ASzVQhWcEPXJ9k!/b&bo=bgFqAQAAAAADFzY!&rf=viewer_4'>
+			src='../../images/logo.png'>
 		</image>
 
 		<view class="person">
@@ -43,10 +43,10 @@
 			<view class="tel">
 				<text class="major">{{item.content}}</text>
 			</view>
-
 		</view>
 	</view>
 </view>
+<view style="height:220rpx;"></view>
 <!-- 评论框 -->
 <!-- <view style="height: 170rpx; width: 100%; background-color: #fff;" >
 	<view class="submitview" style="bottom:{{input_bottom}}rpx" >
@@ -62,7 +62,7 @@
 <view class="bottomrow" style='position:fixed;bottom:{{input_bottom}}px'>
 
 	<view style="display:flex; flex:3">
-		<input class="commentBlock" maxlength="300" placeholder="我要留言" bindchange="getComment" value="{{comment}}"
+		<input class="commentBlock" maxlength="300" placeholder="我要留言" bindinput="getComment" value="{{content}}"
 			bindconfirm="sendComment" adjust-position='{{false}}' bindfocus="focus" bindblur='no_focus'></input>
 		<view style="flex:1;" class="sendclass" bindtap="sendComment">发送</view>
 	</view>

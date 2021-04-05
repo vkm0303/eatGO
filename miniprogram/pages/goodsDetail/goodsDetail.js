@@ -43,74 +43,84 @@ Page({
   },
   sendComment(e) {
     let that = this;
-    var array
-    var date = new Date();
-    var month = date.getMonth() + 1;
-    var now = month + "-" + (date.getDate()<10? "0"+date.getDate():date.getDate()) + " " + (date.getHours()<10? "0"+date.getHours(): date.getHours()) + ":" + (date.getMinutes()<10? "0"+date.getMinutes():date.getMinutes()); //得到此时的时间
-    var id = wx.getStorageSync('userInfo').realName + "(" + wx.getStorageSync('userInfo').campusId + ")";
-    console.log(id)
-    var userAvatarUrl =  wx.getStorageSync('userInfo').avatar;
-    var nickname =  wx.getStorageSync('userInfo').nickname;
-     wx.showModal({
-      title: '是否匿名评论？',
-      content: '',
-      cancelText: '否',
-      confirmText: '是',
-      success: res => {
-        if (res.confirm) {
-          this.setData({
-            isAnonymous: true
-          })
-        }else{
-          this.setData({
-            isAnonymous: false
-          })
-        }
-        array = {
-          id: id,
-          content: that.data.content,
-          time: now,
-          isAnonymous: that.data.isAnonymous,
-          userAvatarUrl: userAvatarUrl,
-          nickname : nickname
-        };
-        let newArray = that.data.dataDetail.comments;
-        newArray = newArray.concat(array);
-        wx.cloud.database().collection('second_hand').doc(that.data.dataDetail._id).update({
-          data: {
-            comments: newArray
-          },
-          success: res => {
-            that.data.comment = '';
-            that.setData({
-              comment: ''
-            });
-            wx.showToast({
-              title: '评论成功,长按可删除',
-              icon: 'none',
-              duration: 2000,
-            });
-            that.onShow();
-          },
-          fail: err => {
-            console.error('评论失败', err)
-            wx.showToast({
-              title: '评论失败，重试看看',
-              icon: 'none',
-              duration: 1000,
-            });
+    if(that.data.content!='')
+    {
+      var array
+      var date = new Date();
+      var month = date.getMonth() + 1;
+      var now = month + "-" + (date.getDate()<10? "0"+date.getDate():date.getDate()) + " " + (date.getHours()<10? "0"+date.getHours(): date.getHours()) + ":" + (date.getMinutes()<10? "0"+date.getMinutes():date.getMinutes()); //得到此时的时间
+      var id = wx.getStorageSync('userInfo').realName + "(" + wx.getStorageSync('userInfo').campusId + ")";
+      console.log(id)
+      var userAvatarUrl =  wx.getStorageSync('userInfo').avatar;
+      var nickname =  wx.getStorageSync('userInfo').nickname;
+       wx.showModal({
+        title: '是否匿名评论？',
+        content: '',
+        cancelText: '否',
+        confirmText: '是',
+        success: res => {
+          if (res.confirm) {
+            this.setData({
+              isAnonymous: true
+            })
+          }else{
+            this.setData({
+              isAnonymous: false
+            })
           }
-        })
-      },
-      fail: err => {
-        console.error('评论失败', err)
-        wx.showToast({
-          title: '评论失败，重试看看',
-          icon: 'none',
-          duration: 1000,
-        });
-      }
-    })
+          array = {
+            id: id,
+            content: that.data.content,
+            time: now,
+            isAnonymous: that.data.isAnonymous,
+            userAvatarUrl: userAvatarUrl,
+            nickname : nickname
+          };
+          let newArray = that.data.dataDetail.comments;
+          newArray = newArray.concat(array);
+          wx.cloud.database().collection('second_hand').doc(that.data.dataDetail._id).update({
+            data: {
+              comments: newArray
+            },
+            success: res => {
+              that.data.content = '';
+              that.setData({
+                content: ''
+              });
+              wx.showToast({
+                title: '评论成功,长按可删除',
+                icon: 'none',
+                duration: 2000,
+              });
+              that.onShow();
+            },
+            fail: err => {
+              console.error('评论失败', err)
+              wx.showToast({
+                title: '评论失败，重试看看',
+                icon: 'none',
+                duration: 1000,
+              });
+            }
+          })
+        },
+        fail: err => {
+          console.error('评论失败', err)
+          wx.showToast({
+            title: '评论失败，重试看看',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '评论不能为空',
+        icon: 'none',
+        duration: 1500,
+      });
+    }
+    
   },
   //点击下载后复制下载链接
   copyUserNumber: function (event) {

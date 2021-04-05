@@ -45,8 +45,9 @@ Page({
   },
   //获取商品新旧程度
   getdegree(event) {
+    var value = event.detail.value.slice(0,3)
     this.setData({
-      degree: event.detail.value
+      degree: value
     })
   },
   //获取联系方式

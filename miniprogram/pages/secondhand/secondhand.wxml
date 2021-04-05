@@ -8,8 +8,13 @@
 </view>
 <view style="height:110rpx"></view>
 
-<swiper autoplay circular interval="2000" indicator-dots indicator-color="#fff" indicator-active-color="#d81e06" >
-	<swiper-item>
+<swiper autoplay circular interval="3000" indicator-dots indicator-color="#fff" indicator-active-color="#d81e06" >
+	<swiper-item wx:for="{{swiperImage}}">
+		<image mode="widthFix"
+			src="{{item.imageUrl}}" />
+	</swiper-item>
+	
+	<!-- <swiper-item>
 		<image mode="widthFix"
 			src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/ruAMsa53pVQWN7FLK88i5if.T7wJYBVe9JdQy2PbwevHNkfazp6ikBlmZLRcaMxTiemxWoswj4uM5LKLpiCdoO1oI8F0521m4KQR2e3a928!/b&bo=vAJeAQAAAAADB8M!&rf=viewer_4" />
 	</swiper-item>
@@ -20,7 +25,7 @@
 	<swiper-item>
 		<image mode="widthFix"
 			src="http://m.qpic.cn/psc?/V10yZfu63jdkwj/45NBuzDIW489QBoVep5mcYrAdMYY*dGDzx3wdBYK9EfYvR1evBChaslqrum6N40dEs9nKqoEok.y4*AP*809tTbS4Xrq*Q2jt.GcwAzrhM8!/b&bo=vAJeAQAAAAADN*M!&rf=viewer_4" />
-	</swiper-item>
+	</swiper-item> -->
 </swiper>
 
 <view class="index_cate">

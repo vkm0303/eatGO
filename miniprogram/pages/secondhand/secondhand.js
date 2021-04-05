@@ -43,7 +43,7 @@ Page({
       }
     ],
     dataList: [],
-    dataListt: [],
+    swiperImage:[]//轮播图图片
   },
   qufabu: function () {
     var userInfo = wx.getStorageSync('userInfo');
@@ -133,6 +133,19 @@ getData(){
         console.log("请求成功", res)
         that.setData({
           dataList: res.data
+        })
+      },
+      fail(res) {
+        console.log("请求失败", res)
+      }
+    })
+    wx.cloud.database().collection('swiperImage')
+    .orderBy('index', 'desc') //按发布动态排序
+    .get({
+      success(res) {
+        console.log("请求成功", res)
+        that.setData({
+          swiperImage: res.data
         })
       },
       fail(res) {
