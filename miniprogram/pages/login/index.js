@@ -2,24 +2,21 @@
  * @Description: 
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
- * @LastEditors: 陈俊任
- * @LastEditTime: 2021-04-03 18:54:31
+ * @LastEditors: AmsChen
+ * @LastEditTime: 2021-04-05 21:34:28
  * @FilePath: \tastygo\miniprogram\pages\login\index.js
  */
 
 const { reg, getUserInfo, auth } = require('../../api/api');
-const { request } = require('../../utils/request');
-
 var account = ''
 var password = ''
 
 Page({
     data: {
         isVisible: true,
-        login_id: true,
+        role: 0,
         isHideAgreement: true,
         isAgree: false,
-
     },
     onLoad: function (options) {
 
@@ -27,7 +24,7 @@ Page({
     //切换登录身份
     handleChangeId() {
         this.setData({
-            login_id: !this.data.login_id
+            role: !this.data.role
         })
     },
 
@@ -48,7 +45,7 @@ Page({
 
     //登录事件
     async handleLogin(e) {
-        if (!this.data.isAgree) {
+        if (!this.data.isAgree && !this.data.role) {
             wx.showToast({
                 title: '请先阅读并同意协议',
                 icon: 'none'
@@ -60,10 +57,10 @@ Page({
             mask: false
         });
         
-        if (this.data.login_id) {
+        if (!this.data.role) {
             let { userInfo, encryptedData, iv } = e.detail;
             let result = await auth({username: account, password});
-            console.log(result)
+            console.log(result.code)
             if (result.code == 200) {
                 let realname = result.data.split('(')[0];
                 let account = result.data.split('(')[1].split(')')[0];
@@ -112,7 +109,7 @@ Page({
             } else {
                 wx.showModal({
                     title: '提示',
-                    content: result.data.msg,
+                    content: result.msg,
                     showCancel: false,
                     confirmText: '确定',
                     confirmColor: '#76aef2'
