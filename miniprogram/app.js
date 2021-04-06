@@ -50,7 +50,7 @@ App({
                 }
             }
         });
-
+        this.globalData.version = wx.getAccountInfoSync().miniProgram.envVersion;
         // 获取系统信息
         const systemInfo = wx.getSystemInfoSync();
         // 胶囊按钮位置信息
@@ -81,5 +81,7 @@ App({
         menuRight: 0, // 胶囊距右方间距（方保持左、右间距一致）
         menuBottom: 0, // 胶囊距底部间距（保持底部间距一致）
         menuHeight: 0, // 胶囊高度（自定义内容可与胶囊高度保证一致）
+
+        version: '',
     }
 })

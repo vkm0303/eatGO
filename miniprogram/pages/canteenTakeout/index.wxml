@@ -1,4 +1,4 @@
-<view class="navbar" style="height: {{navBarHeight*2}}rpx; padding-left: {{menuRight}}rpx;">
+<view class="navbar" style="height: {{navBarHeight*2}}rpx; padding-left: {{menuRight}}rpx;" wx:if="{{version}}">
 	<view class="tabs-warp" style="bottom: {{menuBottom*2}}rpx">
 		<view
 		 class="left-box text-center"
@@ -20,6 +20,7 @@
  class="content-submit-order"
  style="padding-top: {{navBarHeight*2}}rpx"
  hidden="{{tabIdx===1}}"
+ wx:if="{{version}}"
 >
 	<swiper
 	 class="swiper"
@@ -69,7 +70,36 @@
 	</view>
 </view>
 
-<view class="content-receive-order" hidden="{{tabIdx===0}}">
+<view wx:else class="tips" style="position: fixed;left: 0; top: 0; color: #333333">
+	<swiper
+	 class="swiper"
+	 style="width: 100vw; height: 80vh"
+	 current="0"
+	 autoplay
+	 circular
+	>
+		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
+			<image
+			 class="swiper-img"
+			 style="width: 100%; height: 100%"
+			 src="{{item.preImg}}"
+			 mode="aspectFit"
+			 hidden="{{isLoad}}"
+			> </image>
+			<image
+			 class="swiper-img"
+			 style="width: 100%; height: 100%"
+			 src="{{item.img}}"
+			 mode="aspectFit"
+			 hidden="{{!isLoad}}"
+			 bindload="imgLoad"
+			> </image>
+		</swiper-item>
+	</swiper>
+	<view class="tips" style="width: 80vw; margin-left: 50%; transform: translateX(-50%); padding: 20rpx 40rpx; border-radius: 15rpx; border: 1rpx solid #f79371; background-color: #fff; text-align: center;">食堂外带服务请致电：19129375455</view>
+</view>
+
+<view class="content-receive-order" hidden="{{tabIdx===0}}" wx:if="{{version !== 'trial'}}">
 
 	<view class="address-warp">
 		<span class="iconfont icon-dian" style="color: #f7d479;"></span>
@@ -157,4 +187,5 @@
 		</view>
 	</scroll-view>
 </view>
+
 

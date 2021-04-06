@@ -126,9 +126,10 @@ page {
 }
 .repo-warp {
   width: 618rpx;
-  height: 965rpx;
+  /* height: 965rpx; */
   margin-top: 50rpx;
   margin-left: 50%;
+  margin-bottom: 50rpx;
   transform: translateX(-50%);
   background-color: #fff;
   border-radius: 90rpx;

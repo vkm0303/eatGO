@@ -49,10 +49,20 @@ Page({
 
     onLoad: async function(options) {
         const that = this;
-        // wx.showLoading({
-        //     title: '正在加载',
-        //     mask: true
-        // });
+        wx.showLoading({
+            title: '正在加载',
+            mask: false
+        });
+
+        let version = getApp().globalData.version;
+        if(version === 'develop' || version === 'release') {
+            version = 1;
+        } else if(version === 'trial') {
+            version = 0;
+        }
+        this.setData({
+            version
+        })
 
         //根据当前时间设置默认选中餐点
         const curTime = date.getHours() + 1;

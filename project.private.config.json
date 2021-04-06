@@ -47,9 +47,8 @@
           "scene": null
         },
         {
-          "id": 5,
-          "name": "食堂帮带",
-          "pathName": "pages/bangdai/index",
+          "name": "pages/canteenTakeout/index",
+          "pathName": "pages/canteenTakeout/index",
           "query": "",
           "scene": null
         },

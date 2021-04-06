@@ -37,8 +37,20 @@ Page({
 
         //"我要吃"变量
         orderDetail: [],
+
+        version: 0
     },
-    onLoad: function(options) {},
+    onLoad: function(options) {
+        let version = getApp().globalData.version;
+        if(version === 'develop' || version === 'release') {
+            version = 1;
+        } else if(version === 'trial') {
+            version = 0;
+        }
+        this.setData({
+            version
+        })
+    },
 
     onShow: function() {},
 

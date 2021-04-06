@@ -155,6 +155,7 @@
 						 class="food-add-btn"
 						 bindtap="handleAddFood"
 						 data-food="{{food}}"
+						 wx:if="{{version}}"
 						>+
 						</view>
 					</view>
