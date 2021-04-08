@@ -34,7 +34,7 @@
 	<navigator
 	 class="message common-router"
 	 url="/pages/myOrderList/index"
-	 wx:if="{{isLogin}}"
+	 wx:if="{{isLogin&&isShow}}"
 	>
 		<image class="icon" src="../../icons/order.png"></image>
 		<span class="common-text">我的订单</span>

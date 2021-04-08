@@ -7,7 +7,7 @@
 		<span class="no">{{userInfo.campusId}}</span>
 	</view>
 	<view class="editable-info">
-		<mp-cells title="联系方式" footer="该信息仅用于订单交易">
+		<mp-cells title="联系方式" >
 			<mp-cell
 			 prop="wxid"
 			 title="微信号"

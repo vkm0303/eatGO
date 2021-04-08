@@ -55,9 +55,9 @@ Page({
         });
 
         let version = getApp().globalData.version;
-        if(version === 'develop' || version === 'release') {
+        if( version === 'release') {
             version = 1;
-        } else if(version === 'trial') {
+        } else if(version === 'trial'||version === 'develop') {
             version = 0;
         }
         this.setData({

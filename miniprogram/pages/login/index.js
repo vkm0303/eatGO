@@ -56,9 +56,8 @@ Page({
             title: "验证中",
             mask: false
         });
-        
         if (!this.data.role) {
-            let { userInfo, encryptedData, iv } = e.detail;
+                let { userInfo, encryptedData, iv } = e.detail;
             let result = await auth({username: account, password});
             console.log(result.code)
             if (result.code == 200) {
