@@ -25,6 +25,7 @@ Page({
         curMenuList: [], //当前展示的菜单列表
 
         canteenOptions: ["北区食堂"],
+        CurCanteenIndex: 0, //当前选择的食堂
 
         curTypeList: [], //菜类型对象列表
         curType: '', //当前类型
@@ -192,7 +193,36 @@ Page({
             curType,
         });
     },
-
+    //向右切换餐厅
+    ChangeCanteenRight(e){
+        let that = this;
+        if(that.data.CurCanteenIndex<that.data.canteenOptions.length-1){
+            that.setData({
+                CurCanteenIndex: ++that.data.CurCanteenIndex
+            })
+            let data = {
+                detail: {
+                    "index": that.data.CurCanteenIndex
+                }
+            }
+            that.loadMenuData(data)
+        }
+    },
+    //向左切换
+    ChangeCanteenLeft(e){
+        let that = this;
+        if(that.data.CurCanteenIndex>0){
+            that.setData({
+                CurCanteenIndex: --that.data.CurCanteenIndex
+            })
+            let data = {
+                detail: {
+                    "index": that.data.CurCanteenIndex
+                }
+            }
+            that.loadMenuData(data)
+        }
+    },
     //加载菜单数据
     async loadMenuData(e, isClearData = false) {
         const that = this;
@@ -212,7 +242,6 @@ Page({
             canteenId: canteenList[canteenIdx].canteenId,
             day: days[dayIdx]
         };
-
         const res = await api.getMenuByCanteen(params);
         console.log(res)
 
