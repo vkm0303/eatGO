@@ -2,7 +2,7 @@
 <view class="search_input top">
 	<navigator class="nav1" url="/pages/secondHandSearch/secondHandSearch" open-type="navigate">搜索</navigator>
 	<view style="flex: 1">
-		<view class="nav2" bindtap="toMyPage">我的</view>
+		<view class="nav2" bindtap="toMyPage"><image class="iconn" src="../../icons/my.png"></image></view>
 		<!-- <navigator  url="./my" open-type="navigate">我的</navigator> -->
 	</view>
 </view>

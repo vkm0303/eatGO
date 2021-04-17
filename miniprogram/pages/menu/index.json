@@ -4,5 +4,5 @@
         "shopping-cart": "../../components/shopping-cart/shopping-cart"
     },
     "navigationBarTitleText": "好吃Go",
-    "navigationBarBackgroundColor": "#fff"
+    "navigationBarBackgroundColor": "#f9e1bf"
 }

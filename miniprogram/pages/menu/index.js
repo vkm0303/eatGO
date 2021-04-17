@@ -16,10 +16,7 @@ const PAGESIZE = 10;
 
 Page({
     data: {
-        swiperImagesList: [
-            'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/1.jpg',
-            'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/2.jpg'
-        ], //轮播图链接
+        swiperImagesList: [], //轮播图链接
         curEatTime: '', //当前选中的餐点
 
         curMenuList: [], //当前展示的菜单列表
@@ -106,6 +103,17 @@ Page({
         wx.setStorageSync('userInfo', userInfo);
 
         wx.setStorageSync("canteenList", canteenOptions);
+        wx.cloud.database().collection("indexSwiperImage").get({
+            success(res){
+                console.log("获取成功")
+                that.setData({
+                    swiperImagesList:res.data
+                })
+            },
+            fail(res){
+                console.log("获取失败",res)
+            }
+        })
     },
 
     onShow: function() {

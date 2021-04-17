@@ -6,7 +6,6 @@
 	 bindtap="handleSelectorClick"
 	>
 		<view class="cur-option-box ">
-			<span class="icon-left"><image src="../../icons/cal.png" style="width:38rpx;height:38rpx;"></image></span>
 			<span class="cur-option curitem-class">{{options[curIndex]}}</span>
 			<span class="iconfont icon-right" animation="{{isSelectorFold ? aniArrowDown:aniArrowUp}}"></span>
 		</view>

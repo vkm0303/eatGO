@@ -28,7 +28,7 @@
   font-size: 28rpx;
   margin-top: 0rpx;
   box-shadow: 0px 0px 3px 0px rgba(180, 180, 180, 100);
-  border: 1px solid rgba(244, 109, 53,0.3);
+  /* border: 1px solid rgba(244, 109, 53,0.3); */
 }
 .nav2{
   font-size: 26rpx;
@@ -42,7 +42,7 @@
   background-color: rgba(255, 255, 255, 100);
   text-align: center;
   box-shadow: 0px 0px 3px 0px rgba(180, 180, 180, 100);
-  border: 1px solid rgba(244, 109, 53,0.3);
+  /* border: 1px solid rgba(244, 109, 53,0.3); */
 }
 swiper{
   height: calc(100vw * 350 / 700);
@@ -177,4 +177,9 @@ swiper image{
   float: right;
   border-radius: 50%;
   /* right: 30rpx; */
+}
+.iconn{
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 18rpx;
 }

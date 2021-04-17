@@ -19,7 +19,7 @@
 	 interval="2500"
 	>
 		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
-			<image src="{{item}}" mode="aspectFit"></image>
+			<image src="{{item.imageUrl}}" mode="widthFix"></image>
 		</swiper-item>
 	</swiper>
 	<!-- 轮播图 结束 -->
@@ -41,14 +41,21 @@
 			<text wx:if="{{CurCanteenIndex ==2}}">一层设学生用餐区，二层为教师食堂</text>
 
 		</view>
-		<view class="mid-context-date">
-				<view class="time-btn-warp">
-					<drop-selector
+		<view class="mid-context-moree" style="position: relative">
+				<view class="icon-left">
+			
+						<span ><image src="../../icons/cal.png" style="width:38rpx;height:38rpx;top: 0rpx;right: 250rpx;z-index:100;position:absolute"></image></span>
+				
+				
+				
+						<drop-selector
 					 outer-class="selector-outer"
 					 options="{{timeOptions}}"
 					 itemHeight="{{30}}"
 					 bind:ItemSelect="changeTime"
+					 style="margin-left:100rpx"
 					></drop-selector>
+				
 				</view>
 		</view>
 		<view class="mid-context-more">
@@ -71,7 +78,7 @@
 
 			<view class="icon-left">
 				<image src="../../icons/loc.png" style="width:32rpx;height:32rpx;"></image>
-				<span wx:if="{{CurCanteenIndex ==0}}" class = "mid-context-more-text" style="margin-right:0rpx;">北区食堂E2二层三层</span>
+				<span wx:if="{{CurCanteenIndex ==0}}" class = "mid-context-more-text" style="margin-right:0rpx;">北区宿舍楼E2对面</span>
 				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text" style="margin-right:0rpx;">西餐厅特设窗口</span>
 				<span wx:if="{{CurCanteenIndex ==2}}" class = "mid-context-more-text" style="margin-right:0rpx;">教学楼斜对面</span>
 
@@ -234,7 +241,7 @@
 						 class="food-add-btn"
 						 bindtap="handleAddFood"
 						 data-food="{{food}}"
-						 wx:if="{{version}}"
+						 wx:if="{{version&&food.isPacked}}"
 						>+
 						</view>
 					</view>

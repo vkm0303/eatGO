@@ -20,15 +20,7 @@ Page({
         menuHeight: app.globalData.menuHeight,
 
         //"我要带"变量
-        swiperImagesList: [{
-                preImg: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/3-min.jpg',
-                img: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/3.jpg'
-            },
-            {
-                preImg: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/4-min.jpg',
-                img: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/4.jpg'
-            }
-        ],
+        swiperImagesList: [],
         startingOptions: [],
         focusOptions: [],
         orderList: [],
@@ -41,6 +33,7 @@ Page({
         version: 0
     },
     onLoad: function(options) {
+        var that = this
         let version = getApp().globalData.version;
         if( version === 'release') {
             version = 1;
@@ -49,6 +42,18 @@ Page({
         }
         this.setData({
             version
+        })
+        wx.cloud.database().collection("takeOutSwiperImage").get({
+            success(res){
+                
+                that.setData({
+                    swiperImagesList:res.data
+                })
+                console.log("获取成功",that.data.swiperImagesList)
+            },
+            fail(res){
+                console.log("获取失败",res)
+            }
         })
     },
 

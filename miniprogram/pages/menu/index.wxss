@@ -106,6 +106,24 @@ page .mid-warp .mid-context .mid-context-more .mid-context-more-text {
   margin-right: 24rpx;
   font-size: 22rpx;
 }
+page .mid-warp .mid-context .mid-context-moree {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+page .mid-warp .mid-context .mid-context-moree .icon-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30rpx;
+}
+page .mid-warp .mid-context .mid-context-moree .mid-context-moree-text {
+  margin-left: 16rpx;
+  margin-right: 24rpx;
+  font-size: 22rpx;
+}
 page .bottom-warp {
   position: sticky;
   width: 100%;
@@ -147,9 +165,14 @@ page .bottom-warp .canteen-btn-warp {
   left: 202rpx;
 }
 page .bottom-warp .time-btn-warp {
-  position: absolute;
+  /* position: absolute;
   top: 142rpx;
-  left: 446rpx;
+  left: 446rpx; */
+  display: flex;
+ flex-direction:  row;
+}
+.icon-left {
+  margin-right: 24rpx;
 }
 page .bottom-warp .selector-outer {
   width: 196rpx;

@@ -110,9 +110,9 @@
   align-items: center;
   padding-bottom: 4rpx;
 }
-.selector-box .cur-option-box .icon-left {
+/* .selector-box .cur-option-box .icon-left {
   margin-right: 24rpx;
-}
+} */
 .selector-box .cur-option-box .cur-option {
   margin-right: 30rpx;
   text-align: center;
