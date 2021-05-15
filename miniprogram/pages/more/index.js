@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isShow: false
+    secondHandIsShow: false,
+    healthIsShow: false,
   },
 
   /**
@@ -19,7 +20,20 @@ Page({
         success(res) {
           console.log("请求成功", res.data.isShow)
           that.setData({
-             isShow : res.data.isShow
+            secondHandIsShow : res.data.isShow
+          })
+        },
+        fail(res) {
+          console.log("请求失败", res)
+        }
+      })
+      wx.cloud.database().collection('hideSomething')
+      .doc("healthyRecipes")
+      .get({
+        success(res) {
+          console.log("请求成功", res.data.isShow)
+          that.setData({
+            healthIsShow : res.data.isShow
           })
         },
         fail(res) {

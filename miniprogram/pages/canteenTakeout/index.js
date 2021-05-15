@@ -30,18 +30,36 @@ Page({
         //"我要吃"变量
         orderDetail: [],
 
-        version: 0
+        isShow: false,
+        takeOutText:""
     },
     onLoad: function(options) {
         var that = this
-        let version = getApp().globalData.version;
-        if( version === 'release') {
-            version = 1;
-        } else if(version === 'trial'||version === 'develop') {
-            version = 0;
-        }
-        this.setData({
-            version
+        wx.cloud.database().collection('hideSomething')
+        .doc("takeOutAndPack")
+        .get({
+          success(res) {
+            console.log("请求成功", res.data.isShow)
+            that.setData({
+                isShow : res.data.isShow
+            })
+          },
+          fail(res) {
+            console.log("请求失败", res)
+          }
+        })
+        wx.cloud.database().collection('hideSomething')
+        .doc("takeOutText")
+        .get({
+          success(res) {
+            console.log("请求成功", res.data.isShow)
+            that.setData({
+                takeOutText : res.data.text
+            })
+          },
+          fail(res) {
+            console.log("请求失败", res)
+          }
         })
         wx.cloud.database().collection("takeOutSwiperImage").get({
             success(res){
@@ -55,6 +73,7 @@ Page({
                 console.log("获取失败",res)
             }
         })
+        
     },
 
     onShow: function() {},

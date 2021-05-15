@@ -19,30 +19,36 @@ Page({
     that.data.userID = userid
     console.log(that.data.userID)
     wx.cloud.database().collection('second_hand')
+    .where({
+      id:that.data.userID
+    })
+    .limit(10)
       .orderBy('createTime', 'desc') //按发布动态排序
       .get({
         success(res) {
           console.log("请求成功", res)
           var List = res.data
-          List=List.filter(item=>item.id==that.data.userID)
           console.log(List)
            //判断是不是被清空了
-          var count = 0;
-          for(var i=0; i<List.length;i++)
-          {
-            console.log(List[i].isDelete)
-            if(List[i].isDelete == true)
+           if(List.length!=0)
+           {
+            var count = 0;
+            for(var i=0; i<List.length;i++)
             {
-              count++;
+              console.log(List[i].isDelete)
+              if(List[i].isDelete == true)
+              {
+                count++;
+              }
             }
-          }
-          if(count==List.length){
-            that.data.isClear = true
-          }
-          that.setData({
-            dataList: List,
-            isClear : that.data.isClear
-          })
+            if(count==List.length){
+              that.data.isClear = true
+            }
+            that.setData({
+              dataList: List,
+              isClear : that.data.isClear
+            })
+           }
         },
         fail(res) {
           console.log("请求失败", res)
@@ -175,7 +181,47 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var that = this;
+    // wx.showLoading({
+    //   title: '加载中',
+    //   duration: 2000
+    // })
+    var temp = [];
+    // 获取后面十条
+    wx.cloud.database().collection('second_hand')
+    .where({
+      id:that.data.userID
+    })
+      .orderBy('createTime', 'desc')
+      .skip(that.data.dataList.length)
+      .limit(10)
+      .get({
+        success: function (res) {
+          // res.data 是包含以上定义的两条记录的数组
+          if (res.data.length > 0) {
+            for (var i = 0; i < res.data.length; i++) {
+              var tempTopic = res.data[i];
+              temp.push(tempTopic);
+            }
+            var totalTopic = {};
+            totalTopic = that.data.dataList.concat(temp);
+            that.setData({
+              dataList: totalTopic,
+            });
+            wx.showToast({
+              title: '加载成功',
+              icon: "none",
+              duration: 2000
+            })
+          } else {
+            wx.showToast({
+              title: '已经到底啦~',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        },
+      })
   },
 
   /**

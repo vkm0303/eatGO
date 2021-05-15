@@ -43,6 +43,7 @@ Page({
         bus_x: '',
         bus_y: '',
         finger: {},
+        isShow: false
     },
 
     onLoad: async function(options) {
@@ -52,14 +53,18 @@ Page({
             mask: false
         });
 
-        let version = getApp().globalData.version;
-        if( version === 'release') {
-            version = 1;
-        } else if(version === 'trial'||version === 'develop') {
-            version = 0;
-        }
-        this.setData({
-            version
+        wx.cloud.database().collection('hideSomething')
+        .doc("indexAdd")
+        .get({
+          success(res) {
+            console.log("请求成功", res.data.isShow)
+            that.setData({
+                isShow : res.data.isShow
+            })
+          },
+          fail(res) {
+            console.log("请求失败", res)
+          }
         })
 
         //根据当前时间设置默认选中餐点
@@ -373,14 +378,15 @@ Page({
         food.num = 1;
 
         const hours = date.getHours();
-        if (food.eatTime !== eatTime || (eatTime !== 'Breakfast' && food.time !== days[dayIdx]) || (eatTime === 'Breakfast' && days[dayIdx] !== days[date.getDay()] && hours < 7) || (eatTime === 'Breakfast' && dayIdx === date.getDay() && hours >= 21)) {
-            wx.showToast({
-                title: '不在当前点餐时间范围内',
-                icon: 'none',
-                duration: 2000,
-            });
-            return;
-        } else if (canteenOrder.canteenId) { //判断canteenOrder是否存在
+        // if (food.eatTime !== eatTime || (eatTime !== 'Breakfast' && food.time !== days[dayIdx]) || (eatTime === 'Breakfast' && days[dayIdx] !== days[date.getDay()] && hours < 7) || (eatTime === 'Breakfast' && dayIdx === date.getDay() && hours >= 21)) {
+        //     wx.showToast({
+        //         title: '不在当前点餐时间范围内',
+        //         icon: 'none',
+        //         duration: 2000,
+        //     });
+        //     return;
+        // } else 
+        if (canteenOrder.canteenId) { //判断canteenOrder是否存在
             if (food.canteen !== canteenOrder.canteenId) { //判断添加商品是否为同一个食堂
                 wx.showToast({
                     title: '仅可选择同一给食堂的菜单噢~',

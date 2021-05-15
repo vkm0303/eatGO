@@ -47,7 +47,6 @@
 						<span ><image src="../../icons/cal.png" style="width:38rpx;height:38rpx;top: 0rpx;right: 250rpx;z-index:100;position:absolute"></image></span>
 				
 				
-				
 						<drop-selector
 					 outer-class="selector-outer"
 					 options="{{timeOptions}}"
@@ -62,7 +61,7 @@
 			<view class="icon-left">
 				<image src="../../icons/supporttake.png" style="width:30rpx;height:30rpx;"></image>
 				<span wx:if="{{CurCanteenIndex ==0}}" class = "mid-context-more-text">不支持打包</span>
-				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text">支持打包</span>
+				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text">可预约打包</span>
 				<span wx:if="{{CurCanteenIndex ==2}}" class = "mid-context-more-text">不支持打包</span>
 
 			</view>
@@ -70,7 +69,7 @@
 			<view class="icon-left">
 				<image src="../../icons/opentime.png" style="width:32rpx;height:32rpx;"></image>
 				<span wx:if="{{CurCanteenIndex ==0}}" class = "mid-context-more-text">正常用餐时间</span>
-				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text">下单 9am-10am</span>
+				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text">午餐预约9am-10am</span>
 				<span wx:if="{{CurCanteenIndex ==2}}" class = "mid-context-more-text">正常用餐时间</span>
 
 
@@ -79,7 +78,7 @@
 			<view class="icon-left">
 				<image src="../../icons/loc.png" style="width:32rpx;height:32rpx;"></image>
 				<span wx:if="{{CurCanteenIndex ==0}}" class = "mid-context-more-text" style="margin-right:0rpx;">北区宿舍楼E2对面</span>
-				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text" style="margin-right:0rpx;">西餐厅特设窗口</span>
+				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text" style="margin-right:0rpx;">原菜品窗口</span>
 				<span wx:if="{{CurCanteenIndex ==2}}" class = "mid-context-more-text" style="margin-right:0rpx;">教学楼斜对面</span>
 
 
@@ -123,12 +122,14 @@
 		bindtap="handleIEatTimeClick"
 		data-time="Dessert"
 		>点心
+		<view class="{{curEatTime=='Dessert' ? 'eat-time-dot' : ''}}"></view>
 		</view>
 		<view class="eat-time {{curEatTime=='Drink' ? 'active' : ''}}"
 			  wx:if="{{CurCanteenIndex == 1}}"
 			  bindtap="handleIEatTimeClick"
 			  data-time="Drink"
 		>饮品
+		<view class="{{curEatTime=='Drink' ? 'eat-time-dot' : ''}}"></view>
 		</view>
 	</view>
 	<!-- 餐点选择栏 结束 -->
@@ -241,7 +242,7 @@
 						 class="food-add-btn"
 						 bindtap="handleAddFood"
 						 data-food="{{food}}"
-						 wx:if="{{version&&food.isPacked}}"
+						 wx:if="{{isShow&&food.isPacked}}"
 						>+
 						</view>
 					</view>

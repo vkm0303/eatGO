@@ -1,5 +1,5 @@
-<view  wx:if="{{dataList!=''}}" style="display:flex; color: #888; justify-content: center;margin-top:10rpx; font-size: 24rpx">长按可删除或修改为已卖出</view>
-<view  wx:if="{{dataList!=''}}" style="display:flex; color: #888; justify-content: center; font-size: 24rpx">返回上一页下拉可刷新数据</view>
+<view  wx:if="{{dataList.length!=0&&!isClear}}" style="display:flex; color: #888; justify-content: center;margin-top:10rpx; font-size: 24rpx">长按可删除或修改为已卖出</view>
+<view  wx:if="{{dataList.length!=0&&!isClear}}" style="display:flex; color: #888; justify-content: center; font-size: 24rpx">返回上一页下拉可刷新数据</view>
 <view class="containern" wx:if="{{dataList!=''}}">
 	<view class="cardn" wx:for="{{dataList}}" wx:key="index" wx:if="{{item.isDelete==false}}">
 		<view >

@@ -1,4 +1,4 @@
-<view class="navbar" style="height: {{navBarHeight*2}}rpx; padding-left: {{menuRight}}rpx;" wx:if="{{version}}">
+<view class="navbar" style="height: {{navBarHeight*2}}rpx; padding-left: {{menuRight}}rpx;" wx:if="{{isShow}}">
 	<view class="tabs-warp" style="bottom: {{menuBottom*2}}rpx">
 		<view
 		 class="left-box text-center"
@@ -19,8 +19,7 @@
 <view
  class="content-submit-order"
  style="padding-top: {{navBarHeight*2}}rpx"
- hidden="{{tabIdx===1}}"
- wx:if="{{version}}"
+ hidden="{{tabIdx===1&&isShow}}"
 >
 	<swiper
 	 class="swiper"
@@ -70,10 +69,11 @@
 	</view>
 </view>
 
-<view wx:else class="tips" style="position: fixed;left: 0; top: 0; color: #333333">
+<view wx:if="{{!isShow}}" class="tips" style="position: fixed;left: 0; top: 0; color: #333333">
+<view style="width:100%; height: 47px; background-color: #f9e0bf"></view>
 	<swiper
 	 class="swiper"
-	 style="width: 100vw; height: 80vh"
+	 style="width: 100vw; height: calc(100vw * 4377 / 4054); margin-bottom: 40px"
 	 current="0"
 	 autoplay
 	 circular
@@ -96,10 +96,10 @@
 			> </image>
 		</swiper-item>
 	</swiper>
-	<view class="tips" style="width: 80vw; margin-left: 50%; transform: translateX(-50%); padding: 20rpx 40rpx; border-radius: 15rpx; border: 1rpx solid #f79371; background-color: #fff; text-align: center;">食堂外带服务请致电：19129375455</view>
+	<view class="tips" style="width: 80vw; margin-left: 50%; transform: translateX(-50%); padding: 20rpx 40rpx; border-radius: 15rpx; border: 1rpx solid #f79371; background-color: #fff; text-align: center;">{{takeOutText}}</view>
 </view>
 
-<view class="content-receive-order" hidden="{{tabIdx===0}}" wx:if="{{version !== 'trial'}}">
+<view class="content-receive-order" hidden="{{tabIdx===0&&isShow}}" >
 
 	<view class="address-warp">
 		<span class="iconfont icon-dian" style="color: #f7d479;"></span>

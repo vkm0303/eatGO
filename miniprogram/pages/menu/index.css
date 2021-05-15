@@ -168,10 +168,14 @@ page .bottom-warp .menu-warp .food-list .food-warp .food-description {
 }
 page .bottom-warp .menu-warp .food-list .food-warp .food-description .food-name {
   height: 40rpx;
+  width: 300rpx;
   color: #101010;
   font-size: 28rpx;
   text-align: left;
   font-family: PingFangSC-regular;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 page .bottom-warp .menu-warp .food-list .food-warp .food-description .food-tag {
   display: flex;

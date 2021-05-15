@@ -7,7 +7,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  border-bottom: 2px solid rgba(187, 187, 187, 100);
+  border-bottom: 1rpx solid rgba(187, 187, 187, 0.5);
  }
  .touxiang1{
   width: 90rpx;
@@ -57,8 +57,9 @@
  .oldDegree{
   width: 46px;
   height: 24px;
+  border-radius: 8px;
   line-height: 24px;
-  background-color: rgba(255, 71, 71, 100);
+  background-color: rgba(244, 109, 53, 100);
   color: rgba(255, 255, 255, 100);
   font-size: 12px;
   text-align: center;

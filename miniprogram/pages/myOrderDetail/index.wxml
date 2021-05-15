@@ -9,7 +9,7 @@
 	 wx:if="{{markers}}"
 	></map>
 </view> -->
-
+<!-- open-start -->
 <import src="index.skeleton.wxml" />
 <template is="skeleton" wx-if="{{loading}}" />
 
@@ -46,12 +46,12 @@
 		<span class="iconfont icon-order-detail"></span>
 		<span class="title">订单详情</span>
 	</view>
-
+<!-- open-ending -->
 	<!-- <view class="getway-warp margin-common">
 		<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
 		<span class="getway">{{orderDetail.getWay===0?'自提':'配送'}}</span>
 	</view> -->
-
+<!-- open-start -->
 	<view class="content-byself common" wx:if="{{orderDetail.getWay===0}}">
 		<span class="take-food-num">
 			<text decode>取餐码:&nbsp;&nbsp;&nbsp;</text>
@@ -84,4 +84,6 @@
  bindtap="{{orderDetail.status===5?'':'orderReceived'}}"
 >{{orderDetail.status===5?'订单已结束':'确认收货'}}
 </view>
+
+<!-- open-ending -->
 

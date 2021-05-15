@@ -93,6 +93,7 @@ Page({
                             res = await getUserInfo({
                                 id: userInfo.campusId
                             });
+                            console.log(res)
                             if (res.code === 200) {
                                 userInfo = res.data;
                                 wx.setStorageSync('userInfo', userInfo);
