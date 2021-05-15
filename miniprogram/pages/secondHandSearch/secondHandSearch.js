@@ -10,11 +10,27 @@ Page({
     shoopingarray: [],
     searchList: []
   },
-  toGoods: function(e){
-    console.log(e.currentTarget.dataset.id)
-    wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?id='+e.currentTarget.dataset.id,
-    })
+  toGoods: function (e) {
+    var userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      wx.showModal({
+        title: '您还未登录',
+        content: '是否马上登录?',
+        confirmText: '去登录',
+        success: (result) => {
+          if (result.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/index'
+            });
+          }
+        }
+      });
+    } else {
+      console.log(e.currentTarget.dataset.id)
+      wx.navigateTo({
+        url: '../goodsDetail/goodsDetail?id=' + e.currentTarget.dataset.id,
+      })
+    }
   },
   onShow: function () {
   },

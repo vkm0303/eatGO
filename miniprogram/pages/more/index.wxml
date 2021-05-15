@@ -3,17 +3,18 @@
 	<span class="common-text">食堂外带</span>
 	<span class="iconfont icon-iconyoujiantou"></span>
 </navigator> -->
-<navigator class="shipu common-router" url="/pages/health/index">
+<navigator class="shipu common-router" url="/pages/health/index"  wx:if="{{healthIsShow}}">
 	<image class="icon" src="../../icons/health.png"></image>
 	<span class="common-text">健康食谱</span>
 	<span class="iconfont icon-iconyoujiantou"></span>
 </navigator>
-<navigator class="common-router" url="/pages/secondhand/secondhand">
+<navigator class="common-router" url="/pages/secondhand/secondhand" wx:if="{{secondHandIsShow}}">
 	<image class="icon" src="../../icons/deal.png"></image>
 	<span class="common-text">闲置物品</span>
 	<span class="iconfont icon-iconyoujiantou"></span>
 </navigator>
-<navigator class="waimai common-router" url="/pages/restaurant/restaurant">
+
+<!-- <navigator class="waimai common-router" url="/pages/restaurant/restaurant">
 	<image class="icon" src="../../icons/takeaway.png"></image>
 	<span class="common-text">周边外卖</span>
 	<span class="iconfont icon-iconyoujiantou"></span>
@@ -27,5 +28,5 @@
 	<image class="icon" src="../../icons/group-buying.png"></image>
 	<span class="common-text">预约团购</span>
 	<span class="iconfont icon-iconyoujiantou"></span>
-</navigator>
+</navigator> -->
 

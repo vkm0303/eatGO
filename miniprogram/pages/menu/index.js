@@ -16,15 +16,13 @@ const PAGESIZE = 10;
 
 Page({
     data: {
-        swiperImagesList: [
-            'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/1.jpg',
-            'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/2.jpg'
-        ], //轮播图链接
+        swiperImagesList: [], //轮播图链接
         curEatTime: '', //当前选中的餐点
 
         curMenuList: [], //当前展示的菜单列表
 
         canteenOptions: ["北区食堂"],
+        CurCanteenIndex: 0, //当前选择的食堂
 
         curTypeList: [], //菜类型对象列表
         curType: '', //当前类型
@@ -45,6 +43,7 @@ Page({
         bus_x: '',
         bus_y: '',
         finger: {},
+        isShow: false
     },
 
     onLoad: async function(options) {
@@ -54,14 +53,18 @@ Page({
             mask: false
         });
 
-        let version = getApp().globalData.version;
-        if(version === 'develop' || version === 'release') {
-            version = 1;
-        } else if(version === 'trial') {
-            version = 0;
-        }
-        this.setData({
-            version
+        wx.cloud.database().collection('hideSomething')
+        .doc("indexAdd")
+        .get({
+          success(res) {
+            console.log("请求成功", res.data.isShow)
+            that.setData({
+                isShow : res.data.isShow
+            })
+          },
+          fail(res) {
+            console.log("请求失败", res)
+          }
         })
 
         //根据当前时间设置默认选中餐点
@@ -105,6 +108,17 @@ Page({
         wx.setStorageSync('userInfo', userInfo);
 
         wx.setStorageSync("canteenList", canteenOptions);
+        wx.cloud.database().collection("indexSwiperImage").get({
+            success(res){
+                console.log("获取成功")
+                that.setData({
+                    swiperImagesList:res.data
+                })
+            },
+            fail(res){
+                console.log("获取失败",res)
+            }
+        })
     },
 
     onShow: function() {
@@ -192,7 +206,36 @@ Page({
             curType,
         });
     },
-
+    //向右切换餐厅
+    ChangeCanteenRight(e){
+        let that = this;
+        if(that.data.CurCanteenIndex<that.data.canteenOptions.length-1){
+            that.setData({
+                CurCanteenIndex: ++that.data.CurCanteenIndex
+            })
+            let data = {
+                detail: {
+                    "index": that.data.CurCanteenIndex
+                }
+            }
+            that.loadMenuData(data)
+        }
+    },
+    //向左切换
+    ChangeCanteenLeft(e){
+        let that = this;
+        if(that.data.CurCanteenIndex>0){
+            that.setData({
+                CurCanteenIndex: --that.data.CurCanteenIndex
+            })
+            let data = {
+                detail: {
+                    "index": that.data.CurCanteenIndex
+                }
+            }
+            that.loadMenuData(data)
+        }
+    },
     //加载菜单数据
     async loadMenuData(e, isClearData = false) {
         const that = this;
@@ -212,7 +255,6 @@ Page({
             canteenId: canteenList[canteenIdx].canteenId,
             day: days[dayIdx]
         };
-
         const res = await api.getMenuByCanteen(params);
         console.log(res)
 
@@ -336,14 +378,15 @@ Page({
         food.num = 1;
 
         const hours = date.getHours();
-        if (food.eatTime !== eatTime || (eatTime !== 'Breakfast' && food.time !== days[dayIdx]) || (eatTime === 'Breakfast' && days[dayIdx] !== days[date.getDay()] && hours < 7) || (eatTime === 'Breakfast' && dayIdx === date.getDay() && hours >= 21)) {
-            wx.showToast({
-                title: '不在当前点餐时间范围内',
-                icon: 'none',
-                duration: 2000,
-            });
-            return;
-        } else if (canteenOrder.canteenId) { //判断canteenOrder是否存在
+        // if (food.eatTime !== eatTime || (eatTime !== 'Breakfast' && food.time !== days[dayIdx]) || (eatTime === 'Breakfast' && days[dayIdx] !== days[date.getDay()] && hours < 7) || (eatTime === 'Breakfast' && dayIdx === date.getDay() && hours >= 21)) {
+        //     wx.showToast({
+        //         title: '不在当前点餐时间范围内',
+        //         icon: 'none',
+        //         duration: 2000,
+        //     });
+        //     return;
+        // } else 
+        if (canteenOrder.canteenId) { //判断canteenOrder是否存在
             if (food.canteen !== canteenOrder.canteenId) { //判断添加商品是否为同一个食堂
                 wx.showToast({
                     title: '仅可选择同一给食堂的菜单噢~',

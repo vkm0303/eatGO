@@ -10,11 +10,12 @@ const loginState = wx.getStorageSync('loginState');
 Page({
     data: {
         isLogin: loginState,
+        isShow: false
     },
-    onLoad: function() {
+    onLoad: function () {
 
     },
-    onShow: function() {
+    onShow: function () {
         const that = this;
         const userInfo = wx.getStorageSync('userInfo');
         if (userInfo) {
@@ -25,12 +26,28 @@ Page({
                 isLogin: true
             })
         } else {
-            that.setData({ isLogin: false })
+            that.setData({
+                isLogin: false
+            })
         }
+        wx.cloud.database().collection('hideSomething')
+            .doc("myOrder")
+            .get({
+                success(res) {
+                    console.log("请求成功", res.data.isShow)
+                    that.setData({
+                        isShow: res.data.isShow
+                    })
+                },
+                fail(res) {
+                    console.log("请求失败", res)
+                }
+            })
     },
     handleLogin(e) {
         wx.navigateTo({
             url: '/pages/login/index'
         })
     }
+
 })

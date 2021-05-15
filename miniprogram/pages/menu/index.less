@@ -5,7 +5,7 @@ page {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 253 * 2rpx;
+        height: 213 * 2rpx;
         //background-color: #ff824e;
         //搜索框
         .search-warp {
@@ -55,38 +55,100 @@ page {
             }
         }
     }
+    .mid-warp{
+        position: relative;
+        width:346*2rpx;
+        height: 160*2rpx;
+        margin: -51*2rpx auto -96*2rpx;
+        background-color: #fff;
+        box-shadow: 4rpx 24rpx 32rpx -4rpx #d9d7d7;
+        border-radius: 20rpx;
+        .mid-context{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-items: center;
+            .mid-context-namewarp{
+                margin-top: 20*2rpx;
+                .mid-context-selectcanteen{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    align-items: center;
+                    .selectcanteenArrow{
+                        width: 80*2rpx;
+                        text-align: center;
+                        font-size: 30rpx;
+                        color: #ff824e;
+                    }
+                    .selectcanteenName{
+                        font-size: 42rpx;
+                    }
+                }
+            }
+            .mid-context-desc{
+                margin-top: 10*2rpx;
+                font-size: 26rpx;
+                color: #ACABAC;
+            }
+            .mid-context-more{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                margin-top:14rpx;
+                .icon-left{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 15*2rpx;
+                }
+                .mid-context-more-text{
+                    margin-left:16rpx;
+                    margin-right:24rpx;
+                    font-size: 22rpx;
+                }
+            }
+        }
+    }
     //菜单列表容器
     .bottom-warp {
         position: sticky;
         width: 100%;
         height: 60%;
-        margin-top: -105rpx;
+        margin-top: 128*2rpx;
         box-sizing: border-box;
         background-color: #fff;
-        border-radius: 74rpx 74rpx 0 0;
-        box-shadow: 0 -10rpx 14rpx -6rpx #d8e8f1;
         //餐点按钮
         .eat-time-warp {
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding-top: 42rpx;
-            .margin-right{
-                margin-right: 22rpx;
-            }
+            align-items: baseline;
+            margin-bottom: 35rpx;
+            //padding-top: 42rpx;
+            //.margin-right{
+            //    margin-right: 22rpx;
+            //}
             .eat-time {
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 width: 104 * 2rpx;
                 height: 38 * 2rpx;
-                border-radius: 64rpx;
-                box-shadow: 0px 1px 4px 0px #ffba9e;
-                border: 1rpx solid #ffba9e;
                 font-family: Microsoft Yahei;
+                font-size: 28rpx;
+                color: #ACABAC;
+                .eat-time-dot{
+                    width: 12rpx;
+                    height: 20rpx;
+                    border-radius: 40rpx;
+                    background-color: #ff824e;
+                }
             }
+
             .active {
-                background-color: #ff824e;
+                color: #ff824e;
+                font-size: 20 * 2rpx;
             }
         }
         //饭堂选择按钮
@@ -108,7 +170,7 @@ page {
         //菜单容器
         .menu-warp {
             display: flex;
-            margin-top: 42rpx;
+            margin-top: 20rpx;
             //左侧类名区域
             .type-list {
                 flex: 7;
@@ -117,11 +179,12 @@ page {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 81 * 2rpx;
+                    width: 76 * 2rpx;
                     height: 58 * 2rpx;
                     line-height: 20px;
                     border-radius: 0px 0px 15px 0px;
-                    font-size: 14px;
+                    color: #ACABAC;
+                    font-size: 24rpx;
                     font-family: Arial;
                 }
                 .type-select {
@@ -133,7 +196,7 @@ page {
             .food-list {
                 flex: 21;
                 height: 82vh;
-                margin-top: 64rpx;
+                //margin-top: 64rpx;
                 margin-left: 16rpx;
                 box-sizing: border-box;
                 .food-type {
@@ -158,7 +221,7 @@ page {
                             width: 100%;
                             height: 100%;
                             box-sizing: border-box;
-                            border: 8rpx solid #12391d;
+                            //border: 1rpx solid #12391d;
                             border-radius: 16rpx;
                         }
 
@@ -172,6 +235,7 @@ page {
                     }
                     .food-description {
                         padding-left: 18rpx;
+
                         .food-name {
                             height: 40rpx;
                             color: #101010;
@@ -186,7 +250,7 @@ page {
                             line-height: 24rpx;
                             font-family: Arial;
                             border: 1px solid #ffffff;
-                            .tag-name {  
+                            .tag-name {
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
@@ -206,9 +270,9 @@ page {
                             width: 72rpx;
                             height: 34rpx;
                             margin: 10rpx 0 6rpx;
-                            border-radius: 14rpx;
-                            border: 1rpx solid #ffffff;
-                            background-color: #fede64;
+                            //border-radius: 14rpx;
+                            //border: 1rpx solid #ffffff;
+                            background-color: #fff;
                             color: #5e3a43;
                             font-size: 16rpx;
                             line-height: 24rpx;
@@ -227,7 +291,7 @@ page {
                                 .food-price-text {
                                    font-size: 28rpx;
                                    text-align: left;
-                                   color: #ff4f4f; 
+                                   color: #ff4f4f;
                                 }
                             }
                             .food-collect-btn {

@@ -5,7 +5,7 @@ page .top-warp {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 426rpx;
+  height: 506rpx;
 }
 page .top-warp .search-warp {
   display: flex;
@@ -51,113 +51,38 @@ page .top-warp swiper image {
   height: 100%;
   border-radius: 0 0 15rpx 15rpx;
 }
-page .mid-warp {
-  position: relative;
-  width: 692rpx;
-  height: 320rpx;
-  margin: -102rpx auto -192rpx;
-  background-color: #fff;
-  box-shadow: 4rpx 24rpx 32rpx -4rpx #d9d7d7;
-  border-radius: 20rpx;
-}
-page .mid-warp .mid-context {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-}
-page .mid-warp .mid-context .mid-context-namewarp {
-  margin-top: 40rpx;
-}
-page .mid-warp .mid-context .mid-context-namewarp .mid-context-selectcanteen {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-page .mid-warp .mid-context .mid-context-namewarp .mid-context-selectcanteen .selectcanteenArrow {
-  width: 160rpx;
-  text-align: center;
-  font-size: 30rpx;
-  color: #ff824e;
-}
-page .mid-warp .mid-context .mid-context-namewarp .mid-context-selectcanteen .selectcanteenName {
-  font-size: 42rpx;
-}
-page .mid-warp .mid-context .mid-context-desc {
-  margin-top: 20rpx;
-  font-size: 26rpx;
-  color: #ACABAC;
-}
-page .mid-warp .mid-context .mid-context-more {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 14rpx;
-}
-page .mid-warp .mid-context .mid-context-more .icon-left {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30rpx;
-}
-page .mid-warp .mid-context .mid-context-more .mid-context-more-text {
-  margin-left: 16rpx;
-  margin-right: 24rpx;
-  font-size: 22rpx;
-}
-page .mid-warp .mid-context .mid-context-moree {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 30rpx;
-  margin-bottom: 20rpx;
-}
-page .mid-warp .mid-context .mid-context-moree .icon-left {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30rpx;
-}
-page .mid-warp .mid-context .mid-context-moree .mid-context-moree-text {
-  margin-left: 16rpx;
-  margin-right: 24rpx;
-  font-size: 22rpx;
-}
 page .bottom-warp {
   position: sticky;
   width: 100%;
   height: 60%;
-  margin-top: 256rpx;
+  margin-top: -105rpx;
   box-sizing: border-box;
   background-color: #fff;
+  border-radius: 74rpx 74rpx 0 0;
+  box-shadow: 0 -10rpx 14rpx -6rpx #d8e8f1;
 }
 page .bottom-warp .eat-time-warp {
   display: flex;
   justify-content: center;
-  align-items: baseline;
-  margin-bottom: 35rpx;
+  align-items: center;
+  padding-top: 42rpx;
+}
+page .bottom-warp .eat-time-warp .margin-right {
+  margin-right: 22rpx;
 }
 page .bottom-warp .eat-time-warp .eat-time {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 208rpx;
   height: 76rpx;
+  border-radius: 64rpx;
+  box-shadow: 0px 1px 4px 0px #ffba9e;
+  border: 1rpx solid #ffba9e;
   font-family: Microsoft Yahei;
-  font-size: 28rpx;
-  color: #ACABAC;
-}
-page .bottom-warp .eat-time-warp .eat-time .eat-time-dot {
-  width: 12rpx;
-  height: 12rpx;
-  border-radius: 50%;
-  background-color: #ff824e;
 }
 page .bottom-warp .eat-time-warp .active {
-  color: #ff824e;
-  font-size: 40rpx;
+  background-color: #162be8;
 }
 page .bottom-warp .canteen-btn-warp {
   position: absolute;
@@ -165,14 +90,9 @@ page .bottom-warp .canteen-btn-warp {
   left: 202rpx;
 }
 page .bottom-warp .time-btn-warp {
-  /* position: absolute;
+  position: absolute;
   top: 142rpx;
-  left: 446rpx; */
-  display: flex;
- flex-direction:  row;
-}
-.icon-left {
-  margin-right: 24rpx;
+  left: 446rpx;
 }
 page .bottom-warp .selector-outer {
   width: 196rpx;
@@ -181,7 +101,7 @@ page .bottom-warp .selector-outer {
 }
 page .bottom-warp .menu-warp {
   display: flex;
-  margin-top: 20rpx;
+  margin-top: 42rpx;
 }
 page .bottom-warp .menu-warp .type-list {
   flex: 7;
@@ -191,12 +111,11 @@ page .bottom-warp .menu-warp .type-list .type-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 152rpx;
+  width: 162rpx;
   height: 116rpx;
   line-height: 20px;
   border-radius: 0px 0px 15px 0px;
-  color: #ACABAC;
-  font-size: 24rpx;
+  font-size: 14px;
   font-family: Arial;
 }
 page .bottom-warp .menu-warp .type-list .type-select {
@@ -206,6 +125,7 @@ page .bottom-warp .menu-warp .type-list .type-select {
 page .bottom-warp .menu-warp .food-list {
   flex: 21;
   height: 82vh;
+  margin-top: 64rpx;
   margin-left: 16rpx;
   box-sizing: border-box;
 }
@@ -233,6 +153,7 @@ page .bottom-warp .menu-warp .food-list .food-warp .img-warp .food-img {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  border: 8rpx solid #12391d;
   border-radius: 16rpx;
 }
 page .bottom-warp .menu-warp .food-list .food-warp .img-warp .canteen-logo {
@@ -283,7 +204,9 @@ page .bottom-warp .menu-warp .food-list .food-warp .food-description .food-calor
   width: 72rpx;
   height: 34rpx;
   margin: 10rpx 0 6rpx;
-  background-color: #fff;
+  border-radius: 14rpx;
+  border: 1rpx solid #ffffff;
+  background-color: #fede64;
   color: #5e3a43;
   font-size: 16rpx;
   line-height: 24rpx;
@@ -335,3 +258,4 @@ page .bottom-warp .menu-warp .food-list .food-warp .food-description .food-botto
   z-index: 99999;
   background: #fe3c53;
 }
+/*# sourceMappingURL=index.css.map */

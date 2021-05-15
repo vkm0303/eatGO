@@ -7,7 +7,11 @@
  * @FilePath: \tastygo\miniprogram\pages\login\index.js
  */
 
-const { reg, getUserInfo, auth } = require('../../api/api');
+const {
+    reg,
+    getUserInfo,
+    auth
+} = require('../../api/api');
 var account = ''
 var password = ''
 
@@ -56,10 +60,16 @@ Page({
             title: "验证中",
             mask: false
         });
-        
         if (!this.data.role) {
-            let { userInfo, encryptedData, iv } = e.detail;
-            let result = await auth({username: account, password});
+            let {
+                userInfo,
+                encryptedData,
+                iv
+            } = e.detail;
+            let result = await auth({
+                username: account,
+                password
+            });
             console.log(result.code)
             if (result.code == 200) {
                 let realname = result.data.split('(')[0];
@@ -68,7 +78,7 @@ Page({
                 userInfo.campusId = account;
                 wx.login({
                     timeout: 10000,
-                    success: async(r) => {
+                    success: async (r) => {
                         const params = {
                             campusId: userInfo.campusId,
                             realname,
@@ -80,12 +90,17 @@ Page({
                         };
                         let res = await reg(params);
                         if (res.code !== 500) {
-                            res = await getUserInfo({ id: userInfo.campusId });
+                            res = await getUserInfo({
+                                id: userInfo.campusId
+                            });
+                            console.log(res)
                             if (res.code === 200) {
                                 userInfo = res.data;
                                 wx.setStorageSync('userInfo', userInfo);
                                 wx.setStorageSync('loginState', true);
-                                wx.switchTab({ url: '/pages/my/index' });
+                                wx.switchTab({
+                                    url: '/pages/my/index'
+                                });
                             } else {
                                 wx.showModal({
                                     title: '提示',
@@ -136,7 +151,8 @@ Page({
                         wx.showToast({
                             title: '登录成功',
                         });
-                        wx.redirectTo({
+
+                        wx.reLaunch({
                             url: '../employeeEnd/employeeEnd',
                         });
                         wx.setStorageSync('user', user);

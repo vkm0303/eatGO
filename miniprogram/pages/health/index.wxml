@@ -1,7 +1,7 @@
 <view class="top-warp">
 	<view class="date-warp">
 		<span class="day">健康食谱</span>
-		<span class="date">healthy recipes</span>
+		<span class="date">仅供参考</span>
 	</view>
 	<!-- <view class="cookbook-btn">
 		<view class="more-cookbook"></view>

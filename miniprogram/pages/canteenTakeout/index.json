@@ -3,5 +3,6 @@
         "drop-selector": "../../components/drop-selector/index",
         "mp-loading": "../../components/loading/loading"
     },
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#f9e1bf"
 }

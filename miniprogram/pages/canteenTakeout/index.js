@@ -20,15 +20,7 @@ Page({
         menuHeight: app.globalData.menuHeight,
 
         //"我要带"变量
-        swiperImagesList: [{
-                preImg: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/3-min.jpg',
-                img: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/3.jpg'
-            },
-            {
-                preImg: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/4-min.jpg',
-                img: 'cloud://tastygo-4giu9tldc5678879.7461-tastygo-4giu9tldc5678879-1305481748/swiper_images/4.jpg'
-            }
-        ],
+        swiperImagesList: [],
         startingOptions: [],
         focusOptions: [],
         orderList: [],
@@ -38,18 +30,50 @@ Page({
         //"我要吃"变量
         orderDetail: [],
 
-        version: 0
+        isShow: false,
+        takeOutText:""
     },
     onLoad: function(options) {
-        let version = getApp().globalData.version;
-        if(version === 'develop' || version === 'release') {
-            version = 1;
-        } else if(version === 'trial') {
-            version = 0;
-        }
-        this.setData({
-            version
+        var that = this
+        wx.cloud.database().collection('hideSomething')
+        .doc("takeOutAndPack")
+        .get({
+          success(res) {
+            console.log("请求成功", res.data.isShow)
+            that.setData({
+                isShow : res.data.isShow
+            })
+          },
+          fail(res) {
+            console.log("请求失败", res)
+          }
         })
+        wx.cloud.database().collection('hideSomething')
+        .doc("takeOutText")
+        .get({
+          success(res) {
+            console.log("请求成功", res.data.isShow)
+            that.setData({
+                takeOutText : res.data.text
+            })
+          },
+          fail(res) {
+            console.log("请求失败", res)
+          }
+        })
+        wx.cloud.database().collection("takeOutSwiperImage").get({
+            success(res){
+                
+                that.setData({
+                    swiperImagesList:res.data
+                })
+                console.log("获取成功",that.data.swiperImagesList)
+            },
+            fail(res){
+                console.log("获取失败",res)
+            }
+        })
+        
     },
 
     onShow: function() {},

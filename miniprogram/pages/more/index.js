@@ -5,14 +5,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    secondHandIsShow: false,
+    healthIsShow: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    wx.cloud.database().collection('hideSomething')
+      .doc("secondHand")
+      .get({
+        success(res) {
+          console.log("请求成功", res.data.isShow)
+          that.setData({
+            secondHandIsShow : res.data.isShow
+          })
+        },
+        fail(res) {
+          console.log("请求失败", res)
+        }
+      })
+      wx.cloud.database().collection('hideSomething')
+      .doc("healthyRecipes")
+      .get({
+        success(res) {
+          console.log("请求成功", res.data.isShow)
+          that.setData({
+            healthIsShow : res.data.isShow
+          })
+        },
+        fail(res) {
+          console.log("请求失败", res)
+        }
+      })
   },
 
   /**

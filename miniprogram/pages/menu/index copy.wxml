@@ -1,0 +1,186 @@
+<view class="top-warp">
+	<!-- 搜索框 开始 -->
+	<!-- <view class="search-warp">
+		<view class="iconfont icon-sousuo"></view>
+		<input
+		 class="search_input"
+		 confirm-type="search"
+		 type="text"
+		 placeholder="搜索你想吃的美食"
+		 placeholder-class="input-placeholder"
+		></input>
+	</view> -->
+	<!-- 搜索框 结束 -->
+
+	<!-- 轮播图 开始 -->
+	<swiper
+	 circular
+	 autoplay
+	 interval="2500"
+	>
+		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
+			<image src="{{item}}" mode="aspectFit"></image>
+		</swiper-item>
+	</swiper>
+	<!-- 轮播图 结束 -->
+</view>
+
+<view class="bottom-warp">
+	<!-- 餐点选择栏 开始 -->
+	<view class="eat-time-warp">
+		<view
+		 class="eat-time margin-right {{curEatTime=='Breakfast' ? 'active' : ''}}"
+		 bindtap="handleIEatTimeClick"
+		 data-time="Breakfast"
+		>早餐
+		</view>
+		<view
+		 class="eat-time margin-right {{curEatTime=='Lunch' ? 'active' : ''}}"
+		 bindtap="handleIEatTimeClick"
+		 data-time="Lunch"
+		>午餐
+		</view>
+		<view
+		 class="eat-time {{curEatTime=='Dinner' ? 'active' : ''}}"
+		 bindtap="handleIEatTimeClick"
+		 data-time="Dinner"
+		>晚餐
+		</view>
+	</view>
+	<!-- 餐点选择栏 结束 -->
+
+	<!-- 食堂选择按钮 开始 -->
+	<view class="canteen-btn-warp">
+		<drop-selector
+		 outer-class="selector-outer"
+		 options="{{canteenOptions}}"
+		 itemHeight="{{30}}"
+		 bind:ItemSelect="loadMenuData"
+		></drop-selector>
+	</view>
+	<!-- 食堂选择按钮 结束 -->
+
+	<!-- 时间下拉选择框 开始 -->
+	<view class="time-btn-warp">
+		<drop-selector
+		 outer-class="selector-outer"
+		 options="{{timeOptions}}"
+		 itemHeight="{{30}}"
+		 bind:ItemSelect="changeTime"
+		></drop-selector>
+	</view>
+	<!-- 时间下拉选择框 结束 -->
+
+	<!-- 菜单区 开始 -->
+	<view class="menu-warp">
+		<!-- 左侧类名区域 开始 -->
+		<scroll-view
+		 class="type-list"
+		 scroll-y
+		 lower-threshold="10"
+		 enhanced
+		 show-scrollbar="{{true}}"
+		 paging-enabled
+		>
+			<view
+			 class="type-content {{curTypeIdx==index ? 'type-select' : ''}}"
+			 wx:for="{{curTypeList}}"
+			 wx:for-item="type"
+			 wx:for-index="index"
+			 wx:key="index"
+			 bindtap="handleTypeChange"
+			 data-index="{{index}}"
+			 data-type="{{type}}"
+			>
+				{{type.typeName}}
+			</view>
+		</scroll-view>
+		<!-- 左侧类名区域 结束 -->
+
+		<!-- 右侧食品列表 开始 -->
+		<scroll-view
+		 class="food-list"
+		 style="{{totalNum?'padding-bottom: 120rpx':''}}"
+		 scroll-y
+		 scroll-anchoring
+		 enhanced
+		 show-scrollbar="{{false}}"
+		 enable-flex
+		>
+			<view
+			 class="food-warp"
+			 wx:for="{{curMenuList}}"
+			 wx:for-index="food_index"
+			 wx:for-item="food"
+			 wx:key="food_index"
+			>
+				<view class="img-warp">
+					<image
+					 class="food-img"
+					 src="{{'http://image.tastygo.cn'+food.pictureImg}}"
+					 lazy-load
+					></image>
+					<image
+					 class="canteen-logo"
+					 src="../../images/canteen-logo.png"
+					 lazy-load
+					></image>
+				</view>
+				<view class="food-description">
+					<view class="food-name">{{food.foodName}}</view>
+					<view class="food-tag">
+						<view
+						 class="tag-name"
+						 wx:for="{{food.ingredient}}"
+						 wx:for-item="tag"
+						 wx:key="index"
+						>
+							{{tag===''?'暂无':tag}}
+						</view>
+					</view>
+					<view class="food-calorie">{{food.calorie}}qk</view>
+					<view class="food-bottom-warp">
+						<view class="food-price">
+							<text>￥</text>
+							<text class="food-price-text">{{food.price}}</text>
+						</view>
+						<view
+						 class="food-collect-btn iconfont {{food.isCollected?'icon-shoucang':'icon-aixin'}}"
+						 bindtap="handleFoodCollect"
+						 data-food_id="{{food.menuId}}"
+						 data-index="{{food_index}}"
+						 data-state="{{food.isCollected}}"
+						></view>
+						<view
+						 class="food-add-btn"
+						 bindtap="handleAddFood"
+						 data-food="{{food}}"
+						 wx:if="{{version}}"
+						>+
+						</view>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+		<!-- 右侧食品列表 结束 -->
+	</view>
+	<!-- 菜单区 结束 -->
+</view>
+
+<view
+ class="good_box"
+ animation="{{animation}}"
+ style="left: {{bus_x*2}}rpx; top: {{bus_y*2}}rpx; opacity: 0"
+>
+</view>
+
+<shopping-cart
+ id="cart"
+ orderData="{{orderDetail}}"
+ totalPrice="{{totalPrice}}"
+ totalNum="{{totalNum}}"
+ url="{{'/pages/canteenTakeout/index?tabIdx=0'}}"
+ bind:itemNumChange="bindItemNumChange"
+ bind:clearCart="bindClearCart"
+></shopping-cart>
+

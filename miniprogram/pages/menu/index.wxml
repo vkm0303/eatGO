@@ -19,56 +19,141 @@
 	 interval="2500"
 	>
 		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
-			<image src="{{item}}" mode="aspectFit"></image>
+			<image src="{{item.imageUrl}}" mode="widthFix"></image>
 		</swiper-item>
 	</swiper>
 	<!-- 轮播图 结束 -->
 </view>
 
-<view class="bottom-warp">
+<!--信息框 开始-->
+<view class="mid-warp">
+	<view class="mid-context">
+		<view class="mid-context-namewarp">
+			<view class="mid-context-selectcanteen">
+				<view class='selectcanteenArrow' bindtap="ChangeCanteenLeft"> {{'<'}}  </view>
+				<view class='selectcanteenName'>{{canteenOptions[CurCanteenIndex]}}</view>
+				<view class='selectcanteenArrow' bindtap="ChangeCanteenRight"> {{'>'}} </view>
+			</view>
+		</view>
+		<view class="mid-context-desc">
+			<text wx:if="{{CurCanteenIndex ==0}}">为师生提供平价实惠的各色美食</text>
+			<text wx:if="{{CurCanteenIndex ==1}}">为师生提供优质西式菜品、甜点饮品等</text>
+			<text wx:if="{{CurCanteenIndex ==2}}">一层设学生用餐区，二层为教师食堂</text>
+
+		</view>
+		<view class="mid-context-moree" style="position: relative">
+				<view class="icon-left">
+			
+						<span ><image src="../../icons/cal.png" style="width:38rpx;height:38rpx;top: 0rpx;right: 250rpx;z-index:100;position:absolute"></image></span>
+				
+				
+						<drop-selector
+					 outer-class="selector-outer"
+					 options="{{timeOptions}}"
+					 itemHeight="{{30}}"
+					 bind:ItemSelect="changeTime"
+					 style="margin-left:100rpx"
+					></drop-selector>
+				
+				</view>
+		</view>
+		<view class="mid-context-more">
+			<view class="icon-left">
+				<image src="../../icons/supporttake.png" style="width:30rpx;height:30rpx;"></image>
+				<span wx:if="{{CurCanteenIndex ==0}}" class = "mid-context-more-text">不支持打包</span>
+				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text">可预约打包</span>
+				<span wx:if="{{CurCanteenIndex ==2}}" class = "mid-context-more-text">不支持打包</span>
+
+			</view>
+
+			<view class="icon-left">
+				<image src="../../icons/opentime.png" style="width:32rpx;height:32rpx;"></image>
+				<span wx:if="{{CurCanteenIndex ==0}}" class = "mid-context-more-text">正常用餐时间</span>
+				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text">午餐预约9am-10am</span>
+				<span wx:if="{{CurCanteenIndex ==2}}" class = "mid-context-more-text">正常用餐时间</span>
+
+
+			</view>
+
+			<view class="icon-left">
+				<image src="../../icons/loc.png" style="width:32rpx;height:32rpx;"></image>
+				<span wx:if="{{CurCanteenIndex ==0}}" class = "mid-context-more-text" style="margin-right:0rpx;">北区宿舍楼E2对面</span>
+				<span wx:if="{{CurCanteenIndex ==1}}" class = "mid-context-more-text" style="margin-right:0rpx;">原菜品窗口</span>
+				<span wx:if="{{CurCanteenIndex ==2}}" class = "mid-context-more-text" style="margin-right:0rpx;">教学楼斜对面</span>
+
+
+			</view>
+
+		</view>
+	</view>
+</view>
+<!--信息框 结束-->
+
+
+
+<view class="bottom-warp" style="position: sticky; left: NaNrpx; top: NaNrpx">
 	<!-- 餐点选择栏 开始 -->
 	<view class="eat-time-warp">
-		<view
-		 class="eat-time margin-right {{curEatTime=='Breakfast' ? 'active' : ''}}"
+		 <view
+		 class="eat-time {{curEatTime=='Breakfast' ? 'active' : ''}}"
 		 bindtap="handleIEatTimeClick"
 		 data-time="Breakfast"
 		>早餐
+			<!-- 小圆点 -->
+			 <view class="{{curEatTime=='Breakfast' ? 'eat-time-dot' : ''}}"></view>
 		</view>
+
 		<view
 		 class="eat-time margin-right {{curEatTime=='Lunch' ? 'active' : ''}}"
 		 bindtap="handleIEatTimeClick"
 		 data-time="Lunch"
 		>午餐
+			<view class="{{curEatTime=='Lunch' ? 'eat-time-dot' : ''}}"></view>
 		</view>
 		<view
 		 class="eat-time {{curEatTime=='Dinner' ? 'active' : ''}}"
 		 bindtap="handleIEatTimeClick"
 		 data-time="Dinner"
 		>晚餐
+			<view class="{{curEatTime=='Dinner' ? 'eat-time-dot' : ''}}"></view>
+		</view>
+		<view class="eat-time {{curEatTime=='Dessert' ? 'active' : ''}}"
+			  wx:if="{{CurCanteenIndex == 1}}"
+		bindtap="handleIEatTimeClick"
+		data-time="Dessert"
+		>点心
+		<view class="{{curEatTime=='Dessert' ? 'eat-time-dot' : ''}}"></view>
+		</view>
+		<view class="eat-time {{curEatTime=='Drink' ? 'active' : ''}}"
+			  wx:if="{{CurCanteenIndex == 1}}"
+			  bindtap="handleIEatTimeClick"
+			  data-time="Drink"
+		>饮品
+		<view class="{{curEatTime=='Drink' ? 'eat-time-dot' : ''}}"></view>
 		</view>
 	</view>
 	<!-- 餐点选择栏 结束 -->
 
 	<!-- 食堂选择按钮 开始 -->
-	<view class="canteen-btn-warp">
-		<drop-selector
-		 outer-class="selector-outer"
-		 options="{{canteenOptions}}"
-		 itemHeight="{{30}}"
-		 bind:ItemSelect="loadMenuData"
-		></drop-selector>
-	</view>
+<!--	<view class="canteen-btn-warp">-->
+<!--		<drop-selector-->
+<!--		 outer-class="selector-outer"-->
+<!--		 options="{{canteenOptions}}"-->
+<!--		 itemHeight="{{30}}"-->
+<!--		 bind:ItemSelect="loadMenuData"-->
+<!--		></drop-selector>-->
+<!--	</view>-->
 	<!-- 食堂选择按钮 结束 -->
 
 	<!-- 时间下拉选择框 开始 -->
-	<view class="time-btn-warp">
-		<drop-selector
-		 outer-class="selector-outer"
-		 options="{{timeOptions}}"
-		 itemHeight="{{30}}"
-		 bind:ItemSelect="changeTime"
-		></drop-selector>
-	</view>
+<!--	<view class="time-btn-warp">-->
+<!--		<drop-selector-->
+<!--		 outer-class="selector-outer"-->
+<!--		 options="{{timeOptions}}"-->
+<!--		 itemHeight="{{30}}"-->
+<!--		 bind:ItemSelect="changeTime"-->
+<!--		></drop-selector>-->
+<!--	</view>-->
 	<!-- 时间下拉选择框 结束 -->
 
 	<!-- 菜单区 开始 -->
@@ -138,7 +223,9 @@
 							{{tag===''?'暂无':tag}}
 						</view>
 					</view>
-					<view class="food-calorie">{{food.calorie}}qk</view>
+<!--					变成占位符了-->
+<!--					<view class="food-calorie">{{food.calorie}}qk</view>-->
+					<view class="food-calorie"></view>
 					<view class="food-bottom-warp">
 						<view class="food-price">
 							<text>￥</text>
@@ -155,7 +242,7 @@
 						 class="food-add-btn"
 						 bindtap="handleAddFood"
 						 data-food="{{food}}"
-						 wx:if="{{version}}"
+						 wx:if="{{isShow&&food.isPacked}}"
 						>+
 						</view>
 					</view>
