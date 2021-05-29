@@ -2,9 +2,9 @@
  * @Description: 
  * @Author: 陈俊任
  * @Date: 2021-02-10 23:59:19
- * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-29 22:30:45
- * @FilePath: \tastygo\miniprogram\pages\pay\index.js
+ * @LastEditors: AmsChen
+ * @LastEditTime: 2021-05-17 23:58:27
+ * @FilePath: \miniprogram\pages\pay\index.js
  */
 const { toTimeStamp, timeCountDown } = require("../../utils/util");
 const { getAddressList, submitOrder } = require('../../api/api');
@@ -143,7 +143,7 @@ Page({
                     canteenOrder.note = note;
                     canteenOrder.tableware = tbwIdx === -1 ? 1 : tbwIdx;
 
-                    let tmplIds = ['LjrtLzhdr9neIoNPR8s08SLWKxyv6creVn627vrqQtU', 'GgNdlRXIff0qE3t3AP6VHMtg1nyqtzqcYDo4ZHwJmHo', 'Ylw5kbld12nZ5qvCM2tEwaoV7F7S1barD5YCxi8GpNM'];
+                    let tmplIds = ['XVye3K92uvlam8-NvQrXbNQEtvyG6Uzzuc4xXjgsaw8', 'g04W0i3K_tv76nEVrINmDR0bIhd-Wwu-3HhmSXItPOo', 'G0Cx1K1RxDKKR6rD2oDo2H9JEAIZumZ9BTRzXLnnA9c'];
 
                     //根据取餐方式选择对应订阅消息模板及地址
                     if (that.data.getWay == 1) {
@@ -152,13 +152,13 @@ Page({
                     } else {
                         canteenOrder.addressId = 0;
                         canteenOrder.addressDetail = '北区食堂二楼正门左侧置物架';
-                        tmplIds = ['C3zpuPVIVQYXYtjEtt7kFVEa2MwcwEnkqZ6kGyBb4eA'];
+                        tmplIds = ['y4ngSfCL3EkzkZEIcpZxvFsJAkKfWk7IwwOGqyObQiQ'];
 
                     }
 
                     let res = await submitOrder(canteenOrder);
                     if (res.msg === 'success') {
-                        wx.requestSubscribeMessage({ tmplIds }); //退出订阅通知
+                        wx.requestSubscribeMessage({ tmplIds }); //弹出订阅通知
 
                         //去除订单存储
                         wx.removeStorageSync('canteenOrder');

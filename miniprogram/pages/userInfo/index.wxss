@@ -1,9 +1,12 @@
+.container {
+  padding-bottom: 300rpx;
+}
 .container .top {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  margin-top: 100rpx;
+  margin-top: 50rpx;
   text-align: center;
   color: #5c5b5b;
 }
@@ -14,17 +17,50 @@
 }
 .container .editable-info {
   width: 100%;
-  margin-top: 100rpx;
+  margin-top: 50rpx;
 }
 .container .editable-info .cell {
+  width: 100%;
   padding-top: 10rpx;
   padding-right: 0;
   padding-bottom: 10rpx;
   font-size: 28rpx;
 }
+.container .editable-info .cell .weui-input {
+  width: 80%;
+}
+.container .qr-code {
+  margin-top: 30rpx;
+}
+.container .qr-code .title {
+  margin-left: 32rpx;
+  font-size: 28rpx;
+  color: #7f7f7f;
+}
+.container .qr-code .upload-warp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 93%;
+  height: 400rpx;
+  padding: 8rpx;
+  margin-top: 10rpx;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border: 2rpx solid #ccc;
+  border-radius: 20rpx;
+}
+.container .qr-code .upload-warp .iconfont {
+  font-size: 100rpx;
+  color: #b6b5b5;
+}
+.container .qr-code .upload-warp .qrcode-img {
+  width: 100%;
+  height: 100%;
+}
 .container .save {
   position: fixed;
-  bottom: 130rpx;
+  bottom: 100rpx;
   width: 50%;
   height: 80rpx;
   margin-left: 50%;

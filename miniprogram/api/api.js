@@ -2,12 +2,12 @@
  * @Description: api管理
  * @Author: 陈俊任
  * @Date: 2021-02-01 01:44:13
- * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-28 13:40:57
- * @FilePath: \tastygo\miniprogram\api\api.js
+ * @LastEditors: AmsChen
+ * @LastEditTime: 2021-05-18 10:52:19
+ * @FilePath: \miniprogram\api\api.js
  */
 
-const { request } = require('../utils/request.js');
+const { request, wxUploadFile } = require('../utils/request.js');
 const app = getApp();
 const { apiBaseUrl } = app.globalData;
 
@@ -91,6 +91,9 @@ const getOrderByUser = async(params) => {
 //获取订单详情
 const getOrderDetail = async(params) => {
     let { data } = await request.get(`${apiBaseUrl}/getOrderById`, params);
+    if(data.data[0].receiver && data.data[0].receiver.qrcode !== '') {
+        data.data[0].receiver.qrcode = 'https://www.tastygo.cn/haochigoserver/wxapi/getqrcode/?path=' + data.data[0].receiver.qrcode;
+    }
     return data;
 };
 
@@ -113,14 +116,21 @@ const reg = async(userInfo) => {
 };
 
 //更新用户信息
+// const updateUserInfo = async(params) => {
+//     let { data } = await request.post(`${apiBaseUrl}/updateCampusUserDetail`, params);
+//     return data;
+// };
 const updateUserInfo = async(params) => {
-    let { data } = await request.post(`${apiBaseUrl}/updateCampusUserDetail`, params);
+    let { data } = await wxUploadFile(`${apiBaseUrl}/updateCampusUserDetail`, 'files', params);
     return data;
 };
 
 //获取用户信息
 const getUserInfo = async(params) => {
     let { data } = await request.get(`${apiBaseUrl}/getUserInfo`, params);
+    if(data.data.qrCode !== '') {
+        data.data.qrCode = 'https://www.tastygo.cn/haochigoserver/wxapi/getqrcode/?path=' + data.data.qrCode;
+    }
     return data;
 };
 

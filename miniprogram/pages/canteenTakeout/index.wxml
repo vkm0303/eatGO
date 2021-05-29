@@ -1,191 +1,198 @@
-<view class="navbar" style="height: {{navBarHeight*2}}rpx; padding-left: {{menuRight}}rpx;" wx:if="{{isShow}}">
-	<view class="tabs-warp" style="bottom: {{menuBottom*2}}rpx">
-		<view
-		 class="left-box text-center"
-		 data-index="{{0}}"
-		 bindtap="moveLeft"
-		>我要吃
-		</view>
-		<view
-		 class="right-box text-center"
-		 data-index="{{1}}"
-		 bindtap="moveRight"
-		>我要带
-		</view>
-		<view class="animation-box" animation="{{moveAnimation}}"></view>
-	</view>
+<view
+  class="navbar"
+  style="height: {{navBarHeight*2}}rpx; padding-left: {{menuRight}}rpx;"
+  wx:if="{{isShow}}"
+>
+  <view class="tabs-warp" style="bottom: {{menuBottom*2}}rpx">
+    <view
+      class="left-box text-center"
+      data-index="{{0}}"
+      bindtap="moveLeft"
+    >我要吃
+    </view>
+    <view
+      class="right-box text-center"
+      data-index="{{1}}"
+      bindtap="moveRight"
+    >我要带
+    </view>
+    <view class="animation-box" animation="{{moveAnimation}}"></view>
+  </view>
 </view>
 
 <view
- class="content-submit-order"
- style="padding-top: {{navBarHeight*2}}rpx"
- hidden="{{tabIdx===1&&isShow}}"
+  class="content-submit-order"
+  style="padding-top: {{navBarHeight*2}}rpx"
+  hidden="{{tabIdx===1&&isShow}}"
 >
-	<swiper
-	 class="swiper"
-	 current="0"
-	 autoplay
-	 circular
-	>
-		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
-			<image
-			 class="swiper-img"
-			 src="{{item.preImg}}"
-			 mode="aspectFit"
-			 hidden="{{isLoad}}"
-			> </image>
-			<image
-			 class="swiper-img"
-			 src="{{item.imageUrl}}"
-			 mode="aspectFit"
-			 hidden="{{!isLoad}}"
-			 bindload="imgLoad"
-			> </image>
-		</swiper-item>
-	</swiper>
+  <swiper
+    class="swiper"
+    current="0"
+    autoplay
+    circular
+  >
+    <swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
+      <image
+        class="swiper-img"
+        src="{{item.preImg}}"
+        mode="aspectFit"
+        hidden="{{isLoad}}"
+      > </image>
+      <image
+        class="swiper-img"
+        src="{{item.imageUrl}}"
+        mode="aspectFit"
+        hidden="{{!isLoad}}"
+        bindload="imgLoad"
+      > </image>
+    </swiper-item>
+  </swiper>
 
-	<view class="ways">
-		<image class="bgc" src="../../images/ways.png"></image>
-		<view
-		 class="left common"
-		 bindtap="handleWaySelect"
-		 data-index="{{0}}"
-		></view>
-		<view
-		 class="right common"
-		 bindtap="handleWaySelect"
-		 data-index="{{1}}"
-		></view>
-	</view>
+  <view class="ways">
+    <image class="bgc" src="../../images/ways.png"></image>
+    <view
+      class="left common"
+      bindtap="handleWaySelect"
+      data-index="{{0}}"
+    ></view>
+    <view
+      class="right common"
+      bindtap="handleWaySelect"
+      data-index="{{1}}"
+    ></view>
+  </view>
 
-	<view class="tips-outer">
-		<view class="tips">
-			<image class="icon" src="../../images/tips.jpg"></image>
-			<view class="content-warp">
-				<span class="head">温馨提醒</span>
-				<span class="content">若长时间无人接单，建议取消订单，选择“自取”重新下单自行取餐噢！</span>
-			</view>
-		</view>
-	</view>
+  <view class="tips-outer">
+    <view class="tips">
+      <image class="icon" src="../../images/tips.jpg"></image>
+      <view class="content-warp">
+        <span class="head">温馨提醒</span>
+        <span class="content">若长时间无人接单，建议取消订单，选择“自取”重新下单自行取餐噢！</span>
+      </view>
+    </view>
+  </view>
 </view>
 
-<view wx:if="{{!isShow}}" class="tips" style="position: fixed;left: 0; top: 0; color: #333333">
-<view style="width:100%; height: 47px; background-color: #f9e0bf"></view>
-	<swiper
-	 class="swiper"
-	 style="width: 100vw; height: calc(100vw * 4377 / 4054); margin-bottom: 40px"
-	 current="0"
-	 autoplay
-	 circular
-	>
-		<swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
-			<image
-			 class="swiper-img"
-			 style="width: 100%; height: 100%"
-			 src="{{item.preImg}}"
-			 mode="aspectFit"
-			 hidden="{{isLoad}}"
-			> </image>
-			<image
-			 class="swiper-img"
-			 style="width: 100%; height: 100%"
-			 src="{{item.imageUrl}}"
-			 mode="aspectFit"
-			 hidden="{{!isLoad}}"
-			 bindload="imgLoad"
-			> </image>
-		</swiper-item>
-	</swiper>
-	<view class="tips" style="width: 80vw; margin-left: 50%; transform: translateX(-50%); padding: 20rpx 40rpx; border-radius: 15rpx; border: 1rpx solid #f79371; background-color: #fff; text-align: center;">{{takeOutText}}</view>
+<view
+  wx:if="{{!isShow}}"
+  class="tips"
+  style="position: fixed;left: 0; top: 0; color: #333333"
+>
+  <view style="width:100%; height: 47px; background-color: #f9e0bf"></view>
+  <swiper
+    class="swiper"
+    style="width: 100vw; height: calc(100vw * 4377 / 4054); margin-bottom: 40px"
+    current="0"
+    autoplay
+    circular
+  >
+    <swiper-item wx:for="{{swiperImagesList}}" wx:key="index">
+      <image
+        class="swiper-img"
+        style="width: 100%; height: 100%"
+        src="{{item.preImg}}"
+        mode="aspectFit"
+        hidden="{{isLoad}}"
+      > </image>
+      <image
+        class="swiper-img"
+        style="width: 100%; height: 100%"
+        src="{{item.imageUrl}}"
+        mode="aspectFit"
+        hidden="{{!isLoad}}"
+        bindload="imgLoad"
+      > </image>
+    </swiper-item>
+  </swiper>
+  <view class="tips" style="width: 80vw; margin-left: 50%; transform: translateX(-50%); padding: 20rpx 40rpx; border-radius: 15rpx; border: 1rpx solid #f79371; background-color: #fff; text-align: center;">{{takeOutText}}</view>
 </view>
 
-<view class="content-receive-order" hidden="{{tabIdx===0&&isShow}}" >
+<view class="content-receive-order" hidden="{{tabIdx===0&&isShow}}">
 
-	<view class="address-warp">
-		<span class="iconfont icon-dian" style="color: #f7d479;"></span>
-		<drop-selector
-		 position-class="starting-position"
-		 outer-class="starting-selector-outer"
-		 curitem-class="selector-curitem"
-		 options="{{startingOptions}}"
-		 itemHeight="{{30}}"
-		 key="{{0}}"
-		 data-flag="{{0}}"
-		 bind:ItemSelect="selectorItemChange"
-		></drop-selector>
+  <view class="address-warp">
+    <span class="iconfont icon-dian" style="color: #f7d479;"></span>
+    <drop-selector
+      position-class="starting-position"
+      outer-class="starting-selector-outer"
+      curitem-class="selector-curitem"
+      options="{{startingOptions}}"
+      itemHeight="{{30}}"
+      key="{{0}}"
+      data-flag="{{0}}"
+      bind:ItemSelect="selectorItemChange"
+    ></drop-selector>
 
-		<view class="iconfont icon-iconyoujiantou" style="margin-top: 154rpx; line-height: 60rpx; color: #cfd2d8;"></view>
+    <view class="iconfont icon-iconyoujiantou" style="margin-top: 154rpx; line-height: 60rpx; color: #cfd2d8;"></view>
 
-		<span class="iconfont icon-dian" style="color: #78b8f7"></span>
-		<drop-selector
-		 position-class="focus-position"
-		 outer-class="focus-selector-outer"
-		 curitem-class="selector-curitem"
-		 options="{{focusOptions}}"
-		 itemHeight="{{30}}"
-		 key="{{0}}"
-		 data-flag="{{1}}"
-		 bind:ItemSelect="selectorItemChange"
-		></drop-selector>
+    <span class="iconfont icon-dian" style="color: #78b8f7"></span>
+    <drop-selector
+      position-class="focus-position"
+      outer-class="focus-selector-outer"
+      curitem-class="selector-curitem"
+      options="{{focusOptions}}"
+      itemHeight="{{30}}"
+      key="{{0}}"
+      data-flag="{{1}}"
+      bind:ItemSelect="selectorItemChange"
+    ></drop-selector>
 
-		<view class="filter-btn" bindtap="filter">筛选</view>
-	</view>
+    <view class="filter-btn" bindtap="filter">筛选</view>
+  </view>
 
-	<scroll-view
-	 class="order-list"
-	 scroll-y
-	 scroll-anchoring
-	 enhanced
-	 show-scrollbar="{{false}}"
-	 refresher-default-style="dark"
-	 refresher-enabled="{{true}}"
-	 refresher-triggered="{{showTriggered}}"
-	 refresher-threshold="{{40}}"
-	 enable-flex
-	 lower-threshold="{{10}}"
-	 bindrefresherpulling="refresherPulling"
-	 bindrefresherrefresh="refresherStart"
-	 bindscrolltolower="scrollToLower"
-	>
-		<view
-		 class="order"
-		 wx:for="{{orderList}}"
-		 wx:key="index"
-		>
-			<view class="take common">
-				<span class="take-icon icon-common">取</span>
-				<span class="take-address address-common">{{item.canteen}}</span>
-			</view>
-			<view class="receive common">
-				<span class="rec-icon icon-common">收</span>
-				<span class="rec-address address-common">{{item.address}}</span>
-				<span class="address-detail">{{item.addressDetail}}</span>
-			</view>
-			<view class="time common">送达时间：{{item.arrivalTime}}</view>
-			<view class="detail">
-				<span class="total-num">份数：{{item.totalNum}}</span>
-				<span class="total-price">金额：{{item.price}}元</span>
-			</view>
-			<view class="rec-btn-warp">
-				<view
-				 class="rec-btn"
-				 bindtap="receiveOrder"
-				 data-orderid="{{item.orderId}}"
-				>确认接单
-				</view>
-			</view>
-		</view>
-		<view class="tips" wx:if="{{isShowLoading&&!tips}}">
-			<mp-loading type="circle" tips="拼命加载中..."></mp-loading>
-		</view>
+  <scroll-view
+    class="order-list"
+    scroll-y
+    scroll-anchoring
+    enhanced
+    show-scrollbar="{{false}}"
+    refresher-default-style="dark"
+    refresher-enabled="{{true}}"
+    refresher-triggered="{{showTriggered}}"
+    refresher-threshold="{{40}}"
+    enable-flex
+    lower-threshold="{{10}}"
+    bindrefresherpulling="refresherPulling"
+    bindrefresherrefresh="refresherStart"
+    bindscrolltolower="scrollToLower"
+  >
+    <view
+      class="order"
+      wx:for="{{orderList}}"
+      wx:key="index"
+    >
+      <view class="take common">
+        <span class="take-icon icon-common">取</span>
+        <span class="take-address address-common">{{item.canteen}}</span>
+      </view>
+      <view class="receive common">
+        <span class="rec-icon icon-common">收</span>
+        <span class="rec-address address-common">{{item.address}}</span>
+        <span class="address-detail">{{item.addressDetail}}</span>
+      </view>
+      <view class="time common">送达时间：{{item.arrivalTime}}</view>
+      <view class="detail">
+        <span class="total-num">份数：{{item.totalNum}}</span>
+        <span class="total-price">金额：{{item.price}}元</span>
+      </view>
+      <view class="rec-btn-warp">
+        <view
+          class="rec-btn"
+          bindtap="receiveOrder"
+          data-orderid="{{item.orderId}}"
+        >确认接单
+        </view>
+      </view>
+    </view>
+    <view class="tips" wx:if="{{isShowLoading&&!tips}}">
+      <mp-loading type="circle" tips="拼命加载中..."></mp-loading>
+    </view>
 
-		<view class="tips" hidden="{{!tips}}">{{tips}}</view>
+    <view class="tips" hidden="{{!tips}}">{{tips}}</view>
 
-		<view class="null-msg" wx-if="{{!orderList.length}}">
-			<span class="iconfont icon-null-order"></span>
-			<span class="msg">没有相关订单噢~</span>
-		</view>
-	</scroll-view>
+    <view class="null-msg" wx-if="{{!orderList.length}}">
+      <span class="iconfont icon-null-order"></span>
+      <span class="msg">没有相关订单噢~</span>
+    </view>
+  </scroll-view>
 </view>
-
 

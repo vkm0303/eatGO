@@ -76,11 +76,17 @@ Page({
         
     },
 
-    onShow: function() {},
+    onShow: function() {
+        const tabIdx = 0;
+        this.moveLeft();
+        this.setData({
+            tabIdx
+        });
+    },
 
     moveLeft(e) {
         const that = this;
-        const { index } = e.currentTarget.dataset;
+        const { index } = e?e.currentTarget.dataset:0;
         let translateLeft = wx.createAnimation({
             duration: 100
         });
@@ -220,6 +226,9 @@ Page({
     async getOrderList(type) {
         const that = this;
         let { orderList } = that.data;
+        if(type === 'top') {
+            currentPage = 0;
+        }
         const params = {
             canteenId: canteenList[canteenIdx].canteenId,
             addressId: focusAddressList[addressIdx].addressId,
@@ -230,6 +239,7 @@ Page({
 
         let res = await filterOrder(params);
         orderList = type === 'top' ? res.data : orderList.concat(res.data);
+        //orderList = res.data;
         console.log(res)
         that.setData({
             orderList
@@ -298,7 +308,7 @@ Page({
         const orderId = e.currentTarget.dataset.orderid;
         const userInfo = wx.getStorageSync('userInfo');
         if (userInfo) {
-            if (userInfo.wxId && userInfo.phone) { //判断用户联系方式是否完整
+            if (userInfo.wxId && userInfo.phone && userInfo.qrCode !== '') { //判断用户联系方式是否完整
                 wx.showModal({
                     title: '是否确定接单',
                     content: '接单后不可取消',
@@ -309,9 +319,9 @@ Page({
                                 receiveUserId: userInfo.campusId,
                             };
                             const res = await receiveOrder(params);
-                            if (res.msg === 'success') {
+                            if (res.code == 200) {
                                 wx.requestSubscribeMessage({
-                                    tmplIds: ['C3zpuPVIVQYXYtjEtt7kFVEa2MwcwEnkqZ6kGyBb4eA']
+                                    tmplIds: ['y4ngSfCL3EkzkZEIcpZxvFsJAkKfWk7IwwOGqyObQiQ']
                                 });
                                 wx.navigateTo({ url: `/pages/takeOrderDetail/index?orderId=${orderId}` });
                             } else {

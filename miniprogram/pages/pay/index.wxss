@@ -77,9 +77,9 @@ page {
   padding-left: 24rpx;
 }
 .time-selector-warp-2 .selector-box {
-  width: 220rpx;
+  width: 290rpx;
   height: 126rpx;
-  margin-right: 20rpx;
+  margin-right: 70rpx;
   background-color: #fff;
   border-radius: 20rpx;
   box-sizing: border-box;

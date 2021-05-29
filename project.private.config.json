@@ -147,6 +147,24 @@
           "pathName": "pages/employeeEnd/employeeEnd",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "个人信息",
+          "pathName": "pages/userInfo/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/pay/index",
+          "pathName": "pages/pay/index",
+          "query": "getWay=1",
+          "scene": null
+        },
+        {
+          "name": "pages/myOrderDetail/index",
+          "pathName": "pages/myOrderDetail/index",
+          "query": "getWay=1",
+          "scene": null
         }
       ]
     }

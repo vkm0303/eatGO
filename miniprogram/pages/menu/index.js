@@ -497,6 +497,7 @@ Page({
         })
     },
 
+    //清空购物车
     bindClearCart() {
         wx.removeStorageSync('canteenOrder');
         wx.removeStorageSync('orderDetail');

@@ -14,74 +14,83 @@
 <template is="skeleton" wx-if="{{loading}}" />
 
 <view class="outer order-status">
-	订单状态:
-	<text class="status">{{status[orderDetail.status+1]}}</text>
+  订单状态:
+  <text class="status">{{status[orderDetail.status+1]}}</text>
 </view>
 
 <view class="outer delievry-info" wx:if="{{orderDetail.getWay===1}}">
-	<view class="head">
-		<span class="iconfont icon-delievry-man"></span>
-		<span class="title">配送员信息</span>
-	</view>
+  <view class="head">
+    <span class="iconfont icon-delievry-man"></span>
+    <span class="title">配送员信息</span>
+  </view>
 
-	<view class="common" wx:if="{{orderDetail.receiver.name}}">
-		<span class="deliveryman">
-			<text decode>送餐员:&nbsp;&nbsp;&nbsp;{{orderDetail.receiver.name[0]}}**</text>
-		</span>
-		<span class="tele-num num-common">
-			<text decode>联系电话:&nbsp;&nbsp;&nbsp;{{orderDetail.receiver.phone}}</text>
-		</span>
-		<span class="wx-num num-common">
-			<text decode>联系微信:&nbsp;&nbsp;&nbsp;{{orderDetail.receiver.wechat}}</text>
-		</span>
-	</view>
+  <view class="common" wx:if="{{orderDetail.receiver.name}}">
+    <span class="deliveryman">
+      <text decode>送餐员:&nbsp;&nbsp;&nbsp;{{orderDetail.receiver.name[0]}}**</text>
+    </span>
+    <span class="tele-num num-common">
+      <text decode>联系电话:&nbsp;&nbsp;&nbsp;{{orderDetail.receiver.phone}}</text>
+    </span>
+    <span class="wx-num num-common">
+      <text decode>联系微信:&nbsp;&nbsp;&nbsp;{{orderDetail.receiver.wechat}}</text>
+    </span>
+    <span class="qr-code num-common">
+      <text decode>收款码</text>
+      <image
+        class="code-img"
+        mode="aspectFit"
+        src="{{orderDetail.receiver.qrcode}}"
+        bindtap="previewImg"
+      ></image>
+    </span>
+  </view>
 
-	<view class="null-delievry" wx:else>
-		<span class="msg">该订单未被接单</span>
-	</view>
+  <view class="null-delievry" wx:else>
+    <span class="msg">该订单未被接单</span>
+  </view>
 </view>
 
 <view class="outer detail-warp">
-	<view class="head">
-		<span class="iconfont icon-order-detail"></span>
-		<span class="title">订单详情</span>
-	</view>
-<!-- open-ending -->
-	<!-- <view class="getway-warp margin-common">
+  <view class="head">
+    <span class="iconfont icon-order-detail"></span>
+    <span class="title">订单详情</span>
+  </view>
+  <!-- open-ending -->
+  <!-- <view class="getway-warp margin-common">
 		<text decode>取餐方式:&nbsp;&nbsp;&nbsp;</text>
 		<span class="getway">{{orderDetail.getWay===0?'自提':'配送'}}</span>
 	</view> -->
-<!-- open-start -->
-	<view class="content-byself common" wx:if="{{orderDetail.getWay===0}}">
-		<span class="take-food-num">
-			<text decode>取餐码:&nbsp;&nbsp;&nbsp;</text>
-			<text class="num">{{orderDetail.code}}</text>
-		</span>
-		<text class="take-food-time margin-common" decode>预定取餐时间:&nbsp;&nbsp;&nbsp;11:40</text>
-		<text class="time margin-common" decode>取餐地点:&nbsp;&nbsp;&nbsp;北区食堂二楼正门左侧置物架</text>
-	</view>
+  <!-- open-start -->
+  <view class="content-byself common" wx:if="{{orderDetail.getWay===0}}">
+    <span class="take-food-num">
+      <text decode>取餐码:&nbsp;&nbsp;&nbsp;</text>
+      <text class="num">{{orderDetail.code}}</text>
+    </span>
+    <text class="take-food-time margin-common" decode>预定取餐时间:&nbsp;&nbsp;&nbsp;11:40</text>
+    <text class="time margin-common" decode>取餐地点:&nbsp;&nbsp;&nbsp;北区食堂二楼正门左侧置物架</text>
+  </view>
 
-	<text class="time margin-common" decode wx:if="{{orderDetail.getWay}}">预定到达时间:&nbsp;&nbsp;&nbsp;{{orderDetail.arrivalTime}}</text>
-	<text class="address margin-common" decode wx:if="{{orderDetail.getWay}}">配送地址:&nbsp;&nbsp;&nbsp;{{orderDetail.address+' '+orderDetail.addressDetail}}</text>
-	<span class="foods-content margin-common" decode>
-		<text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
-		<view class="foods-warp">
-			<text class="foods" decode wx:for="{{orderDetail.menus}}" wx:key="index">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
-		</view>
-	</span>
-	<text class="tableware margin-common" decode>餐具:&nbsp;&nbsp;&nbsp;{{tableware[orderDetail.tableware]}}</text>
-	<view class="line"></view>
-	<span class="remarks">备注： {{orderDetail.note?orderDetail.note:'无'}}</span>
-	<span class="total-price">总金额：
-		<text class="price red">{{orderDetail.price}}  </text>
-		(未包含包装费)
-	</span>
+  <text class="time margin-common" decode wx:if="{{orderDetail.getWay}}">预定到达时间:&nbsp;&nbsp;&nbsp;{{orderDetail.arrivalTime}}</text>
+  <text class="address margin-common" decode wx:if="{{orderDetail.getWay}}">配送地址:&nbsp;&nbsp;&nbsp;{{orderDetail.address+' '+orderDetail.addressDetail}}</text>
+  <span class="foods-content margin-common" decode>
+    <text decode>餐品内容:&nbsp;&nbsp;&nbsp;</text>
+    <view class="foods-warp">
+      <text class="foods" decode wx:for="{{orderDetail.menus}}" wx:key="index">{{item.foodName}}*{{item.num}}&nbsp;&nbsp;&nbsp;</text>
+    </view>
+  </span>
+  <text class="tableware margin-common" decode>餐具:&nbsp;&nbsp;&nbsp;{{tableware[orderDetail.tableware]}}</text>
+  <view class="line"></view>
+  <span class="remarks">备注： {{orderDetail.note?orderDetail.note:'无'}}</span>
+  <span class="total-price">总金额：
+    <text class="price red">{{orderDetail.price}}  </text>
+    (未包含包装费)
+  </span>
 </view>
 
 <view
- class="confirm-btn"
- style="{{orderDetail.status===5?'background-color:#cfcfcf':''}}"
- bindtap="{{orderDetail.status===5?'':'orderReceived'}}"
+  class="confirm-btn"
+  style="{{orderDetail.status===5?'background-color:#cfcfcf':''}}"
+  bindtap="{{orderDetail.status===5?'':'orderReceived'}}"
 >{{orderDetail.status===5?'订单已结束':'确认收货'}}
 </view>
 

@@ -2,9 +2,9 @@
  * @Description: 
  * @Author: 陈俊任
  * @Date: 2021-02-13 14:23:30
- * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-30 12:41:57
- * @FilePath: \tastygo\miniprogram\pages\myOrderDetail\index.js
+ * @LastEditors: AmsChen
+ * @LastEditTime: 2021-05-16 00:33:57
+ * @FilePath: \miniprogram\pages\myOrderDetail\index.js
  */
 
 const { getOrderDetail, changeOrderStatus } = require('../../api/api');
@@ -104,6 +104,12 @@ Page({
             orderDetail,
             status,
             loading: false
+        });
+    },
+
+    previewImg() {
+        wx.previewImage({
+            urls: [this.data.orderDetail.receiver.qrcode]
         });
     }
 })

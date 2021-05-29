@@ -1,45 +1,58 @@
 <view class="container">
-	<view class="top">
-		<view>
-			<image class="avatar" src="{{userInfo.avatar}}"></image>
-		</view>
-		<span class="realname">{{userInfo.realname}}</span>
-		<span class="no">{{userInfo.campusId}}</span>
-	</view>
-	<view class="editable-info">
-		<mp-cells title="联系方式" >
-			<mp-cell
-			 prop="wxid"
-			 title="微信号"
-			 ext-class="cell"
-			>
-				<input
-				 bindinput="wxidInput"
-				 data-field="wxid"
-				 class="weui-input"
-				 value="{{userInfo.wxId}}"
-				 placeholder="请输入微信号"
-				 placeholder-style="font-size: 26rpx"
-				/>
-			</mp-cell>
-			<mp-cell
-			 prop="mobile"
-			 title="手机号"
-			 ext-class="cell"
-			>
-				<input
-				 bindinput="phoneInput"
-				 data-field="mobile"
-				 class="weui-input"
-				 type="number"
-				 maxlength="11"
-				 value="{{userInfo.phone}}"
-				 placeholder="请输入手机号"
-				 placeholder-style="font-size: 26rpx"
-				/>
-			</mp-cell>
-		</mp-cells>
-	</view>
-	<view class="save" bindtap="save">保存</view>
+  <view class="top">
+    <view>
+      <image class="avatar" src="{{userInfo.avatar}}"></image>
+    </view>
+    <span class="realname">{{userInfo.realName}}</span>
+    <span class="no">{{userInfo.campusId}}</span>
+  </view>
+  <view class="editable-info">
+    <mp-cells title="联系方式">
+      <mp-cell
+        prop="wxid"
+        title="微信号"
+        ext-class="cell"
+      >
+        <input
+          bindinput="wxidInput"
+          data-field="wxid"
+          class="weui-input"
+          value="{{userInfo.wxId}}"
+          placeholder="请输入微信号"
+          placeholder-style="font-size: 26rpx"
+        />
+      </mp-cell>
+      <mp-cell
+        prop="mobile"
+        title="手机号"
+        ext-class="cell"
+      >
+        <input
+          bindinput="phoneInput"
+          data-field="mobile"
+          class="weui-input"
+          type="number"
+          maxlength="11"
+          value="{{userInfo.phone}}"
+          placeholder="请输入手机号"
+          placeholder-style="font-size: 26rpx"
+        />
+      </mp-cell>
+    </mp-cells>
+  </view>
+  <view class="qr-code" bindtap="uploadQrCode">
+    <span class="title">收款码</span>
+    <view class="upload-warp">
+      <span class="iconfont icon-shangchuantupian" wx:if="{{userInfo.qrCode === ''}}"></span>
+      <image
+        class="qrcode-img"
+        mode="aspectFit"
+        src="{{userInfo.qrCode}}"
+        catchtap="previewImg"
+        wx:else
+      ></image>
+    </view>
+  </view>
+  <view class="save" bindtap="save">保存</view>
 </view>
 

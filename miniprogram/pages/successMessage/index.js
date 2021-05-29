@@ -2,9 +2,9 @@
  * @Description: 
  * @Author: 陈俊任
  * @Date: 2021-02-15 13:25:26
- * @LastEditors: 陈俊任
- * @LastEditTime: 2021-03-28 22:09:08
- * @FilePath: \tastygo\miniprogram\pages\successMessage\index.js
+ * @LastEditors: AmsChen
+ * @LastEditTime: 2021-05-16 17:16:33
+ * @FilePath: \miniprogram\pages\successMessage\index.js
  */
 
 const { getOrderDetail, cancelOrder } = require("../../api/api");
@@ -18,6 +18,7 @@ Page({
     onLoad: async function(options) {
         const { orderId } = options;
         let res = await getOrderDetail({ id: orderId });
+        console.log(res);
         this.setData({
             orderDetail: res.data[0]
         });

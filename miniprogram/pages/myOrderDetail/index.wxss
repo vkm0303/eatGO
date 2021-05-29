@@ -168,6 +168,13 @@ page .delievry-info .null-delievry {
   padding-left: 10rpx;
   font-size: 30rpx;
 }
+page .delievry-info .qr-code {
+  font-weight: 700;
+}
+page .delievry-info .qr-code .code-img {
+  width: 100%;
+  height: 480rpx;
+}
 page .detail-warp .getway-warp .getway {
   font-size: 40rpx;
   color: #ff824e;
